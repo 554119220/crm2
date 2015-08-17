@@ -1,0 +1,49 @@
+<!--  页首标题  -->
+<style type="text/css" media="screen">
+    .tableList {margin-top:10px; float:left; margin-right:30px; width:45%}
+    .tableList,.tableList thead th {border-bottom:2px solid #7B98C9; font-family:"Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif; font-weight: 400; font-size:0.7rem}
+    //.tableList thead th {font-size:0.9rem; width:140px}
+    td {font-size:1rem}
+    .stats-name {font-size:0.8rem}
+    tbody tr {height:35px}
+    .tableList>tbody>tr>td {border-top:1px solid #7B98C9; padding:2px 5px}
+    .thLeft {text-align:left}
+    .thPaddingLeft {padding-left:10px}
+    .tableTitle {width:200px}
+    .tdPaddingLeft {padding-left:10px}
+    .tableGoodsSn {width:80px}
+    .tableGoodsName {width:200px}
+    .tableTime {width:150px}
+    .tableList>tbody>tr:hover {background:#D0D0D0}
+    .addBtn {margin:5px; padding:3px 12px; border-radius:3px; border:1px solid #898989; color:#333}
+    .addBtn:hover {background:#628ACC}
+    .addBtn>a:hover {color:#FFF}
+    .floatRight {float:right}
+    thead th, tbody td {border-left:1px solid #7B98C9; text-align:center}
+    thead th:first-child, tbody td:first-child {border-left:none}
+    fieldset {width:77%}
+</style>
+<div class="content-head">
+    <br style="clear:both"/>
+    <div class="finder-title">{$curr_title}</div>
+    <div style="width:100%">
+        <fieldset>
+            <form action="report_forms.php?act=sale_detail" name="saleDetail" onsubmit="return getSaleDetail()">
+                统计时间：
+                <input class="Wdate" name="startTime" type="text" value="{$start_time}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})">
+                至<input class="Wdate" name="endTime" type="text" value="{$end_time}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})">
+                <select name="platform" id="platform">
+                    <option value="0">销售平台</option>
+                    {foreach from=$platform item=val}
+                    <option value="{$val.role_id}">{$val.role_name}</option>
+                    {/foreach}
+                </select>
+                <label><input type="checkbox" value="1" name="rtn"/>不包含退货</label>
+                <input type="submit" value="统计" class="b_submit"/>
+            </form>
+        </fieldset>
+        <div id="data">
+            {$data}
+        </div>
+    </div>
+</div>

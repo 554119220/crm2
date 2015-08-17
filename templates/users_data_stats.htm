@@ -1,0 +1,102 @@
+<link rel="stylesheet" href="styles/report_forms.css" type="text/css" charset="utf-8">
+{insert_scripts files="reportSorting.js"}
+<div id="users-data-stats">
+    <div class="finder-title"><br>档案顾客统计</div>
+    {if $current}
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr class="sortByThis">
+                <th>当天</th>
+                <th>有效</th>
+                <th>停机</th>
+                <th>空号</th>
+                <th>无人接听</th>
+                <th>已去世</th>
+                <th>已换人</th>
+                <th>总计</th>
+                <th>有效率</th>
+            </tr>
+        </thead>
+        <tbody>
+        {foreach from=$current key=k item=val}
+        <tr>
+            <th>{$k}</th>
+            <td>{$val[4]}</td>
+            <td>{$val[1]}</td>
+            <td>{$val[2]}</td>
+            <td>{$val[3]}</td>
+            <td>{$val[5]}</td>
+            <td>{$val[6]}</td>
+            <td>{$val.total}</td>
+            <td>{$val.efficient}</td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+    {/if}
+    {if $last}
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr class="sortByThis">
+                <th>昨天</th>
+                <th>有效</th>
+                <th>停机</th>
+                <th>空号</th>
+                <th>无人接听</th>
+                <th>已去世</th>
+                <th>已换人</th>
+                <th>总计</th>
+                <th>有效率</th>
+            </tr>
+        </thead>
+        <tbody>
+        {foreach from=$last key=k item=val}
+        <tr>
+            <th>{$k}</th>
+            <td>{$val[4]}</td>
+            <td>{$val[1]}</td>
+            <td>{$val[2]}</td>
+            <td>{$val[3]}</td>
+            <td>{$val[5]}</td>
+            <td>{$val[6]}</td>
+            <td>{$val.total}</td>
+            <td>{$val.efficient}</td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+    {/if}
+    {if $current_month}
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr class="sortByThis">
+                <th>当月</th>
+                <th>有效</th>
+                <th>停机</th>
+                <th>空号</th>
+                <th>无人接听</th>
+                <th>已去世</th>
+                <th>已换人</th>
+                <th>总计</th>
+                <th>有效率</th>
+            </tr>
+        </thead>
+        <tbody>
+        {foreach from=$current_month key=k item=val}
+        <tr>
+            <th>{$k}</th>
+            <td>{$val[4]}</td>
+            <td>{$val[1]}</td>
+            <td>{$val[2]}</td>
+            <td>{$val[3]}</td>
+            <td>{$val[5]}</td>
+            <td>{$val[6]}</td>
+            <td>{$val.total}</td>
+            <td>{$val.efficient}</td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+    <input type="hidden" id="colHL">
+    {/if}
+</div>

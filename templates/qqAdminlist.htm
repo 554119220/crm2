@@ -1,0 +1,5 @@
+<select name="seladmin_id" id="admin_id" class="input_text" style="size:16px" onchange="getAdmin(this)">
+  <{foreach from=$qqAdminlist item=val }>
+    <option value="{$val.account_id}">{$val.user_name}</option>
+  <{/foreach}>
+</select> 

@@ -1,0 +1,373 @@
+<div id="detail">
+  <div class="detail_tab" style="margin-top: 15px;">
+    <ul>
+      <li type="general" class="o_select" onclick="switchSubTab(this)">
+      <span>基本信息</span>
+      </li>
+      <li type="list" onclick="switchSubTab(this)"><span>社会营销</span></li>
+      <li type="character" onclick="switchSubTab(this)"><span>个性分析</span></li>
+      <li type="society" onclick="switchSubTab(this)"><span>社会关系</span></li>
+    </ul>
+  </div>
+  <div class="blank"></div>
+
+  <!-- 第一个选项卡 -->
+  <form action="" name="theForms" method="post" accept-charset="utf-8" >
+    <div id="general">
+      <table >
+        <tr>
+          <td class="label">电话：</td>
+          <td>
+            <input type="text" name="area_code" id="area_code" value="{$code}" size="5">-
+            <input type="text" name="home_phone" id="home_phone" value="{$code_moble}" maxlength="8"  >
+            <span class="require-field">*固定电话和手机必须填一个</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">手机：</td>
+          <td width='100px'><input type="text" name="mobile_phone" id="mobile_phone"  value="{$user.mobile_phone}" maxlength="11" pattern="1[3|4|5|8][0-9]{9}"><span id="infos"></span></td>
+        </tr>
+        <tr>
+          <td class="label">姓名：</td>
+          <td><input type="text" name="username" value="{$user.user_name}"/>{$lang.require_field}<span id="users_name"></span></td>                                     
+        </tr>
+        {if $no_allow_edit neq 1}
+        <tr>
+          <td class="label">查找推荐人：</td>
+          <td>
+            <input type="text" class="gray" value="输入手机/固话查找" onclick="this.value='';" onblur="searchReferrer(this)"/>
+            {if $user.parent_username}
+            <span>{$user.parent_username}</span>
+            {else}
+            <select name="parent_id" class="hide">
+              <option value="0">请先查找</option>
+            </select>
+            {/if}
+          </td>
+        </tr>
+        {/if}
+
+        <tr>
+          <td class="label">性别：</td>
+          <td>
+            <label><input type="radio" name="sex" id="sex_m" value="1" style="display:inline"{if $user.sex eq 1} checked{/if}/>男</label>
+            <label><input type="radio" name="sex" id="sex_f" value="2" style="display:inline"{if $user.sex eq 2} checked{/if}/ >女</label>
+            <label><input type="radio" name="sex" id="sex_n" value="0" style="display:inline"{if $user.sex eq 0} checked{/if}/>不详</label>
+            {$lang.require_field}
+          </td>
+        </tr>
+        <tr>
+          <td class="label">顾客平台归属</td>
+          <td>
+            <select name="role_id">
+              <option value="0">请选择</option>
+              {foreach from=$role_list item=r}
+              <option value="{$r.role_id}"{if $user.role_id eq $r.role_id} selected{/if}>{$r.role_name}</option>
+              {/foreach}
+            </select>
+            {$lang.require_field}
+            <span class="gray">（用于统计平台总销量，不选择将导致总销量降低）</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">详细地址：{insert_scripts files="../js/utils.js,validator.js,region.js"}</td>
+          <td colspan="3">{$user_region.region_id}
+            <select name="country" id="selCountries" onchange="region.changed(this, 1, 'selProvinces')">
+              {foreach from=$country_list item=country}
+              <option readonly value="{$country.region_id}" {if $country.region_id eq $user_region.country}selected{/if}>{$country.region_name}</option>
+              {/foreach}
+            </select>
+            <select name="province" id="selProvinces" onchange="region.changed(this, 2, 'selCities')">
+              <option value="0">{$lang.select_please}</option>
+              {foreach from=$province_list item=province}
+              <option value="{$province.region_id}"{if $province.region_id eq $user_region.province} selected{/if}>{$province.region_name}</option>
+              {/foreach}
+            </select>
+            <select name="city" id="selCities" onchange="region.changed(this, 3, 'selDistricts')">
+              <option value="0">{$lang.select_please}</option>
+              {foreach from=$city_list item=citys}
+              <option value="{$citys.region_id}"{if $citys.region_id eq $user_region.city} selected{/if}>{$citys.region_name}</option>
+              {/foreach}
+            </select>
+            <select name="district" id="selDistricts">
+              <option value="0">{$lang.select_please}</option>
+              {foreach from=$district_list item=district}
+              <option value="{$district.region_id}" {if $district.region_id eq $user_region.district}selected{/if}>{$district.region_name}</option>
+              {/foreach}
+            </select>{$lang.require_field}
+          </td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td><input type="text" name="address" value="{$user_region.address}" size="50"/></td>
+        </tr>
+        <tr>
+          <td class="label">平邮地址：</td>
+          <td><input type="text" name="snail" value="{$user.snail}" size="50"/></td>
+        </tr>
+        <tr>
+          <td class="label">邮编：</td>
+          <td><input type="text" name="zipcode" value="{$user_region.zipcode}"/></td>
+        </tr>
+        <tr>
+          <td class="label">顾客来源：</td>
+          <td>
+            <select name="from_where">
+              <option value="0">请选择</option>
+              {foreach from=$from_where item=val}
+              <option value="{$val.from_id}" {if $val.from_id eq $user.from_where}selected{/if}>{$val.from}</option>
+              {/foreach}
+            </select>
+            <span class="gray">（主要用于统计广告效果）</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">购买力：</td>
+          <td>
+            <select name="customer_type">
+              <option value='2'>一次购买</option>
+              {foreach from=$customer_type item=val}
+              <option value="{$val.type_id}" {if $val.type_id eq $user.customer_type}selected{/if}>{$val.type_name}</option>
+              {/foreach}
+            </select>{$lang.require_field}
+          </td>
+        </tr>
+        <tr>
+          <td class="label">顾客分类：</td>
+          <td>
+            <select name="eff_id">
+              <option value='0'>未选择</option>
+              {foreach from=$effects item=val}
+              <option value="{$val.eff_id}" {if $val.eff_id eq $user.eff_id}selected{/if}>{$val.eff_name}</option>
+              {/foreach}
+            </select>{$lang.require_field}
+            <span class="gray">（按所购买产品的主要功效进行分类）</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 作为第二个选项卡用 -->
+    <div id="list" class="order_details hide">
+      <table >
+        <tr>
+          <td class="label">
+            <select name="calendar" id="calendar" onchange="calendarChange(this)">
+              <option value="1">农历</option>
+              <option value="2">公历</option>
+            </select>：
+          </td>
+          <td>
+            {insert_scripts files="../admin/My97DatePicker/WdatePicker.js"}
+            <input class="Wdate cursor" name="birthday" id="birthday" value="" type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" onchange="calendarChange(this)"/>
+            <span id="showBirthday"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">QQ：</td>
+          <td><input type="text" name="qq" value="{$user.qq}"></td>
+        </tr>
+        <tr>
+          <td class="label">旺旺：</td>
+          <td><input type="text" name="aliww" value="{$user.aliww}"></td>
+        </tr>
+        <tr>
+          <td class="label">电子邮件：</td>
+          <td><input type="text" name="email" value="{$user.email}"></td>
+        </tr>
+
+        <tr>
+          <td class="label">身份证号：</td>
+          <td>
+            <input style="width:200px" type="text" name="id_card" value="{$user.id_card}">
+          </td>
+        </tr>
+        <tr>
+          <td class="label">常用语言：</td>
+          <td>
+            <select name="lang">
+              {foreach from=$lang.lang key=k item=v}
+              <option value="{$k}"{if $user.langu eq $k}selected{/if}>{$v}</option>
+              {/foreach}
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">会员卡号：</td>
+          <td><input type="text" name="member_cid" value="{$user.member_cid}">
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="blank"></div>
+    <!-- 作为第三个选项卡用 -->
+    <div id="character" class="order_details hide">
+      <table width="100%">
+        <tr>
+          <td class="label">爱好：</td>
+          <td><input type="text" name="habby" value="{$user.habby}" style="width:280px"></td>
+        </tr>
+        <tr>
+          <td class="label">性格：</td>
+          <td>
+            {foreach from=$character item=val name=ii}
+            <input type="checkbox" name="characters[]" {foreach from=$characters item=v}{if $v eq $val.character_id}checked{/if}{/foreach} value="{$val.character_id}">{$val.characters}&nbsp;&nbsp;&nbsp;&nbsp;{if $smarty.foreach.ii.iteration % 4 eq 0}<br>{/if}
+            {/foreach}
+          </td>
+        </tr>
+        <tr>
+          <td class="label">职业：</td>
+          <td><input type="text" name="occupat" value="{$user.occupat}"></td>
+        </tr>
+        <tr>
+          <td class="label">经济来源：</td>
+          <td>
+            <select name="income">
+              <option value="0">请选择</option>
+              {foreach from=$income item=val}
+              <option value="{$val.income_id}" {if $val.income_id eq $user.income} selected{/if}>{$val.income}</option>
+              {/foreach}
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">所患疾病：</td>
+          <td>
+            {foreach from=$disease item=val name=dd}
+            {if $val.common_rate eq 0}
+            <input type="checkbox" name="disease[]" {foreach from=$diseases item=v}{if $v eq $val.disease_id}checked{/if}{/foreach} value="{$val.disease_id}">{$val.disease}&nbsp;&nbsp;&nbsp;&nbsp;{if $smarty.foreach.dd.iteration % 8 eq 0}<br>{/if}
+            {/if}
+            {/foreach}
+          </td>
+        </tr>
+        <tr>
+          <td class='label'>其它疾病：</td>
+          <td><input type="text" name="disease_2" value="{$user.disease_2}"></td>
+        </tr>
+        <tr>
+
+          <td class="label">备注：</td>
+          <td><textarea name="remarks" class="area">{$user.remarks}</textarea></td>
+        </tr>
+      </table>
+    </div>
+    <!-- 作为第四个选项卡用 -->
+    <div id="society" class="order_details hide">
+      <table width="100%" id="social-table">
+        <tr>
+          <th>姓名</th>
+          <th>联系电话</th>
+          <th>与顾客关系</th>
+          <th>居住情况</th>
+          <th>年龄</th>
+          <th>性别</th>
+          <th>职业</th>
+          <th>经济状况</th>
+          <th>保健意识</th>
+          <th>操作</th>
+        </tr>
+        {if $form_action eq 'update'}
+        {foreach from=$rela item=social name=s}
+        <tr>
+          <th><input type="text" name="uname[{$social.rela_id}]" value="{$social.uname}" size="7"/></th>
+          <th><input type="text" name="mobile[{$social.rela_id}]" value="{$social.mobile}" size="10"/></th>
+          <th>
+            <input type="text" name="relation[{$social.rela_id}]" value="{$social.relation}" size="10"/>
+          </th>
+          <th>
+            <input type="text" name="habitancy[{$social.rela_id}]" value="{$social.habitancy}" size="10"/>
+          </th>
+          <th>
+            <input type="text" name="age[{$social.rela_id}]" value="{$social.age}" style="width:30px;text-align:right" min="0"/>
+          </th>
+          <th>
+            <select name="relasex[{$social.rela_id}]">
+              <option value="0"{if $social.rela_sex eq 0}selected{/if}>不详</option>
+              <option value="1"{if $social.rela_sex eq 1} selected{/if}>男</option>
+              <option value="2"{if $social.rela_sex eq 2} selected{/if}>女</option>
+            </select>
+          </th>
+          <th>
+            <input type="text" name="profession[{$social.rela_id}]" value="{$social.profession}" size="10"/>
+          </th>
+          <th>
+            <select name="financial[{$social.rela_id}]">
+              <option value="0">请选择</option>
+              {foreach from=$income item=val}
+              <option value="{$val.income_id}" {if $val.income_id eq $social.financial} selected{/if}>{$val.income}</option>
+              {/foreach}
+            </select>
+          </th>
+          <th>
+            <input type="radio" name="selfcare[{$social.rela_id}]" value="1" style="display:inline"{if $social.selfcare eq 1} checked{/if}/>有
+            <input type="radio" name="selfcare[{$social.rela_id}]" value="2" style="display:inline"{if $social.selfcare eq 2} checked{/if}/>无
+          </th>
+          <th>
+            <img src="images/contact_remove.png" title="删除" class="cursor" onclick="removeRela(this, {$social.rela_id}, {$user.user_id})"/>
+          </th>
+        </tr>
+        {/foreach}
+        {/if}
+        <tr>
+          <th><input type="text" name="uname[{$start_index}]" value="" size="7"/></th>
+          <th><input type="text" name="mobile[{$start_index}]" value="" size="10"/></th>
+          <th>
+            <input type="text" name="relation[{$start_index}]" value="" size="10"/>
+          </th>
+          <th>
+            <input type="text" name="habitancy[{$start_index}]" value="" size="10">
+          </th>
+          <th>
+            <input type="text" name="age[{$start_index}]" value="" style="width:30px;text-align:right" min="0"/>
+          </th>
+          <th>
+            <select name="relasex[{$start_index}]">
+              <option value="0">不详</option>
+              <option value="1">男</option>
+              <option value="2">女</option>
+            </select>
+          </th>
+          <th>
+            <input type="text" name="profession[{$start_index}]" value="" size="10">
+          </th>
+          <th>
+            <select name="financial[{$start_index}]">
+              <option value="0">请选择</option>
+              {foreach from=$income item=val}
+              <option value="{$val.income_id}">{$val.income}</option>
+              {/foreach}
+            </select>
+          </th>
+          <th>
+            <input type="radio" name="selfcare[{$start_index}]" value="1" style="display:inline"/>有
+            <input type="radio" name="selfcare[{$start_index}]" value="2" style="display:inline"/>无
+          </th>
+          <th>
+            <img src="images/contact_add.png" title="新增" class="cursor" onclick="addLines(this)"/>
+            <img src="images/contact_remove.png" title="删除" class="cursor" onclick="{if $form_action eq 'insert'}removeLine(this){else}removeRela(this, 0, 0){/if}"/>
+          </th>
+        </tr>
+      </table>
+    </div>
+
+    <table width="30%">
+      <tr>
+        <td class="label"><input type="button" value="提交信息" onclick="edit_custom({$user.user_id})"/></td>
+        <td>
+          <input type="reset" value="重新填写" />&nbsp;&nbsp;&nbsp;
+          {if $free_shipping_show eq 1 }
+          <a href="javascript:void(0)" onclick="add_freecard('{$user.user_id}','{$user.user_name}');">
+            <input type="button" value="编辑包邮卡">
+          </a> 
+        </td>
+        {/if}
+        <input type="hidden" name="act" value="{$form_action}" />
+        {if $form_action eq 'update'}
+        <input type="hidden" name="user_id" value="{$user.user_id}"/>
+        {/if}
+      </tr>
+    </table>
+  </form>
+</div>
+   </div>
+

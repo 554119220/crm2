@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  <meta charset="utf8">
+  <title>修改订单平台</title>
+  <link rel="stylesheet" href="styles/general.css" type="text/css" charset="utf-8"/>
+  <link rel="stylesheet" href="styles/new.css" type="text/css" charset="utf-8"/>
+  </head>
+  <body>
+    <div style="padding-top:24px;text-align:center;margin:0px auto;width:50%">
+      <h2>修改订单平台</h2>
+      <br />
+      <form action="javascript:void(0);" method="POST" onsubmit="updateOrderPlatform(this)" >
+        <input type="text" name="order_sn" value="" placeholder="输入订单编号" style="height: 32px; margin-right: 5px; color: rgb(0, 0, 0);width:320px" autofocus="" />
+        <input type="submit" value="修 改" style="font-size:14px;" class="input_submit"/>
+      </form>
+      <br />
+      <div id="respone" style="width:100%;font-size:18px;"></div>
+    </div>
+  </body>
+</html>
+{insert_scripts files="service.js"}
+{insert_scripts files="common.js,transport.js,validator.js,utils.js"}
+{insert_scripts files="../js/utils.js,selectzone.js"}
+
+<script language="javascript" type="text/javascript">
+  function updateOrderPlatform(obj){
+    var orderSn = obj.elements['order_sn'].value;
+    if(orderSn){
+      Ajax.call('upd_order_platform.php?act=update_done','order_sn='+orderSn,updateOrderPlatformResp,'GET','JSON');
+    }
+  }
+
+  function updateOrderPlatformResp(res){
+    document.getElementById('respone').innerHTML = res.message;
+    document.getElementById('respone').style.color = res.code ? 'green' : 'red';
+  }
+</script>

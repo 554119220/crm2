@@ -1,0 +1,176 @@
+<h1> 客服登记表 </h1>
+<form  method="post" name="service_record">
+  <table border="0" id="ad_table">
+    {foreach from=$service_list key=key item=v}
+    <input type="hidden" name="work_id" value="{$v.work_id}"/>
+    <tr>
+      <td>
+        <table>
+          <tr>
+            <td>{if $key eq 0}咨询方式：{/if}</td>
+          </tr>
+          <tr>
+            <td>
+                  <select name="way_id[]">
+                     {foreach from=$way_name item=val}
+                     <option value="{$val.way_id}" {if $val.way_id eq $v.way_id}
+                     selected {/if} >{$val.way_name}</option>
+                     {/foreach}   
+                  </select>
+            </td>
+          </tr>
+        </table>
+      </td>
+
+       <td>
+        <table>
+          <tr>
+            <td>{if $key eq 0}咨询类型：{/if}</td>
+          </tr>
+          <tr>
+            <td>
+                <select name="type_id[]">
+                  {foreach from=$type_name item=val}
+                  <option value="{$val.type_id}" {if $val.type_id eq $v.type_id} 
+                  selected {/if} >{$val.type_name}</option>
+                  {/foreach}   
+                </select>
+            </td>
+          </tr>
+        </table>
+      </td>
+
+      <td>
+          <table>
+                <tr>
+                    <td>{if $key eq 0}所属平台：{/if}</td>
+                  </tr>
+                   <tr>
+                     <td>
+                          <select name="rid[]">
+                            {foreach from=$role_name item=val}
+                            <option value="{$val.role_id}" {if $val.role_id eq $v.rid}
+                            selected {/if}>{$val.role_name}</option>
+                            {/foreach}   
+                          </select>
+                     </td>
+                </tr>
+          </table>
+        </td>
+         
+        <td>
+          <table>
+            <tr>
+              <td>{if $key eq 0}套餐数量：{/if}</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="text" name="package_number[]" size="6"
+                value="{$v.package_number}"/>
+              </td>
+            </tr>
+          </table>
+        </td>
+
+        <td>
+          <table>
+            <tr>
+              <td>{if $key eq 0}套餐金额：{/if}</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="text" name="package_money[]" size="6"
+                value="{$v.package_money}"/>
+              </td>
+            </tr>
+          </table>
+        </td>
+
+        <td>
+          <table>
+            <tr>
+              <td>{if $key eq 0}新顾客：{/if}</td>
+            </tr>
+            <tr>
+              <td>
+                   <input type="text" name="new_user[]" size="6"
+                value="{$v.new_user}"/>
+              </td>
+            </tr>
+          </table>
+        </td>
+
+        <td>
+          <table>
+            <tr>
+              <td>{if $key eq 0}老顾客：{/if}</td>
+            </tr>
+            <tr>
+              <td>
+                   <input type="text" name="old_user[]" size="6"
+                value="{$v.old_user}"/>
+              </td>
+            </tr>
+          </table>
+        </td>
+
+        <td>
+          <table>
+            <tr>
+              <td>{if $key eq 0}导购咨询：{/if}</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="text" name="guide_consulting[]" size="6"
+                value="{$v.guide_consulting}"/>&nbsp;次&nbsp;
+              </td>
+            </tr>
+          </table>
+        </td>
+     
+       <td>
+          <table>
+            <tr>
+              <td>{if $key eq 0}成交订单数：{/if}</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="text" name="success_deal[]"  size="6" 
+                value="{$v.success_deal}"/>&nbsp;
+              </td>
+            </tr>
+          </table>
+        </td>
+
+       <td>
+          <table>
+            <tr>
+              <td>{if $key eq 0}销售额：{/if}</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="text" name="amount[]"  size="6"
+                value="{$v.amount}"/>&nbsp;元 &nbsp;
+              </td>
+            </tr>
+          </table>
+        </td>
+   
+      {if $key eq 0}
+        <td><span style="cursor:pointer;" onclick="insertRowElement(this)">[&nbsp; + &nbsp;]</span></td>
+      {else}
+        <td><span style="cursor:pointer;" onclick="removeRowElement(this)">[&nbsp; - &nbsp;]</span></td>
+      {/if}
+    </tr>   
+    {/foreach}
+  </table>
+
+  <table>
+    <tr>
+      <td>
+        工作内容： <textarea name="job_content"  rows="5" cols="50">{$work_list.job_content}</textarea>
+      </td>
+    </tr>
+  </table>
+  <p><input type="button" value="提交" onclick="editServiceRecord(this)" class="input_submit"/></p>
+</form>

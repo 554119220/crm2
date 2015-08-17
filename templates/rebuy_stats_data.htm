@@ -1,0 +1,9 @@
+{foreach from=$rebuy_stats item=val name=i}
+<tr>
+    <td> {$val.user_name} </td>
+    <td>{$val.ordinal_number}</td>
+    <!--td>{$val.final_amount}</td-->
+    <td>{$val.buy_time}</td>
+    <td>{$val.admin_name}</td>
+</tr>
+{/foreach}

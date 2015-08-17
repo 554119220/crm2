@@ -1,0 +1,16 @@
+{foreach from=$sms_history item=val}
+<tr>
+    <td>{$val.phone_num}</td>
+    <td>{$val.user_name}</td>
+    <td>{$val.send_time}</td>
+    <td>{$val.words_num}</td>
+    <td style="text-align:left" onclick="showMsg({req_msg:true,timeout:5000,message:'{$val.sms_content}'})">{$val.sms_content|truncate:40}</td>
+</tr>
+{/foreach}
+<tr>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+</tr>

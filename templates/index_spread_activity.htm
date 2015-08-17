@@ -1,0 +1,33 @@
+<!--首页显示推广活动-->
+<table width="101%" cellpadding="0" cellspacing="0" class="index_small tr_hover">
+  <tr>
+    <td class="home-stuff-heading" colspan="5">&nbsp;本月推广活动<img src="images/update.png"/></td>
+  </tr>
+  <tr>
+    <th width="35%">活动名</th>
+    <th width="15%">部门</th>
+    <th width="10%">开始</th>
+    <th width="10%">结束</th>
+    <th width="10%">商品</th>
+  </tr>
+  {if $spread_activity.spread_activity_list neq null}
+  {foreach from=$spread_activity.spread_activity_list item=val}
+  <tr>
+    <td style="text-align:left;padding-left:3px;">{$val.activity_name}</td>
+    <td>{$val.role_name}</td>
+    <td>{$val.start_time}</td>
+    <td>{$val.end_time}</td>
+    <td><button class="btn_new" onclick="getActivityGoods({$val.activity_id})">查看</button></td>
+  </tr>
+  {/foreach}
+  {/if}
+</table>
+<div class="index_filter_page">
+  <button onclick="getActivityList(1,{$spread_activity.filter.recorder_size})">&lt;&lt;</button>
+  <button onclick="getActivityList({$spread_activity.filter.page}-1,{$spread_activity.filter.recorder_size})">上一页</button>
+  {foreach from=$spread_activity.filter.list_page item=val}
+  <button class="{if $spread_activity.filter.page eq $val}visted{/if}" onclick="getActivityList({$val},{$spread_activity.filter.recorder_size})">{$val}</button>
+  {/foreach}
+  <button onclick="getActivityList({$spread_activity.filter.page}+1,{$spread_activity.filter.recorder_size})">下一页</button>
+  <button onclick="getActivityList({$spread_activity.filter.end},{$spread_activity.filter.recorder_size})">&gt;&gt;</button>
+</div>

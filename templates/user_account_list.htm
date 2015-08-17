@@ -1,0 +1,176 @@
+{if $full_page}
+{include file="pageheader.htm"}
+{insert_scripts files="../js/utils.js,listtable.js"}
+<br />
+<div id="list_charges">
+  <h2>提现充值记录</h2>
+  <br />
+  <div style="margin-left:15px !important;margin-bottom:5px;width:97%" >
+    <form action="javascript:searchUser()" name="searchForm">
+      会员姓名
+      <input type="text" name="keyword" size="10" />
+      &nbsp;充值方式
+      <select id="payment">
+        {foreach from=$payment_list item=val}
+        <option value="{$val.pay_id}">{$val.pay_name}</option>
+        {/foreach}
+      </select>
+      &nbsp;充值状态
+      <select name="is_paid">
+        <option value="0" {$is_paid_0}>未确认</option>
+        <option value="1" {$is_paid_1} selected>已确认</option>
+        <option value="2">{$lang.cancel}</option>
+      </select>
+      &nbsp;&nbsp;
+      <input type="submit" value="{$lang.button_search}" class="b_submit" />
+      <input type="button" value="添加新申请" class="b_submit" style="float:right;" onclick="showApply('show')"/>
+    </form>
+  </div>
+
+  <div class="list-div" id="listDiv">
+    {/if}
+    <table style="margin-left:15px" width="97%" cellspacing="0" cellpadding="0" class="all_table_list w830 rb_border c_ball_table_list rb_border" id="pay_point_list">
+      <tr>
+        <th>姓名</th>
+        <th>添加时间</th>
+        <th>充值类型</th>
+        <th>充值金额</th>
+        <th>充值方式</th>
+        <th>充值状态</th>
+        <th>管理员</th>
+        <th>{$lang.handler}</th>
+      </tr>
+      {foreach from=$list item=item}
+      <tr>
+        <td>{if $item.user_name}{$item.user_name}{else}{$lang.no_user}{/if}</td>
+        <td align="center">{$item.add_date}</td>
+        <td align="center">{if $item.process_type eq 0}充值{elseif $item.process_type eq 1}提现{/if}</td>
+        <td align="right">{$item.surplus_amount}</td>
+        <td>{if $item.payment}{$item.payment}{else}N/A{/if}</td>
+        <td align="center">{if $item.is_paid}已确认{else}未确认{/if}</td>
+        <td align="center">{$item.admin_user}</td>
+        <td align="center">
+          {if $item.is_paid}
+          <a href="user_account.php?act=edit&id={$item.id}" title="{$lang.surplus}">编辑</a>
+          {else}
+          <a href="user_account.php?act=check&id={$item.id}" title=" 确认">确认</a>
+          <a href="javascript:;" onclick="listTable.remove({$item.id}, '{$lang.drop_confirm}')" title="{$lang.drop}" >删除</a>
+          {/if}
+        </td>
+      </tr>
+      {foreachelse}
+      <tr>
+        <td class="no-records" colspan="8">{$lang.no_records}</td>
+      </tr>
+      {/foreach}
+    </table>
+    {if $full_page}
+  </div>
+</div>
+
+<!--添加新申请-->
+<div id="new_apply" class="new_apply" style="display:none;">
+  <h2>添加新申请</h2>
+  <br />
+  <div style="width:780px;padding:3px;clear:both;" id="div_apply">
+    <table style="margin-left:15px" width="780px" cellpadding="4" cellspacing="2" border="0">
+      <tr>
+        <th width="80px">姓名</th>
+        <td>
+          <input type="text" oninput="schUser()" id="vip_name"/>
+          <select name="address">
+            <option value="0">顾客的收货地址</option>
+          </select>
+        </td>
+        <th width="250">金额</th>
+        <td><input type="text" id="money"/></td>
+      </tr>
+      <tr>
+        <th width="250">支付方式</th>
+        <td>
+          <select id="payment">
+            {foreach from=$payment_list item=val}
+            <option value="{$val.pay_id}">{$val.pay_name}</option>
+            {/foreach}
+          </select>
+        </td>
+        <th width="250">到款状态</th>
+        <td>
+          <select id="is_paid">
+            <option value="0" {$is_paid_0} selected>未确认</option>
+            <option value="1" {$is_paid_1}>已确认</option>
+            <option value="2">{$lang.cancel}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th width="250">类型</th>
+        <td>
+          <label style="margin-left:5px"><input type="radio" name="pay_type" value="0">充值</label>
+          <label style="float:left !important;"><input type="radio" name="pay_type" value="1">提现</label>
+        </td>       
+      </tr>
+      <tr>
+        <th>管理员备注</th>
+        <td colspan="3"><textarea id="admin_note" cols="90" rows="5"></textarea></td>
+      </tr>
+      <tr>
+        <th>会员描述</th>
+        <td colspan="3"><textarea id="user_note" cols="90" rows="5"></textarea></td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <input type="button" class="b_submit" value="取消" onclick="showApply('cancel')" style="float:right;margin-left:6px;margin-right:9px"/>
+          <input type="button" class="b_submit" value="确定" onclick="addRecharge()" style="float:right;margin-right:20px"/>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- 分页 -->
+<div class="bottom_tip">
+  <div class="tip_left">
+    <p>共{$filter.record_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+  <div class="tip_center">
+    <span><a href="service.php?act={$filter.act}&page=1&page_size={$filter.page_size}" id="page_link">&lt;&lt;</a></span>
+    {foreach from=$filter.page_set item=v}
+    <span {if $v eq $filter.page} class="cur"{/if}>{if $v eq $filter.page}{$v}{else}<a href="service.php?act={$filter.act}&page={$v}&page_size={$filter.page_size}">{$v}</a>{/if}</span>
+    {/foreach}
+    <span><a href="service.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}">&gt;&gt;</a></span>
+  </div>
+  <div class="tip_right">跳转到第
+    <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+  </div>
+</div>
+{/if}
+
+<style type="text/css">
+  #div_apply{
+    background:#FFF !important;
+    border-radius:5px;
+  }
+
+  .new_apply table th{
+    width: 100px;
+    text-align: right;
+    font-weight: normal;
+  }
+  .new_apply table th select{
+    float:left !important;
+    display:inline !important;
+  }
+  .new_apply td {
+    padding: 5px;
+  }
+  .new_appaly input,select{
+    width: 139px;
+  }
+  .new_apply textarea{
+    resize: vertical;
+  }
+  .rb_border tr:{
+    
+  }
+</style>

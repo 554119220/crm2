@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>EMS货到付款</title>
+        <style type="text/css">
+            body {background:url(img567.jpg) no-repeat; margin:56px 56px; padding:0; width:433px; height:153px; font-size:15px; font-weight:bold; color:#000}
+            ul {float:left}
+            li {list-style-type:none; height:25px; line-height:25px/*; border:#0000ff 1px solid*/}
+            .poster {position:absolute; top:340px; left:370px}
+            /*div {border:#ff0000 1px dashed}*/
+        </style>
+        <style type="text/css" media="print">
+            .noprint {visibility:hidden; display:inline-block; position:absolute; top:500px}
+        </style>
+    </head>
+    <body>
+        <div style="position:absolute; top:200px; left:580px">
+            {$date.year}&nbsp;{$date.month}&nbsp;{$date.day}
+        </div>
+        <div style="position:absolute; left:590px; top:140px">{$sender}</div>
+        <div style="position:absolute; left:470px; top:140px">
+            {$order.final_amount}<br>
+            {$order.big5}
+        </div>
+        <ul>
+            <li style="margin-top:-21px">
+            <div style="width:270px; float:left">{$company_name} EC9002-1547</div>
+            <div style="float:left;position:absolute; left:230px; top:30px">{$kjrs_tel}</div>
+            </li>
+            <li>{$kjrs_region}</li>
+            <li>{$kjrs_address}</li>
+            <li>&nbsp;</li>
+        </ul>
+        <ul style="position:absolute; top:150px">
+            <li>{$order.consignee}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$order.mobile}/{$order.tel} </li>
+            <li>{$notice}</li>
+            <li>{$order.addr}</li>
+            <li>{$order.address}</li>
+        </ul>
+        <div style="position:absolute;left:110px;top:330px">保健食品</div>
+        <h1 class="noprint" style="position:absolute; top:500px" contenteditable>{$message}</h1>
+        <div class="poster">韩超明</div>
+    </body>
+</html>

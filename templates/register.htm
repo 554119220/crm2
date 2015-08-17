@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>康健人生员工入职登记</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styles/main.css" type="text/css" charset="utf-8"/>
+    <link rel="stylesheet" href="styles/new.css" type="text/css" charset="utf-8"/>
+    <link rel="stylesheet" href="styles/staff.css" type="text/css" charset="utf-8"/>
+    {insert_scripts files="common.js,validator.js,utils.js"}
+    {insert_scripts files="../admin/My97DatePicker/WdatePicker.js"}
+    {insert_scripts files="../js/transport.js,region.js"}
+</head>
+    <body>
+    <form action="privilege.php?act=submit_records" name="staff" id="staff" method="post" enctype="multipart/form-data" onsubmit="return formValidation()">
+        <table border="1" cellspacing="0" cellpadding="0">
+            <thead>
+                <td colspan="9">
+                    康健人生员工档案
+                    <h6>编号：{$staff_id}</h6>
+                </td>
+            </thead>
+            <tbody>
+            <!-- 个人信息 -->
+            <tr>
+                <th>姓名</th><td><input type="text" name="staff_name" value=""/></td>
+                <th>性别</th>
+                <td>
+                    <label><input type="radio" name="sex" value="1"/> 男</label>
+                    <label><input type="radio" name="sex" value="2"/> 女</label>
+                </td>
+                <th>出生日期</th>
+                <td>
+                    <input class="datePicker" type="text" name="birthday" value="" placeholder="农历" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})">
+                </td>
+                <td rowspan="7" id="tdPhoto"><label for="avator">点击上传照片</label></td>
+                <input type="file" name="avator" id="avator" onchange="showPhoto(this)"/>
+            </tr>
+            <tr>
+                <th>民族</th><td> <input type="text" name="nation" value=""/></td>
+                <th>身高</th><td><input type="text" name="stature" value=""/></td>
+                <th>婚姻状况</th>
+                <td>
+                    <label><input type="radio" name="marital_status" value="0"/>未婚</label>
+                    <label><input type="radio" name="marital_status" value="1"/>已婚</label>
+                </td>
+            </tr>
+            <tr>
+                <th>身份证号</th><td colspan="2"> <input type="text" name="identity_card" value=""/></td>
+                <th>籍贯</th>
+                <td>
+                    <select name="native_province" onchange="region.changed(this, 2, 'native_city')">
+                        <option value="0">{$lang.select_please}</option>
+                        {foreach from=$province_list item=province}
+                        <option value="{$province.region_id}">{$province.region_name}</option>
+                        {/foreach}
+                    </select>
+                </td>
+                <td>
+                    <select name="native_city" id="native_city">
+                        <option value="0">{$lang.select_please}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>家庭地址</th>
+                <td>
+                    <select name="province" id="selProvinces" onchange="region.changed(this, 2, 'selCities')">
+                        <option value="0">{$lang.select_please}</option>
+                        {foreach from=$province_list item=province}
+                        <option value="{$province.region_id}">{$province.region_name}</option>
+                        {/foreach}
+                    </select>
+                </td>
+                <td>
+                    <select name="city" id="selCities" onchange="region.changed(this, 3, 'selDistricts')">
+                        <option value="0">{$lang.select_please}</option>
+                    </select>
+                </td>
+                <td>
+                    <select name="district" id="selDistricts">
+                        <option value="0">{$lang.select_please}</option>
+                    </select>
+                </td>
+                <td colspan="2"> <input type="text" name="home_address" value="" placeholder="精确到街道门牌号或村"/></td>
+            </tr>
+            <tr>
+                <td colspan="6" class="notice">※注：本档案所有内容，请务必准确详实填写。如因信息错误，造成的后果由本人承担！</td>
+            </tr>
+            <tr> <td colspan="6"> </td> </tr>
+
+            <!-- 联系方式 -->
+            <tr>
+                <th>联系电话</th><td> <input type="text" name="staff_phone" value=""/></td>
+                <th>淘宝帐号</th><td><input type="text" name="taobao" value=""/></td>
+                <th>E-mail</th><td colspan="2"> <input type="text" name="email" value="" placeholder="推荐使用QQ邮箱"/></td>
+            </tr>
+            <tr> <td colspan="8"> </td> </tr>
+
+            <!-- 公司信息 -->
+            <tr>
+                <th>部门</th>
+                <td>
+                    <select name="branch_id" id="branch_id">
+                        <option value="0">请选择</option>
+                        {foreach from=$role_list item=val}
+                        <option value="{$val.role_id}">{$val.role_name}</option>
+                        {/foreach}
+                    </select>
+                </td>
+                <th>职位</th>
+                <td><input type="text" name="job_title" value="" id="job_title" placeholder="应聘或当前职位"/></td>
+                <td>
+                    <input class="datePicker" type="text" name="joined_date" value="{$joined_date}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" placeholder="入职日期">
+                </td>
+                <th>公司宿舍</th>
+                <td>
+                    <select name="dormitory">
+                        <option value="0">不入住</option>
+                        {foreach from=$dorm_list item=val}
+                        <option value="{$val.dorm_id}">{$val.dormitory}</option>
+                        {/foreach}
+                    </select>
+                </td>
+            </tr>
+            <tr> <td colspan="8"> </td> </tr>
+
+            <!-- 教育经历 -->
+            <tr>
+                <th rowspan="4">教育经历</th>
+                <th>开始日期</th>
+                <th>结束日期</th>
+                <th colspan="2">学校名称</th>
+                <th>专业</th>
+                <th>毕业/肄业</th>
+            </tr>
+            <tr>
+                <td>
+                    <input class="datePicker" type="text" name="edu_start[]" value="" onClick="WdatePicker({dateFmt:'yyyy-MM'})">
+                </td>
+                <td>
+                    <input class="datePicker" type="text" name="edu_end[]" value="" onClick="WdatePicker({dateFmt:'yyyy-MM'})">
+                </td>
+                <td colspan="2"><input type="text" name="school[]" value=""/></td>
+                <td><input type="text" name="major[]" value=""/></td>
+                <td>
+                    <select name="graduater[]">
+                        <option value="1" selected>毕业</option>
+                        <option value="2">肄业</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="datePicker" type="text" name="edu_start[]" value="" onClick="WdatePicker({dateFmt:'yyyy-MM'})">
+                </td>
+                <td>
+                    <input class="datePicker" type="text" name="edu_end[]" value="" onClick="WdatePicker({dateFmt:'yyyy-MM'})">
+                </td>
+                <td colspan="2"><input type="text" name="school[]" value=""/></td>
+                <td><input type="text" name="major[]" value=""/></td>
+                <td>
+                    <select name="graduater[]">
+                        <option value="1">毕业</option>
+                        <option value="2">肄业</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="datePicker" type="text" name="edu_start[]" value="" onClick="WdatePicker({dateFmt:'yyyy-MM'})">
+                </td>
+                <td>
+                    <input class="datePicker" type="text" name="edu_end[]" value="" onClick="WdatePicker({dateFmt:'yyyy-MM'})">
+                </td>
+                <td colspan="2"><input type="text" name="school[]" value=""/></td>
+                <td><input type="text" name="major[]" value=""/></td>
+                <td>
+                    <select name="graduater[]">
+                        <option value="1">毕业</option>
+                        <option value="2">肄业</option>
+                    </select>
+                </td>
+            </tr>
+            <tr> <td colspan="7"> </td> </tr>
+
+            <!-- 工作经历 -->
+            <tr>
+                <th rowspan="4">工作经历</th>
+                <th>开始日期</th>
+                <th>结束日期</th>
+                <th colspan="2">工作单位</th>
+                <th>职位</th>
+                <th>离职原因</th>
+            </tr>
+            <tr>
+                <td>
+                    <input class="datePicker" type="text" name="work_start[]" value="" onClick="WdatePicker({dateFmt:'yyyy-MM'})">
+                </td>
+                <td>
+                    <input class="datePicker" type="text" name="work_end[]" value="" onClick="WdatePicker({dateFmt:'yyyy-MM'})">
+                </td>
+                <td colspan="2"> <input type="text" name="company[]" value="" placeholder="请填写公司全名"/> </td>
+                <td> <input type="text" name="position[]" value=""/></td>
+                <td> <input type="text" name="left_reasons[]" value="" placeholder="请简述离职原因"/></td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="datePicker" type="text" name="work_start[]" value="" onClick="WdatePicker({dateFmt:'yyyy-MM'})">
+                </td>
+                <td>
+                    <input class="datePicker" type="text" name="work_end[]" value="" onClick="WdatePicker({dateFmt:'yyyy-MM'})">
+                </td>
+                <td colspan="2"> <input type="text" name="company[]" value="" placeholder="请填写公司全名"/> </td>
+                <td> <input type="text" name="position[]" value=""/></td>
+                <td> <input type="text" name="left_reasons[]" value="" placeholder="请简述离职原因"/></td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="datePicker" type="text" name="work_start[]" value="" onClick="WdatePicker({dateFmt:'yyyy-MM'})">
+                </td>
+                <td>
+                    <input class="datePicker" type="text" name="work_end[]" value="" onClick="WdatePicker({dateFmt:'yyyy-MM'})">
+                </td>
+                <td colspan="2"> <input type="text" name="company[]" value="" placeholder="请填写公司全名"/> </td>
+                <td> <input type="text" name="position[]" value=""/></td>
+                <td> <input type="text" name="left_reasons[]" value="" placeholder="请简述离职原因"/></td>
+            </tr>
+            <tr> <td colspan="7"> </td> </tr>
+
+            <!-- 紧急联系人 -->
+            <tr>
+                <th rowspan="2">紧急联系人</th>
+                <th>姓名</th><td><input type="text" name="contact_name[]" value=""/></td>
+                <th>关系</th><td> <input type="text" name="relation[]" value=""/></td>
+                <th>联系电话</th><td colspan="2"> <input type="text" name="contact_phone[]" value=""/></td>
+            </tr>
+            <tr>
+                <th>姓名</th><td><input type="text" name="contact_name[]" value=""/></td>
+                <th>关系</th><td> <input type="text" name="relation[]" value=""/></td>
+                <th>联系电话</th><td colspan="2"> <input type="text" name="contact_phone[]" value=""/></td>
+            </tr>
+            <tr>
+                <th rowspan="2">上传证书</th>
+                <td colspan="6"><input type="file" name="pic[]" value="" multiple/></td>
+            </tr>
+            <tr><td colspan="6"><strong> ↑↑↑ 毕业证、学位证及其它资格证 可一次上传多个文件 </strong></td></tr>
+            </tbody>
+            <tfoot>
+                <td colspan="7">
+                    <input type="submit" name="submit_records" value="提交" id="submit_records"/>
+                    <input type="reset" value="重置"/>
+                </td>
+            </tfoot>
+        </table>
+    </form>
+    <div id="msg" class="hide">
+        <h3></h3>
+        <p></p>
+        <input type="button" value="" id="msgBtn" class="hide">
+    </div>
+    </body>
+    </html>
+
+<script type="text/javascript" charset="utf-8">
+
+/**
+ * 显示提醒消息
+ */
+function showMsg (msg) {
+    var objDiv  = document.createElement('div');
+    var objBtn  = document.getElementById('msgBtn');
+    var objMsg  = document.getElementById('msg');
+    var objBody = document.body;
+
+    // 添加遮罩层
+    objDiv.style.background = 'rgba(194,194,194,0.2)';
+    objDiv.style.position   = 'absolute';
+    objDiv.style.top        = 0;
+    objDiv.style.left       = 0;
+    objDiv.style.width      = '100%';
+    objDiv.style.height     = '1000%';
+    objDiv.style.zIndex     = 999;
+    objDiv.style.opacity    = '0.6';
+    objDiv.id = 'clip';
+
+    objBody.appendChild(objDiv);
+
+    // 隐藏溢出内容/滚动条
+    objBody.style.overflow = 'hidden';
+
+    // 显示提示信息
+    objMsg.className = 'show';
+
+    objMsg.style.left = (objMsg.parentNode.offsetWidth - objMsg.offsetWidth)/2 + 'px';
+    objMsg.style.top  = (objMsg.parentNode.offsetHeight - objMsg.offsetHeight)/4 + objBody.scrollTop + 'px';
+
+    objMsg.getElementsByTagName('h3')[0].innerHTML = msg.title ? msg.title : '消息提示';
+
+    var objShut = document.createElement('strong');
+    objShut.innerHTML = '×';
+    objShut.style.float = 'right';
+    objShut.style.marginRight = '0px';
+    objShut.style.cursor = 'pointer';
+    objMsg.getElementsByTagName('h3')[0].appendChild(objShut);
+
+    objShut.onclick = function () {
+        objMsg.className = 'hide';
+        objBody.removeChild(objDiv);
+        objBody.style.overflow = 'hidden';
+    };
+
+    objMsg.getElementsByTagName('p')[0].innerHTML  = msg.message;
+
+    if (msg.timeout) {
+        setTimeout(function () {
+            objMsg.className = 'hide';
+            objBody.removeChild(objDiv);
+            objBody.style.overflow = 'hidden';
+        }, msg.timeout);
+    } else if (msg.swt) {
+        objBtn.value = msg.btncontent ? msg.btncontent : '确定';
+        objBtn.type = msg.type;
+        objBtn.className = 'show';
+        objBtn.setAttribute('form', msg.form_id);
+        objBtn.onclick = function () {
+            objMsg.className = 'hide';
+            objBody.removeChild(objDiv);
+            objBody.style.overflow = 'hidden';
+            objBtn.className = 'hide';
+        };
+    } else {
+        objBtn.value = msg.btncontent ? msg.btncontent : '确定';
+        objBtn.className = 'show';
+        objBtn.onclick = function () {
+            objMsg.className = 'hide';
+            objBody.removeChild(objDiv);
+            objBody.style.overflow = 'auto';
+            objBtn.className = 'hide';
+        };
+    }
+}
+/**
+ * 员工档案信息验证
+ */
+function formValidation () {
+    var theForm = document.forms['staff'];
+
+    var msg = {'req_msg':true, 'timeout':2000, 'message':''};
+
+    var i = 0;
+    // 姓名
+    if (!/^[\u4e00-\u9fa5]+$/gi.test(theForm.elements['staff_name'].value)) {
+        msg.message = '姓名必须为中文';
+        showMsg(msg);
+        theForm.elements['staff_name'].focus();
+        return false;
+    }
+
+    // 性别
+    if ((msg.message = radioCheck('sex')) !== true) {
+        showMsg(msg);
+        return false;
+    }
+
+    // 出生日期
+    var birthday = new Date(theForm.elements['birthday'].value);
+    var d = new Date();
+    var age = d.getFullYear()-birthday.getFullYear()-((d.getMonth()<birthday.getMonth()|| d.getMonth()==birthday.getMonth() && d.getDate()<birthday.getDate())?1:0);
+    if (age < 18) {
+        msg.message = '请认真核实您的年龄，确保符合国家法律法规规定的工作年龄！';
+        showMsg(msg);
+        theForm.elements['birthday'].focus();
+        return false;
+    }
+
+    // 身高
+    var stature = parseInt(theForm.elements['stature'].value);
+    if (stature > 230 || !/^[1-2]\d{2}$/.test(stature)) {
+        msg.message = '请您提供准确合理的身高！';
+        showMsg(msg);
+        theForm.elements['stature'].focus();
+        return false;
+    }
+
+    // 婚姻状况
+    if ((msg.message = radioCheck('marital_status')) !== true) {
+        showMsg(msg);
+        return false;
+    }
+
+    // 身份证号
+    var idCard = theForm.elements['identity_card'].value;
+    if (!/^[1-9]\d{16,17}X?$/.test(idCard)) {
+        msg.message = '请正确填写身份证号码！';
+        showMsg(msg);
+        theForm.elements['identity_card'].focus();
+        return false;         
+    }
+
+    // 籍贯 && 家庭地址
+    if (!parseInt(theForm.elements['native_province'].value) || !parseInt(theForm.elements['native_city'].value) || !parseInt(theForm.elements['province'].value) || !parseInt(theForm.elements['city'].value) || !theForm.elements['home_address'].value) {
+        msg.message = '对不起，您的籍贯或地址填写错误！';
+        showMsg(msg);
+        theForm.elements['home_address'].focus();
+        return false;
+    }
+
+    // 照片
+    // 联系电话
+    var phone = theForm.elements['staff_phone'].value;
+    if (!/^1\d{10}$/.test(phone)) {
+        msg.message = '请填写您的手机号码！';
+        showMsg(msg);
+        theForm.elements['staff_phone'].focus();
+        return false;
+    }
+
+    // 淘宝帐号
+    if (theForm.elements['taobao'].value.length < 2) {
+        msg.message = '请填写您的淘宝账号！正确的淘宝账号应不少于5个字符！';
+        showMsg(msg);
+        theForm.elements['taobao'].focus();
+        return false;
+    }
+
+    // Email
+    // 部门
+    if (!theForm.elements['branch_id'].value) {
+        msg.message = '请选择您所在的部门或您即将加入的部门！';
+        showMsg(msg);
+        return false;
+    }
+
+    // 职位
+    if (!theForm.elements['job_title'].value) {
+        msg.message = '请您的职位！';
+        showMsg(msg);
+        theForm.elements['job_title'].focus();
+        return false;
+    }
+
+    // 入职时间
+    if (!theForm.elements['joined_date'].value) {
+        msg.message = '请您的入职日期！';
+        showMsg(msg);
+        theForm.elements['joined_date'].focus();
+        return false;
+    }
+
+    // 公司宿舍
+    if (!theForm.elements['dormitory'].value) {
+        msg.message = '请选择是否有在宿舍居住！';
+        showMsg(msg);
+        return false;
+    }
+
+    // 教育经历
+    // 工作经历
+
+    // 紧急联系人
+    if (!/^[\u4e00-\u9fa5]{2,}$/gi.test(theForm.elements['contact_name[]'][0].value) || !/^[\u4e00-\u9fa5]{2,}$/gi.test(theForm.elements['relation[]'][0].value)) {
+        msg.message = '请务必填写紧急联系人信息！';
+        showMsg(msg);
+        return false;
+    }
+
+    // 紧急联系人电话
+    var CP_0 = theForm.elements['contact_phone[]'][0].value;
+    var CP_1 = theForm.elements['contact_phone[]'][1].value;
+    if (!/^1[0-9]{10}/.test(CP_0) && !/^1[0-9]{10}/.test(CP_1)) {
+        msg.message = '紧急联系人联系方式必须有一个手机号码！';
+        showMsg(msg);
+        return false;
+    }
+
+    // 紧急联系人联系方式、员工联系方式不能重复使用！
+    if (CP_0 == CP_1 || CP_0 == theForm.elements['staff_phone'].value || CP_1 == theForm.elements['staff_phone'].value) {
+        msg.message = '紧急联系人联系方式、员工联系方式不能重复使用！';
+        showMsg(msg);
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * 验证radio的选项
+ */
+function radioCheck (inputName) {
+    var theForm = document.forms['staff'];
+    var msg = '';
+    for (var i=0; i < theForm.elements[inputName].length; i++) {
+        if (!theForm.elements[inputName][i].checked) {
+            switch (inputName) {
+                case 'sex'            : msg = '请选择您的性别！'; break;
+                case 'marital_status' : msg = '请选择您的婚姻状况'; break;
+            }
+        } else {
+            msg = true;
+            break;
+        }
+    }
+
+    return msg;
+}
+
+/**
+ * 显示照片
+ */
+function showPhoto (obj) {
+    var imgSrc        = window.URL.createObjectURL(obj.files.item(0));
+    var objImg        = document.createElement('img');
+    objImg.src           = imgSrc;
+    objImg.style.display = 'block';
+    objImg.style.width   = '140px';
+    objImg.style.height  = '160px';
+
+    var objLabel = document.getElementById('tdPhoto').getElementsByTagName('label').item(0);
+    objLabel.innerHTML = '';
+    objLabel.appendChild(objImg);
+    objLabel.style.paddingTop = 0;
+}
+</script>

@@ -1,0 +1,39 @@
+<div style="margin-top:10px;margin-bottom:10px">
+  {foreach from=$info item=val}
+  <h2>帐号:{$val.user_name}&nbsp;&nbsp;管理员:{$val.admin_name}&nbsp;&nbsp;</h2>
+  {/foreach}
+  <p><div id="grouplist" style="width:1012px;position:relative;border:1px solid green;padding:5px;height:34px">
+    得分情况:&nbsp;本月差评:<font color="red">{$much_fail}</font>次&nbsp;总差评:<font color="red">{$fail_total}</font>次
+    &nbsp;&nbsp;本月优秀:<font color="red">{$excellent}</font>&nbsp;总好评:<font color="red">{$excellent_total}</font>次
+  </div>
+</div>
+<div class="content-head">
+  <div class="finder-header-wrapper" style="" id="" >
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="100%">
+          <div id='scroll1' style="max-width:100%;overflow:hidden"> 
+              <table style="width:1024px" height="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#666">               
+                <tr bgcolor="#ddedfb">
+                  <td align="center">主题</td>
+                  <td align="center">评分人</td>
+                  <td height="20px" align="center">评分时间</td>
+                  <td align="center">评分</td>
+                  <td align="center">评分说明</td>
+                </tr>
+                {foreach from=$score_info item=val}
+                <tr bgcolor="#FFFFFF" id="tr_2_{$val.account_id}">
+                  <td align="center">{$val.subject}</td>
+                  <td height="20" align="center">{$val.give_score}</td>
+                  <td align="center">{$val.score_time}</td>
+                  <td align="center">{$val.score}</td>
+                  <td align="center">{$val.explain}</td>
+                </tr>
+                {/foreach}
+              </table>
+          </div> 
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

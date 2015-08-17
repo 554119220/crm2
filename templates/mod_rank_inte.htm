@@ -1,0 +1,126 @@
+<!--等级设置-->
+<div class="box_center user_list_info" style="width:840px;padding:3px;clear:both;display:{if $plan eq 1}block{else}none{/if}" id="mod_base_config">
+  <form id="mod_for_rank">
+    <table style="margin-left:15px" width="90%" class="table_form table_tr" cellspacing="0" border="0">
+      <tr>
+        <th>等级名称</th>
+        <td><input type="text" name="level_name" />{$rank.rank_name}</td>
+      </tr>
+      <tr>
+        <th>积分区间</th>
+        <td>
+          <input style="color:#8F8D8D" type="text" name="min_point" value="{$rank.min_points}" onclick="javacript:this.value=''"/>-
+          <input name="max_point" value="{$rank.max_points}" style="color:#8F8D8D" onclick="javacript:this.value=''"/>
+        </td>
+      </tr>
+      <tr>
+        <th>兑换比例</th>
+        <td><input type="text" name="convert_scale" value="{$rank.convert_scale}"/>（注：消费XX人民币自动兑换成1个积分，默认：10RMB=1积分）</td>
+      </tr>
+      <tr>
+        <th>折扣比例</th>
+        <td><input type="text" name="discount" value="{$rank.discount}"/>（注：达到此等级时，所能享受的折扣率，如：80表示八折，100表示不打折）</td>
+      </tr>
+      <tr>
+        <th>额外比例</th>
+        <td><input type="text" name="integral_discount" value="{$integral_discount}"/>（注：在所在等级兑换积分的基础上增加的额外积分比例）</td>
+      </tr>
+      <tr>
+        <th>适用平台</th>
+        <td>
+          {foreach from=$platform item=val}
+          <label><input type="checkbox" name="platform" value="{$val.role_id}" {if in_array($val.role_id,$rank.role_id)}checked{/if}>{$val.role_name}</label>
+          {/foreach}
+          <label><input type="checkbox" onclick="selAll(this,1)" {if $rank.platform eq 'all'}checked{/if}/>全选</label>
+          <label><input type="checkbox" onclick="selAll(this,0)" />取消</label>
+        </td>
+      </tr>
+      <tr>
+        <th>有效期限</th>
+        <td>
+          <input name="validity" type="text" size="12px" value="{$rank.validity}" />
+          <label><input type='radio' value="1" name="unit_data" /> 年</label>
+          <label><input type='radio' value="2" name="unit_data" checked="checked" /> 月</label>
+          <label><input type='radio' value="3" name="unit_data" /> 日</label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center" id="btn_box">
+          <input type="button" class="input_submit" value="修改等级" onclick="mod_rank({$rank.rank_id})"/>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+<!--积分策略-->
+<!--
+<div class="box_center user_list_info" style="width:840px;padding:3px;clear:both;display:{if $plan eq 2}block{else}none{/if}" id="strategy">
+  <br />
+  <h3>积分规则设置</h3>
+  <form id="for_point_form">
+    <table width="96%" class="table_form table_tr" cellspacing="0" border="0" >
+      <tr>
+        <th width="130px">规则名称</th>
+        <td><input type="text" name="integral_title" /></td>
+      </tr>
+      <tr>
+        <th width="130px">赠送条件</th>
+        <td>
+          <select name="integral_way" >
+            <option value="1">消费送积分</option>
+            <option value="2">推荐送积分</option>
+            <option value="3">充值送积分</option>
+            <option value="4">生日送积分</option>
+            <option value="5">其它</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th width="130px">赠送比例</th>
+        <td><input type="text" name="scale"/>（如：0.08所获得的积分=0.08*1*[消费金额/推荐顾客数]）</td>
+      </tr>
+      <tr>
+        <th width="130px">适用平台</th>
+        <td>
+          {foreach from=$platform item=val}
+          <label><input type="checkbox" name="platform" value="{$val.role_id}" >{$val.role_name}</label>
+          {/foreach}
+          <label><input type="checkbox" onclick="selAll(this,1)" />全选</label>
+          <label><input type="checkbox" onclick="selAll(this,0)" />取消</label>
+        </td>
+      </tr>
+      <tr>
+        <th wdith="130px">启动时间</th>
+        <td>
+          <input name="present_start" type="text" onClick="WdatePicker()"/>-
+          <input name="present_end" type="text" onClick="WdatePicker()"/>终止时间
+          <label><input name="available" type="checkbox" checked="checked" value="1" />是否启用</label>
+        </td>
+      </tr>
+      <tr>
+        <th width="130px">适用品牌</th>
+        <td>
+          {foreach from=$brand item=val} 
+          <label><input type="checkbox" name="other_brand" value="{$val.brand_id}"/>{$val.brand_name}</label>
+          {/foreach}
+          <label><input type="checkbox" name="other_brand" value="0"/>全部品牌</label>
+        </td>
+      </tr>
+      <tr>
+        <th width="130px">消费下限</th> 
+        <td>
+          <input type="text" name="min_consume" />-
+          <input type="text" name="max_consume" />消费上限（注：单位元）
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input type="button" class="input_submit" value="添 加" onclick="addRankRule()" />
+          <input type="button" class="input_submit" value="重 置" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+-->

@@ -1,0 +1,43 @@
+<table id="award_table" cellpadding="0" cellspacing="0" border="0" width="540px" class="wu_table_list wu_rb_border rb_border tr_hover">
+  {if $order_rate neq null}
+  <caption class="caption_general">{$caption}</caption> 
+  <tr>
+    <th width="5%">排名</th>
+    <th width="10%">客服</th>
+    <th width="10%">服务数</th>
+    <th width="10%">订单成交数</th>
+    <th width="10%">成单率</th>
+  </tr>
+  {foreach from=$order_rate item=val name=i}
+  <tr>
+    <td>{$smarty.foreach.i.iteration}</td>
+    <td>{$val.user_name}</td>
+    <td>{$val.service_num}</td>
+    <td>{$val.order_num}</td>
+    <td>{$val.order_rate}</td>
+  </tr>
+  {/foreach}
+  {elseif $sale_performance neq null}
+  <caption class="caption_general">{$caption}</caption> 
+  <tr>
+    <th width="5%">排名</th>
+    <th width="10%">客服</th>
+    <th width="10%">成功订单数</th>
+    <th width="10%">总金额</th>
+    <th width="10%">平均订单金额</th>
+  </tr>
+  {foreach from=$sale_performance item=val name=i}
+  <tr>
+    <td>{$smarty.foreach.i.iteration}</td>
+    <td>{$val.user_name}</td>
+    <td>{$val.order_num}</td>
+    <td>{$val.final_amount}</td>
+    <td>{$val.average_amount}</td>
+  </tr>
+  {/foreach}
+  {else}
+  <tr>
+    <td>没有记录</td>
+  </tr>
+  {/if}
+</table>

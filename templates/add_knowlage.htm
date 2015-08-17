@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <title>添加新产品知识</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="styles/general.css" type="text/css" charset="utf-8"/>
+    <link rel="stylesheet" href="styles/performance.css" type="text/css" charset="utf8"/>
+    <link rel="stylesheet" href="styles/index.css" type="text/css" charset="utf8"/>
+    <link rel="stylesheet" href="styles/new.css" type="text/css" charset="utf-8"/>
+  </head>
+  <body>
+    <div id="resource" style="padding-left:14px;">
+      <br/>
+      <h3>{if $mod neq true}添加新知识{else}修改知识{/if}</h3>
+      <span style=" margin-left: 13em; font-size: 1.3em;">
+        <font color="red">{$msg.message}</font>
+      </span>
+      <br />
+      <div class="bd1" style="width:80%">
+        <form action="service.php?act=add_knowlage_done&ext=top" method="POST" name="add_knowlage_form">
+          <table width="100%" class="table_form table_tr wu_table">
+            <tr>
+              <th>标题：</th>
+              <td colspan="2">
+                <input type="text" name="knowlage_name" value="{$filter.knowlage_name}" required style="width:85%"/>
+              </td>
+            </tr>
+            <tr>
+              <th>选择商品<font color="red">*</font></th>
+              <td>
+                <input type="text" name="search" value="{$filter.goods_name}" size="20" {if !$unedit}oninput="searchGoods(this)" onblur="searchGoods(this)"{/if} required />
+              </td>
+              <td>
+                <select name="goods_id" id="goods_id" style="width:300px"{if $filter.goods_sn neq null}{/if}>
+                  {if $filter.goods_sn neq null}
+                  <option value="{$filter.goods_sn}">{$filter.goods_name}</option>
+                  {else}
+                  <option value="0">请先输入要搜索的商品</option>
+                  {/if}
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>标签：</th>
+              <td colspan="2">
+                <input type="text" name="tags" value="{$knowlage_info.tags}" placeholder="多个标签用,号分开" style="width:85%" />
+              </td>
+              <td id="alarm_td"></td>
+            </tr>
+            <tr>
+              <th>选择类别：<font color="red">*</font></th> 
+              <td colspan="2">
+                {foreach from=$knowlage_class_list item=val name=i}
+                <label>
+                  <input type="radio" name="knowlage_class" {if $smarty.foreach.i.iteration eq 1 || $filter.knowlage_class eq $val.knowlage_class_id}checked{/if} value="{$val.knowlage_class_id}">{$val.knowlage_class_name}
+                </label>
+                {/foreach}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" id="kcfeditor">
+                {$FCKeditor}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" class="text_ar">
+                {if $mod neq true}
+                <input type="submit" name="add_btn" value="添 加" class="input_submit" />
+                {else}
+                <input type="submit" name="mod_btn" value="修 改" class="input_submit" />
+                <input type="hidden" id="mod_knowlage_id" value="{$knowlage_id}"/>
+                {/if}
+              </td>
+            </tr>
+          </table>  
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+{insert_scripts files="json2.js,reportSorting.js,main.js,system.js,storages.js,users.js,order_detail.js,performance.js,service.js,account.js"}
+{insert_scripts files="js.js,tab.js,tabControl.js,goods.js,healthy_archive.js,index.js"}
+<!-- ecshop原JS文件 -->
+{insert_scripts files="common.js,transport.js,validator.js,utils.js,region.js,ask_customer.js,stats.js,order.js,reportSorting.js"}
+{insert_scripts files="../js/utils.js,selectzone.js,colorselector.js"}

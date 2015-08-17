@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="styles/report_forms.css" type="text/css">
+<style type="text/css" media="screen">
+.stats-sum {color:red; font-weight:bold}
+.stats-intro { padding:2px 10px; font-size:1.1rem}
+.stats-intro li {height:25px}
+.stats-intro sup { background:yellow}
+</style>
+<!--  页首标题  -->
+<div id="ur_here"><br><h3>售前销量</h3></div>
+<details>
+    <summary class="stats-sum">销量统计算法解释</summary>
+    <ul class="stats-intro">
+        <li>纯个人销量：统计当月1号0点0分0秒起，到当月最后一天<sup>[1]</sup>23点59分59秒止的由客服促成的订单，不包含京东、手拍、活动、到付中的订单，订单类型（order_type=4）</li>
+        <li>京东销量：当月1号0点0分0秒起，到当月最后一天<sup>[1]</sup>23点59分59秒止的有客服促成的京东的订单，只包含京东及京东促销活动的订单</li>
+        <li>手拍销量：当月1号0点0分0秒起，到当月最后一天<sup>[1]</sup>23点59分59秒止的统计由客服促成的手机拍拍的订单，只有手机拍拍的订单，不包含手机拍拍货到付款订单</li>
+        <li>活动销量：统计当月1号0点0分0秒起，到当月最后一天<sup>[1]</sup>23点59分59秒止的促销活动中由客服促成的订单，不包含京东促销活动的订单</li>
+        <li>到付销量：统计当月1号0点0分0秒起，到当月最后一天<sup>[1]</sup>23点59分59秒止的客服的货到付款订单的销量，不包含京东到付的订单</li>
+        <li>总销量=所在行的纯个人销量、京东销量、手拍销量、活动销量、到付销量的总和</li>
+        <li>退货销量：统计当月1号0点0分0秒起，到当月最后一天<sup>[1]</sup>23点59分59秒止的所在行的客服名下的退货销量</li>
+        <li>当月：统计1号0点0分0秒起，到当月最后一天<sup>[1]</sup>23点59分59秒止的订单，包含退货订单</li>
+        <li>本月退货：统计退货时间在当月1号0点0分0秒起，到当月最后一天<sup>[2]</sup>23点59分59秒止的订单</li>
+        <li>注：<mark>[1]、[2]</mark>最后一天：28号、29号、30号、31号（如果有）</li>
+    </ul>
+</details>
+
+<!-- 页首搜索区 -->
+<fieldset id="pageSearch">
+    <legend>搜索</legend>
+    <form action="report_forms.php?act=pre_sales" name="pageSearch" method="post" onsubmit="return statsPreSales()">
+        {if $pre_sales_query}
+        订单时间：<input type="text" name="startTime" value="" class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',{$min_date}})">
+        <input type="text" name="endTime" value="" class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',{$min_date}})">
+        {/if}
+        {if $admin_show}
+        客服：
+        <select name="admin_id">
+            <option value="0">选择客服</option>
+            {foreach from=$admin_list item=val}
+            <option value="{$val.user_id}">{$val.user_name}</option>
+            {/foreach}
+        </select>
+        {/if}
+        <input type="submit" value="搜索" class="b_submit">
+    </form>
+</fieldset>
+
+<!-- 数据类型选择区 -->
+
+<!-- 数据展示区 -->
+<table border="1" id="dataList" cellspacing="0" cellpadding="0">
+    {$data}
+</table>
+
+<!-- 分页 -->
+<div id="pageList" class="bottom_tip">
+</div>

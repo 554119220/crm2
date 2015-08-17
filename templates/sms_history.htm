@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="styles/report_forms.css" type="text/css">
+<!--  页首标题  -->
+<br>
+<div id="ur_here">售前销量</div>
+
+<!-- 页首搜索区 -->
+<fieldset id="pageSearch">
+    <legend>搜索</legend>
+    <form action="service.php?act=sms_history" name="pageSearch" method="post" onsubmit="return filterSMS()">
+        发送时间：<input type="text" name="start" value="" class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',{$min_date}})">
+        —<input type="text" name="end" value="" class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',{$min_date}})">
+        客服：<select name="admin_id">
+            <option value="0">选择客服</option>
+            {foreach from=$admin_list item=val}
+            <option value="{$val.user_id}">{$val.user_name}</option>
+            {/foreach}
+        </select>
+        内容：<input type="text" name="keywords" value="" placeholder="关键词">
+        <input type="submit" value="搜索" class="b_submit">
+    </form>
+</fieldset>
+
+<!-- 数据类型选择区 -->
+
+<!-- 数据展示区 -->
+<table border="1" id="dataList" cellspacing="0" cellpadding="0">
+<thead>
+    <th>数量</th>
+    <th>发送人</th>
+    <th>发送时间</th>
+    <th>字数</th>
+    <th>短信内容</th>
+</thead>
+<tbody>
+    {$data}
+</tbody>
+</table>
+
+<!-- 分页 -->
+<div id="pageList" class="bottom_tip">{$page}</div>

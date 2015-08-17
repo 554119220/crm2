@@ -1,0 +1,12 @@
+<?php
+$sk = array (
+  'access_token' => '60cefefc-de0d-476e-a350-9764e3a18662',
+  'code' => 0,
+  'expires_in' => 31103999,
+  'refresh_token' => '4f32731d-e159-48aa-97cb-044210f57023',
+  'scope' => 'read',
+  'time' => '1384144531041',
+  'token_type' => 'bearer',
+  'uid' => '1021634047',
+  'user_nick' => 'jd_kangjianrensheng',
+);

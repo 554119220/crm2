@@ -1,0 +1,29 @@
+<table width="100%" cellpadding="0" cellspacing="0" border="0" id="task_list_table" class="wu_table_list rb_border wu_rb_border tr_hover">
+  <tr>
+    <th>任务名</th>
+    <th>任务限制时间</th>
+    <th>目标结果</th>
+    <th>部门</th>
+    <th>小组</th>
+    <th>操作</th>
+  </tr>
+  {if $tasks_list neq null}
+  {foreach from=$tasks_list item=val}
+  <tr>
+    <td>{$val.task_name}</td>
+    <td>{$val.deadline}</td>
+    <td>{$val.purpose_value}</td>
+    <td>{$val.platform}</td>
+    <td>{$val.group_name}</td>
+    <td>
+      <button class="btn_new" onclick="controlTask(this,{$val.task_id},'mod_form')"/>修改&nbsp; 
+      <button class="btn_new" onclick="controlTask(this,{$val.task_id},'del')"/>删除 
+    </td>
+  </tr>
+  {/foreach}
+  {else}
+  <tr><td colspan="6">尚未创建任务</td></tr>
+  {/if}
+</table>
+<br/>
+{$foot_page}

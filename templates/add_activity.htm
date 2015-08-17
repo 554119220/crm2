@@ -1,0 +1,71 @@
+<div id="add_activity_div">
+  <table width="100%" cellpadding="0" cellspacing="0" >
+    <tr>
+      <td class="privilege_content" id="privilege_td" colspan="6">
+        <label><input type="radio" name="rdo_privilege" value="fillAny" onclick="setPrivilegeView(this)" />满就送</label>
+        <label><input type="radio" name="rdo_privilege" value="fillNum" onclick="setPrivilegeView(this)" />满件送</label>
+      </td>
+      {if $activity}
+      <td id="privilege_condition_td">
+      {$activity.privilege_condition}
+      </td>
+      {/if}
+      <td id="privilege_condition" style="display:none"></td>
+      <td id='gifts' style="display:none">
+        <input type="text" name="search" oninput="searchGoods(this)" onblur="searchGoods(this)" />
+        <select name="goods_id" id="goods_id" form="add_activity_forms">
+          <option value="0">请先输入要搜索的赠品</option>
+        </select>&nbsp;
+        赠送数量&nbsp;<input type="number" name="gifts_num" id="gifts_num" value="1" min="0" style="width:32px" form="add_activity_forms"/>
+      </td>
+    </tr> 
+  </table>
+  <form name="add_activity_forms">
+    <table width="100%" cellpadding=0 cellspacing=0 border=0>
+      <tr>
+        <th>活动名称</th>
+        <td>
+          <input type="text" name="activity_name" value="{$activity.activity_name}"/>
+        </td>
+        <th>时间</th>
+        <td>
+          <input type="text" name="start_time" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" placeholder="开始时间" value="{$activity.start_time}"/>&nbsp;&nbsp;
+          <input type="text" name="end_time" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" placeholder="结束时间" value="{$activity.end_time}"/>
+        </td>
+        <th>描述</th>
+        <td>
+          <input type="text" name="act_describe" style="width:204px" placeholder="活动基本描述">{$activity.act_describe}</textarea>
+      </td>
+    </tr>
+    <tr>
+      <th>品牌</th>
+      <td>
+        <select id="brand_id" name="brand_id" onchange="getGoodsInActivity(this.value)" style="width:139px">
+          <option value="0">选择品牌</option> 
+          {foreach from=$brand_list item=val}
+          <option value="{$val.brand_id}">{$val.brand_name}</option>
+          {/foreach}
+        </select>
+      </td>
+      <th>商品名</th>
+      <td>
+        <select id="act_goods_sn" name="act_goods_sn" style="width:288px">
+          <option value="0">选择商品</option>
+          {foreach from=$goods_list item=val}
+          <option value="{$val.goods_sn}">{$val.goods_name}</option>
+          {/foreach}
+        </select>
+      </td>
+      <td colspan="2" style="text-align:left">         
+        <input type="text"  name="keyword" placeholder="填写商品名搜索" />
+        <input type="button" class="b_btn" value="搜索商品" onclick="getGoodslist(this.form)" />
+        {if $activity}
+        <input type="button" class="b_btn" onclick="modActivity({$act_id})" value="修   改" />
+        {else}
+        <input type="button" class="b_btn" onclick="addMoreActivity('add',1)" value="创   建" />
+        {/if}
+      </td>
+    </tr>
+  </table>
+</form>
+</div>

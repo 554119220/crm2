@@ -1,0 +1,33 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+add_freecard	add_custom.htm	/^function add_freecard(user_id,user_name)$/;"	f
+formValidation	register.htm	/^function formValidation () {$/;"	f
+msg	current_order_detail.htm	/^            {if $im.qq}<span><a href="tencent:\/\/message\/?uin={$im.qq}" title="{$im.qq}" name="msg"><img alt="{$im.qq}" src="http:\/\/wpa.qq.com\/pa?p=1:{$im.qq}:17"><\/a><\/span>{\/if}$/;"	a
+msg	list_tpl.htm	/^            {if $user.qq}<a href="tencent:\/\/message\/?uin={$user.qq}" title="{$user.qq}" name="msg"><img alt="{$user.qq}" src="http:\/\/wpa.qq.com\/pa?p=1:{$user.qq}:17"><\/a>{\/if}$/;"	a
+msg	list_users_by_platform.htm	/^                                        {if $user.qq}<a href="tencent:\/\/message\/?uin={$user.qq}" title="{$user.qq}" name="msg"><img alt="{$user.qq}" src="http:\/\/wpa.qq.com\/pa?p=1:{$user.qq}:17"><\/a>{\/if}$/;"	a
+msg	order_detail.htm	/^            {if $im.aliww}<a target="_blank" href="http:\/\/www.taobao.com\/webww\/ww.php?ver=3&touid={$im.aliww}&siteid=cntaobao&status=2&charset=utf-8" title="{$im.aliww}"><img border="0" src="http:\/\/amos.alicdn.com\/realonline.aw?v=2&uid={$im.aliww}&site=cntaobao&s=2&charset=utf-8" alt="{$im.aliww}" \/><\/a>{\/if}{if $im.qq}<a href="tencent:\/\/message\/?uin={$im.qq}" title="{$im.qq}" name="msg"><img alt="{$im.qq}" src="http:\/\/wpa.qq.com\/pa?p=1:{$im.qq}:17"><\/a>{\/if}$/;"	a
+msg	referrals_detail.htm	/^        <td>{if $user.qq}<a href="tencent:\/\/message\/?uin={$user.qq}" title="{$user.qq}" name="msg"><img alt="{$user.qq}" src="http:\/\/wpa.qq.com\/pa?p=1:{$user.qq}:17"><\/a>{\/if}{$user.qq}<\/td>$/;"	a
+msg	res_search.htm	/^        <a href="tencent:\/\/message\/?uin={$val.qq}" title="{$val.qq}" name="msg">$/;"	a
+msg	users_detail.htm	/^                                <a href="tencent:\/\/message\/?uin={$val}" title="{$val}" name="msg">$/;"	a
+msg	users_detail.htm	/^                    <td>{if $user.qq}<a href="tencent:\/\/message\/?uin={$user.qq}" title="{$user.qq}" name="msg"><img alt="{$user.qq}" src="http:\/\/wpa.qq.com\/pa?p=1:{$user.qq}:17"><\/a>{\/if}{$user.qq}<button value="users.php?act=edit&info=qq&id={$user.user_id}&type=text" title="修改QQ" onclick="sendEditInfo(this)"><\/button><\/td>$/;"	a
+msg	users_list.htm	/^                            {if $user.qq}<a href="tencent:\/\/message\/?uin={$user.qq}" title="{$user.qq}" name="msg"><img alt="{$user.qq}" src="http:\/\/wpa.qq.com\/pa?p=1:{$user.qq}:17"><\/a>{\/if}$/;"	a
+radioCheck	register.htm	/^function radioCheck (inputName) {$/;"	f
+redirection	message.htm	/^function redirection()$/;"	f
+rightShowArea	view_admin_cate.htm	/^        <a href="users.php?act=view_user_list&admin_id={$val.user_id}" name="rightShowArea">{$val.user_name}<\/a>$/;"	a
+showDisease	add_custom.htm	/^function showDisease ()$/;"	f
+showMsg	register.htm	/^function showMsg (msg) {$/;"	f
+showPhoto	register.htm	/^function showPhoto (obj) {$/;"	f
+showres	add_custom.htm	/^function showres(res)$/;"	f
+showupdate	add_custom.htm	/^function showupdate(res)$/;"	f
+synchro	index.htm	/^    function synchro () {$/;"	f
+synchroResponse	index.htm	/^function synchroResponse (res) {$/;"	f
+tBodies-detail	referrals_data.htm	/^        <a href="users.php?act=user_detail&id={$val.user_id}" name="tBodies-detail" target="_blank" class="-detail">$/;"	a
+updateOrderPlatform	upd_order_platform.htm	/^  function updateOrderPlatform(obj){$/;"	f
+updateOrderPlatformResp	upd_order_platform.htm	/^  function updateOrderPlatformResp(res){$/;"	f
+update_free	add_custom.htm	/^function update_free()$/;"	f
+validate	login.htm	/^  function validate()$/;"	f
+validate	user_account_check.htm	/^  function validate()$/;"	f

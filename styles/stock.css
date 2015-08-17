@@ -1,0 +1,18 @@
+/*#main div {border:1px solid #000}*/
+
+/* 页面标题 */
+#ur_here {margin:10px 0 5px 0; padding:5px 0; font-size:16px; line-height:16px; font-weight:bolder}
+
+/* 搜索 */
+#pageSearch {padding:5px 2px; font-size:14px}
+#pageSearch input[type='text'] {width:130px; margin-bottom:10px; vertical-align:baseline}
+#pageSearch input[name*='end'] {margin-right:20px}
+#pageSearch select {margin-right:30px}
+#pageSearch label {margin-left:-12px}
+#pageSearch label>input {width:100px !important; margin-right:17px}
+
+/* 数据显示 */
+#dataList {margin-top:10px}
+#dataList thead th {font-size:19px !important}
+#dataList tbody tr>td:first-child, #dataList tbody tr>td:last-child  {text-align:center}
+

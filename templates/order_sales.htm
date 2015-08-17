@@ -1,0 +1,125 @@
+<!-- $Id: users_list.htm 17053 2010-03-15 06:50:26Z sxc_shop $ -->
+<style type="text/css" media="screen">
+.stats-18 {float:left; margin:auto 0; padding:auto 0}
+.stats-18 table {margin-top:10px; margin:auto 0; padding:auto 0}
+.stats-18 table tr {border:1px #ccc solid !important}
+.trhover {background:rgba(0,128,0,0.5) !important; color:#fff !important; font-weight:bolder !important}
+.stats-sum {color:red; font-weight:bold}
+.stats-intro { padding:2px 10px; font-size:1.1rem}
+.stats-intro li {height:25px}
+</style>
+<div class="blank"></div>
+<div class="content-head mt10">
+    <div class="finder-title">销售统计</div>
+    <details>
+        <summary class="stats-sum">销量统计算法解释</summary>
+        <ul class="stats-intro">
+            <li>个人订单：个人咨询促成的订单；包含退货订单</li>
+            <li>活动订单：团购、聚划算等促销活动产生的订单；包含退货订单</li>
+            <li>静默订单：顾客在没有咨询的情况下，自主下单产生的订单；包含退货订单</li>
+            <li>预测销量=当前当月总销量÷当月已过去的天数×当月总天数；包含退货订单</li>
+            <li>退货销量：按照退货时间统计</li>
+        </ul>
+    </details>
+    <div class="finder-packet">
+        <div class="packet-items">
+            <ul id="sub_tag" class="clearfix">
+                <!-- 针对订单状态进行的分类 -->
+                <li id="tag_0" class="current-tab">
+                <a href="report_forms.php?act={$act}&platform=0">全部</a>
+                </li>
+                {foreach from=$platform_list item=val}
+                <li id="tag_{$val.role_id}" class="last">
+                <a href="report_forms.php?act={$act}&platform={$val.role_id}">{$val.role_name}</a>
+                </li>
+                {/foreach}
+            </ul>
+        </div>
+    </div>
+
+    <div class="max_box">
+        <div class="blank"></div>
+        <div id="scroll1">
+            <!-- start users list -->
+            <!--用户列表部分-->
+            <div class="list-div stats-18" style="width:65%">
+                {foreach from=$stats key=key item=val}
+                <table cellpadding="0" cellspacing="0" id="{$key}-left" style="border:1px #ccc solid !important">
+                    <caption>
+                        <h3>
+                            {if $key eq 'month'}
+                            月度销量
+                            {elseif $key eq 'current'}
+                            当日销量
+                            {elseif $key eq 'last_day'}
+                            昨日销量
+                            {elseif $key eq 'refund'}
+                            本月退货统计
+                            {/if}
+                        </h3>
+                    </caption>
+                    <tr>
+                        <th width="10%">平台</th>
+                        <th width="6%">个人单数</th>
+                        <!--th width="8%">商品金额</th-->
+                        <!--th width="5%">运费</th-->
+                        <th width="6%">个人销量</th>
+                        <!--th width="5%">刷单数</th>
+                        <th width="6%">刷单金额</th-->
+                        <th width="6%">静默单数</th>
+                        <th width="6%">静默销量</th>
+                        <th width="6%">活动单数</th>
+                        <th width="6%">活动销量</th>
+                        <th width="5%">总单数</th>
+                        <th width="5%">总销量</th>
+                        <th width="5%">客单价</th>
+                        {if $key eq 'month'}
+                        <th width="6%">预测销量</th>
+                        {/if}
+                    </tr>
+                    {foreach from=$val key=k item=v}
+                    <tr height="30" onmouseover="hightLight('{$key}', this.rowIndex)"{if 0 && $k neq '合计' && $v.total_amount} onclick="getSalesDetail('{$k}','{$key}')"{/if}>
+                        <td align="center">{if $k eq '合计'}合计{else}{$temp[$k]}{/if}</td>
+                        <td class="first-cell pos" align="center">{if isset($v[4])}{$v[4].order_number}{else}-{/if}</td>
+                        <td align="center">{if isset($v[4])}{$v[4].final_amount}{else}-{/if}</td>
+                        <!--td class="first-cell pos" align="center">{if isset($v[1])}{$v[1].order_number}{else}-{/if}</td>
+                        <td align="center">{if isset($v[1])}{$v[1].final_amount}{else}-{/if}</td-->
+                        <td class="first-cell pos" align="center">{if isset($v[3])}{$v[3].order_number}{else}-{/if}</td>
+                        <td align="center">{if isset($v[3])}{$v[3].final_amount}{else}-{/if}</td>
+                        <td class="first-cell pos" align="center">{if isset($v[o])}{$v[o].order_number}{else}-{/if}</td>
+                        <td align="center">{if isset($v[o])}{$v[o].final_amount}{else}-{/if}</td>
+                        <td class="first-cell pos" align="center">{if $v.total_number}{$v.total_number}{else}-{/if}</td>
+                        <td align="center">{if $v.total_amount}{$v.total_amount}{else}-{/if}</td>
+                        <td align="center">{if $v.avg}{$v.avg}{else}-{/if}</td>
+                        {if $key eq 'month'}
+                        <td align="center">{if $v.forecast}{$v.forecast}{else}-{/if}</td>
+                        {/if}
+                    </tr>
+                    {/foreach}
+                </table>
+                {/foreach}
+            </div>
+            <div class="list-div stats-18">
+                {foreach from=$return key=key item=val}
+                <table cellpadding="0" cellspacing="0" id="{$key}-right" style="border:1px #ccc solid !important">
+                    <caption style="height:16px"> &nbsp; </caption>
+                    <tr>
+                        <th width="50px">退货单数</th>
+                        <th width="50px">退货金额</th-->
+                        <th width="80px">平台</th>
+                    </tr>
+                    {foreach from=$val key=k item=v}
+                    <tr height="30" onmouseover="hightLight('{$key}', this.rowIndex)">
+                        <td class="first-cell pos" align="center">{if isset($v)}{$v.order_num}{else}-{/if}</td>
+                        <td align="center">{if isset($v)}{$v.final_amount}{else}-{/if}</td>
+                        <td align="center">{if $k eq '合计'}合计{else}{$temp[$k]}{/if}</td>
+                    </tr>
+                    {/foreach}
+                </table>
+                {/foreach}
+            </div>
+            <!-- end users list -->
+        </div>
+    </div>
+</div>
+</div>

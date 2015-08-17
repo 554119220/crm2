@@ -1,0 +1,232 @@
+<div class="user_list_info" style="width:100%;clear:both" id="cld_vips">
+  <div class="layout" style="padding-bottom:2px !important;border:1px solid #d9d9d9 !important;">
+    <div class="box_nav">
+      <div class="detail_tab" style="margin:0">
+        <ul>
+          <li type="group_info" class="o_select" onclick="switchSubTab(this)"><span>分组信息</span></li>
+          <li type="pur_ahave" onclick="switchSubTab(this)"><span>购买行为</span></li>
+          <li type="vip_property" onclick="switchSubTab(this)"><span>会员属性</span></li>
+          <li type="brand_range" onclick="switchSubTab(this)"><span>品牌范围</span></li>
+        </ul>
+        <span style="float:right"><input onclick="createGroup({$rank.rank_id})" class="b_submit" value="保 存"/></span>
+      </div>
+    </div>
+  </div>
+
+  <div style="width:100% !important;background-color:#FFF">
+    <!--分组信息-->
+    <form name="for_cld_vip">
+      <div id="group_info" class="show">
+        <table width="90%" class="table_form" cellspacing="0" border="0">
+          <tr>
+            <th>平台 ：</th>
+            <td>{$rank.role_name}</td>
+          </tr>
+          <tr>
+            <th>分组名称 ：</th>
+            <td><input type="text" id="group_name"/></td>
+          </tr>
+          <tr>
+            <th>上级分组 ：</th>
+            <td>{$rank.rank_name}</td>
+          </tr>
+          <tr>
+            <th>分组描述 ：</th>
+            <td><input type="text" id="describe"/></td>
+          </tr>
+        </table>
+      </div>
+
+      <!--购买行为-->
+      <div id="pur_ahave" class="hide">
+        <table width="90%" class="table_form" cellspacing="0" border="0">
+          <tr>
+            <th>订单总数 ：</th>
+            <td>
+              <select name="all_order_total_status">
+                <option value="1"> </option>
+                <option value="2">小于</option>
+                <option value="3">小于等于</option>
+                <option value="4">大于</option>
+                <option value="5">大于等于</option>
+              </select>
+              <input type="text" name="all_order_total" />
+            </td>
+            <th>成功的订单数 ：</th>
+            <td>
+              <select name="suc_order_total_status">
+                <option value="1"> </option>
+                <option value="2">小于</option>
+                <option value="3">小于等于</option>
+                <option value="4">大于</option>
+                <option value="5">大于等于</option>
+              </select>
+              <input type="text" name="suc_order_total" />
+            </td>
+          </tr>
+          <tr>
+            <th>订单总金额 ：</th>
+            <td>
+              <select name="order_amount_status">
+                <option value="1"> </option>
+                <option value="2">小于</option>
+                <option value="3">小于等于</option>
+                <option value="4">大于</option>
+                <option value="5">大于等于</option>
+              </select>
+              <input type="text" name="order_amount"/>
+            </td>
+            <th>平均订单价 ：</th>
+            <td>
+              <select name="order_average_status">
+                <option value="1"> </option>
+                <option value="2">小于</option>
+                <option value="3">小于等于</option>
+                <option value="4">大于</option>
+                <option value="5">大于等于</option>
+              </select>
+              <input type="text" name="order_average" />
+            </td>
+          </tr>
+          <tr>
+            <th>购买频次（天）</th>
+            <td>
+              <select name="purchase_frequency_status">
+                <option value="1"> </option>
+                <option value="2">小于</option>
+                <option value="3">小于等于</option>
+                <option value="4">大于</option>
+                <option value="5">大于等于</option>
+              </select>
+              <input type="text" name="purchase_frequency" />
+            </td>
+            <th>平均购买间隔（天）</th>
+            <td>
+              <select name="average_purchase_frequency_status">
+                <option value="1"> </option>
+                <option value="2">小于</option>
+                <option value="3">小于等于</option>
+                <option value="4">大于</option>
+                <option value="5">大于等于</option>
+              </select>
+              <input type="text" name="average_purchase_frequency" />
+            </td>
+          </tr>
+          <tr>
+            <th>购买的月数 ：</th>
+            <td>
+              <select name="purchase_months_status">
+                <option value="1"> </option>
+                <option value="2">小于</option>
+                <option value="3">小于等于</option>
+                <option value="4">大于</option>
+                <option value="5">大于等于</option>
+              </select>
+              <input type="text" name="purchase_months" />
+            </td>
+            <th>下单商品总数 ：</th>
+            <td>
+              <select name="commodity_amount_status">
+                <option value="1" selected> </option>
+                <option value="2">小于</option>
+                <option value="3">小于等于</option>
+                <option value="4">大于</option>
+                <option value="5">大于等于</option>
+              </select>
+              <input type="text" name="commodity_amount" />
+            </td>
+          </tr>
+          <tr>
+            <th>成功的订单金额 ：</th>
+            <td>
+              <select name="success_order_amount_status">
+                <option value="1"> </option>
+                <option value="2">小于</option>
+                <option value="3">小于等于</option>
+                <option value="4">大于</option>
+                <option value="5">大于等于</option>
+              </select>
+              <input type="text" name="success_order_amount" />
+            </td>
+            <th>成功的订单平均单价 ：</th>
+            <td>
+              <select name="success_order_average_price_status">
+                <option value="1"> </option>
+                <option value="2">小于</option>
+                <option value="3">小于等于</option>
+                <option value="4">大于</option>
+                <option value="5">大于等于</option>
+              </select>
+              <input type="text" name="success_order_average" />
+            </td>
+          </tr>
+          <tr>
+            <th>未付款订单数 ：</th>
+            <td>
+              <select name="no_pay_order_total_status">
+                <option value="1"> </option>
+                <option value="2">小于</option>
+                <option value="3">小于等于</option>
+                <option value="4">大于</option>
+                <option value="5">大于等于</option>
+              </select>
+              <input type="text" name="no_pay_order_total" />
+            </td>
+            <th>退款订单数 ：</th>
+            <td>
+              <select name="drawback_order_total_status">
+                <option value="1"> </option>
+                <option value="2">小于</option>
+                <option value="3">小于等于</option>
+                <option value="4">大于</option>
+                <option value="5">大于等于</option>
+              </select>
+              <input type="text" name="drawback_order_total" />
+            </td>
+          </tr>
+          <tr>
+            <th>退款总额度</th>
+            <td>
+              <select name="drawback_amount_status">
+                <option value="1"> </option>
+                <option value="2">小于</option>
+                <option value="3">小于等于</option>
+                <option value="4">大于</option>
+                <option value="5">大于等于</option>
+              </select>
+              <input type="text" name="drawback_amount" />
+            </td>
+            <th></th>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+
+      <!--会员属性-->
+      <div id="vip_property" class="hide">
+        88877888
+      </div>
+
+      <!--品牌范围-->
+      <div id="brand_range" class="hide">
+        58978784849888
+      </div>
+    </form>
+  </div>
+
+  <style type="text/css" >
+    #cld_vips{
+      margin:0px;
+    }
+
+    #cld_vips table td{
+      text-align:left;
+    }
+    #cld_vips table th{
+      width:120px;
+      text-align:right;
+    }
+    table {
+      width:100% !important;
+    }
+  </style>

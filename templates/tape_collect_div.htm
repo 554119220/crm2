@@ -1,0 +1,110 @@
+<table width="100%" cellpadding="0" cellspacing="0" border="0" class="wu_table_list wu_rb_border rb_border tr_hover" id="favor_table">
+  {if $tape_collect_copyright eq 'boutique'}
+  <tr>
+    <th style="text-align:left;padding-left:14px;" colspan="6" id="classTape">
+      <label><input type="checkbox" {if !$class }checked{/if} name="tape_class" onclick="selectTape(this)" value="0"/> 全部</label>
+      <label><input type="checkbox" {if $class eq 1}checked{/if} name="tape_class" onclick="selectTape(this)" value="1"/> 减肥</label>
+      <label><input type="checkbox" {if $class eq 2}checked{/if} name="tape_class" onclick="selectTape(this)" value="2"/> 补肾</label>
+      <label><input type="checkbox" {if $class eq 3}checked{/if} name="tape_class" onclick="selectTape(this)" value="3"/> 三高</label>
+    </th>
+  </tr>
+  {/if}
+  <tr>
+    <th width="1%"></th>
+    {if $tape_collect_copyright neq 'boutique'}
+    {if $tape_favorite_view eq 1}
+    <th width="10%">客服</th>
+    {/if}
+    <th width="8%">顾客</th>
+    <th width="13%">服务时间</th>
+    {if $tape_collect_copyright eq 'other_public' || $tape_collect_copyright eq 'my_public'  || $tape_collect_copyright eq 'collect_other_public'}
+    <th width="30%">通话录音说明</th>
+    <th width="8%">评论情况</th>
+    {else}
+    <th width="30%">服务内容</th>
+    {/if}
+    <th width="13%">收藏时间</th>
+    <th width="13%">操作</th>
+    {else}
+    <th width="3%">序号</th>
+    <th width="10%">简单说明</th>
+    <th width="10%">操作</th>
+    <th width="10%">上传时间</th>
+    <th width="10%">分类</th>
+    {/if}
+  </tr>
+  {if $tape_collect neq null}
+  {if $tape_collect_copyright eq 'boutique'}
+  {foreach from=$tape_collect item=val}
+  <tr>
+    <td>
+      <input type="checkbox" name="checkbox" value="{$val.favor_id}"/>
+    </td>
+    <td>{$val.favor_id}</td>
+    <td>
+      {if $authority}
+      <button class="btn_new" onclick="addExplance({$val.favor_id},this)">
+        {if $val.simple_explain}
+        {$val.simple_explain}
+        {else}
+        添加说明
+        {/if}
+      </button>
+      {else}
+      {if $val.simple_explain}
+      {$val.simple_explain}
+      {elseif $authority}
+      {else}-
+      {/if}
+      {/if}
+    </td>
+    <td onclick="showClassTape({$val.favor_id})" style="cursor:pointer">
+      点击播放
+    </td>
+    <td>{$val.add_time}</td>
+    <td>
+      <button onclick="showSelect(this,{$val.favor_id})" class="btn_new" value="{$val.class}">{if $val.class}{$val.class_name}{else}分类{/if}</button>  
+    </td>
+  </tr>
+  {/foreach}
+  {else}
+  {foreach from=$tape_collect item=val}
+  <tr>
+    {if $tape_favorite_view eq 1}
+    <td>{$val.admin_name}</td>
+    {/if}
+    <td>{$val.user_name}</td>
+    <td>{$val.service_time}</td>
+    {if $tape_collect_copyright eq 'other_public' || $tape_collect_copyright eq 'my_public' || $tape_collect_copyright eq 'collect_other_public'}
+    <td>{$val.simple_explain}</td>
+    <td>
+      <a class="btn_new" target="_blank" href="service.php?act=get_tape_comment&favor_id={$val.favor_id}"> 评论{$val.praise} </a>
+    </td>
+    {else}
+    <td class="talignLeft">{$val.logbook}</td>
+    {/if}
+    <td>{$val.add_time}</td>
+    <td>
+      <button onclick="showRecList({$val.service_id})" style="cursor:pointer">点击查看</button>
+      <!--<rec onclick="showRecPlayer(this);" style="cursor:pointer"><audio src="{$val.file_path}" style="width:20px; height:10px; background-color:skyblue"></audio>播放{$smarty.foreach.i.iteration}</rec>-->
+      {if $tape_collect_copyright eq 'privacy'}
+      <button class="btn_new" onclick="chTapePublic(this,'public',{$val.favor_id})" >公开</button> 
+      {elseif $tape_collect_copyright eq 'other_public'}
+      <button class="btn_new" name="" onclick="chTapePublic(this,'collect',{$val.favor_id})">收藏</button>
+      {elseif $tape_collect_copyright eq 'recycle'}
+      <button class="btn_new" name="" onclick="chTapePublic(this,'recollect',{$val.favor_id})">重新收藏</button>
+      <button class="btn_new" name="" onclick="chTapePublic(this,'del',{$val.favor_id})">删除</button>
+      {elseif $tape_collect_copyright eq 'my_public'}
+      <button class="btn_new" name="" onclick="chTapePublic(this,'privacy',{$val.favor_id})">私有</button>
+      {/if}
+      {if $tape_collect_copyright neq 'other_public' AND $tape_collect_copyright neq 'recycle'}
+      <button class="btn_new" name="" onclick="chTapePublic(this,'move',{$val.favor_id})">删除</button>
+      {/if}
+    </td>
+  </tr>
+  {/foreach}
+  {/if}
+  {else}
+  <tr></tr>
+  {/if}
+</table>

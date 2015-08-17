@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+      <head>
+            <meta http-equiv="content-type" content="text/html; charset=utf-8">
+            <title>邮政小包</title>
+            <style type="text/css">
+                  body {background:url(gf.jpeg) no-repeat; background-size:770px 425px}
+                  ul {list-style:none}
+                  ul li span {margin-right:80px}
+                  #rev {position:absolute; top:145px; left:80px}
+                  .rev_addr {line-height:25px; margin-left:15px}
+                  #poster {position:absolute; top:235px; left:80px}
+                  #poster .address {line-height:30px; padding-left:15px}
+                  .code {margin-top:8px; margin-left:25px}
+            </style>
+            <style type="text/css" media="print">
+                .noprint {visibility:hidden; display:inline-block; position:absolute; top:500px}
+            </style>
+      </head>
+      <body>
+      <div id="rev">
+          <ul>
+              <li><span>{$order.consignee}</span><span>{$order.mobile}/{$order.tel}</span></li>
+              <li>&nbsp; </li>
+              <li> </li>
+              <li class="rev_addr">{$order.addr}</li>
+              <li class="rev_addr">{$order.address}</li>
+          </ul>
+      </div>
+      <div id="poster">
+          <ul>
+              <li><span>{$company_name}</span><span>020-66212023</span></li>
+              <li>&nbsp;</li>
+              <li class="address">{$kjrs_region}</li>
+              <li>{$kjrs_address}</li>
+              <li class="code">44011100277000</li>
+          </ul>
+      </div>
+      <!-- 
+        {$order.final_amount} // 订单金额
+        {$order.big5}         // 订单金额 大写
+        {$kjrs_tel}           // 我司电话
+        {$order.consignee}    // 收件人姓名
+        {$notice}             // 注意事项
+        {$order.addr}         // 收件地区
+        {$order.address}      // 收件地址
+        -->
+    </body>
+  </html>

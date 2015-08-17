@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>EMS已付款</title>
+        <style type="text/css">
+            body {background:url(img567.jpg) no-repeat;  margin:56px 56px; padding:0; padding-left:15px; width:433px; height:153px; font-size:15px; font-weight:bold; color:#000}
+            ul {float:left}
+            li {list-style-type:none; height:25px; line-height:25px}
+            .poster {position:absolute; top:360px; left:400px}
+        </style>
+        <style type="text/css" media="print">
+            .noprint {visibility:hidden; display:inline-block; position:absolute; top:500px}
+        </style>
+    </head>
+    <body>
+        <div style="position:absolute; top:160px; left:610px">
+            {$date.year}&nbsp;{$date.month}&nbsp;{$date.day}
+        </div>
+        <ul>
+            <li style="margin-top:-21px; margin-left:50px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$kjrs_tel}</li>
+            <li style="margin-top:10px">{$company_name} EC9002-1547</li>
+            <li>{$kjrs_region}</li>
+            <li>{$kjrs_address}</li>
+            <li>&nbsp;</li>
+        </ul>
+        <ul style="position:absolute; top:180px">
+            <li>{$order.consignee}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$order.mobile}/{$order.tel}</li>
+            <li>{$notice}</li>
+            <li>{$order.addr}</li>
+            <li>{$order.address}</li>
+        </ul>
+        <div style="position:absolute; left:610px; top:140px">{$company_name}</div>
+        <div style="position:absolute;left:110px;top:330px">保健食品</div>
+        <h1 class="noprint" style="position:absolute; top:500px" contenteditable>{$message}</h1>
+        <div class="poster">韩超明</div>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<div id="sch_activity_div">
+  <form name="sch_activity_form" action="javascript:void(0)" onsubmit="return schActivity(this)">
+    <table width="100%" cellpadding=0 cellspacing=0 border=0>
+      <tr>
+        <th>活动名称</th>
+        <td>
+          <input type="text" name="activity_name" />
+        </td>
+        <th>活动时间</th>
+        <td>
+          <input type="text" name="start_time" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>&nbsp;&nbsp;
+          <input type="text" name="end_time" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+        </td>
+      </tr>
+      <tr>
+        <th>品牌</th>
+        <td>
+          <select id="brand_id" name="brand_id" onchange="getGoodsBybrand(this.value)" style="width:139px">
+            <option value="0">选择品牌</option> 
+            {foreach from=$brand_list item=val}
+            <option value="{$val.brand_id}">{$val.brand_name}</option>
+            {/foreach}
+          </select>
+        </td>
+        <th>商品名</th>
+        <td>
+          <select id="goods_id" name="goods_id" style="width:288px">
+            <option value="0">选择商品</option>
+            {foreach from=$goods_list item=val}
+            <option value="{$val.goods_sn}">{$val.goods_name}</option>
+            {/foreach}
+          </select>
+        </td>
+        <td style="text-align:left">         
+          <input type="text" name="keyword" placeholder="填写商品名搜索"/>
+          <input type="submit" class="b_btn" value="搜   索" />
+          <input type="hidden" value="performance.php?act=del_act" id="target_url"/>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>

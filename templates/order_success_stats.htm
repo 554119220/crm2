@@ -1,0 +1,80 @@
+<style type="text/css" media="screen">
+  .stats-sum {color:red; font-weight:bold}
+  .stats-intro { padding:2px 10px; font-size:1.1rem}
+  .stats-intro li {height:25px}
+  .stats-intro sup { background:yellow}
+</style>
+<br/>
+<div class="content-head">
+  <div class="finder-title mt10">{$curr_title}<font>{$num}</font></div>
+  <div class="gridlist-action" style="width:1170px; height:35px">
+    <div class="nav-search">
+      <form name="sale_date" onsubmit="successOrderStats(this)" style="display:inline" action="javascript:void(0)">
+        起始：
+        <input class="Wdate" name="start_time" type="text"value="{$start_time}" size="13px" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',{$min_date}})">
+        终止：
+        <input class="Wdate" name="end_time" type="text" value="{$end_time}" size="13px" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',{$min_date}})">
+        <select name="role_id">
+          <option value="0">请选择</option>
+          {foreach  from=$role_list item=role}
+          <option value="{$role.role_id}" {if $role.role_id eq $role_id}selected{/if}>{$role.role_name}</option>
+          {/foreach}
+        </select>
+        <input type="submit" value="检索" class="b_submit">
+      </form>
+    </div>
+  </div>
+
+  {if $final}
+  <!-- 个人销量统计 -->
+  <div class="mt10">
+    <table border="0" id="person_style" cellpadding="0" cellspacing="0" class="all_table_list border c_b" width="80%">
+      <thead>
+        <tr>
+          <th style="text-align:left" width="90px"> </th>
+          <th style="text-align:left" width="90px"> </th>
+          {if $search}
+          <th colspan="5">自定义搜索</th>
+          {/if}
+          <th colspan="5">本月</th>
+          <th colspan="5">上个月</th>
+        </tr>
+        <tr id="sortByThis" class="align_right">
+          <th id="rank">排 名</th>
+          <th>客 服</th>
+          {if $search}
+          <th>发货数</th><th>签收数</th><th>签收总金额</th><th>签收率</th><th>签收金额比</th>
+          {/if}
+          <th>发货数</th><th>签收数</th><th>签收总金额</th><th>签收率</th><th>签收金额比</th>
+          <th>发货数</th><th>签收数</th><th>签收总金额</th><th>签收率</th><th>签收金额比</th>
+        </tr>
+      </thead>
+      <tbody class="align_right">
+        {foreach from=$final item=val name=i}
+        <tr{if !$smarty.foreach.i.last} group="{$val.group_id}" role="{$val.role_id}" admin="{$val.admin_id}" role_code='{$val.role_code}'{/if}>
+          <th>{if !$smarty.foreach.i.last}{$smarty.foreach.i.iteration}{/if}</th>
+          <th>{$val.admin_name}</th>
+          {if $search}
+          <th title="">{if $val.customer_total}{$val.customer_total}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.customer_success_total}{$val.customer_success_total}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.customer_success_amount}{$val.customer_success_amount}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.customer_success_rate}{$val.customer_success_rate}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.customer_amount_rate}{$val.customer_amount_rate}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          {/if}
+          <th title="">{if $val.month_total}{$val.month_total}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.month_success_total}{$val.month_success_total}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.month_success_amount}{$val.month_success_amount}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.month_success_rate}{$val.month_success_rate}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.month_amount_rate}{$val.month_amount_rate}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.last_month_total}{$val.last_month_total}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.last_month_success_total}{$val.last_month_success_total}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.last_month_success_amount}{$val.last_month_success_amount}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.last_month_success_rate}{$val.last_month_success_rate}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.last_month_amount_rate}{$val.last_month_amount_rate}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+        </tr>
+        {/foreach}
+      </tbody>
+    </table>
+  </div>
+  {/if}
+</div>

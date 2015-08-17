@@ -1,0 +1,13 @@
+{foreach from=$outflow_list item=val name=i}
+<tr id="tr_{$val.user_id}">
+    <td>
+        {$val.user_name}
+        <a href="users.php?act=user_detail&id={$val.user_id}" name="tBodies-detail" target="_blank" class="-detail">
+            <img src="images/add.gif" style="margin-top:7px"/>
+        </a>
+    </td>
+    <td>{$val.add_time}</td>
+    <td>{$val.pnt_name}</td>
+    <td>{$val.admin_name}</td>
+</tr>
+{/foreach}

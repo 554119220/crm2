@@ -1,0 +1,85 @@
+{if $full}
+<br>
+<div class="content-head">
+    <div class="finder-title">{$curr_title}<font>{$num}</font></div>
+    <div class="finder-packet" id="">
+        <div class="packet-items" id="">
+            <ul id="sub_tag" class="clearfix">
+                <!-- 针对订单状态进行的分类 -->
+                {foreach from=$platform_list item=val name=i}
+                <li id="tag_{$val.role_id}" class="{if $val.role_id eq $platform}current-tab{else}last{/if}">
+                    <a href="{$filename}.php?act={$act}&platform={$val.role_id}">
+                        {if $val.role_describe}{$val.role_describe}-{/if}{$val.role_name}
+                    </a>
+                </li>
+                {/foreach}
+            </ul>
+            <input type="hidden" id="cache_data" value="{$cache_data}"/>
+        </div>
+    </div>
+
+    <div class="gridlist-action">
+        <div class="nav-search">
+            时间：<input class="Wdate" id="start_time" type="text" value="{$start_time}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',{$min_date}})">
+            至<input class="Wdate" id="end_time" type="text" value="{$end_time}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',{$max_date}})">
+            <button value="report_forms.php?act={$act}&platform={$platform}" onclick="salesStats(this)" class="b_submit">单品</button>
+            <button value="report_forms.php?act={$act}&platform={$platform}&package=1" onclick="salesStats(this)" class="b_submit">套餐</button>
+        </div>
+    </div>
+
+    <div id="goods_num">
+        {/if}
+        <table border="0" id="person_style" cellpadding="0" cellspacing="0" class="all_table_list w830 mt10 border c_b">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>货号</th>
+                    <th>商品名称</th>
+                    <th>日常销量</th>
+                    <th>套餐销量(不计金额)</th>
+                    <th>活动销量</th>
+                    <th>赠送数量</th>
+                    <th>总销量</th>
+                    <!-- th>总销售额</th-->
+                    <th>均价</th>
+                </tr>
+            </thead>
+            {foreach from=$rank item=v}
+            <tr{if $package_struct}{/if}>
+                <td>{$v.index}</td>
+                <td>{$v.goods_sn}</td>
+                <td>{$v.goods_name}</td>
+                <td>{$v.goods_num}</td>
+                <td>{$v.package_num}</td>
+                <td>{$v.promotion_num}</td>
+                <td>{$v.gift_num}</td>
+                <td>{$v.total_num}</td>
+                <!--td>{$v.turnover}</td-->
+                <td>{$v.wvera_price}</td>
+            </tr>
+            {/foreach}
+        </table>
+
+        <!-- 分页 -->
+        {if $page_set}
+        <div class="bottom_tip">
+            <div class="tip_left">
+                <p>共{$record_count}条记录,当前页:{$page_start}-{$page_end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </div>
+            <div class="tip_center">
+                <span><a href="report_forms.php?act={$act}{$page_link}&page=1&page_size={$page_size}{$condition}" id="page_link"><<</a></span>
+                {foreach from=$page_set item=v}
+                <span{if $v eq $page} class="cur"{/if}>{if $v eq $page}{$v}{else}<a href="report_forms.php?act={$act}{$page_link}&page={$v}&page_size={$page_size}">{$v}</a>{/if}</span>
+                {/foreach}
+                <span><a href="report_forms.php?act={$act}{$page_link}&page={$page_count}&page_size={$page_size}">>></a></span>
+            </div>
+            <div class="tip_right">
+                跳转到第
+                <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+            </div>
+        </div>
+        {/if}
+        {if $full}
+    </div>
+</div>
+{/if}

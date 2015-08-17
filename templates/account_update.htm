@@ -1,0 +1,44 @@
+<div class="blank"></div>
+<h3>{$admin_name},您好! 今天是&nbsp;{$nowDate}, &nbsp;您需要更新以下内容:</h3>
+<div class="wu">
+<div id="tabs1">
+  <ul>
+    <li><a href="#"><span>未更新</span></a></li>
+    <li><a href="#"><span>已更新</span></a></li>
+    <li><a href="#"><span>本周更新</span></a></li>
+  </ul>
+</div>
+</div>
+<div class="content-head">
+     <div class="finder-header-wrapper" style="" id="" >
+     <table border="0" cellpadding="0" cellspacing="0" style="clear:both">
+          <tr>
+               <td width="1024px">
+                    <div id='scroll1' style="max-width:100%;overflow:hidden;"> 
+                      <hr class="wuhr">
+                      <table style="width:980px" height="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#666">               
+                              <tr bgcolor="#ddedfb">
+                                   <td align="center">账号</td>
+                                   <td height="20px" align="center">类型</td>
+                                   <td align="center">主题</td>
+                                   <td align="center">访问地址</td>
+                                   <td align="center">最近更新时间</td>
+                                   <td align="center">最近更新人</td>
+                              </tr>
+                                {foreach from=$update_view item=val}
+                              <tr bgcolor="#FFFFFF" id="tr_2_{$val.account_id}">
+                                   <td height="20" align="center">{$val.user_name}</td>
+                                   <td align="center">{$val.type_name}</td>
+                                   <td align="center">{$val.subject}</td>
+                                   <td align="center">{$val.url}</td>
+                               <td align="center">{$val.content_updaetime}</td> 
+                               <td align="center">{$val.updater}</td>
+                              </tr>
+                              {/foreach}
+                         </table>
+                   </div> 
+               </td>
+          </tr>
+     </table>
+     </div>
+</div>

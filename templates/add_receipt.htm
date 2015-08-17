@@ -1,0 +1,56 @@
+<div class="blank"></div>
+<ul class="clearfix mt10">
+  <li class="current-tab">
+  <a>添加进货单</a>
+  </li>
+</ul>
+
+<div class="align_left table_bg_1 c_b" style="padding-bottom:30px;width:855px;">
+  <form method="post" name="receipt">
+    <table border="0" id="add_gn">
+      <tr>
+        <td>商品代号：
+          <input type="text" name="goods_sn[]" size="5" 
+          onBlur="autoNum(this.value,0)" />
+        </td>
+        <td>
+          &nbsp;&nbsp;&nbsp;商品名称：
+          <input type="text" id="goods_name0" name="goods_name[]" size="16" value="" readonly="readonly" />
+        </td>
+        <td>&nbsp;&nbsp;&nbsp;数量：<input type="text" name="quantity[]" size="4" />        
+          <select name="prickle[]">
+            <option value="1">瓶</option>
+            <option value="2">罐</option>
+            <option value="3">盒</option>
+            <option value="4">件</option>
+          </select>
+        </td>
+        <td>&nbsp;&nbsp;&nbsp;生产日期：<input type="text"  name="production_day[]" size="14" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" /></td>
+        <td>&nbsp;&nbsp;&nbsp;生产厂家：<input type="text"  name="manufacturer[]" size="12" /></td>
+        <td><span style="cursor:pointer" onclick="addStock(this)">&nbsp;[ + ]&nbsp;</span></td>
+      </tr>
+    </table>
+
+    <input type="hidden" name="add_time" value="{$daytime}" />
+    <table width="820" >
+      <tr>
+        <td width="850px">进货单号：<input type="text" name="stock_sn" /></td>
+      </tr>
+      <tr>
+        <td width="490px">进货日期：<input type="text" name="arrival_day" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" /></td>
+      </tr>
+      <tr>
+        <td width="410px">联系人：<input type="text"  name="contacter" /></td>
+      </tr>
+      <tr>
+        <td width="330px">联系电话:<input type="text"  name="phone" /></td>
+      </tr>
+      <tr>
+        <td width="320px">确认人员：<input type="text"  name="confirmer" /></td>
+      </tr>
+      <tr>
+        <td><input type="button" value="提交" onclick="addReceipts(this)" class="input_submit" /></td>
+      </tr>
+    </table>
+  </form>
+</div>

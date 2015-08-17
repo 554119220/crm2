@@ -1,0 +1,8 @@
+/* 配置页 */
+#config {margin:20px 60px}
+#config table {padding:0}
+#config table tr {line-height:40px}
+#config table th {text-align:right; font-size:14px}
+#config table td {text-align:left; font-size:12px; border-bottom:none}
+#config table td input[type='text'] {margin:0}
+#config table th[colspan='2'] {text-align:center; font-size:10px; font-weight:normal}

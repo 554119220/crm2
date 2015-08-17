@@ -1,0 +1,37 @@
+<!-- 页首标题 -->
+<div class="finder-title mt10">逾期缺失服务列表</div>
+
+<!-- 搜索区 -->
+<fieldset id="pageSearch">
+    <legend>搜索</legend>
+    <form action="{$dst_script}.php?act={$act}{$condition}" method="post" name="pageSearch" onsubmit="return commonSearch()">
+        <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+        下单日期：<input class="Wdate" name="start_time" type="text" value="" onclick="WdatePicker()">
+        至<input class="Wdate" type="text" value="{$end_time}" disabled>
+        {if $platform}
+        <select name="platform" onchange="changePlatform(this)"><option value="0">选择平台</option>{html_options options=$platform}</select>
+        {/if}
+        <select name="admin_id" id="admin_id"><option value="0">选择客服</option>{html_options options=$admin_list}</select>
+        <input type="submit" class="b_submit" value="搜索">
+    </form>
+</fieldset>
+
+<div class="packet-items">
+    <ul id="sub_tag" class="clearfix">
+        <!-- 针对订单状态进行的分类 -->
+        {foreach from=$tag_list key=key item=val}
+        <li id="tag_{$key}" class="{if $key eq 1}current-tab{else}last{/if}">
+        <a href="users.php?act={$act}&tag={$key}" title="{$val}无购买记录的顾客">{$val}</a>
+        </li>
+        {/foreach}
+    </ul>
+</div>
+
+<table border="0" id="dataList" class="all_table_list c_b rb_border" cellpadding="0" cellspacing="0">
+    {$data}
+</table>
+
+<!-- 分页 -->
+<div id="pageList" class="bottom_tip">
+    {$page}
+</div>

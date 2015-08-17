@@ -1,0 +1,77 @@
+{if !$is_ajax}
+<div id="data-users">
+    {/if}
+    <div class="finder-title"><br>顾客资料</div>
+    <form action="users.php?act=handle_users" name="data-users" onsubmit="return addUserIntoUserList()">
+        <fieldset>
+            <ul style="">
+                <li>姓名：{$user_info.user_name}</li>
+                <li>性别：{$user_info.sex}</li>
+                <li>年龄：{$user_info.age}</li>
+                <li onmouseup="showDialBox()">电话：<strong contenteditable="true">{$user_info.contact}</strong></li>
+                <li>地址：{$user_info.address}</li>
+                <li>备注：{$user_info.remark}</li>
+                <li> </li>
+                <li>
+                资料状况：
+                <label><input type="radio" name="feed" value="1" onclick="details(this)"> 停机（{$user_info.phone_outage}次）</label>
+                <label><input type="radio" name="feed" value="2" onclick="details(this)"> 空号（{$user_info.mobile_space}次）</label>
+                <label><input type="radio" name="feed" value="3" onclick="details(this)"> 无人接听（{$user_info.no_answer}次）</label>
+                <label><input type="radio" name="feed" value="5" onclick="details(this)"> 已去世（{$user_info.died}次）</label>
+                <label><input type="radio" name="feed" value="6" onclick="details(this)"> 已换人（{$user_info.substitution}次）</label>
+                <label><input type="radio" name="feed" value="4" onclick="details(this)"> 有效</label>
+                </li>
+            </ul>
+            <details id="save-details">
+                <summary style="display:none">保存该顾客到顾客列表</summary>
+                <ul>
+                    <li>姓名：<input type="text" name="user_name" value="{$user_info.user_name}"></li>
+                    <li>固话：<input type="text" name="home_phone" value="" placeholder="固定电话"></li>
+                    <li>手机：<input type="text" name="mobile_phone" value="" placeholder="手机号码"> 多个号码请用 | 分隔</li>
+                    <li>
+                    性别：
+                    <label><input type="radio" name="sex" value="1"> 男</label>
+                    <label><input type="radio" name="sex" value="2"> 女</label>
+                    <label><input type="radio" name="sex" value="3"> 未知</label>
+                    </li>
+                    <li>
+                        顾客分类：
+                        <select name="customer_type">
+                            {foreach from=$customer_type item=val}
+                            <option value="{$val.type_id}"{if $val.type_id eq 21} selected{/if}>{$val.type_name}</option>
+                            {/foreach}
+                        </select>
+                    </li>
+                    <li>
+                    地区：<select name="province" id="selProvinces" onchange="region.changed(this,2,'selCities')">
+                        <option value="0">{$lang.select_please}</option>
+                        {foreach from=$province_list item=province}
+                        <option value="{$province.region_id}">{$province.region_name}</option>
+                        {/foreach}
+                    </select>
+                    <select name="city" id="selCities" onchange="region.changed(this,3,'selDistricts')" style="display:none">
+                        <option value="0">{$lang.select_please}</option>
+                        {foreach from=$city_list item=city}
+                        <option value="{$city.region_id}">{$city.region_name}</option>
+                        {/foreach}
+                    </select>
+                    <select name="district" id="selDistricts" style="display:none">
+                        <option value="0">{$lang.select_please}</option>
+                        {foreach from=$district_list item=district}
+                        <option value="{$district.region_id}">{$district.region_name}</option>
+                        {/foreach}
+                    </select>
+                    </li>
+                    <li>地址：<input type="text" name="address" value="{$user.address}" size="45" placeholder='详细地址'/></li>
+                    <li>备注：<textarea name="service_content" rows="4" cols="30" placeholder="备 注"></textarea></li>
+                </ul>
+            </details>
+            <br/>
+            <input type="submit" class="b_submit" value="提交">
+            <input type="hidden" name="rec_id" value="{$user_info.rec_id}">
+        </fieldset>
+    </form>
+    <lmk class="hide" id="dialBox" onmousedown="dial()">拨号</lmk>
+    {if !$is_ajax}
+</div>
+{/if}

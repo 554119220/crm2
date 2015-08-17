@@ -1,0 +1,15 @@
+<table width="101%" cellpadding="0" cellspacing="0" class="index_small tr_hover public_notice_list">
+  <tr>
+    <td class="home-stuff-heading" colspan="4">
+      &nbsp;内部公告<img src="images/update.png"/>
+    </td>
+  </tr>
+  {foreach from=$public_notice item=val name=i}
+  <tr>
+    <td width="20%">【{$val.notice_type}】</td> 
+    <td width="35%"><button class="btn_new" onclick="getNotice({$val.notice_id})">{$val.title}</button></td> 
+    <td width="15%">{$val.writed_name}</td> 
+    <td width="30%">{$val.issue_time}</td> 
+  </tr>
+  {/foreach}
+</table>

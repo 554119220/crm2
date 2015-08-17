@@ -1,0 +1,64 @@
+{if $type eq 'text' && $field neq 'birthday'}
+<!-- input -->
+<input type="text" name="{$field}" value="{$value}" onkeyup="checkParentUser(this)" onblur="saveInfo(this)"/>
+{/if}
+
+{if $type eq 'select' && $field neq 'district'}
+<!-- 通用下拉选项 -->
+<select name="{$field}" onblur="saveInfo(this)">
+     {foreach from=$list item=val}
+     <option value="{$val.id}"{if $value eq $val.id} selected{/if}>{$val.name}</option>
+     {/foreach}
+</select>
+{/if}
+
+{if $type eq 'radio'}
+<!-- 性别 -->
+<label><input type="radio" name="sex" value="1" onclick="saveInfo(this)"/>男</label>
+<label><input type="radio" name="sex" value="2" onclick="saveInfo(this)"/>女</label>
+<label><input type="radio" name="sex" value="0" onclick="saveInfo(this)"/>不详</label>
+{/if}
+
+{if $field eq 'birthday'}
+<!-- 出生日期 -->
+<script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+<input class="Wdate" id="birthdate" type="text" value="" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" size="10">
+<select name="lunar" id="lunar" onchange="saveInfo(this)">
+    <option value="0">必选</option>
+    <option value="1">农历</option>
+    <option value="2">阳历</option>
+</select>
+{/if}
+
+{if $type eq 'select' && $field eq 'district'}
+<!-- 地区选项 -->
+{insert_scripts files="validator.js,region.js"}
+<select name="province" id="selProvinces" onchange="region.changed(this, 2, 'selCities')">
+     <option value="0">{$lang.select_please}</option>
+     {foreach from=$province_list item=province}
+     <option value="{$province.region_id}"{if $province.region_id eq $user_region.province}selected{/if}>{$province.region_name}</option>
+     {/foreach}
+</select>
+<select name="city" id="selCities" onchange="region.changed(this, 3, 'selDistricts')">
+     <option value="0">{$lang.select_please}</option>
+     {foreach from=$city_list item=city}
+     <option value="{$city.region_id}"{if $city.region_id eq $user_region.city} selected{/if}>{$city.region_name}</option>
+     {/foreach}
+</select>
+<select name="district" id="selDistricts" onchange="saveInfo(this)" style="display:none">
+     <option value="0">{$lang.select_please}</option>
+     {foreach from=$district_list item=district}
+     <option value="{$district.region_id}" {if $district.region_id eq $user_region.district}selected{/if}>{$district.region_name}</option>
+     {/foreach}
+</select>
+{/if}
+{if $field eq 'marketing'}
+<div>
+    {foreach from=$value item=val}
+    <label>
+        <input type="checkbox" name="marketing" value="{$val.marketing_id}"{if is_array($marketing_checked_list) && in_array($val.marketing_id, $marketing_checked_list)} checked{/if}>{$val.marketing_name}
+    </label>
+    {/foreach}
+    <input type="button" name="marketing" value="保存" onclick="saveInfo(this)">
+</div>
+{/if}

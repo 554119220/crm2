@@ -1,0 +1,155 @@
+﻿<div id="order_detail">
+    <div class="detail_tab">
+        <ul>
+            <li type="general" class="o_select" onclick="switchSubTab(this)">
+            <span>基本信息</span>
+            </li>
+            <li type="list" onclick="switchSubTab(this)"><span>商品列表</span></li>
+            <li type="remark" onclick="switchSubTab(this)"><span>备注详情</span></li>
+            <!--li type="list" onclick="switchSubTab(this)"><span>订单信息</span></li>
+               <li type="list" onclick="switchSubTab(this)"><span>订单详情</span></li-->
+        </ul>
+    </div>
+    <div class="blank"></div>
+
+    <!-- 基本信息 -->
+    <div id="general">
+        <div class="top_tip">
+            {if $blacklist_info.is_black gt 0}
+            <div class="alert_error big_error" {if $blacklist_info.is_black eq 4}style="background:#F77474"{/if}>
+                <span id="error_msg">{$error_msg}</span>
+                {if $ignore_error eq true && $blacklist_info.is_black gt 2}
+                <span>
+                    <input type="button" id="ignore_blacklist" note="{$blacklist_info.from_table}" value="{if $blacklist_info.is_black eq 4}恢复警报{else}排除警报{/if}" onclick="ignoreError({$blacklist_info.user_id},this)"/>
+                </span>
+                {/if}
+            </div>
+            {/if}
+            {if $im.aliww}<span><a target="_blank" href="http://www.taobao.com/webww/ww.php?ver=3&touid={$im.aliww}&siteid=cntaobao&status=2&charset=utf-8" title="{$im.aliww}"><img border="0" src="http://amos.alicdn.com/realonline.aw?v=2&uid={$im.aliww}&site=cntaobao&s=2&charset=utf-8" alt="{$im.aliww}" /></a></span>{/if}
+            {if $im.qq}<span><a href="tencent://message/?uin={$im.qq}" title="{$im.qq}" name="msg"><img alt="{$im.qq}" src="http://wpa.qq.com/pa?p=1:{$im.qq}:17"></a></span>{/if}
+            销售平台：<span>{$order_info.sale_platform}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            订单编号：<span>{$order_info.order_sn}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            订单总额：￥<span id="final_amount">{$order_info.final_amount}</span>&nbsp;&nbsp;&nbsp;&nbsp;{$im.aliww}
+            <br>地址：<span id="region">****</span>
+            <span id="address">****</span>
+            <u style="cursor:pointer" onclick="showThisInfo({$order_info.order_id}, '{$order_info.table}')">查看联系信息</u>
+        </div>
+        <div class="order_details">
+            <div class="o_headle">
+                <dl>
+                    <dt><strong>收货人信息</strong></dt>
+                    <dd>姓名：<span id="consignee">{$order_info.consignee}</span></dd>
+                    <dd style="width:100px">电话：<span id="tel"></span></dd>
+                    <dd>手机：<span id="mobile">****</span></dd>
+                    <dd>地区：<span id="district">****</span></dd>
+                    <dd>地址：<span id="address">****</span></dd>
+                    <dd>邮编：<span id="zipcode">{$order_info.zipcode}</span></dd>
+                </dl>
+                <dl>
+                    <dt>商品价格</dt>
+                    <dd>商品总额：￥<span id="goods_amount">{$order_info.goods_amount}</span></dd>
+                    <dd>配送费用：￥<span id="shipping_fee">{$order_info.shipping_fee}</span></dd>
+                    <!--dd>保价费用：￥</dd-->
+                    <!--dd>税金：￥</dd-->
+                    <!--dd>商品促销优惠：￥{$order_info.integral_money}</dd-->
+                    <!--dd>订单促销优惠：￥{$order_info}</dd-->
+                    <dd>订单总额：￥<span id="final_amount">{$order_info.final_amount}</span></dd>
+                    <dd>已支付金额：￥<span id="pay_fee">{$order_info.pay_fee}</span></dd>
+                </dl>
+                <dl>
+                    <dt>订单其他信息</dt>
+                    <dd>配送方式：<span id="shipping">{$order_info.shipping_name}
+                        {if $shipping_edit}
+                        <button value="order.php?act=edit&info=shipping&id={$order_info.order_id}&type=select" title="修改配送方式" onclick="sendEditInfo(this)"><img src="images/edit.gif" alt="修改" title="修改"></button>{/if}</span></dd>
+
+                    <!--dd>配送保价：{$order_info}</dd-->
+                    <dd>商品重量：{$order_info}</dd>
+                    <dd>支付方式：{$order_info.pay_name}</dd>
+                    <!--dd>支付费用：￥{$order_info}</dd-->
+                    <dd>订单发票号：<span id="inv_no">{$order_info.inv_no}</span></dd>
+                    <dd>发票抬头：<span id="inv_title">{$order_info.inv_title}</span></dd>
+                    <dd>要求到货时间：<span id="best_time">{$order_info.best_time}</span></dd>
+                </dl>
+                <!--dl style="width:220px;border-right:0">
+      <dt>购买人信息</dt>
+      <dd>用户名：测试分销商</dd>
+      <dd>姓名：康健人生</dd>
+      <dd>电话：020-1234569</dd>
+      <dd>手机：18612345678</dd>
+      <dd>地区：广东省广州市白云区</dd>
+      <dd>E-mail：kjrs@kjrs.com</dd>
+    </dl-->
+            </div>
+
+        </div>
+    </div>
+    <div class="blank"></div>
+
+    <!-- 作为第二个选项卡用 -->
+    <div id="list" class="order_details hide">
+        <!--div class="o_goods_search">
+    <form action="javascript:void(0)" name="theForm" onsubmit="return addGoods();">
+      <input type="text" name="search" value="" oninput="searchGoods(this)" onblur="searchGoods(this)"/>
+      <select name="goods_id" id="goods_id">
+        <option value="0">请先输入要搜索的商品</option>
+      </select>
+      &nbsp;数量：<input type="text" name="number" value="" style="width:40px; height:20px"/>
+      &nbsp;单价：<input type="text" name="price" value="" style="width:40px; height:20px"/>
+      <input type="submit" name="submit" value="添加" class="s_radius"/>
+    </form>
+    </div-->
+        <table id="goods_list" width="70%" border="0" cellpadding="2" cellspacing="0">
+            <tr>
+                <td width="3%">货号</td>
+                <td width="20%">商品名称</td>
+                <!--td width="3%">规格</td-->
+                <!--td width="3%">单位</td-->
+                <td width="3%">价格</td>
+                <td width="3%">数量</td>
+                <td width="3%">说明</td>
+                <!--td width="3%">已发货量</td-->
+            </tr>
+            {foreach from=$goods_list item=val}
+            <tr>
+                <td>{$val.goods_sn}</td>
+                <td>
+                    {if isset($val['packing_goods_list'])}
+                    <details>
+                        <summary>{$val.goods_name}</summary>
+                        {foreach from=$val[packing_goods_list] item=g}
+                        <p><strong>{$g.goods_name}</strong>【数量：{$g.num}】</p>
+                        {/foreach}
+                    </details>
+                    {else}
+                    {$val.goods_name}
+                    {/if}
+                </td>
+                <!--td>{$val}</td-->
+                <!--td>{$val}</td-->
+                <td>{$val.goods_price}</td>
+                <td>{$val.goods_number}</td>
+                <td>{$val.is_gift}</td>
+                <!--td>{$val}</td-->
+                <!--td>{$val}</td-->
+            </tr>
+            {/foreach}
+        </table>
+    </div>
+    <div class="blank"></div>
+
+    <div id="remark" class="hide">
+        <table width="70%" border="0" cellpadding="2" cellspacing="0">
+            <tr>
+                <td width="4%">会员备注</td>
+                <td width="30%">{$order_info.tobuyer}</td>
+            </tr>
+            <tr>
+                <td width="4%">订单备注</td>
+                <td width="30%">{$order_info.remarks}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 隐藏表单域：记录订单ID -->
+    <input type="hidden" id="order_id" value="{$order_info.order_id}"/>
+</div>

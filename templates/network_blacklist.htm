@@ -1,0 +1,19 @@
+<br />
+<h3>网络黑名单</h3><br/>
+<div class="banner_plane">
+  <form action="javascript:void(0)" name="sch_net_blacklist_form" onsubmit="schNetworkBlacklist(this)">
+    类型：
+    <select name="account_type">
+      <option value="0">请选择类型</option>
+      {foreach from=$account_type_list item=val}
+      <option value="{$val.type_id}">{$val.type_name}</option>
+      {/foreach}
+    </select>
+    <input type="text" name="keyword" value=""/>
+    <input type="submit" name="" value="搜 索" class="b_submit" />
+    <label><input type="radio" name="is_checked" value="0" onclick="schNetworkBlacklist(this.form)" {if $is_checked eq 0}checked{/if}/> 未审核</label>
+    <label><input type="radio" name="is_checked" value="1" onclick="schNetworkBlacklist(this.form)" {if $is_checked eq 1}checked{/if} /> 已审核</label>
+    <input type="hidden"  value="performance.php?act=del_network_blacklist" id="target_url"/>
+  </form>
+</div>
+<div id="resource">{$network_blacklist_div}</div>

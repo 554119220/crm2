@@ -1,0 +1,79 @@
+/*=====日历=====*/
+#calender table{border:1px solid #666;}
+#calender th{border:1px solid #666;background:#888;text-align:center;line-height:12px;font-size:16px;padding:6px;}
+#calender td{border:1px solid #666;height:16px;text-align:center;}
+#calender td button{font-size:32px;font-weight:bold;width:100%;height:100%;margin:0px;}
+#calender td:hover{background-color:#666;}
+#calender td button:hover{color:#fff;cursor:pointer}
+
+#add_activity_div,#sch_activity_div,#privilege_div{border:1px solid #CFC2C2; padding:6px;margin-top:3px;margin-bottom:6px;}
+#add_activity_div th,#add_activity_div td{padding:3px !important; margin:3px;}
+#add_activity_div th, #sch_activity_div th{text-align:right;padding-right:6px;}
+#add_activity_div textarea{width:294px;resize:vertical;padding:3px;}
+#activity_list select{margin:8px;}
+
+/*按钮*/
+.b_btn { font-size: 12px; padding: 6px; line-height: 6px; height: 24px; border-radius: 3px; color: #666; cursor: pointer; border: 1px solid #d4d4d4; background: -webkit-linear-gradient(top, #ffffff, #dcdcdc);
+}
+.b_btn:hover{border:1px solid #8d979c; color:#464141;}
+
+td[class='privilege_content'] {text-align:left}
+td[class='privilege_content'] label{ border: 1px solid #bb9292; background-color: floralwhite; cursor: pointer; padding: 2px 14px; line-height: 0px; margin-right:6px;}
+td[class='privilege_content'] input[type=radio]{display: none}
+
+.onclk_privilege{background-color:teal !important; color:#fff !important; border: 1px solid #bb9292; cursor: pointer; padding: 6px; line-height: 0px; margin-right:6px;}
+
+/*整个页面表单*/
+td[class='text_ar']{text-align:right;padding-right:6px}
+textarea[class='content_text']{width:93%;height:380px;padding:6px;resize:none;overflow-y:scroll;font-size:medium}
+/*.table_form th{text-align:right;padding-left:14px;}*/
+/*.table_form select{width:192px;}*/
+/*.table_form input[type="text"]{width:286px;}*/
+
+.ta_center{text-align:center;padding:6px;}
+.one_search{height:32px;margin-right:5px;width:32em;}
+.top_nav{text-align:right;padding-right:12px;margin-bottom:8px;}
+
+.mastbg{ padding: 3rem 1rem; color: rgba(255,255,255,.5); text-align: center; background-color: #2a3440; margin:auto;width:100%;min-height:720px}
+.mastbg h3{font-size:3em;color:#fff;letter-spacing:16px;padding:0px;margin:12px;}
+.tag_panel span{margin-right:32px;} 
+.content { text-indent: 24px; text-align: left; padding: 24px; }
+
+.flr{float:right}
+.fll{float:left}
+
+.caption_general{ font-size: 24px; font-weight: bolder; line-height: 2em; }
+
+.alert_error{ background-color: red; border-color: #eed3d7; color: #fff; width:100%;height:100%;padding:6px;}
+.big_error{font-size:32px;}
+.big_error span{font-size:0.8em;}
+.big_error span input[type="button"]{cursor:pointer;}
+
+.tools_div input[type="buttom"]{ margin-bottom: 10px; }
+
+
+.push_blacklist_title{
+  background: #AF0505;
+  width: 100%;
+  display: block;
+  padding: 5px 0px;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  font-weight: bolder;
+  margin-bottom: 2px; 
+}
+
+.push_blacklist_div{ display: block; border: #333 1px solid; }
+.talignLeft {text-align:left !important;padding-left:8px;}
+
+.tape_comment_title{ background: #ccc; padding: 15px; margin: 0px; }
+.post_body{padding-left:52px;}
+.comment_div{width:60%;}
+.comment_post{border-radius:5px; border:1px solid #a2d246;padding:12px;}
+
+/*更新日志样式*/
+.history-date summary.green span.title{ color: #00bbff; font-size:24px; cursor:pointer}
+.history-date summary.green {font-size:32px;}
+.history-date div.comment{ margin-left:64px;font-size:16px;}
+.history-date .in_summary{padding:8px;color:#1db702;font-size:18px;cursor:pointer}

@@ -1,0 +1,72 @@
+<br/>
+<h3>滞销产品</h3>
+<fieldset >
+  <legend>搜索</legend>
+  <form action="" method="POST" >
+    生产日期
+    <input name="production_start" type="text" maxlength="10" class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+    <input name="production_end" type="text" maxlength="10" class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+    &nbsp;&nbsp;&nbsp;&nbsp;进货日期
+    <input name="arrival_start" class="Wdate" type="text" maxlength="10" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+    <input name="arrival_end" class="Wdate" type="text" maxlength="10" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+    <br/><br/>
+    品牌
+    <select name="brand">
+      <option value="0">请选择品牌</option>
+      {foreach from=$brand_list item=val}
+      <option value="{$val.brand_id}">{$val.brand_name}</option>
+      {/foreach}
+    </select>&nbsp;&nbsp;&nbsp;&nbsp;
+    商品名
+    <input type="text" name="goods_name" value=""/>
+    <input type="hidden" name="from_sch" value="1"/>
+    <input type="button" class="b_submit" value="搜 索"  onclick="filterDeadStock(this.form)"/>
+  </form>
+</fieldset>
+
+<br />
+<div id="resource">
+  <table class="wu_table_list wu_rb_border rb_border tr_hover" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+      <th width="10%">商品编号</th>
+      <th width="20%">商品名</th>
+      <th width="10%">库存</th>
+      <th width="15%">生产日期</th>
+      <th width="15%">进货日期</th>
+      <th width="20%">描述</th>
+    </tr>
+    {if $dead_stock neq null}
+    {foreach from=$dead_stock item=val}
+    <tr>
+      <td>{$val.goods_sn}</td>
+      <td>{$val.goods_name}</td>
+      <td>{$val.quantity}</td>
+      <td>{$val.production_day}</td>
+      <td>{$val.arrival_day}</td>
+      <td>生产日期已离现在有<font color="red">{$val.diff_day}月</font></td>
+    </tr>
+    {/foreach}
+    {else}
+    <tr>
+      <td colspan="6">没有符合要求的记录</td>
+    </tr>
+    {/if}
+  </table>
+
+  <!-- 分页 -->
+  <div class="bottom_tip">
+    <div class="tip_left">
+      <p>共{$filter.record_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </div>
+    <div class="tip_center">
+      <span><a href="storage.php?act={$filter.act}&page=1&page_size={$filter.page_size}{$condition}" id="page_link">&lt;&lt;</a></span>
+      {foreach from=$filter.page_set item=val}
+      <span {if $val eq $filter.page} class="cur"{/if}>{if $val eq $filter.page}{$val}{else}<a href="storage.php?act={$filter.act}&page={$val}&page_size={$filter.page_size}{$condition}">{$val}</a>{/if}</span>
+      {/foreach}
+      <span><a href="storage.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}{$condition}">&gt;&gt;</a></span>
+    </div>
+    <div class="tip_right">跳转到第
+      <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+    </div>
+  </div>
+</div>

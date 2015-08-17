@@ -1,0 +1,54 @@
+<br />
+<h3>操作日志</h3>
+<div class="view">
+  <form action="javascript:void(0)" name="date_form">
+  <b>视图：</b>
+    <label class="btn_new"><input type="radio" name="date" value="today" onclick="javascript:viewActionLog(document.forms['action_log_form'],'today')" checked />今天的</label>  
+    <label class="btn_new"><input type="radio" name="date" onclick="javascript:viewActionLog(document.forms['action_log_form'],'week')" value="week" />本周的</label>  
+    <label class="btn_new"><input type="radio" name="date" onclick="javascript:viewActionLog(document.forms['action_log_form'],'month')" class="btn_new" value="month" />本月的</label> |
+    <b>行为分析：</b>
+    <button onclick="analyseLog(this.form,'by_user_action')" class="btn_new">对顾客信息操作</button>
+    <button onclick="analyseLog(this.form,'by_order_action')" class="btn_new">对订单信息操作</button>
+ | <button class="btn_new" style="color:#21A622;padding:3px;" onclick="analyseLogConfig()">编辑分析参数</button>
+<button class="btn_new" style="color:#D74848;padding:3px;" onclick="clearLog()">清理一个月前的数据</button>
+</div>
+  </form>
+<br />
+<div class="view-form">
+  <form action="javascript:void(0)" onsubmit="viewActionLog(this,'')" name="action_log_form">
+    <select name="module">
+      <option value="0">按模块查看</option>
+      {foreach from=$module_list item=val}
+      <option value="{$val.action_id}">{$val.label}</option>
+      {/foreach}
+    </select>&nbsp;&nbsp;&nbsp;
+    <label>
+      <input type="radio" name="code" value="all" onclick="viewActionLog(this.form,'')" {if $code eq ''}checked{/if}/>
+      <span class="btn_new" >全部操作</span>
+    </label>
+    <label>
+      <input type="radio" name="code" value="view" onclick="viewActionLog(this.form,'')" {if $code eq 'add'}checked{/if}/>
+      <span class="btn_new">查看</span>
+    </label>
+    <label>
+      <input type="radio" name="code" value="add" onclick="viewActionLog(this.form,'')" {if $code eq 'add'}checked{/if}/>
+      <span class="btn_new">添加</span>
+    </label>
+    <label>
+      <input type="radio" name="code" value="upd" onclick="viewActionLog(this.form,'')" {if $code eq 'edit'}checked{/if}/>
+      <span class="btn_new">编辑</span>
+    </label>
+    <label>
+      <input type="radio" name="code" value="del" onclick="viewActionLog(this.form,'')" {if $code eq 'del'}checked{/if}/>
+      <span class="btn_new">删除</span>
+    </label>
+    <input type="text" name="admin_name" value="" placeholder="操作人(回车搜索)" oninput="getBySendAdmin(this.form)">
+    <select id="admin_id" name="admin_id">
+      <option value="0">请选择员工</option>
+    </select>
+    <input class="Wdate" name="start_time" type="text" value="" onclick="WdatePicker()" placeholder="开始时间"/>
+    <input class="Wdate" name="end_time" type="text" value="" onclick="WdatePicker()" placeholder="结束时间"/>
+    <input type="submit" value="搜 索" class="b_submit"/>
+  </form>
+</div>
+<div id="resource" style="position:relative"> {$action_log_table} </div>

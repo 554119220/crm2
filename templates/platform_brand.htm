@@ -1,0 +1,64 @@
+<!-- $Id: users_list.htm 17053 2010-03-15 06:50:26Z sxc_shop $ -->
+<div class="blank"></div>
+<div class="content-head mt10">
+  <div class="finder-title">平台&品牌销量</div>
+  <div class="finder-packet">
+    <div class="packet-items">
+         <ul id="sub_tag" class="clearfix">
+              <!-- 针对订单状态进行的分类 -->
+              <li id="tag_0" class="current-tab">
+              <a href="report_forms.php?act=platform_brand&platform=0">中老年事业部</a>
+              </li>
+              {foreach from=$platform_list name=i item=val}
+              {if $smarty.foreach.i.index}
+              <li id="tag_{$val.role_id}" class="last">
+              <a href="report_forms.php?act={$act}&platform={$val.role_id}">{$val.role_name}</a>
+              </li>
+              {/if}
+              {/foreach}
+         </ul>
+    </div>
+  </div>
+  <div class="gridlist-action">
+       <div class="add_up left">
+       </div>
+    <div class="nav-search">
+    </div>
+  </div>
+
+  <div class="max_box">
+    <div class="blank"></div>
+    <div id="scroll1">
+      <!-- start users list -->
+        <!--用户列表部分-->
+      <div class="list-div" style="width:65%"><h4>{$stats.title}</h4>
+           <table cellpadding="3" cellspacing="1" style="border-left:1px #ccc solid !important">
+                <tr>
+                     {foreach from=$stats.day name=i item=val}
+                     {if $smarty.foreach.i.index eq 0}<th></th>{/if}
+                     <th width="8%" colspan="2">{$val}</th>
+                     {/foreach}
+                </tr>
+                {foreach from=$stats.list key=key item=v}
+                <tr height="30">
+                     <td align="center">{$brand_list[$key]}</td>
+                     {foreach from=$stats.day key=k item=a}
+                     <td class="first-cell pos" align="center">
+                          {foreach from=$v[$a] key=e item=l}
+                          {if $e eq 'goods_num'}{$l}{/if}
+                          {/foreach}
+                     </td>
+                     <td align="center">
+                          {foreach from=$v[$a] key=e item=l}
+                          {if $e eq 'goods_amount'}{$l}{/if}
+                          {/foreach}
+                     </td>
+                     {/foreach}
+                </tr>
+                {/foreach}
+           </table>
+      </div>
+      <!-- end users list -->
+    </div>
+  </div>
+</div>

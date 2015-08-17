@@ -1,0 +1,19 @@
+<div style="height:240px;text-align:left;">
+{if $service}
+  {foreach from=$service item=val}
+  <p> 
+  【{$val.service_time}】
+  {if $val.record}
+  【
+  {foreach from=$val.record item=record_val name=i}
+  <rec onclick="showRecPlayer(this);" style="cursor:pointer"><audio src="{$record_val}" style="width:20px; height:10px; background-color:skyblue"></audio>通话录音{$smarty.foreach.i.iteration}</rec>
+  {/foreach}
+  】
+  {/if}
+  <font style="color:rgb(141, 141, 93)">{$val.admin_name}</font>通过<font  style="color:rgb(141, 141, 93)">{$val.manner}</font>进行了<font style="color:rgb(141, 141, 93)">{$val.class}</font>：{$val.logbook}
+  </p>
+  {/foreach}
+{/else}
+没有找到相关记录
+{/if}
+</div>

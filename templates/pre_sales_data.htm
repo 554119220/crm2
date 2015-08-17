@@ -1,0 +1,111 @@
+<thead>
+    <!-- 默认数据 -->
+    <tr>
+        <th></th>
+        <th colspan="3">纯个人销量</th>
+        <th colspan="3">京东销量</th>
+        <th colspan="3">手拍销量</th>
+        <th colspan="3">活动销量</th>
+        <th colspan="3">到付销量</th>
+        <th colspan="3">总销量</th>
+        <th colspan="2">退货销量</th>
+    </tr>
+    <tr id="sortByThis">
+        <th> </th>
+        <th>订单</th>
+        <th>销量</th>
+        <th>客单价</th>
+        <th>订单</th>
+        <th>销量</th>
+        <th>客单价</th>
+        <th>订单</th>
+        <th>销量</th>
+        <th>客单价</th>
+        <th>订单</th>
+        <th>销量</th>
+        <th>客单价</th>
+        <th>订单</th>
+        <th>销量</th>
+        <th>客单价</th>
+        <th>订单</th>
+        <th>销量</th>
+        <th>客单价</th>
+        <th>订单</th>
+        <th>销量</th>
+    </tr>
+    <tr>
+        <th>退货订单</th>
+        <td>{$returns[order_stats][order_num]}</td>
+        <td>{$returns[order_stats][final_amount]}</td>
+        <td>-</td>
+        <td>{$returns[jd_order_stats][order_num]}</td>
+        <td>{$returns[jd_order_stats][final_amount]}</td>
+        <td>-</td>
+        <td>{$returns[sp_order_stats][order_num]}</td>
+        <td>{$returns[sp_order_stats][final_amount]}</td>
+        <td>-</td>
+        <td>{$returns[pmt_order_stats][order_num]}</td>
+        <td>{$returns[pmt_order_stats][final_amount]}</td>
+        <td>-</td>
+        <td>{$returns[cod_order_stats][order_num]}</td>
+        <td>{$returns[cod_order_stats][final_amount]}</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>{$returns[rtn_order_stats][order_num]}</td>
+        <th>{$returns[rtn_order_stats][final_amount]}</td>
+    </tr>
+    <tr>
+        <th>销量总计</th>
+        <td>{$total[order_stats][order_num]}</td>
+        <td>{$total[order_stats][final_amount]}</td>
+        <td>{$total[order_stats][PCT]}</td>
+        <td>{$total[jd_order_stats][order_num]}</td>
+        <td>{$total[jd_order_stats][final_amount]}</td>
+        <td>{$total[jd_order_stats][PCT]}</td>
+        <td>{$total[sp_order_stats][order_num]}</td>
+        <td>{$total[sp_order_stats][final_amount]}</td>
+        <td>{$total[sp_order_stats][PCT]}</td>
+        <td>{$total[pmt_order_stats][order_num]}</td>
+        <td>{$total[pmt_order_stats][final_amount]}</td>
+        <td>{$total[pmt_order_stats][PCT]}</td>
+        <td>{$total[cod_order_stats][order_num]}</td>
+        <td>{$total[cod_order_stats][final_amount]}</td>
+        <td>{$total[cod_order_stats][PCT]}</td>
+        <td>{$total[total_order_stats][order_num]}</td>
+        <td>{$total[total_order_stats][final_amount]}</td>
+        <td>{$total[total_order_stats][PCT]}</td>
+        <td>{$total[rtn_order_stats][order_num]}</td>
+        <th>{$total[rtn_order_stats][final_amount]}</td>
+    </tr>
+</thead>
+<tbody>
+    {foreach from=$list key=key item=val}
+    <tr>
+        <th>{$key}</th>
+        <td>{$order_stats[order_num][$key]}</td>
+        <td>{$order_stats[final_amount][$key]}</td>
+        <td>{$order_stats[PCT][$key]}</td>
+        <td>{$jd_order_stats[order_num][$key]}</td>
+        <td>{$jd_order_stats[final_amount][$key]}</td>
+        <td>{$jd_order_stats[PCT][$key]}</td>
+        <td>{$sp_order_stats[order_num][$key]}</td>
+        <td>{$sp_order_stats[final_amount][$key]}</td>
+        <td>{$sp_order_stats[PCT][$key]}</td>
+        <td>{$pmt_order_stats[order_num][$key]}</td>
+        <td>{$pmt_order_stats[final_amount][$key]}</td>
+        <td>{$pmt_order_stats[PCT][$key]}</td>
+        <td>{$cod_order_stats[order_num][$key]}</td>
+        <td>{$cod_order_stats[final_amount][$key]}</td>
+        <td>{$cod_order_stats[PCT][$key]}</td>
+        <td>{$total_order_stats[order_num][$key]}</td>
+        <td>{$total_order_stats[final_amount][$key]}</td>
+        <td>{$total_order_stats[PCT][$key]}</td>
+        <td>{$rtn_order_stats[order_num][$key]}</td>
+        <td>{$rtn_order_stats[final_amount][$key]}</td>
+    </tr>
+    {/foreach}
+    <tr><td colspan="21"> </td></tr>
+</tbody>
+<input type="hidden" id="colHL">

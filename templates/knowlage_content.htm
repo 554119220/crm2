@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{$knowlage_info.knowlage_name}</title>
+    <link rel="stylesheet" href="styles/performance.css">
+  </head>
+  <body>
+    <div class="mastbg">
+      <section>
+      <h3>{$knowlage_info.knowlage_name}</h3>
+      </section> 
+      <section>
+      <div class="tag_panel">
+        <span>标签：
+          <label>{$knowlage_info.tag_name}</label>
+        </span>
+        <span>分类：
+          <label>{$knowlage_info.knowlage_class_name}</label>
+        </span>
+        <span>本产品更多相关知识：
+        <a alt="更多知识" href="{$knowlage_info.more_link}">{$knowlage_info.more_link}</a>
+        </span>
+      </div>
+      </section>
+      <article>
+      <div class="content">
+        <p>
+        {$knowlage_info.content}
+        </p>
+      </div>
+      </article>
+    </div>
+  </body>
+</html>

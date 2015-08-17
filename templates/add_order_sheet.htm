@@ -1,0 +1,40 @@
+<form method="POST" action="javascript:void(0)" onsubmit="return addFactoryOrder(this)" name="add_factory_table_form"> 
+  <table width="640px" cellpadding="0" cellspacing="0" border="0" id="add_factory_table" class="popup_form">
+    <tr>
+      <th>商品编号：</th> 
+      <td><input type="text" name="goods_sn" value="{$goods_info.goods_sn}"/></td>
+    </tr>
+    <tr>
+      <th>商品名称：</th> 
+      <td><input type="text" name="goods_name" value="{$goods_info.goods_name}"/></td>
+      <tr>
+        <th>生产日期：</th> 
+        <td>
+          <input name="production_day" type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'%y-%M-{$today}'})" /> 
+        </td>
+      </tr>
+      <tr>
+        <th>生产厂家：</th> 
+        <td>
+          <select name="manufacturer">
+            {foreach from=$goods_info.manufacturer_list item=val name=i}
+            <option value="{$smarty.foreach.i.index}">{$val}</option>
+            {/foreach}
+          </select>
+        </td>
+        </tr> <tr>
+        <th>数量：</th> 
+        <td>
+          <input type="number" name="quantity" value="0" min="0" step="50"/>
+          <select name="prickle" class="small">
+            {foreach from=$prickle item=val name=i}
+            <option value="{$smarty.foreach.i.index}">{$val}</option>
+            {/foreach}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align:right"><input type="submit" value="添加" class="input_submit"/></td>
+      </tr>
+    </table>
+  </form>

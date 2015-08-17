@@ -1,0 +1,64 @@
+<!doctype htm>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>公共查询</title>
+    <link rel="stylesheet" href="styles/general.css" type="text/css" charset="utf-8"/>
+    <link rel="stylesheet" href="styles/table-list.css" type="text/css" charset="utf-8"/>
+    <link rel="stylesheet" href="styles/FormStyle.css" type="text/css" charset="utf-8"/>
+    <link rel="stylesheet" href="styles/user.css" type="text/css" charset="utf-8"/>
+    <link rel="stylesheet" href="styles/storage.css" type="text/css" charset="utf8"/>
+    <link rel="stylesheet" href="styles/index.css" type="text/css" charset="utf8"/>
+    <link rel="stylesheet" href="styles/performance.css" type="text/css" charset="utf8"/>
+    <link rel="stylesheet" href="styles/service.css" type="text/css" charset="utf8"/>
+  </head>
+  <body style="background:#666;overflow-y:auto;padding-bottom:16px;height: !important">
+    <div style="text-align:center;width:70%;margin:0 auto;background:#fff;padding-bottom:32px;">
+      <br />
+      <div class="finder-title"><h1>公共查询</h1></div><br/>
+      <ul>
+        <li style="margin-bottom:10px">
+        <form action="javascript:search()" name="searchForm" >
+          <select name="condition" class="sch_select" style="padding:3px;" onchange="chCondition(this)">
+            <option value="0">姓名</option>
+            <option value="1">固话</option>
+            <option value="2">手机</option>
+            <option value="3">QQ</option>
+            <option value="4">email</option>
+            <option value="5">旺旺</option>
+            <option value="6">快递单号</option>
+            <option value="7">订单编号</option>
+            <option value="8">会员卡号</option>
+            <option value="9">顾客ID</option>
+            <option value="10">平台ID</option>
+          </select>
+          <select id="platform_id" class="sch_select" style="padding:3px;display:none">
+          </select>
+          <input type="search" name="search" value="" min="3" size="42px" style="height:32px;margin-right:5px;padding:3px;" autofocus />
+          {if $finance eq 'finance'}
+          <input type="hidden" value="{$finance}" id="finance" />
+          {/if}
+          <input type="submit" value="查  询" style="padding:7px;font-size:14px;"/>
+        </form>
+        </li>
+        <li>
+        <span style="color:red" id="alarm" width="48px"></span>
+        </li>
+      </ul>
+      <div>
+        <div id="goods_search_res" class="goods_search_res" style="display:none;">
+          <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div id="search_info" style="margin:5px;text-align:center;"></div>
+    </div>
+  </body>
+</html>
+
+{insert_scripts files="json2.js,reportSorting.js,main.js,service.js"}
+{insert_scripts files="common.js,transport.js,validator.js,utils.js,stats.js"}
+{insert_scripts files="../js/utils.js,selectzone.js,colorselector.js"}

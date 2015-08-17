@@ -1,0 +1,65 @@
+<br />
+<div class="content-head">
+  <div class="finder-title mt10">{$curr_title}<font>{$num}</font></div>
+  <div class="gridlist-action" style="width:1170px; height:35px">
+    <div class="nav-search">
+      <form name="sale_date" style="display:inline" action="javascript:void(0)">
+        <!--通话日期：-->
+        <!--<input class="Wdate" name="start_time" type="text"value="{$start_time}" size="13px" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',{$min_date}})">-->
+        <!--<input class="Wdate" name="end_time" type="text" value="{$end_time}" size="13px" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',{$min_date}})">-->
+        <select name="role_id" onchange="connectStats(this)">
+          <option value="0">请选择</option>
+          {foreach  from=$role_list item=role}
+          <option value="{$role.role_id}" {if $role.role_id eq $role_id}selected{/if}>{$role.role_name}</option>
+          {/foreach}
+        </select>
+      </form>
+    </div>
+  </div>
+
+  {if $final}
+  <!-- 个人销量统计 -->
+  <div class="mt10">
+    <table border="0" id="person_style" cellpadding="0" cellspacing="0" class="all_table_list border c_b" width="70%">
+      <thead>
+        <tr>
+          <th style="text-align:left" width="90px"> </th>
+          <th style="text-align:left" width="90px"> </th>
+          <th colspan="3">今天</th>
+          <th colspan="3">昨天</th>
+          <!--<th colspan="3">本月</th>-->
+          <!--<th colspan="3">上个月</th>-->
+        </tr>
+        <tr id="sortByThis">
+          <th id="rank">排 名</th>
+          <th>客 服</th>
+          <th>拨号次数</th><th>接通次数</th><th>接通率</th>
+          <th>拨号次数</th><th>接通次数</th><th>接通率</th>
+          <!--<th>拨通次数</th><th>接通次数</th><th>接通率</th>-->
+          <!--<th>拨通次数</th><th>接通次数</th><th>接通率</th>-->
+        </tr>
+      </thead>
+      <tbody>
+        {foreach from=$final item=val name=i}
+        <tr{if !$smarty.foreach.i.last} group="{$val.group_id}" role="{$val.role_id}" admin="{$val.admin_id}" role_code='{$val.role_code}'{/if}>
+          <th>{if !$smarty.foreach.i.last}{$smarty.foreach.i.iteration}{/if}</th>
+          <th>{$val.admin_name}</th>
+          <th title="">{if $val.today_call_num}{$val.today_call_num}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.today_answered_num}{$val.today_answered_num}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.today_call_rate}{$val.today_call_rate}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.yday_call_num}{$val.yday_call_num}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.yday_answered_num}{$val.yday_answered_num}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <th title="">{if $val.yday_call_rate}{$val.yday_call_rate}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+          <!--          <th title="">{if $val.month_number_info}{$val.month_number_info}{elseif $smarty.foreach.i.last}{else}0{/if}</th>-->
+          <!--          <th title="">{if $val.month_time_info}{$val.month_time_info}{elseif $smarty.foreach.i.last}{else}0{/if}</th>-->
+          <!--          <th title="">{if $val.month_service_info}{$val.month_service_info}{elseif $smarty.foreach.i.last}{else}0{/if}</th>-->
+          <!--          <th title="">{if $val.pre_month_number_info}{$val.pre_month_number_info}{elseif $smarty.foreach.i.last}{else}0{/if}</th>-->
+          <!--          <th title="">{if $val.pre_month_time_info}{$val.pre_month_time_info}{elseif $smarty.foreach.i.last}{else}0{/if}</th>-->
+          <!--          <th title="">{if $val.pre_month_service_info}{$val.pre_month_service_info}{elseif $smarty.foreach.i.last}{else}0{/if}</th>-->
+          <!--        </tr>-->
+        {/foreach}
+      </tbody>
+    </table>
+  </div>
+  {/if}
+</div>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>detail_stock</title>
+  </head>
+  <body>
+    <h1>进货单详情</h1>
+    <table border="1">
+    	<tr>
+        	<td>进货单号</td>
+            <td>进货日期</td>
+            <td>产品总数</td>
+            <td>确认人员</td>
+            <td>厂家联系人</td>
+            <td>联系电话</td>
+            <td>添加人</td>
+            <td>添加时间</td>
+        </tr>
+        <tr>
+        	<td>{$st_list.stock_sn}</td>
+            <td>{$st_list.arrival_day}</td>
+            <td>{$st_list.class_num}</td>
+            <td>{$st_list.confirmer}</td>
+            <td>{$st_list.contacter}</td>
+            <td>{$st_list.phone}</td>
+            <td>{$st_list.adder}</td>
+            <td>{$st_list.add_time}</td>
+        </tr>
+    </table>
+    <p>&nbsp;</p>
+    <table border="1">
+    	<tr>
+        	<td>商品代号</td>
+            <td>商品名称</td>
+            <td>进货数量</td>
+            <td>生产日期</td>
+            <td>生产厂家</td>
+            <td>品牌</td>
+        </tr>
+        {foreach from=$sg_list item=v}
+        <tr>
+        	<td>{$v.goods_sn}</td>
+            <td>{$v.goods_name}</td>
+            <td>{$v.quantity}</td>
+            <td>{$v.production_day}</td>
+            <td>{$v.manufacturer}</td>
+            <td>{$v.brand}</td>
+        </tr>
+        {/foreach}
+    </table>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<table cellpadding="0" cellspacing="0" class="wu_table_list rb_border wu_rb_border tr_hover" width="90%">
+  <tr>
+    <th width="10%">姓名</th>
+    <th width="10%">手机</th>
+    <th width="30%">地址</th>
+    <th width="20%">身份证</th>
+    <th width="10%">诈骗类型</th>
+    <th width="10%">操作</th>
+  </tr>
+  {if $network_user_blacklist neq null}
+  {foreach from=$network_user_blacklist item=val}
+  <tr>
+    <td>{$val.user_name}</td>
+    <td>{$val.mobile}</td>
+    <td style="text-align:left;padding-left:8px">{$val.address}</td>
+    <td>{$val.identity_card}</td>
+    <td>{$val.type_name}</td>
+    <td>
+      <button onclick="modDelNetworkBlacklist({$val.blacklist_user_id})" class="btn_new"> 删 除 </button>
+    </td>
+  </tr>
+  {/foreach}
+  {else}
+  <tr>
+    <td colspan="5">没有记录</td>
+  </tr>
+  {/if}
+</table>

@@ -1,0 +1,127 @@
+<br/>
+<h3>会员积分确认</h3>
+<br/>
+<div class="list_panel">
+  <form name="sch_confirm_inte">
+    <select name="integral_way">
+      <option>获得方式</option>
+      <option value="1">消费赠送</option> 
+      <option value="2">推荐赠送</option> 
+      <option value="3">充值</option> 
+      <option value="4">生日赠送</option>
+    </select>
+    <select name="integral">
+      <option value="0">规则</option>
+      {foreach from=$inte_rule item=val}
+      <option value="{$val.integral_id}">{$val.integral_title}</option>
+      {/foreach}
+    </select>
+    <select name="platform">
+      <option value="0" >平台</option>
+      {foreach from=$role item=val}
+      <option value="{$val.role_id}">{$val.role_name}</option>
+      {/foreach}
+    </select>
+    <select name="admin">
+      <option value="0">客服</option>
+      {foreach from=$admin item=val}
+      <option value="{$val.user_id}">{$val.user_name}</option>
+      {/foreach}
+    </select>
+    <input type="text" name="user_name" style="width:80px;!important" placeholder="会员姓名" />
+    <input type="button" class="b_submit" onclick="schConInte()" value="搜 索"/>
+    <span style="float:right;display:inline">
+      <select name="cofirm_type" id="confirm_type">
+        <option value="1" selected>确认当前页</option>
+        <option value="2">确认今天</option>
+        <option value="3">全部</option>
+      </select>
+      <input type="button" class="b_submit" onclick="conCurInte()" value="确&nbsp;认" />
+    </span>
+  </form>
+</div>
+<div id="resource" class="white_bg_filter">
+  <table style="clear:both;background:#FFF !important" width="100%" cellspacing="0" cellpadding="0" class="wu_table_list c_b wu_rb_border tr_hover" id="temp_inte">
+    <tr id="caption">
+      <th width="3%"><input type="checkbox" id="inte_nums" onclick="get_inte_nums(this)"/></th>
+      <th width="8%">顾客</th>
+      <th width="8%" class="a_sort"><a href="service.php?act=sch_con_inte&sort=rank_id&sort_type={$sort_type}">等级</a></th>
+      <th width="8%" class="a_sort"><a href="service.php?act=confirm_inte&sort=goods_amount&sort_type={$sort_type}">订单金额</a></th>
+      <th width="8%">积分规则</th>
+      <th width="8%" class="a_sort"><a href="service.php?act=confirm_inte&sort=cur_integral&sort_type={$sort_type}">最终积分</a></th>
+      <th width="8%">原积分</th>
+      <th width="8%">增/减</th>
+      <th width="10%" class="a_sort"><a href="service.php?act=confirm_inte&sort=receive_time&sort_type={$sort_type}">创建时间</a></th>
+      <th width="10%" class="a_sort"><a href="service.php?act=confirm_inte&sort=validity&validity={$sort_type}">有效期</a></th>
+      <th width="11%">操作</th>
+    </tr>
+    {if $empty eq 0}
+    <tr><td colspan="11">没有找到任何记录</td></tr>
+    {else}
+    {foreach from=$integral item=val}
+    <tr>
+      <td><input type="checkbox" id="inte_num" value="{$val.user_integral_id}" onclick="get_inte_nums(this)"/></td>
+      <td>{$val.user_name}</td>
+      <td>{if $val.rankup neq ''}升级至{$val.rankup_name}{else}{$val.rank_name}{/if}</td>
+      <td>{$val.goods_amount}</td>
+      <td><button value="{$val.integral_id}" onclick="viewInte(this)">{$val.integral_title}</button></td>
+      <td>{$val.cur_integral}</td>
+      <td>{$val.pre_points}</td>
+      <td>
+        {if $val.increase_reduce eq 0}-
+        {else}+
+        {/if}
+      </td>
+      <td>{$val.receive_time}</td>
+      <td>{$val.validity}</td>
+      <td>
+        <button onclick="confirmIntegral({$val.user_integral_id},{$val.cur_integral},{$val.user_id},this)">确认</button>
+        <button onclick="delUserInte({$val.user_integral_id},this)">撤销</button>
+      </td>
+    </tr>
+    {/foreach}
+    {/if}
+  </table>
+
+  <!-- 分页 -->
+  <div class="bottom_tip">
+    <div class="tip_left">
+      <p>共{$filter.record_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </div>
+    <div class="tip_center">
+      <span><a href="service.php?act={$filter.act}&page=1&page_size={$filter.page_size}" id="page_link">&lt;&lt;</a></span>
+      {foreach from=$filter.page_set item=val}
+      <span {if $val eq $filter.page} class="cur"{/if}>{if $val eq $filter.page}{$val}{else}<a href="service.php?act={$filter.act}&page={$val}&page_size={$filter.page_size}">{$val}</a>{/if}</span>
+      {/foreach}
+      <span><a href="service.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}">&gt;&gt;</a></span>
+    </div>
+    <div class="tip_right">跳转到第
+      <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+    </div>
+  </div>
+</div>
+
+<style type="text/css" >
+  button:hover{
+    cursor:pointer;
+    color: #EB8A3D;
+  }
+
+  button{
+    color:#3367AC;
+  }
+
+  #navigation{
+    margin-bottom:3px;
+  }
+
+  #navigation input,select{
+    margin:2px 6px 2px 6px; 
+    padding:3px;
+    size:160px;
+  }
+
+  .a_sort a:link{
+    color:#192E32; 
+  }
+</style>

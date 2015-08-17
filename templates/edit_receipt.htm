@@ -1,0 +1,59 @@
+<br/>
+      <form method="post" name="edit_receipt">
+        <input type="hidden" name="stock_id" value="{$edit_stock.stock_id}" />
+      <table border="0">
+        <tr>
+            <td>进货单号:</td>
+            <td><input type="text" name="stock_sn" value="{$edit_stock.stock_sn}" /></td>
+            <td>进货日期:</td>
+            <td><input type="text" name="arrival_day" value="{$edit_stock.arrival_day}"
+             onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" /></td>
+            <td>联系人:</td>
+            <td><input type="text" name="contacter" value="{$edit_stock.contacter}" /></td>
+        </tr>
+        <tr>
+            <td>联系电话:</td>
+            <td><input type="text" name="phone" value="{$edit_stock.phone}" /></td>
+            <td>确认人员:</td>
+            <td><input type="text" name="confirmer" value="{$edit_stock.confirmer}" /></td>
+          
+        </tr>
+      </table>
+     <p></p>
+     <table border="1" id="add_gn">
+       {foreach from=$stock_list key=k  item=v}
+       <input type="hidden" id="rec_id{$k}" name="rec_id[]" value="{$v.rec_id}">
+            <tr>
+              <td>商品代号：</td>
+              <td><input type="text" name="goods_sn[]" size="5" id="goods_sn{$k}"
+                onBlur="autoNum(this.value,0)" value="{$v.goods_sn}" /></td>
+              <td>商品名称：</td>
+              <td><input type="text" name="goods_name[]" value="{$v.goods_name}"
+                size="16" id="goods_name0" /></td>
+              <td>商品数量：</td>
+              <td><input type="text" name="quantity[]" value="{$v.quantity}" size="4" /></td>
+              <td>
+                <select name="prickle[]" id="prickle{$k}">
+                <option value="1" {if $v.prickle == '瓶'} selected {/if} >瓶</option>
+                <option value="2" {if $v.prickle == '罐'} selected {/if} >罐</option>
+                <option value="3" {if $v.prickle == '盒'} selected {/if} >盒</option>
+                <option value="4" {if $v.prickle == '件'} selected {/if} >件</option>
+               </select>
+              </td>
+              <td>生产日期：</td>
+              <td><input type="text" name="production_day[]" size="14" id="production_day{$k}" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" value="{$v.production_day}" /></td>
+             <td>生产厂家：</td>
+             <td><input type="text" name="manufacturer[]" id="manufacturer{$k}"
+               value="{$v.manufacturer}" size="12" /></td>
+              {if $k eq 0}
+             <td><span style="cursor:pointer" onclick="addStock(this)">&nbsp;[ + ]&nbsp;</span></td>
+             {else}
+             <td><span style="cursor:pointer" onclick="removeStock(this)">&nbsp;[ - ]&nbsp;</span></td>
+            {/if}
+            </tr>
+            {/foreach}
+          </table>
+          <br/>
+          <input type="button" value="确定" onclick="editStock(this)" class="input_submit" />
+        </form>
+    

@@ -1,0 +1,23 @@
+<div style="width:150px">
+    <form name="do_returns" method="post" accept-charset="utf-8" style="width:136px">
+        <p>运单号：</p><p><input type="text" name="express_number" value="" size="15"/></p>
+        <p>退货原因：</p><p><textarea name="return_reason" cols="15" rows="5"></textarea></p>
+        <p style="width:136px">
+            <a href="order.php?act=do_returns&order_id={$order_info.order_id}" class="input_submits mt10 f_l">
+                申请退货
+            </a>
+        </p>
+    </form>
+    <div class="blank"></div>
+    <select name="close_reason" id="close_reason">
+        <option value="0">订单关闭原因</option>
+        {foreach from=$reason item=val}
+        <option value="{$val.reason_id}">{$val.reason_name}</option>
+        {/foreach}
+    </select>
+    <p style="width:136px">
+        <a class="input_submits mt10 f_l" href="order.php?act=order_del&id={$order_info.order_id}" title="删除后该订单不再显示">
+            关闭订单
+        </a>
+    </p>
+</div>

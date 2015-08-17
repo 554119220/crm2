@@ -1,0 +1,95 @@
+<!-- 样式文件 -->
+<link rel="stylesheet" href="styles/stock.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+<!--  页首标题  -->
+<div id="ur_here">商品发货记录</div>
+
+<!-- 页首搜索区 -->
+<form action="storage.php?act=shipping_log" method="post" name="pageSearch" onsubmit="return statsShippingGoods()">
+  <div class="tools_div">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <th>品牌：</th>
+        <td>
+          <select name="brand" id="brand">
+            <option value="0">选择品牌</option>
+            {foreach from=$brand_list item=val}
+            <option value="{$val.brand_id}">{$val.brand_name}</option>
+            {/foreach}
+          </select>
+        </td>
+        <th>销售平台：</th>
+        <td>
+          <select name="platform" id="platform">
+            <option value="0">选择平台</option>
+            {foreach from=$platform_list item=val}
+            <option value="{$val.role_id}">{$val.role_name}</option>
+            {/foreach}
+          </select>     
+        </td>
+      </tr>
+      <tr>
+        <th>商品名称：</th>
+        <td>
+          <input type="text" name="goods_name" value="" id="goods_name">    
+        </td>
+        <th>订单编号：</th>
+        <td>
+          <input type="text" name="order_sn" value="" id="order_sn">
+        </td>
+      </tr>
+      <tr>
+        <th>订单日期：</th>
+        <td>
+          <input type="text" name="order_time_start" value="" class="Wdate" onClick="WdatePicker()">
+          <input type="text" name="order_time_end" value="" class="Wdate" onClick="WdatePicker()">
+        </td> 
+        <th> 发货时间： </th>
+        <td>
+          <input type="text" name="shipping_time_start" value="" class="Wdate" onClick="WdatePicker()">
+          <input type="text" name="shipping_time_end" value="" class="Wdate" onClick="WdatePicker()">
+          <input type="submit" class="b_submit" value="搜索">
+        </td>
+      </tr>
+    </table>
+  </div>
+</form>
+
+<div id="resource">
+  <table id="dataList" cellspacing="0" cellpadding="0" class="wu_table_list rb_border wu_rb_border tr_hover" width="100%">
+    <th width="15%">商品编号</th>
+    <th width="40%">商品名称</th>
+    <th width="15%">发出数量</th>
+    <th width="15%">退货数量</th>
+    <th width="15%">实时库存</th>
+    {if $shipping_goods}
+    {foreach from=$shipping_goods item=val}
+    <tr>
+      <td>{$val.goods_sn}</td>
+      <td title="{$val.goods_name}">{$val.goods_short_name}</td>
+      <td>{$val.goods_number}</td>
+      <td>{if $val.return_number}{$val.return_number}{else}0{/if}</td>
+      <td>{$val.current_stock}</td>
+    </tr>
+    {/foreach}
+    {else}<tr><td colspan=5>没有发货记录</td></tr>
+    {/if}
+  </table>
+  <!-- 分页 -->
+  <div class="bottom_tip">
+    <div class="tip_left">
+      <p>共{$filter.record_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </div>
+    <div class="tip_center">
+      <span><a href="storage.php?act={$filter.act}&page=1&page_size={$filter.page_size}{$condition}" id="page_link">&lt;&lt;</a></span>
+      {foreach from=$filter.page_set item=val}
+      <span {if $val eq $filter.page} class="cur"{/if}>{if $val eq $filter.page}{$val}{else}<a href="storage.php?act={$filter.act}&page={$val}&page_size={$filter.page_size}{$condition}">{$val}</a>{/if}</span>
+      {/foreach}
+      <span><a href="storage.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}{$condition}">&gt;&gt;</a></span>
+    </div>
+    <div class="tip_right">跳转到第
+      <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+    </div>
+  </div>
+</div>
+

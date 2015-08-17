@@ -1,0 +1,7 @@
+<br>
+<h3>是否隐藏顾客联系方式</h3>
+<form action="javascript:void(0)" onsubmit="setContactStatus(this)">
+  <label><input type="radio" name="status" value="1" {if $status eq 1}checked{/if}/> 隐藏</label>
+  <label><input type="radio" name="status" value="0" {if $status eq 0}checked{/if}/> 显示</label>
+  <input type="submit" value="确定" class="b_submit"/>
+</form>

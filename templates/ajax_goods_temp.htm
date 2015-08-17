@@ -1,0 +1,81 @@
+{if $num eq 1}
+<input type="number" name="{$name1}" min="0" value="{$goods_number}" id="num1"/>
+<select name="{$name2}" id="num2">
+        <option {if $goods_number_units eq '瓶'}selected{/if}>瓶</option>
+        <option {if $goods_number_units eq '盒'}selected{/if}>盒</option>
+        <option {if $goods_number_units eq '罐'}selected{/if}>罐</option>
+        <option {if $goods_number_units eq '件'}selected{/if}>件</option>
+</select>
+<button value="{$name1}&{$name2}&{$num}"
+  title="修改商品数量" onclick="saveGoodsInfo(this)">保存</button>
+{/if}
+
+{if $num eq 2}
+ <input type="number" name="{$name1}" value="{$goods_number}" min="1" id="num1"/>
+ <select name="{$name2}" id="num2">
+        <option {if $goods_number_units eq '粒'}selected{/if}>粒</option>
+        <option {if $goods_number_units eq '克'}selected{/if}>克</option>
+        <option {if $goods_number_units eq '片'}selected{/if}>片</option>
+        <option {if $goods_number_units eq '粉'}selected{/if}>粉</option>
+        <option {if $goods_number_units eq '件'}selected{/if}>件</option>
+</select>
+<button value="{$name1}&{$name2}&{$num}"
+  title="修改商品数量" onclick="saveGoodsInfo(this)">保存</button>
+{/if}
+
+{if $num eq 3}
+ <input type="number" name="{$name1}" value="{$goods_number}" min="1" id="num1"/>
+ <select name="{$name2}" id="num2">
+        <option {if $goods_number_units eq '粒'}selected{/if}>粒</option>
+        <option {if $goods_number_units eq '克'}selected{/if}>克</option>
+        <option {if $goods_number_units eq '片'}selected{/if}>片</option>
+        <option {if $goods_number_units eq '粉'}selected{/if}>粉</option>
+        <option {if $goods_number_units eq '件'}selected{/if}>件</option>
+</select>
+<button value="{$name1}&{$name2}&{$num}"
+  title="修改数量类型" onclick="saveGoodsInfo(this)">保存</button>
+{/if}
+
+{if $packing != ''}
+<select name="{$name}" id="goods_pack" onchange="goodsSaveInputInfo(this)">
+            <option {if $packing eq '简装'}selected{/if}>简装</option>
+            <option {if $packing eq '提袋'}selected{/if}>提袋</option>
+            <option {if $packing eq '礼盒'}selected{/if}>礼盒</option>
+</select>
+{/if}
+
+{if $num eq 6}
+<select name="{$name}" onchange="hideCatDiv()" id="{$nameid}">
+    <option value="0">请选择</option>
+    {$cat_list}
+</select>
+<input type="button" value="添加分类" onclick="rapidCatAdd()" class="add_button" />
+<span id="category_add" style="display:none;">
+
+<input class="text" size="10" id="addedCategoryName" />
+<input type="button" value="确定" onclick="addCategory()" class="add_button" />
+<input type="button" value="分类管理" onclick="return goCatPage()"  class="add_button"/ >
+<input type="button" value="<<<"  onclick="hideCatDiv()" />
+
+</span>
+<button value="{$nameid}&{$name}&{$num}"
+  title="修改商品分类" onclick="saveGoodsCat(this)">保存</button>
+{/if}
+
+{if $num eq 7}
+<select name="{$name}" onchange="hideBrandDiv()" id="{$nameid}" >
+  <option value="0">请选择
+  {html_options options=$brand_list selected=$goods.brand_id}
+</select>
+                                   
+<input type="button" value="添加品牌" onclick="rapidBrandAdd()" class="add_button" />
+<span id="brand_add" style="display:none;">
+  <input class="text" size="15" name="addedBrandName" id="addedBrandName" />
+  <input type="button" value="确定" onclick="addBrand()" class="add_button" >
+  <input type="button" value="品牌管理" onclick="return goBrandPage()" class="special" />
+  <input type="button" value="<<<" onclick="hideBrandDiv()" />
+</span>
+<button value="{$nameid}&{$name}&{$num}"
+  title="修改商品品牌" onclick="saveGoodsCat(this)">保存</button>
+{/if}
+

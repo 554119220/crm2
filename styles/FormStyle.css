@@ -1,0 +1,165 @@
+*{ margin:0; padding:0;}
+div.box {
+margin:0 auto;
+width:680px;
+position:relative;
+top:30px;
+border:1px solid #262626;
+}
+
+div.box h1 { 
+background-color: #ddedfb;
+color : #666;
+font-size:16px;
+text-transform:uppercase;
+padding:5px 0 3px 3px;
+border-bottom:1px solid #161712;
+border-top:1px solid #161712; 
+}
+
+div.box label {
+width:100%;
+display: block;
+padding:5px 0 5px 0;
+}
+
+div.box label span {
+display: block;
+color:#333;
+font-size:12px;
+float:left;
+width:100px;
+text-align:right;
+padding:5px 20px 0 0;
+}
+
+div.box .input_text {
+padding:3px 5px;
+width:200px;
+border-bottom: 1px double #171717;
+border-top: 1px double #171717;
+border-left:1px double #333333;
+border-right:1px double #333333;
+}
+
+div.box .select_style{
+padding:3px 5px;
+width:212px;
+border-bottom: 1px double #171717;
+border-top: 1px double #171717;
+border-left:1px double #333333;
+border-right:1px double #333333;
+}
+
+div.box .message{
+padding:7px 7px;
+width:280px;
+border-bottom: 1px double #171717;
+border-top: 1px double #171717;
+border-left:1px double #333333;
+border-right:1px double #333333;
+overflow:hidden;
+height:80px;
+}
+
+div.box .button
+{
+color: #FFF;
+margin:1px 3px 7px 1px;
+padding:3px 5px;
+background:#192E32;
+border:0px;
+position: relative;
+top:5px;
+left:170px;
+width:100px;
+border-bottom: 1px double #000;
+border-top: 1px double #000;
+border-left:1px double #000;
+border-right:1px double #000;
+}
+#tabs {
+      float:left;
+      width:100%;
+	  background:#F9F7F3;
+      font-size:93%;
+      line-height:normal;
+	  border-bottom:1px solid #C2BDAE;
+      }
+    #tabs ul {
+	  margin:0;
+	  padding:10px 10px 0 50px;
+	  list-style:none;
+      }
+    #tabs12 li {
+      display:inline;
+      margin:0;
+      padding:0;
+      }
+    #tabs a {
+      float:left;
+      background:url("../images/tableft12.gif") no-repeat left top;
+      margin:0;
+      padding:0 0 0 4px;
+      text-decoration:none;
+      }
+    #tabs a span {
+      float:left;
+      display:block;
+      background:url("../images/tabright12.gif") no-repeat right top;
+      padding:5px 15px 4px 6px;
+      color:#E4D6CD;
+      }
+    /* Commented Backslash Hack hides rule from IE5-Mac \*/
+    #tabs a span {float:none;}
+    /* End IE5-Mac hack */
+    #tabs a:hover span {
+      color:#FFF;
+      }
+    #tabs12 a:hover {
+      background-position:0% -42px;
+      }
+    #tabs a:hover span {
+      background-position:100% -42px;
+      }
+.style{
+width: 800px;
+height: 100px;
+margin: 0px auto;
+margin-bottom:20px;
+border:1px solid #BBE1F1;
+background-color: #EEFAFF
+}
+.style1{
+width: 800px;
+height: 100px;
+margin: 0px auto;
+margin-bottom:20px;
+border:1px solid #96C2F1;
+background-color: #EFF7FF;
+}
+/*-----------button--------*/
+input.minimal {
+  background: #e3e3e3;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 1px 1px #f6f6f6;
+  box-shadow: inset 0 0 1px 1px #f6f6f6;
+  color: #333;
+  font: bold 9px/1 "helvetica neue", helvetica, arial, sans-serif;
+  padding: 4px 0 4px;
+  text-align: center;
+  text-shadow: 0 1px 0 #fff;
+  width: 50px; }
+  input.minimal:hover {
+    background: #d9d9d9;
+    -webkit-box-shadow: inset 0 0 1px 1px #eaeaea;
+    box-shadow: inset 0 0 1px 1px #eaeaea;
+    color: #222;
+    cursor: pointer; }
+  input.minimal:active {
+    background: #d0d0d0;
+    -webkit-box-shadow: inset 0 0 1px 1px #e3e3e3;
+    box-shadow: inset 0 0 1px 1px #e3e3e3;
+    color: #000; }
+/*---------------Button-----------------------*/

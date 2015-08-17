@@ -1,0 +1,111 @@
+<form method="POST" action="" id="for_modifyAccount" >
+<div class="box">
+  <h1 bgcolor="#ddedfb">modify Account：</h1>
+  <br>
+    <label>
+      <input id="account_id" value="{$account_info.account_id}" type="hidden" />        
+      <span valign="top"> 主题 :<font color="red">*</font></span>
+      <input class="input_text" name="subject" style="resize:none" onblur="cheSubject(this.value)" value="{$account_info.subject}" />
+      <wuspan style="color:red" id="subject">123</wuspan>
+    </label>  
+      <span style="color:red;margin:26px 0 26px 40px">当前账号所属部门: {$account_info.role_name}</span>
+    <label>
+      <span>主题分类 :<font color="red">*</font>:</span>
+      <select class="select_style" name="department" id="department">
+        <{foreach from=$department item=dep }>
+          <option value="{$dep.role_id}">{$dep.role_name}</option>
+        <{/foreach}>
+      </select>   
+    </label>
+    <span style="color:red;margin:26px 0 26px 40px">当前账号类型:{$account_info.type_name}</span>    
+    <label>
+      <span>类型 <font color="red">*</font>:</span>
+      <select name="type" class="select_style" onchange="judge(this.value)">
+      {foreach from=$type item=typ }
+        <option value="{$typ.type_id}">{$typ.type_name}</option>
+      {/foreach}
+      </select>
+      <font color="blue" onclick="addType()" href="#">添加新类型</font>
+    </label>
+    <label id="lab_newtype" style="display:none">
+      <span>新帐号类型名:</span>
+      <input type="text" class="input_text" id="new_type" onblur="cheType(this.value)" />
+      <wuspan style="color:red" id="new_type_alarm"></wuspan>
+    </label>
+    {if $account_info.type_name eq "QQ"}
+    <label id="lab_qq">
+      <span>QQ <font color="red">*</font>:</span>
+      <input type="text" class="input_text" name="txtqquser_name" id="txtqquser_name" onblur="cheQQ(this.value)" value="{$account_info.account_name}"/>
+      <wuspan style="color:blue" id="qquser_name" onclick="addable()">检查帐号是否可用</wuspan>
+    </label>
+    <label id="lab_username" style="display:none">
+      <span>用户名 <font color="red">*</font>:</span>
+      <input type="text" class="input_text" name="user_name" onblur="cheUsername(this.value)" value="{$account_info.account_name}" />
+      <wuspan style="color:red" id="user_name">123</wuspan>
+    </label>
+    {else}
+    <label id="lab_username">
+      <span>用户名 <font color="red">*</font>:</span>
+      <input type="text" class="input_text" name="user_name" onblur="cheUsername(this.value)" value="{$account_info.account_name}" />
+      <wuspan style="color:red" id="user_name">123</wuspan>
+    </label>
+    <label id="lab_qq" style="display:none">
+      <span>QQ <font color="red">*</font>:</span>
+      <input type="text" class="input_text" name="txtqquser_name" id="txtqquser_name" onblur="cheQQ(this.value)" value="{$account_info.account_name}"/>
+      <wuspan style="color:blue" id="qquser_name" onclick="addable()">检查帐号是否可用</wuspan>
+    </label>
+    {/if} 
+    <label>
+      <span>密码 <font color="red">*</font>:</span>
+      <input type="text" class="input_text" name="password" onblur="chePassword(this.value)" value="{$account_info.password}" />
+      <wuspan style="color:red" id="password">123</wuspan>
+    </label> 
+    <span style="color:red;margin:16px 0 16px 40px">当前账号选用 &nbsp;&nbsp;&nbsp;{$account_info.passwordProtect}</span>
+    <label>
+      <span>密码保护 <font color="red">*</font>:</span>
+      <select name="passwordProtectID" class="select_style">
+      <{foreach from=$passwordprotect item=val }>
+        <option value="{$val.passworProtect_id}">{$val.passwordProtect}</option>
+      <{/foreach}>
+      </select> 
+    </label> 
+    <label>
+      <span>Email :</span>
+      <input type="text" class="input_text" name="email" id="txt_email" value="{$account_info.email}" onblur="cheEmail(this.value)"/>
+      <wuspan style="color:red" id="email">123</wuspan>
+      <div id="email"></div>
+    </label>
+      <span style="color:red;margin:26px 0 26px 40px">当前账号使用者: {$account_info.user_name}<span>
+    <label>
+      <span> 使用者 <font color="red">*</font>:</span>
+      <select  class="select_style" id="user" name="user">
+      {foreach from=$user item=use }
+        <option value="{$use.user_id}">{$use.user_name}</option>
+      {/foreach}
+      </select>   
+    </label>
+    <label>
+      <span>登陆地址 :</span>
+      <input type="text" class="input_text" name="url" id='urlid' value="{$account_info.url}"/>
+      <wuspan style="color:red" id="url">123</wuspan>
+    </label>
+    <label>
+      <span>频繁更新:</span>
+      <wuspan style="color:#000000;margin-top:10em"> 
+      {if $account_info.usual_update eq 1}
+        <input style="marign:0px 26px 0px 26px" type="radio" name="usual_update" value="1" checked="checked"/>是 
+        <input style="" type="radio" name="usual_update" value="0"/>否
+      {else}
+        <input style="marign:0px 26px 0px 26px" type="radio" name="usual_update" value="1" />是 
+        <input style="" type="radio" name="usual_update" value="0" checked="checked"/>否
+      {/if}
+      </wuspan>
+    </label>
+    <input type="hidden" name="admin_id" value="{$account_info.handin}"/> 
+    <label>
+      <input type="button" onclick="modifyAccount(this)" class="button" name="add_account" id="add" value="提交"  />
+      <input type="button" class="button" name="cancel" id="cancel" value="取消" />
+    </label>
+    <div id="alarm" style="size=24px"></div>
+</div>
+</form>

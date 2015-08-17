@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../styles/FormStyle.css" />
+    <head>
+<form id="for_account" name="for_account" action="" method="POST">
+    <div class="box">
+      <h1 bgcolor="#192E32">添加Q群：</h1>
+         <label>
+           <span>QQ *:</span>
+           <input type="text" class="input_text" name="QQ" id="QQ"/>
+         </label>
+         <label>
+           <span>QQ群 *:</span>
+           <input type="text" class="input_text" name="PassWord" id="Qqgroup"/>
+         </label>
+         <label>
+           <span>群名 *:</span>
+           <input type="text" class="input_text" name="Subject" id="Subject"/>
+         </label>
+        <label>
+          <span>管理员 *:</span>
+          <select name="qqadmin" class="input_text">
+            <{foreach from=$admin item=val }>
+            <option value="{$val.user_id}">{$val.user_name}</option>
+            <{/foreach}>
+          </select> 
+        </label>
+        <label>
+          <span>类型 :</span>
+          <input type="text" class="input_text" name="Category" id="Category"/>
+          <div id="Email"></div>
+        </label>
+        <label>
+          <span>部门分组 *:</span>
+          <select class="input_text" name="Department" id="Department">
+            <{foreach from=$department item=dep }>
+            <option value="{$dep.DepartmentID}">{$dep.Department}</option>
+            <{/foreach}>
+          </select>        
+        </label>
+        <label>
+          <input type="button" class="button" name="add" id="add" value="提交" onclick="sumit(this)" />
+          <input type="button" class="button" name="cancel" id="cancel" value="取消" />
+        </label>
+        </div>
+    </form>
+    </html>
+

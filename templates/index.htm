@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0
+
+Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>康健人生会员管理系统</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="/thinkphp/Public/styles/common.css" type="text/css">
+        <link rel="stylesheet" href="styles/process.css" type="text/css" charset="utf8"/>
+        <link rel="stylesheet" href="styles/general.css" type="text/css" charset="utf-8"/>
+        <link rel="stylesheet" href="styles/new.css" type="text/css" charset="utf-8"/>
+        <link rel="stylesheet" href="styles/table-list.css" type="text/css" charset="utf-8"/>
+        <link rel="stylesheet" href="styles/FormStyle.css" type="text/css" charset="utf-8"/>
+        <link rel="stylesheet" href="styles/user.css" type="text/css" charset="utf-8"/>
+        <link rel="stylesheet" href="styles/storage.css" type="text/css" charset="utf8"/>
+        <link rel="stylesheet" href="styles/index.css" type="text/css" charset="utf8"/>
+        <link rel="stylesheet" href="styles/performance.css" type="text/css" charset="utf8"/>
+        <link rel="stylesheet" href="styles/service.css" type="text/css" charset="utf8"/>
+        <link rel="stylesheet" href="styles/staff.css" type="text/css" charset="utf8"/>
+        <link rel="stylesheet" href="styles/hrm.css" type="text/css" charset="utf8"/>
+    </head>
+    <body style="overflow-y:scroll;">
+        <div id="top">{$top}</div>
+        <div id="left_parent" style="height:100%; display:inline">
+            <div id="left" class="flt" >{$left}</div>
+        </div>
+        <div class="close_menu" onclick="showOrHideMenu(this)"></div>
+        <div id="main">
+            <br/>
+            {if $ordinary}
+            <session id="field_info">
+            <table class="index-info-table" cellspacing="0" cellpadding="0">
+                <tr><td> {$main_info} </td></tr>
+            </table>
+            </session>
+            {/if}
+        </div>
+        <div class="white_content" id="div_pop_ups" style="display:none">
+            <div id="pop_ups"></div>
+        </div>
+        <div id="fade" class="black_overlay"></div>
+        <div id="msg" class="hide">
+            <h3></h3>
+            <p></p>
+            <input type="button" value="" id="msgBtn" class="hide">
+        </div>
+        <!--底部提醒层-->
+        <session>
+        <div id="bottom_remind">
+            <!--遍历各消息-->
+            <table width="100%" cellspacing="0" cellpadding="0">
+                <tr><td class="layerHeading" id="bottom_remind_title" colspan=2>温馨提醒<label onclick="closeRemind(0)">x</label></td></tr>
+            </table>
+            <article id="remind_content"></article>
+        </div>
+        </session>
+    </body>
+</html>
+{insert_scripts files="json2.js,reportSorting.js,main.js,system.js,storages.js,users.js,order_detail.js,performance.js,service.js,account.js"}
+{insert_scripts files="js.js,tab.js,tabControl.js,goods.js,healthy_archive.js,index.js"}
+<!-- ecshop原JS文件 -->
+{insert_scripts files="common.js,transport.js,validator.js,utils.js,region.js,stats.js,order.js,reportSorting.js"}
+{insert_scripts files="../js/utils.js,selectzone.js,colorselector.js"}
+{insert_scripts files="../../thinkphp/Public/js/tp-system.js,../../thinkphp/Public/js/tp-users.js,../../thinkphp/Public/js/tp-order.js,../../thinkphp/Public/js/common.js,../../thinkphp/Public/js/tp-service.js"}
+{insert_scripts files="../../thinkphp/Public/js/jquery-2.0.0.min.js"}
+
+<!-- 日历插件 -->
+{insert_scripts files="../admin/My97DatePicker/WdatePicker.js"}
+<!-- 图表插件 -->
+{insert_scripts files="esl.js"}
+<script type="text/javascript" language="javascript" charset="utf-8">
+    var admin_id = '{$admin_id}';
+    var platform = 'jingdong';
+    var timeout  = 600;
+
+    function synchro () {
+        var url = 'synchro.php?act=synchro&admin_id='+admin_id+'&platform='+platform;
+        Ajax.call(url, '', synchroResponse,'GET','JSON');
+        setTimeout(synchro, timeout);
+        if (timeout < 600000) {
+            timeout *= 10;
+        }
+    }
+
+function synchroResponse (res) {
+    if (res.platform) {
+        if (res.uri) {
+            window.open(res.uri, '', 'width=500,height=500');
+        }
+
+        switch (res.platform) {
+            case 'jingdong'   : 
+                if (104 == admin_id || 109 == admin_id) {
+                    platform = 'taobao';
+                } else if (436 == admin_id || 101 == admin_id || 1 == admin_id) {
+                    platform = 'taobao01';
+                } else if (471 == admin_id) {
+                    platform = 'taobao02';
+                } else if (508 == admin_id) {
+                    platform = 'taobao03';
+                } else {
+                    platform = 'yhd';
+                }
+                break;
+            case 'taobao'   : platform = 'yhd';      break;
+            case 'taobao01' : platform = 'yhd';      break;
+            case 'taobao02' : platform = 'yhd';      break;
+            case 'yhd'      : platform = 'jingdong'; break;
+            case 'yhd'      : platform = 'suning';   break;
+        }
+    }
+}
+
+//保存管理员的role_id 和 admin_id在客户端
+localStorage.role_id  = "{$role_id}";
+localStorage.admin_id = "{$admin_id}";
+
+synchro();
+/*TP 获取首页信息*/
+getIndexInfo();
+//获取提醒消息
+if(localStorage.role_id>32 || localStorage.role_id==2){
+  getMsgNotice();
+}
+
+if(localStorage.role_id>32){
+  getMissCall();
+  /*预约提醒*/
+  traversalAppointment();
+}
+/*库存提醒*/
+if(localStorage.role_id!=13 && localStorage.role_id!=37){
+  timelyStockAlarm();
+}
+</script>

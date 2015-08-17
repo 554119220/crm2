@@ -1,0 +1,66 @@
+<div class="content-head">
+    <div class="finder-title mt10">{$curr_title}<font>{$num}</font></div>
+    <div class="gridlist-action" style="width:1170px; height:35px">
+        <div class="nav-search">
+            年份：<input class="Wdate" type="text" value="{$months}" size="10px" onClick="WdatePicker({dateFmt:'yyyy',{$min_date}})" onchange="showThisMonth(this.value)">
+            <label><input type="checkbox" id="col_1" value="销量" checked onclick="showOrHide(this)">销量</label>
+            <!--label><input type="checkbox" id="col_11" value="金额" checked onclick="showOrHide(this)">金额</label-->
+        </div>
+    </div>
+
+    {if $product_sales}
+    <!-- 个人销量统计 -->
+    <div class="mt10">
+        <table border="0" id="person_style" cellpadding="0" cellspacing="0" class="all_table_list border c_b" width="100%">
+            <thead>
+                <tr>
+                    <th width="30px"> </th>
+                    <th width="300px"> </th>
+                    {foreach from=$row_list key=date_list item=no_use}
+                    <th colspan="1" onclick="showThisMonth('{$year_mark}-{$no_use}')">{$date_list}月份</th>
+                    {/foreach}
+                    <!--th colspan="2">全年</th-->
+                </tr>
+                <tr id="sortByThis">
+                    <th id="rank">排序</th>
+                    <th>产 品</th>
+                    <th>销量</th><!--th>金额</th-->
+                    <th>销量</th><!--th>金额</th-->
+                    <th>销量</th><!--th>金额</th-->
+                    <th>销量</th><!--th>金额</th-->
+                    <th>销量</th><!--th>金额</th-->
+                    <th>销量</th><!--th>金额</th-->
+                    <th>销量</th><!--th>金额</th-->
+                    <th>销量</th><!--th>金额</th-->
+                    <th>销量</th><!--th>金额</th-->
+                    <th>销量</th><!--th>金额</th-->
+                    <th>销量</th><!--th>金额</th-->
+                    <th>销量</th><!--th>金额</th-->
+                    <!--th>销量</th><th>金额</th-->
+                    <!--th onclick="sortByThisCol(this)">完成进度</th-->
+                </tr>
+            </thead>
+            <tbody>
+                {foreach from=$product_sales item=val key=key name=i}
+                <tr>
+                    <th>{$smarty.foreach.i.iteration}</th>
+                    <th title="{$goods_list[$key]}">{$goods_list[$key]}</th>
+                    {foreach from=$row_list item=row}
+                    {foreach from=$val key=k item=v}
+                    {if $k eq $row}
+                    <th>{$v.goods_number}</th>
+                    <!--th>{$v.goods_amount}</th-->
+                    {/if}
+                    {/foreach}
+                    {if !isset($val[$row])}
+                    <th>-</th>
+                    <!--th>-</th-->
+                    {/if}
+                    {/foreach}
+                </tr>
+                {/foreach}
+            </tbody>
+        </table>
+    </div>
+    {/if}
+</div>

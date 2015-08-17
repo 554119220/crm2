@@ -1,0 +1,11 @@
+<ol>
+    {foreach from=$audio_list name=i item=val}
+    <li src="{$val}" onclick="addToPlayer(this)">
+    通话录音 {$smarty.foreach.i.iteration}
+    </li>
+    {/foreach}
+</ol>
+<audio id="player" src="" controls="controls" style="vertical-align:middle"></audio>
+<button style="font-size:20px;vertical-align:middle;margin:10px;cursor:pointer" onclick="collectTape()">收藏</button>
+<input type="hidden" value="{$service_id}" id="service_id"/>
+<div id="audioNotice"></div>

@@ -1,0 +1,36 @@
+<table id="repeat_user_tbl" cellpadding="0" cellspacing="0" border="0" width="100%" class="wu_table_list rb_border tr_hover wu_rb_border">
+  <tr>
+    <th width="3%"></th>
+    <th width="6%">顾客ID</th>
+    <th width="8%">姓名</th>
+    <th width="27%">默认地址</th>
+    <th width="20%">默认联系方式</th>
+    <th width="8%">分类</th>
+    <th width="10%">部门</th>
+    {if $user_part_view || $user_group_view}
+    <th width="10%">所属</th>
+    {/if}
+  </tr>
+  {if $repeat_user_list}
+  {foreach from=$repeat_user_list item=val}
+  <tr>
+    <td>
+      <input type="checkbox" name="checkbox" value="{$val.user_id}" title="{$val.user_name}" onclick="setCombineConfig()"/>
+    </td>
+    <td>{$val.user_id}</td>
+    <td>{$val.user_name}</td>
+    <td title="{$val.address}" style="text-align:left;padding-left:5px;">{$val.address}</td>
+    <td>{$val.mobile_phone} | {$val.home_phone}</td>
+    <td>{$val.type_name}</td>
+    <td>{$val.role_name}</td>
+    <td>{$val.admin_name}</td>
+  </tr>
+  {/foreach}
+  {else}
+  <tr>
+    <td colspan="{if $platform_manager}5{else}8{/if}">
+      {if $repeat_user_report}没有搜索记录{else}{$repeat_user_report}{/if}</td>
+  </tr>
+  {/if}
+</table>
+<div class="bottom_tip">{$page}</div>

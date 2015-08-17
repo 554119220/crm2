@@ -1,0 +1,37 @@
+<!--首页销量警报-->
+<table width="101%" cellpadding="0" cellspacing="0" class="index_small tr_hover">
+  <tr>
+    <td class="home-stuff-heading" colspan="5">&nbsp;销量警报<img src="images/update.png"/></td>
+  </tr>
+  <tr>
+    <th width="10%">ID</th>
+    <th width="30%">产品名</th>
+    <th width="10%">库存</th>
+    <th width="15%">本月出库</th>
+    <th width="25">近三个月销量</th>
+  </tr>
+  {if is_array($sale_alarm_list.sale_alarm)}
+  {foreach from=$sale_alarm_list.sale_alarm item=val}
+  <tr>
+    <td>{$val.goods_sn}</td>
+    <td style="text-align:left;"> {$val.goods_name} </td>
+    <td>{$val.quantity}</td>
+    <td>{$val.goods_number}</td>
+    <td>{$val.three_month_sale}</td>
+  </tr>
+  {/foreach}
+  {else}
+  <tr>
+    <td colspan="5" style="text-lign:center">{$sale_alarm_list.sale_alarm}</td>
+  </tr>
+  {/if}
+</table>
+<div class="index_filter_page">
+  <button onclick="getIndexAlarm(1,{$sale_alarm_list.filter.recorder_size})">&lt;&lt;</button>
+  <button onclick="getIndexAlarm({$sale_alarm_list.filter.page}-1)">上一页</button>
+  {foreach from=$sale_alarm_list.filter.list_page item=val}
+  <button class="{if $sale_alarm_list.filter.page eq $val}visted{/if}" onclick="getIndexAlarm({$val})">{$val}</button>
+  {/foreach}
+  <button onclick="getSaleAlarm({$sale_alarm_list.filter.page}+1)">下一页</button>
+  <button onclick="getSaleAlarm({$sale_alarm_list.filter.end})">&gt;&gt;</button>
+</div>

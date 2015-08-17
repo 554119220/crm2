@@ -1,0 +1,39 @@
+<br/><h3>工作绩效</h3><br/>
+<nav class="list_panel">
+<form name="award_form" action="javascript:void(0)" onsubmit="getAward('')">
+    <input type="text" name="year" id="year" maxlength="4" onfocus="WdatePicker({dateFmt:'yyyy'})" / style="width:42px" value="{$date.year}"/> 年
+    <input type="text" name="month_day" id="month_day" maxlength="2" onfocus="WdatePicker({dateFmt:'MM-dd'})" style="width:62px" value="{$date.month_day}"/> 
+    &nbsp;&nbsp;&nbsp;
+    <select name="quarter">
+      <option value="0">请选择季度</option>
+      <option value="1" {if $quarter eq 1}selected{/if}>第一季度</option>
+      <option value="2" {if $quarter eq 2}selected{/if}>第二季度</option>
+      <option value="3" {if $quarter eq 3}selected{/if}>第三季度</option>
+      <option value="4" {if $quarter eq 4}selected{/if}>第四季度</option>
+    </select>
+    <select name="platform" id="platform" onchange="getGroupList(this)">
+      <option value="0">选择部门</option>
+      {if $platform_list neq null}
+      {foreach from=$platform_list item=val}
+      <option value="{$val.role_id}">{$val.role_name}</option>
+      {/foreach}
+      {/if}
+    </select>
+    <select name="group_id" id="group_id">
+      <option value="0">选择小组</option>
+      {if $group_list neq null}
+      {foreach from=$group_list item=val}
+      <option value="{$group_id}">{$group_name}</option>
+      {/foreach}
+      {/if}
+    </select>
+    <input type="text" name="admin" value="{$admin_name}" placeholder="员工姓名"/>
+  <input type="hidden" name="source" id="source" value="{$source}"/>
+  <input type="submit" name="" value="搜 索" class="b_submit"/>
+  <input type="button" onclick="getAward('order_rate')" class="b_submit" style="margin-left:16px;" value="成单率">
+  <input type="button" onclick="getAward('quarter_performance')" class="b_submit" value="季度销售">
+  <input type="button" onclick="getAward('year_performance')" class="b_submit" value="年度销售">
+</form>
+
+</nav>
+<div id="resource">{$award_list_div}</div>

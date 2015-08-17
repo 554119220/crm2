@@ -1,0 +1,57 @@
+{if $show}
+<link rel="stylesheet" href="styles/stats.css" type="text/css" />
+<div id="loadDiv">
+    <!-- 页标题 -->
+    <div class="page_title">顾客购买力统计</div>
+
+    <!-- 数据显示区 -->
+    <div style="width:100%; height:auto">
+        <!-- 查询条件 -->
+        <div>
+            <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+            查询日期：<input class="Wdate" id="start_time" type="text" value="{$start_time}" size="12" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',{$min_date}})">
+            至<input class="Wdate" id="end_time" type="text" value="{$end_time}" size="12" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',{$max_date}})">
+            <button value="report_forms.php?act=user_buy_stats" onclick="statsUserMonthly(this)" class="b_submit" style="margin:2px 0 0 5px">
+                查询
+            </button>
+        </div>
+        <div id="user_stream_analysis">
+            {/if}
+            {foreach from=$aTotal key=keys item=values}
+            <table border='1'>
+                <caption><h2>{$aRole_list[$keys]}</h2></caption>
+                <tr>
+                    <th>姓名</th>
+                    <th>500元以下</th>
+                    <th>500-1000</th>
+                    <th>1000-1500</th>
+                    <th>1500-5000</th>
+                    <th>5000元以上</th>
+                </tr>
+                {foreach from=$values key=key item=val}
+                <tr>
+                    <td>{$aAdmin_list[$key]}</td>
+                    <td>{$val[500]}</td>
+                    <td>{$val[1000]}</td>
+                    <td>{$val[1500]}</td>
+                    <td>{$val[5000]}</td>
+                    <td>{$val[max_up]}</td>
+                </tr>
+                {/foreach}
+                <tr>
+                    <td>共计</td>
+                    {foreach from=$offset item=m}
+                    <td align="right"> {$aRole_stats[$keys][$m]} </td>
+                    {/foreach}
+                    <!--td align="center"> {$aRole_stats[$keys][1000]} </td>
+                    <td align="center"> {$aRole_stats[$keys][1500]} </td>
+                    <td align="center"> {$aRole_stats[$keys][5000]} </td>
+                    <td align="center"> {$aRole_stats[$keys][max_up]} </td-->
+                </tr>
+            </table>
+            {/foreach}
+            {if $show}
+        </div>
+    </div>
+</div>
+{/if}

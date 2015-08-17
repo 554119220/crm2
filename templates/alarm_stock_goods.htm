@@ -1,0 +1,47 @@
+<div id="alarm_stock_goods">
+  <div style="text-align:center;padding:6px;">
+    <form name="confirm_form">
+      {if $confirm_stock_alarm}
+      <div><h1>【{$alarm_stock_goods.goods_name}】
+          <font color="#000">
+            <img src="images/startle.png" />只剩</font>
+          <font color="#E04633">{$alarm_stock_goods.quantity}</font>件啦</h1>
+      </div>
+      <br/>
+      <div>
+        安全库存： <font color="#E04633">{$alarm_stock_goods.warn_number}</font>&nbsp;
+        {if $confirm_stock_alarm}
+        下单时间 ：
+        <input type="text" id="add_sto_order_time" onClick="WdatePicker()" {if $alarm_stock_goods.add_sto_order_time}value="{$alarm_stock_goods.add_sto_order_time}" readOnly="true"{/if} />
+        预计到货时间 ：<input type="text" id="arrival_time" onClick="WdatePicker()" {if $alarm_stock_goods.predict_arrival_time}value="{$alarm_stock_goods.predict_arrival_time}" readOnly="true"{/if}/>
+        {/if}
+        <input type="text" style="color:#fff" placeholder='输入登录密码确认' id="confirm_pwd"/>
+        <input type="button" class="b_submit" value="确认" onclick="confirmStockAlarm()"/>
+      </div>
+      <input type="hidden" id="goods_sn" value="{$alarm_stock_goods.goods_sn}" />
+      {else}
+      <table cellpadding=0 cellspacing=0 width=100%>
+        <tr>
+          <th width="60%">商品名</th>
+          {if $stock_manager}
+          <th width="20%">安全库存</th>
+          <th width="20%">实时库存</th>
+          {/if}
+        </tr>
+        {foreach from=$alarm_stock_goods item=val}
+        <tr>
+          <td>{$val.goods_name}</td>
+          {if $stock_manager}
+          <td>{$val.warn_number}</td>
+          <td>{$val.quantity}</td>
+          {/if}
+        </tr>
+        {/foreach}
+      </table>
+      <span style="float:right;margin:6px;">
+        <input type="button" class="b_submit" value="我知道了" onclick="confirmStockAlarm()" id="btn_konw"/>
+      </span>
+      {/if}
+    </form>
+  </div>
+</div>

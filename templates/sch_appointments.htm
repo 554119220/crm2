@@ -1,0 +1,42 @@
+<table width="100%" cellpadding="0" cellspacing="0" border="0" id="appointments_tbl" class="wu_table_list rb_border wu_rb_border tr_hover">
+    <tr>
+      <th width="15%">标题</th>
+      <th width="10%">顾客姓名</th>
+      <th width="15%">预约时间</th>
+      <th width="50%">上一次服务</th>
+      <th width="10%">操作</th>
+    </tr> 
+    {if $appointments_list neq null}
+    {foreach from=$appointments_list item=val}
+    <tr>
+      <td>{$val.appointments_name}</td>
+      <td>{$val.user_name}</td>
+      <td><label onclick="setPostphoneService(this,'{$val.alarm_time}',{$val.appointments_id})">{$val.alarm_time}</label></td>
+      <td>{$val.comment}</td>
+      <td>
+        <button class="btn_new" onclick="modAppointment({$val.appointments_id},'postphone',this)">推迟</button>
+        <button class="btn_new" onclick="modAppointment({$val.appointments_id},'del',this)">删除</button>
+      </td>
+    </tr>
+    {/foreach}
+    {else}
+    <tr><td colspan="5">没有预约记录</td></tr>
+    {/if}
+  </table>
+
+  <!-- 分页 -->
+  <div class="bottom_tip">
+    <div class="tip_left">
+      <p>共{$filter.record_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </div>
+    <div class="tip_center">
+      <span><a href="service.php?act={$filter.act}&page=1&page_size={$filter.page_size}" id="page_link">&lt;&lt;</a></span>
+      {foreach from=$filter.page_set item=v}
+      <span {if $v eq $filter.page} class="cur"{/if}>{if $v eq $filter.page}{$v}{else}<a href="service.php?act={$filter.act}&page={$v}&page_size={$filter.page_size}">{$v}</a>{/if}</span>
+      {/foreach}
+      <span><a href="service.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}">&gt;&gt;</a></span>
+    </div>
+    <div class="tip_right">跳转到第
+      <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+    </div>
+  </div>

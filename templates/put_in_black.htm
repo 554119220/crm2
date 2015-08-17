@@ -1,0 +1,75 @@
+<div style="display:{if $put_account_in_blacklist eq 1}none{else}block{/if}"> 
+  <div class="pop_title">
+    把{$user_name}拉入黑名单&nbsp;&nbsp;&nbsp;
+    <span id="alarm_span"></span>
+    <label onclick="close_pop()" ><b>X</b></label>
+  </div>
+  <table width="520px" cellspacing="0" cellpadding="0" border="0" class="table_form">
+    <tr>
+      <th width="30%">类型：</th>
+      <td>
+        <select id="blacklist_type">
+          {foreach from=$blacklist_type item=val}
+          <option value="{$val.type_id}">{$val.type_name}</option>
+          {/foreach}
+        </td>
+      </tr>
+      <tr>
+        <th width="30%">拦入黑名单原因：</th>
+        <td>
+          <textarea id="reason" style="resize:none;padding:6px" cols="60" rows="4"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align:right">
+          <input type="button" class="input_submit" style="margin-righ:5px" value="确认" onclick="putInBlack({$user_id})">
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="display:{if $put_account_in_blacklist eq 1}block{else}none{/if}">
+    <div class="pop_title">
+      添加黑名单&nbsp;&nbsp;&nbsp;
+      <span id="alarm_span"></span>
+      <label onclick="close_pop()" ><b>X</b></label>
+    </div>
+    <br/>
+    <form action="account_manager.php" method="post" enctype="multipart/form-data">
+      <table width="520px" cellspacing="0" cellpadding="0" border="0" class="table_form">
+        <tr>
+          <th width="30%">直接输入账号：</th>
+          <td>
+            <select name="account_type">
+              <option value="0">选择账号类型</option>
+              <option value="2">手机</option>
+              <option value="3">固话</option>
+              {foreach from=$account_type item=val}
+              <option value="{$val.type_id}">{$val.type_name}</option>
+              {/foreach}
+            </select>
+            <input type="text" id="account_value"/>
+          </td>
+        </tr>
+        <tr>
+          <th width="60%">导入黑名单：</th>
+          <td>
+            <input type="file" name="blacklist_file" value="" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <div id="accounts_file" class="list_field">
+              <font color="#666">文中的黑名单列表</font>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="right">
+            <input type="submit" class="input_submit" value="拉入黑名单" />
+            <input type"hidden" name="act" value="show_file_blacklist_account" >
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>

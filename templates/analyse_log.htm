@@ -1,0 +1,54 @@
+<br />
+<div id='analyse_condition' style="border:1px solid #ccc;padding:12px;color:$fff;">
+  <form action="javascript:void(0)" name"detail_conf_form" onsubmit="getActAnalyse(this,'')">
+    <div class="analyse_conf_div">
+      <span style="margin-right:5px;">{$condition_name} :</span>
+      <select name="analyse_code">
+        <option value="all">全部</option>
+        <option value="view">查看</option>
+        <option value="upd">编辑</option>
+        <option value="del">删除</option>
+        {if $condition eq 'by_user_action'}
+        <option value="transfer">转移</option>
+        {/if}
+      </select>
+      <select name="explane" onchange="getCondition(this)" style="width:142px;">
+        <option value="select">请选择条件</option>
+        {if $condition eq 'by_user_action'}
+        <option value="role">某平台顾客</option>
+        <option value="effect">某类型顾客</option>
+        <option value="rank">某等级顾客</option>
+        <option value="other">不属于自己的顾客</option>
+        {else}
+        <option value="role">某平台订单</option>
+        {/if}
+      </select>
+      <select id="explane_value" name="explane_value">
+        <option value="0">请选择条件</option>
+      </select>
+      <select name="symbol">
+        <option value="lt">小于</option>
+        <option value="gt">大于</option>
+      </select>
+      <input type="number" name="analyse_value" value="1" min="1" /> 次
+      <input type="hidden" name="module" value="{if $condition eq 'by_user_action'}user{else}order{/if}"/>
+      <input type="submit" value="搜 索" class="b_submit"/>
+      <input type="button" value="保存方案" class="b_submit" onclick="javascript:var d=document.getElementById('solution_div').style;d.display=d.display=='none' ? 'block' : 'none'"/>
+      <select name="solution" id="solution" onchange="searchForSolution(this)">
+        <option value="0">已存方案</option>
+        {foreach from=$solution_list item=val}
+        <option value="{$val.solution_id}">{$val.solution_name}</option>
+        {/foreach}
+      </select>
+    </div>  
+    <div id="solution_div" class="solution_div">
+      方案名：
+      <input type="text" name="solution_name" id="solution_name" value="" style="width:200px;"/>
+      <input type="button" value="保存" onclick="addActionSolution(this.form,'add')" class="b_submit"/>
+    </div>
+  </form>
+</div>
+<div id='analyse_result' style="border:1px solid #ccc;padding:12px;border-top:0px;">
+  <div style="font-size:16px;margin-bottom:3px;">{$start_time} 至 {$end_time}</div>
+  {$analyse_log_table}
+</div>

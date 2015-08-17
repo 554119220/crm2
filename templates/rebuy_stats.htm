@@ -1,0 +1,56 @@
+<!-- 页兽标题 -->
+<div class="finder-title mt10">重复购买</div>
+
+<!-- 搜索区 -->
+<fieldset id="pageSearch">
+    <legend>搜索</legend>
+    <form method="post" name="pageSearch" onsubmit="return commonSearch()">
+        <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+        下单日期：<input class="Wdate" name="start_time" type="text" value="" onclick="WdatePicker({{$min_date}})">
+        至<input class="Wdate" name="end_time" type="text" value="" onclick="WdatePicker({{$max_date}})">
+        {if $platform}
+        <select name="platform" onchange="changePlatform(this)"><option value="0">选择平台</option>{html_options options=$platform}</select>
+        {/if}
+        <select name="admin_id" id="admin_id"><option value="0">选择客服</option>{html_options options=$admin_list}</select>
+        <input type="submit" value="搜索" class="b_submit">
+    </form>
+</fieldset>
+<table border="0" id="dataList" class="all_table_list c_b rb_border" cellpadding="0" cellspacing="0" width="400">
+    <thead>
+        <th>顾客姓名</th>
+        <th>总单数</th>
+        <!--th>总金额</th-->
+        <th>最近购买日期</th>
+        <th>客服</th>
+    </thead>
+    <tbody>
+    {foreach from=$rebuy_stats item=val name=i}
+    <tr>
+        <td>{$val.user_name}</td>
+        <td>{$val.ordinal_number}</td>
+        <!--td>{$val.final_amount}</td-->
+        <td>{$val.buy_time}</td>
+        <td>{$val.admin_name}</td>
+    </tr>
+    {/foreach}
+    </tbody>
+</table>
+
+<!-- 分页 -->
+<div id="pageList" class="bottom_tip">
+    <div class="tip_left">
+        <p>共{$record_count}条记录,当前页:{$page_start}-{$page_end}条，每页<input type="text" name="page_size" size="4"></p>
+    </div>
+    <div class="tip_center">
+        <span>
+            <a href="{$dst_script}.php?act={$act}{$condition}&page_size={$page_size}&page_no=1" id="page_link"><<</a>
+        </span>
+        {foreach from=$page_list item=v}
+        <span{if $v eq $page} class="cur"{/if}>{if $v eq $page}{$v}{else}<a href="{$dst_script}.php?act={$act}{$condition}&page_size={$page_size}&page_no={$v}">{$v}</a>{/if}</span>
+        {/foreach}
+        <span><a href="{$dst_script}.php?act={$act}{$condition}&page_size={$page_size}&page_no={$page_count}">>></a></span>
+    </div>
+    <div class="tip_right">
+        跳转到第<input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+    </div>
+</div>

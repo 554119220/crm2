@@ -1,0 +1,35 @@
+<br/><h3>订货列表</h3>
+<div class="tools_div">
+  <form action="javascript:void(0)" method="GET" name="schOrderSheetForm" onsubmit="return schOrderSheet(this)">
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+      <tr>
+       <th>订货日期：</th> 
+       <td><input type="text" name="add_time" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/></td>
+       <th>品牌名：</th>
+       <td>
+         <select id="brand_id" name="brand_id" onchange="getGoodsBybrand(this.value)">
+           <option value="0">选择品牌</option>
+           {foreach from=$brand_list item=val}
+           <option value="{$val.brand_id}">{$val.brand_name}</option>
+           {/foreach}
+         </select>
+         </td>
+         <th>商品名：</th>
+         <td>
+           <select id="goods_id" name="goods_id" style="width:240px">
+             <option value="0">选择商品</option>
+             {foreach from=$goods_list item=val}
+             <option value="{$val.goods_sn}">{$val.goods_name}</option>
+             {/foreach}
+           </select>
+         </td>
+       </tr>
+       <tr>
+         <th>关键字：</th>
+         <td><input type="text" name="goods_name" placeholder="输入商品名"/></td>
+         <th colspan="4"><input class="b_btn" type="submit" value="搜  索" /></th>
+       </tr>
+     </table>
+   </form>
+ </div>
+ <div id="resource">{$order_sheet_div}</div>

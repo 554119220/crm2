@@ -1,0 +1,69 @@
+<br />
+<div width="100%" id="solution_config">
+  <table width="90%" cellpadding="0" cellspacing="0" border="0" class="form_table general_table">
+    {if $config_list}
+    {foreach from=$config_list item=val}
+    <tr>
+      <th width="28%" style="text-align:right;padding-left:4px;">{$val.solution_name} ：</th>
+      <td width="72%">
+        <form action="javascript:void(0)" name="soulution_form" onsubmit="saveLogConfig(this,'')">
+          <div class="analyse_conf_div">
+            <span onclick="editConfValue(this)" id="analyse_code_value">{$analyse_code}</span>
+            <span onclick="editConfValue(this)" id="explane_value">{$explane_value}</span>
+            <span onclick="editConfValue(this)" id="symbol">{$symbol_value}</span>
+            <span onclick="editConfValue(this)" id="number">{$number_value}</span>
+            <select name="analyse_code">
+              <option value="all">全部</option>
+              <option value="view">查看</option>
+              <option value="upd">编辑</option>
+              <option value="del">删除</option>
+              {if $condition eq 'by_user_action'}
+              <option value="transfer">转移</option>
+              {/if}
+            </select>
+            <select name="explane" onchange="getCondition(this)" style="width:142px;">
+              <option value="select">请选择条件</option>
+              {if $condition eq 'by_user_action'}
+              <option value="role">某平台顾客</option>
+              <option value="effect">某类型顾客</option>
+              <option value="rank">某等级顾客</option>
+              <option value="other">不属于自己的顾客</option>
+              {else}
+              <option value="role">某平台订单</option>
+              {/if}
+            </select>
+            <select id="explane_value" name="explane_value">
+              <option value="0">请选择条件</option>
+            </select>
+            <select name="symbol">
+              <option value="lt">小于</option>
+              <option value="gt">大于</option>
+            </select>
+            <input type="number" name="analyse_value" value="1" min="1" /> 次
+            <input type="hidden" name="module" value="{if $condition eq 'by_user_action'}user{else}order{/if}"/>
+          </div>
+        </form>
+      </td>
+    </tr>
+    {/foreach}
+    {else}
+    <tr>
+      <td></td>
+    </tr>
+    {/if}
+  </table>
+</form>
+<br />
+<div>
+  <form action="javascript:void(0)" name="allot_form">
+    <table class="form_table general_table" width="50%" cellpadding="0" cellspacing="0" border="0">
+      <th>将异常操作及时提醒给：</th>
+      <td id="td_admin"></td>
+      <td>
+        <input type="button" id="admin_id_field" value="查看 " onclick="allotAuthority()" class="btn_new"/>
+      </td>
+    </table>
+  </div>
+  <br />
+  <div id="admin_view"></div>
+</div>

@@ -1,0 +1,105 @@
+<!-- 积分搜索/查看 -->
+<br/>
+<h3>积分日志查看</h3>
+<br/>
+<div id="cur_rule"></div>
+<div class="list_panel">
+  <form name="for_sch_inte_log">
+    <select name="role">
+      <option value="-1">平台</option>
+      {foreach from=$role item=val}
+      <option value="{$val.role_id}">{$val.role_name}</option>
+      {/foreach}
+    </select>
+    <input type="text" id="user_info" name="user_info" placeholder="姓名或手机" style="width:100px;!important" maxlength="11" />
+    时间<input name="start_time" type="text" onClick="WdatePicker()" style="width:80px;!important" placeholder="起始时间"/>
+    <input type="text" name="end_time" onClick="WdatePicker()" style="width:80px;!important" placeholder="终止时间"/>
+    积分区间<input type="text" placeholder="最小积分/最大积分" name="distinct"/> <input type="button" class="b_submit" onclick="schInteLog()" value="搜 索"/>
+  </form>
+</div> 
+
+<div id="resource">
+  <table width="100%" cellspacing="0" cellpadding="0" class="wu_tale_list rb_border tr_hover wu_rb_border">
+    <thead>
+      <tr id="caption">
+        <th width="7%">顾客</th>
+        <th width="8%">等级</th>
+        <th width="8%">订单金额</th>
+        <th width="8%">积分规则</th>
+        <th width="8%">当前积分</th>
+        <th width="8%">积分变量</th>
+        <th width="8%">原积分</th>
+        <th width="8%">增/减</th>
+        <th width="10%">增减时间</th>
+        <th width="10%">确认时间</th>
+        <th width="7%">确认人</th>
+      </tr>
+    </thead>
+    <tbody>
+      {foreach from=$integral item=val}
+      <tr>
+        <td>{$val.user_name}</td>
+        <td>{$val.rank_name}</td>
+        <td>{$val.goods_amount}</td>
+        <td><button value="{$val.integral_id}">{$val.integral_title}</button></td>
+        <td>{$val.cur_integral}</td>
+        <td>{$val.exchange_points}</td>
+        <td>{$val.pre_points}</td>
+        <td>
+          {if $val.increase_reduce eq 0}-
+          {else}+
+          {/if}
+        </td>
+        <td>{$val.receive_time}</td>
+        <td>{$val.confirm_time}</td>
+        <td>{$val.admin_name}</td>
+      </tr>
+      {/foreach}
+    </tbody>
+  </table>
+</div>
+</div>
+
+<!-- 分页 -->
+<div class="bottom_tip">
+  <div class="tip_left">
+    <p>共{$filter.record_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+  <div class="tip_center">
+    <span><a href="service.php?act={$filter.act}&page=1&page_size={$filter.page_size}" id="page_link">&lt;&lt;</a></span>
+    {foreach from=$filter.page_set item=v}
+    <span {if $v eq $filter.page} class="cur"{/if}>{if $v eq $filter.page}{$v}{else}<a href="service.php?act={$filter.act}&page={$v}&page_size={$filter.page_size}">{$v}</a>{/if}</span>
+    {/foreach}
+    <span><a href="service.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}">&gt;&gt;</a></span>
+  </div>
+  <div class="tip_right">跳转到第
+    <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+  </div>
+</div>
+
+<style type="text/css">
+  #navigation {
+    padding:6px 15px 6px 15px;
+  }
+  #navigation input,select{
+    margin:2px 6px 2px 6px; 
+    padding:3px;
+    size:160px;
+  }
+  #resource {
+    background:#FFF;
+    padding: 0;
+  }
+  #caption {
+    background:#D3DCE3 !important;
+  }
+
+  table tr:hover {
+    background:#E0E0E0 !important;
+  }
+
+  table tr:nth-child(even){
+    background: #f8f8f8 !important;
+  }
+
+</style>

@@ -1,0 +1,102 @@
+<div class="content-head w830">
+  <br>
+  <div style="display:inline;clear:none" class="finder-title mt10">角色管理<font>{$num}</font></div>
+  <span style="float:right;">
+    <a class="a_btn" href="system.php?act=addrole">添加角色</a>
+  </span>
+  <div class="finder-packet" id="">
+    <div class="packet-items" id="">
+
+      <input type="hidden" id="cache_data" value="{$cache_data}"/>
+    </div>
+  </div>
+  <div class="finder-header-wrapper" id="" class="list-div">
+    <table border="0" cellpadding="0" cellspacing="0" class="rb_border all_table_list">
+      <tr>
+        <td class="left_scroll">
+          <!--*********左上-BEGIN***********-->
+          <table width="200px" height="100%" border="0" cellpadding="0" cellspacing="1" style="display:none">
+            <tr bgcolor="#FFFFFF">
+              <td height="20" align="center">用户名</td>
+              <td align="center">订单编号</td>
+            </tr>
+          </table>
+          <!--**************左上-END**********-->
+        </td>
+        <td width="50%">
+          <div id=''>
+            <!--***********右上-BEGIN********-->
+            <table height="100%" border="0" width="824px" cellpadding="0" cellspacing="0">
+              <tr>
+                <th align="center" width="15%">角色名</th>
+                <th height="20px" width="20%" align="center">角色描述</th>
+                <th align="center" width="15%">内部竞争</th>
+                <th align="center" width="20%">管理</th>
+                <th align="center" width="20%">类型</th>
+                <th align="center" width="20%">操作</th>
+              </tr>
+            </table>
+            <!--************右上-END**********-->
+          </div> 
+        </td>
+      </tr>
+      <tr>
+        <td width="50%" align="left" valign="top">
+          <div id='scroll2'>
+            <!--*************左下-BEGIN**************-->
+            <table width="199px" height="100%" border="0" cellpadding="0" cellspacing="1" style="display:none">
+              <colgroup>
+                <col width="40px">
+                <col width="160px">
+              </colgroup>
+              <tr bgcolor="#FFFFFF" id="tr_1_{$val.order_id}" class="tr_list">
+                <td width="200px" align="center">4444444</td>
+                <td align="center" width="50px">5555555</td>
+              </tr>
+        
+            </table>
+            <!--*************左下-END***********-->
+          </div>
+        </td>
+        <td align="left" valign="top">
+          <div onscroll="javascript:syncscroll(this)">
+            <!--***********右下-BEGIN***********-->
+            <table width="824px" height="100%" border="0" cellpadding="0" cellspacing="1">
+             {foreach from=$role_list item=list} 
+              <tr bgcolor="#FFFFFF" id="tr_2_{$val.order_id}" class="tr_list">
+                <td align="center" width="15%">{$list.role_name}</td>
+                <td align="center" width="20%">{$list.role_describe}</td>
+                <td align="center" width="15%">{$list.compete}</td>
+                <td align="center" width="20%">{$list.manager}</td>
+                <td align="center" width="20%">{$list.role_type}</td>
+                <td align="center" width="20%"><a class="btn" href="system.php?act=assign_authority&role_id={$list.role_id}">编辑</a></td>
+              </tr>
+         {/foreach}
+            </table>
+            <!--*************右下-END*****************-->
+          </div>
+        </td>
+      </tr>
+    </table>
+    <p id="y">&nbsp;</p>
+    <p id="x">&nbsp;</p>
+  </div>
+</div>
+<style type="text/css">
+  .a_btn{
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2673C4), to(#75A6DA));
+    border : 1px solid ;
+    border-radius : 5px;
+    color : #FFF; 
+    padding : 2px 5px;
+    height : 22px;
+    font-size : 12px;
+    text-align : center;
+  }
+
+  .a_btn:hover{
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#033b74), to(#2e78c6));
+    color:#FFF;
+    text-decoration:none;
+  }
+</style>

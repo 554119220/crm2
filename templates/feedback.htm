@@ -1,0 +1,58 @@
+<!doctype htm>
+<html lang="zh">
+  <head>
+    <title>意见、BUG反馈</title>
+    <link rel="stylesheet" href="styles/general.css" type="text/css" charset="utf-8"/>
+    <link rel="stylesheet" href="styles/new.css" type="text/css" charset="utf-8"/>
+    <link rel="stylesheet" href="styles/index.css" type="text/css" charset="utf-8"/>
+  </head>
+  <body>
+    <div style="width:70%;">
+      {if $behave eq 'upload'}
+      <center style="background:#ccc">
+        <h1>建议反馈</h1><hr width="80%">
+        <p style="font-size:18px;padding:12px;">
+        您好，欢迎您给我们提出使用中遇到的问题或建议！感谢您对技术部的支持。
+        </p>
+      </center>
+      <div class="box_center" style="width:98%;height:430px;margin:0px;font-size:14px;marign-bottom:8px;">
+        <form name="feedback_form" action="feedback.php?act=feedback_done" method="POST" enctype="multipart/form-data">
+          <div>
+            简单的标题：<input type="text" name="title" value="" style=" height: 23px; margin-bottom: 12px; width: 240px;" autofocus required/>
+          </span>
+          <span>
+            <font color="{if $res.code}green{else}red{/if}">{$res.message}</font>
+          </div>
+          <div>
+            <textarea name="feedback" style="resize:vertical;height:166px;width:694px;margin-bottom:6px;padding:6px;" placeholder="反馈内容"></textarea>
+            附件1：<input type="file" name="img1" value="" style="margin-bottom:12px;height:26px;" accept="image/*" /><br />
+            附件2：<input type="file" name="img2" value="" style="height:26px;" accept="image/gif image/jpg"/>
+          </div>
+          <span style="float:right;">
+            <input type="submit" value="提 交" class="input_submit"/>
+          </span>
+        </form>
+      </div>
+      {elseif $behave eq 'see_more'}
+      <fieldset style=" border-radius: 0px; margin-left: 13px; " >
+        <legend style=" border: 1px solid #847CBF; background: #fff; padding: 6px;" >
+          {$feedback.title}
+        </legend> 
+        <div>{$feedback.message}</div>
+      </fieldset>
+      {if $feedback.image1}
+      <br />
+      <div style="padding:16px;">
+        <h2>附件1：</h2>
+        <img src="{$feedback.image1}" ></div>
+      {/if}
+      <br />
+      {if $feedback.image2}
+      <div style="padding:16px;">
+        <h2>附件2：</h2>
+        <img src="{$feedback.image2}" ></div>
+      {/if}
+      {/if}
+    </div>
+  </body>
+</html>

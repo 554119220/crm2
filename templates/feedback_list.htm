@@ -1,0 +1,44 @@
+<br ><h3>意见、bug反馈情况</h3>
+<br />
+<div style="margin-bottom:5px;background:#f8fafe;padding:8px;">
+  <label><input type="radio" name="status" value="0" {if !$readed}checked{/if} onclick="listFeedback(this)"> 未处理</label>
+  <label><input type="radio" name="status" value="1" {if $readed eq 1}checked{/if} onclick="listFeedback(this)"> 已解决</label>
+</div>
+<div>
+  <table class="wu_talbe_list wu_rb_border rb_border tr_hover" width="100%" cellpadding="0" cellspacing="0" id="feedback_table">
+    <tr>
+      <th width="50%">反馈内容</th>
+      <th width="10%">问题类型</th>
+      <th width="10%">解决方案</th>
+      <th width="40%">操作</th>
+      </tr>
+      {if $feedback_list}
+      {foreach from=$feedback_list item=val}
+      <tr>
+        <td style="text-align:left">
+          【{$val.sent_time}】{$val.user_name} 提交<a target="_blank" href="feedback.php?act=feedback_more&message_id={$val.message_id}">【{$val.title}】</a>
+        </td>
+        <td>{$val.message_class}</td>
+        <td>-</td>
+        <td>
+          {if $val.readed}
+          BUG已在【{$val.read_time}】解决 
+          <button class="btn_new" value="0" onclick="dealFeedback({$val.message_id},this)">BUG仍存在</button>
+          {else}
+          <button class="btn_new" value="1" onclick="dealFeedback({$val.message_id},this)">解 决</button>
+          {/if}
+        </td>
+      </tr>
+      {/foreach}
+      {else}
+      <tr>
+        <td colspan="4">
+          {if $readed}
+          不准偷懒，还有没解决的BUG呢！！
+          {else}很好，暂时没有发现BUG！！
+          {/if}
+        </td>
+      </tr>
+      {/if}
+    </table>
+  </div>

@@ -1,0 +1,41 @@
+<style type="text/css" media="screen">
+    table {border:1px solid #ddd; border-spacing:0; margin:5px 0px}
+    table td,th {padding:7px 9px; border:1px solid #ccc;}
+    .current a {color:#fff; font-weight:600}
+</style>
+<div class="content-head">
+    <div class="finder-title mt10">{$curr_title}</div>
+    <div>
+        <table>
+            <tr>
+                <td{if $person eq 0} class="current"{/if}><a href="report_forms.php?act=user_stats&person=0">部门顾客数量</a></td>
+                <td{if $person eq 1} class="current"{/if}><a href="report_forms.php?act=user_stats&person=1">个人顾客数量</a></td>
+                {foreach from=$customer_type_list key=k item=v}
+                <th align="center">{$v}</th>
+                <td align="center">{$total[$k]}</td>
+                {/foreach}
+            </tr>
+        </table>
+        <table>
+            <thead>
+                <th>{$column_title}</th>
+                {foreach from=$customer_type_list item=val}
+                <th>{$val}</th>
+                {/foreach}
+                <!--<th>{$column_title}</th>-->
+                <!--{foreach from=$customer_type_list item=val}-->
+                <!--<th>{$val}</th>-->
+                <!--{/foreach}-->
+            </thead>
+            <tr>
+                {foreach from=$section name=i key=key item=val}
+                <th align="center" style="background:{$color[$key]}">{$key}</th>
+                {foreach from=$customer_type_list key=k item=v}
+                <td align="center" style="background:{$color[$key]}">{$val[$k]}</td>
+                {/foreach}
+                </tr><tr>
+                {/foreach}
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+.about {
+  margin: 80px auto;
+  padding: 8px;
+  width: 260px;
+  font: 10px/18px "Lucida Grande", Tahoma, Verdana, sans-serif;
+  color: #777;
+  text-align: center;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.25);
+  background: #eee;
+  background: rgba(250, 250, 250, 0.8);
+  border-radius: 4px;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 6px rgba(0, 0, 0, 0.2);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
+}
+.about a {
+  color: #333;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: 0.1s;
+}
+.about a:hover { text-decoration: none; background: #fafafa; background: rgba(255, 255, 255, 0.7); }
+
+.about-links { height: 30px; } 
+.about-links a { float: left; width: 50%; line-height: 30px; font-size: 12px; }
+
+.about-author { margin-top: 5px; }
+.about-author a { padding: 1px 3px; margin: 0 -1px; }
+
+.container { width: 100%; text-align: center; }
+.container .progress { margin: 0 auto; width: 100%; margin-bottom:6px; }
+
+.progress { padding: 0px; border-radius: 6px;}
+.progress table{width:100%}
+
+.progress-bar { position: relative; height: 34px; border-radius: 4px; transition: 0.4s linear;}
+.progress-bar:before, .progress-bar:after { content: ''; position: absolute; top: 0; left: 0; right: 0; }
+.process_box{border:1px solid #6B6A6A;position:relative;color:#625C5C;}
+
+.progress-one{width:1%;background:-webkit-linear-gradient(left,#FF0000,#A90F0F)}
+.progress-five{background:-webkit-linear-gradient(left,#FF0000,#A90F0F)}
+.progress-twentyfive{background:-webkit-linear-gradient(left,#F50505,#ECB374)}
+.progress-fifty{background:-webkit-linear-gradient(left,#F50505,#ECB374)}
+.progress-seventyfive{background:-webkit-linear-gradient(left,#FF0000,#DEF710)}
+.progress-nintynight{background:-webkit-linear-gradient(left,#FF0000,#DEF710)}
+.progress-onehundred{background:-webkit-linear-gradient(left,#6ECD08,#147B19)}
+.progress-content{ position:absolute;top:26%;left:45%;font-size:large;font-family:cursive;}
+.progress-bar:after { z-index: 2; bottom: 45%; border-radius: 4px; height:34px;border:1px solid #ccc;}
+.progress .td_al{font-size:initial;}

@@ -1,0 +1,56 @@
+<table width="101%" cellpadding="0" cellspacing="0" class="index_small tr_hover">
+  <tr>
+    <td class="home-stuff-heading" colspan="6">&nbsp;库存警报<img src="images/update.png"/></td>
+  </tr>
+  <tr>
+    <th width="15%">编号</th>
+    <th width="35%">产品</th>
+    <th width="15">安全</th>
+    <th width="10%">库存</th>
+    <th width="15%">月出库</th>
+    <th width="15%">操作</th>
+  </tr>
+  {if is_array($stock_alarm.stock_alarm)}
+  {foreach from=$stock_alarm.stock_alarm item=val}
+  <tr {if $val.warn_number gt $val.quantity}class="font_red"{/if} onmouseover="mouseoverShowCtr('{$val.goods_sn}',1)" onmouseout="mouseoverShowCtr('{$val.goods_sn}',0)">
+    <td>{$val.goods_sn}</td>
+    <td style="text-align:left;">{$val.goods_name}</td>
+    <td>{$val.warn_number}</td>
+    <td>{$val.quantity}</td>
+    <td>{$val.sales_num}</td>
+    <td>
+      <span id="{$val.goods_sn}" style="display:none">
+        {if $storage_manage eq true}
+        {if $val.order_sheet_status eq 1}
+        <font color="black">已订货</font>
+        {else}
+        <img src="images/order.ico" onclick="addOrderSheet('{$val.goods_sn}','{$val.goods_name}')" class="png_btn" title="点击订货该商品">
+        {/if}
+        <span>
+          {if $val.status eq 0}
+          <img src="images/nottrack.gif" onclick="modGoodsStatus(this)" value="{$val.goods_sn}" sta="1" class="png_btn" title="点击恢复进货该商品">
+          {else}
+          <img src="images/track.png" onclick="modGoodsStatus(this)" value="{$val.goods_sn}" sta="0" class="png_btn" title="点击不再进货该商品">
+          {/if}
+        </span>
+        {else}-
+        {/if}
+      </span>
+    </td>
+  </tr>
+  {/foreach}
+  {else}
+  <tr>
+    <td colspan=4>{$stock_alarm.stock_alarm}</td>
+  </tr>
+  {/if}
+</table>
+<div class="index_filter_page">
+  <button onclick="getIndexAlarm(1,{$stock_alarm.filter.recorder_size})">&lt;&lt;</button>
+  <button onclick="getIndexAlarm({$stock_alarm.filter.page}-1,{$stock_alarm.filter.recorder_size})">上一页</button>
+  {foreach from=$stock_alarm.filter.list_page item=val}
+  <button class="{if $stock_alarm.filter.page eq $val}visted{/if}" onclick="getIndexAlarm({$val},{$stock_alarm.filter.recorder_size})">{$val}</button>
+  {/foreach}
+  <button onclick="getIndexAlarm({$stock_alarm.filter.page}+1,{$stock_alarm.filter.recorder_size})">下一页</button>
+  <button onclick="getIndexAlarm({$stock_alarm.filter.end},{$stock_alarm.filter.recorder_size})">&gt;&gt;</button>
+</div>

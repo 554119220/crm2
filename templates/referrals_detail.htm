@@ -1,0 +1,101 @@
+<!-- 顾客基本信息 -->
+<table class="referralsDetail" cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+    <tr>
+        <th align="right"><font color="red">*</font>姓名 ：</th>
+        <td>{$user.user_name}</td>
+        <th align="right">出生日期：</th>
+        <td>{$user.birthday}</td>
+        <th align="right">电话：</th>
+        <td>{$user.home_phone}</td>
+    </tr>
+    <tr>
+        <th align="right">身份证：</th>
+        <td>{$user.id_card}</td>
+        <th align="right"><font color="red">*</font>性别：</th>
+        <td class="w70">{if $user.sex eq 1}男{elseif $user.sex eq 2}女{elseif $user.sex eq 0}不详{/if}</td>
+        <th align="right">手机：</th>
+        <td>{$user.mobile_phone}</td>
+    </tr>
+    <tr>
+        <th>会员等级：</th>
+        <td>{$user.rank_name}</td>
+        <th>已有积分：</th>
+        <td>{$user.rank_points}</td>
+        <th>阿里旺旺：</th>
+        <td>{if $user.aliww}<a target="_blank" href="http://www.taobao.com/webww/ww.php?ver=3&touid={$user.aliww}&siteid=cntaobao&status=2&charset=utf-8" title="{$user.aliww}"><img border="0" src="http://amos.alicdn.com/realonline.aw?v=2&uid={$user.aliww}&site=cntaobao&s=2&charset=utf-8" alt="{$user.aliww}" /></a>{/if}{$user.aliww}</td>
+    </tr>
+    <tr>
+        <th>顾客类型：</th>
+        <td>{$user.customer_type}</td>
+        <th align="right">经济来源：</th>
+        <td>{$user.income}</td>
+        <th> QQ： </th>
+        <td>{if $user.qq}<a href="tencent://message/?uin={$user.qq}" title="{$user.qq}" name="msg"><img alt="{$user.qq}" src="http://wpa.qq.com/pa?p=1:{$user.qq}:17"></a>{/if}{$user.qq}</td>
+    </tr>
+    <tr>
+        <th align="right">需求：</th>
+        <td>{$user.eff_name}</td>
+        <th>顾客来源：</th>
+        <td>{$user.from_where}</td>
+        <th> E-mail：</th>
+        <td>{$user.email}</td>
+    </tr>
+    <tr>
+        <th>能接受的&nbsp;<br/>沟通方式&nbsp;</th>
+        <td colspan="3" id="marketing">{$marketing_checked_list}</td>
+        <th>介绍人 ：</th>
+        <td><a href="javascript:;" target="_blank" onclick="referralsDetail({$user.referrals_id});">{$user.referrals}</a></td>
+    </tr>
+    <tr>
+        <th>地址：</th>
+        <td colspan="5">
+            {$user.province}{$user.city}{$user.district}<br>{$user.address}
+        </td>
+    </tr>
+    </tbody>
+    </table>
+
+    {if $order_list}
+    <table class="referralsPurchase" cellpadding="3" cellspacing="1" style="border:1px #ccc solid !important" width="100%">
+    <tbody>
+    <tr height="25px">
+        <th width="80px">购买日期</th>
+        <th width="50px">金额</th>
+        <th>订单</th>
+        <th width="80px">订单状态</th>
+        <th width="80px">下单客服</th>
+    </tr>
+    {foreach from=$order_list item=order}
+    <tr {$order.tr}>
+        <td valign="top">{$order.add_time}</td>
+        <td valign="top">{$order.final_amount}</td>
+        <td align="left" style="text-align:left">
+            <details>
+                <summary><a href="http://www.kuaidi100.com/chaxun?com={$order.shipping_code}&nu={$order.express_number}" target="_blank" style="margin-right:20px">{$order.platform}：{if $order.order_sn}{$order.order_sn}{else}{$order.shipping_name}{/if}</a>{$order.shipping_name}</summary>
+                {foreach from=$order[goods_list] item=g}
+                {if isset($g['goods_list'])}
+                <details>
+                    <summary>{$g.goods_name}  {$g.goods_number}×￥{$g.goods_price}</summary>
+                    {foreach from=$g.goods_list item=o}
+                    <p>{$o.goods_name}<wbr>（数量：{$o.goods_number}）</p>
+                        {/foreach}
+                    </details>
+                    {else}
+                    <p>
+                    {$g.goods_name}
+                    {$g.goods_number}×￥{$g.goods_price}<br>
+                    <input class="b_submit" type="button" name="" onclick="getGoodsHlp({$g.goods_number},{$g.goods_id},'{$g.goods_name}')" value="服用明细"/>
+                    <input class='b_submit' type="button" name="name" value="相关套餐" onclick="getPackage({$g.goods_id})"/>
+                    </p>
+                    {/if}
+                    {/foreach}
+                </details>
+            </td>
+            <td valign="top">{$order.finaly_order_status}</td>
+            <td valign="top">{$order.operator}</td>
+        </tr>
+        {/foreach}
+        </tbody>
+        </table>
+        {/if}

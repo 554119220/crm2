@@ -1,0 +1,1768 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ADMIN_PATH	init.php	/^    define('ADMIN_PATH','admin');$/;"	d
+BarCode128	cls_code.php	/^class BarCode128 {$/;"	c
+DATA_DIR	init.php	/^define('DATA_DIR', $ecs->data_dir());$/;"	d
+DEBUG_MODE	init.php	/^    define('DEBUG_MODE', 0);$/;"	d
+ECP_list	lib_main.php	/^function ECP_list()$/;"	f
+ECS_ADMIN	init.php	/^define('ECS_ADMIN', true);$/;"	d
+EC_CHARSET	cls_json.php	/^    define('EC_CHARSET', 'utf-8');$/;"	d
+FCKeditor	lib_main.php	/^    $FCKeditor = $editor->CreateHtml();$/;"	v
+GetSMon	lunar.php	/^      private function GetSMon($year,$month)$/;"	f
+IMAGE_DIR	init.php	/^define('IMAGE_DIR', $ecs->image_dir());$/;"	d
+IN_ECS	lib_index_info.php	/^define('IN_ECS', true);$/;"	d
+IN_ECS	lib_stock_manager.php	/^define('IN_ECS',true);$/;"	d
+Images	image.class.php	/^class Images{$/;"	c
+IsLeapYear	lunar.php	/^      private function IsLeapYear($AYear){$/;"	f
+JSON	cls_json.php	/^class JSON$/;"	c
+L2S	lunar.php	/^      public function L2S($date,$type = 0)$/;"	f
+LDayName	lunar.php	/^      private function LDayName($day)$/;"	f
+LMonName	lunar.php	/^      private function LMonName($month)$/;"	f
+LYearName	lunar.php	/^      private function LYearName($year)$/;"	f
+Larray	lunar.php	/^                  $Larray = $this->_LMDay[$Lyear - $this->_LStart];$/;"	v
+Larray	lunar.php	/^            $Larray = $this->_LMDay[$year - $this->_LStart];$/;"	v
+Lday	lunar.php	/^                              $Lday = $days;$/;"	v
+Lday	lunar.php	/^                        $Lday = $Larray[11] - $days;$/;"	v
+Lday	lunar.php	/^                        $Lday = $Larray[12] - $days;$/;"	v
+Lmonth	lunar.php	/^                              $Lmonth = $i;$/;"	v
+Lmonth	lunar.php	/^                        $Lmonth = 11;$/;"	v
+Lmonth	lunar.php	/^                        $Lmonth = 12;$/;"	v
+Ltype	lunar.php	/^                                    $Ltype = 1;$/;"	v
+Lunar	cls_date.php	/^       function   Lunar($objDate,$month=1,$day=1)   {   $/;"	f
+Lunar	cls_date.php	/^class   Lunar   {   $/;"	c
+Lunar	cls_lunar.php	/^class Lunar {$/;"	c
+Lunar	lunar.php	/^class Lunar$/;"	c
+Lyear	lunar.php	/^                  $Lyear = $year - 1;$/;"	v
+Lyear	lunar.php	/^                  $Lyear = $year;$/;"	v
+MAX_YEAR	cls_lunar.php	/^	var $MAX_YEAR = 2100;$/;"	v
+MIN_YEAR	cls_lunar.php	/^	var $MIN_YEAR = 1891;$/;"	v
+Name	lunar.php	/^                  $Name = array( 1 =>$/;"	v
+Name	lunar.php	/^                  $Name = array( 1=>"正","二","三","四","五","六","七","八","九","十","十一","十二");$/;"	v
+Name	lunar.php	/^            $Name = array("零","一","二","三","四","五","六","七","八","九");$/;"	v
+PHPZip	cls_phpzip.php	/^class PHPZip$/;"	c
+PHP_SELF	init.php	/^    define('PHP_SELF', $_SERVER['PHP_SELF']);$/;"	d
+PHP_SELF	init.php	/^    define('PHP_SELF', $_SERVER['SCRIPT_NAME']);$/;"	d
+ROOT_PATH	init.php	/^define('ROOT_PATH', str_replace(ADMIN_PATH . '\/includes\/init.php', '', str_replace('\\\\', '\/', __FILE__)));$/;"	d
+S2L	lunar.php	/^      public function S2L($date)$/;"	f
+SHR	bcode128.class.php	/^    private static function SHR($x, $n) {$/;"	f
+SMS	cls_sms.php	/^class SMS$/;"	c
+Sday	lunar.php	/^                              $Sday = $days;$/;"	v
+Sday	lunar.php	/^                        $Sday = $days - $this->_SMDay[1];$/;"	v
+Sday	lunar.php	/^                        $Sday = $days;$/;"	v
+SetJPGC	bcode128.class.php	/^    private function SetJPGC(&$bin) {$/;"	f
+SetJPGDPI	bcode128.class.php	/^	private function SetJPGDPI(&$bin) {$/;"	f
+SetPNGC	bcode128.class.php	/^    private function SetPNGC(&$bin, &$chunks) {$/;"	f
+SetPNGDPI	bcode128.class.php	/^	 private function SetPNGDPI(&$bin, &$chunks) {$/;"	f
+Smonth	lunar.php	/^                              $Smonth = $i;$/;"	v
+Smonth	lunar.php	/^                        $Smonth = 1;$/;"	v
+Smonth	lunar.php	/^                        $Smonth = 2;$/;"	v
+Syear	lunar.php	/^                  $Syear = $year +1;$/;"	v
+Syear	lunar.php	/^                  $Syear =$year;$/;"	v
+_CFG	init.php	/^$_CFG = load_config();$/;"	v
+_COOKIE	init.php	/^    $_COOKIE   = addslashes_deep($_COOKIE);$/;"	v
+_GET	init.php	/^        $_GET  = addslashes_deep($_GET);$/;"	v
+_LMDay	lunar.php	/^      private  $_LMDay = array($/;"	v
+_LStart	lunar.php	/^      private  $_LStart = 1950 ;\/\/农历从1950年开始$/;"	v
+_POST	init.php	/^        $_POST = addslashes_deep($_POST);$/;"	v
+_REQUEST	init.php	/^    $_REQUEST  = addslashes_deep($_REQUEST);$/;"	v
+_SMDay	lunar.php	/^      private  $_SMDay = array(1 => 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);\/\/定义公历月分天数$/;"	v
+__construct	bcode128.class.php	/^    function __construct($string = NULL,$options=array()) {$/;"	f
+__construct	cls_code.php	/^    public function __construct($code='',$text='',$type='B')$/;"	f
+__construct	cls_integral.php	/^     function __construct($table, $db)$/;"	f
+__construct	cls_sql_dump.php	/^    function __construct(&$db, $max_size =0)$/;"	f
+__construct	image.class.php	/^     function __construct($inputName,$allowType="",$allowSize="",$saveDir="",$isRename=true){$/;"	f
+__destruct	bcode128.class.php	/^	function __destruct() { $/;"	f
+_arr	cls_json.php	/^        $_arr = is_object($obj) ? get_object_vars($obj) : $obj;$/;"	v
+_force	cls_json.php	/^            $_force = $force;$/;"	v
+_force	cls_json.php	/^        static $_force;$/;"	v
+_goods_attr_array	lib_goods.php	/^        $_goods_attr_array = explode('|', $value['goods_attr']);$/;"	v
+_temp	lib_goods.php	/^            $_temp = '';$/;"	v
+_type	image.class.php	/^               $_type = substr($image,-4);$/;"	v
+a	cls_json.php	/^        $a = array();$/;"	v
+a	cls_lunar.php	/^		$a = mktime(0,0,0,$cmonth,$cdate,$year);$/;"	v
+action	lib_main.php	/^        $action = explode(',', $_SESSION['action_list']);$/;"	v
+action	lib_main.php	/^        $action = implode("','", array_filter($action));$/;"	v
+add_drop	cls_sql_dump.php	/^    function get_table_df($table, $add_drop = false)$/;"	v
+add_file	cls_phpzip.php	/^    function add_file($data, $name, $time = 0)$/;"	f
+add_item	cls_google_sitemap.php	/^    function add_item($new_item)$/;"	f
+add_list	lib_goods.php	/^    $add_list = array_diff($cat_list, $exist_list, array(0));$/;"	v
+admin_id	lib_index_info.php	/^    $admin_id  = $_SESSION['admin_id'];$/;"	v
+admin_id	lib_index_info.php	/^    $admin_id = $_SESSION['admin_id'];$/;"	v
+admin_info	lib_main.php	/^        return $admin_info = array();$/;"	v
+admin_info	lib_main.php	/^    $admin_info = $GLOBALS['db']->getRow($sql);$/;"	v
+admin_info	lib_main.php	/^function admin_info()$/;"	f
+admin_list	lib_main.php	/^    $admin_list = $GLOBALS['db']->getAll($sql.' ORDER BY user_id ASC');$/;"	v
+admin_list	lib_main.php	/^    $admin_list = $GLOBALS['db']->getAll($sql_select);$/;"	v
+admin_list_by_role	lib_main.php	/^function admin_list_by_role($role_list)$/;"	f
+admin_log	lib_main.php	/^function admin_log($sn = '', $action, $content,$module='',$sn='',$table='') {$/;"	f
+admin_page_size	lib_main.php	/^function admin_page_size($sql_count,$act,$condition)$/;"	f
+admin_path	init.php	/^        $admin_path = preg_replace('\/:\\d+\/', '', $ecs->url()) . ADMIN_PATH;$/;"	v
+admin_priv	lib_main.php	/^function admin_priv($priv_str, $msg_type = '' , $msg_output = true)$/;"	f
+admin_tasks_list	lib_index_info.php	/^            $admin_tasks_list = get_admin_tasks_list($where); $/;"	v
+admin_tasks_list	lib_index_info.php	/^            $admin_tasks_list = get_admin_tasks_list($where);$/;"	v
+admin_tasks_list	lib_index_info.php	/^    $admin_tasks_list = $GLOBALS['db']->getAll($sql_select);$/;"	v
+admin_tasks_list	lib_index_info.php	/^    $admin_tasks_list = array();$/;"	v
+alarm_stock_goods	lib_stock_manager.php	/^    $alarm_stock_goods = array();$/;"	v
+allowSize	image.class.php	/^          if(!empty($allowSize)) $this->allowSize = $allowSize;$/;"	v
+allowSize	image.class.php	/^     var $allowSize = 2097152;    \/\/ 限制大小$/;"	v
+allowType	image.class.php	/^          if(!empty($allowType)) $this->allowType = $allowType;$/;"	v
+allowType	image.class.php	/^     var $allowType = array('image\/gif','image\/jpg','image\/jpeg');  \/\/ ,'image\/png','image\/x-png','image\/pjpeg'); \/\/上传类型$/;"	v
+allow_options	bcode128.class.php	/^	protected $allow_options=array('type','dpi','width','height','margin','img_type','color','out_file','top_text','top_size','top_margin','top_font','top_color','bottom_text','bottom_size','bottom_margin','bottom_font','bottom_color'); $/;"	v
+api_key	lib_c2c.php	/^    $api_key = '0abf13b8428d9289d164'; \/\/为商家后台所设置的 key 值$/;"	v
+apiget	init.php	/^        $apiget = "act=ent_sign&ent_id= $ent_id & certificate_id=$certificate_id";$/;"	v
+area_arr	lib_main.php	/^    $area_arr = array();$/;"	v
+area_list	lib_main.php	/^function area_list($region_id)$/;"	f
+args	cls_phpzip.php	/^            $args = func_get_args();$/;"	v
+arr	cls_json.php	/^    function arr()$/;"	f
+arr	cls_sql_dump.php	/^        $arr = array();$/;"	v
+arr	cls_sql_dump.php	/^        $arr = explode("\\n", $str);$/;"	v
+arr	lib_c2c.php	/^    $arr = explode('&',$params);$/;"	v
+arr	lib_c2c.php	/^    $arr = explode('?',$url);$/;"	v
+arr	lib_goods.php	/^                    $arr = explode(chr(9), $v_p);$/;"	v
+arr	lib_goods.php	/^    $arr = array($/;"	v
+arr	lib_main.php	/^    $arr = array('33FF66', 'FF6600', '3399FF', '009966', 'CC3399', 'FFCC33', '6699CC', 'CC3366', '33FF66', 'FF6600', '3399FF');$/;"	v
+arr	lib_template.php	/^        $arr = array_slice(file($css_path), 0, 10);$/;"	v
+arrData	lib_c2c.php	/^    $arrData = array();$/;"	v
+arrObjData	lib_c2c.php	/^        $arrObjData = get_object_vars($arrObjData);$/;"	v
+arrSkipIndices	lib_c2c.php	/^function objectsIntoArray($arrObjData, $arrSkipIndices = array())$/;"	v
+arrTmp	image.class.php	/^               $arrTmp = pathinfo($_FILES[$this->inputName]['name']);$/;"	v
+array	cls_lunar.php	/^			$array = $this->getLunarByBetween($year,$this->getDaysBetweenSolar($year, $month, $i, $yearData[1], $yearData[2]));$/;"	v
+assoc	cls_json.php	/^    function assoc()$/;"	f
+assoc_value	lib_main.php	/^function assoc_value ($arr, $key = 0)$/;"	f
+at	cls_json.php	/^        $this->at   = 0;$/;"	v
+at	cls_json.php	/^    var $at   = 0;$/;"	v
+attr	lib_goods.php	/^    $attr = get_attr_list($cat_id, $goods_id);$/;"	v
+attr_values	lib_goods.php	/^            $attr_values = explode("\\n", $val['attr_values']);$/;"	v
+auth	lib_c2c.php	/^    $auth = include('..\/admin\/jingdong\/config.php');$/;"	v
+auth	lib_c2c.php	/^    $auth = include('..\/admin\/yhd\/config.php');$/;"	v
+auth	lib_c2c.php	/^    $auth = require("..\/admin\/{$platform_path[$order_info['team']]}\/config.php");$/;"	v
+author_uri	lib_template.php	/^        $author_uri         = explode(': ', $arr[6]);$/;"	v
+authority_judge	lib_index_info.php	/^function authority_judge(){$/;"	f
+b	bcode128.class.php	/^		$b = hexdec( $b );$/;"	v
+b	cls_lunar.php	/^		$b = mktime(0,0,0,$dmonth,$ddate,$year);$/;"	v
+b_m_width	bcode128.class.php	/^			$b_m_width=(($this->width-($this->margin_left+$this->margin_right)-$limit_width)\/(strlen($this->bottom_text)-1)); \/\/间隔宽度$/;"	v
+background_color	image.class.php	/^                    $background_color  =  imagecolorallocate($thumbImg,  0,255,0);  \/\/  指派一个绿色$/;"	v
+bcode	bcode128.class.php	/^		$this->bcode = array('212222','222122','222221','121223','121322','131222','122213','122312','132212','221213','221312','231212','112232','122132','122231','113222','123122','123221','223211','221132','221231','213212','223112','312131','311222','321122','321221','312212','322112','322211','212123','212321','232121','111323','131123','131321','112313','132113','132311','211313','231113','231311','112133','112331','132131','113123','113321','133121','313121','211331','231131','213113','213311','213131','311123','311321','331121','312113','312311','332111','314111','221411','431111','111224','111422','121124','121421','141122','141221','112214','112412','122114','122411','142112','142211','241211','221114','413111','241112','134111','111242','121142','121241','114212','124112','124211','411212','421112','421211','212141','214121','412121','111143','111341','131141','114113','114311','411113','411311','113141','114131','311141','411131','211412','211214','211232','2331112');$/;"	v
+bcode128	bcode128.class.php	/^class bcode128 {$/;"	c
+begining	cls_organizeSales.php	/^            $begining = $end + 1;$/;"	v
+begining	cls_organizeSales.php	/^            $begining = $this->$period();$/;"	v
+begining	cls_organizeSales.php	/^            $begining = $this->queryEarliestOrderTime();$/;"	v
+begining	cls_organizeSales.php	/^            $begining = $this->ts();$/;"	v
+between	cls_lunar.php	/^			$between = $between>0?$between : ($this->getLunarYearDays($year)+$between);$/;"	v
+between	cls_lunar.php	/^		$between = $this->getDaysBetweenLunar($year,$month,$date);$/;"	v
+bgcolor	cls_code.php	/^        $this->bgcolor = $bgcoloe;$/;"	v
+bgcolor	cls_code.php	/^        $this->bgcolor = imagecolorallocate($this->image,$this->bgcolor >> 16,($this->bgcolor >> 8)&0x00FF,$this->bgcolor & 0xFF);$/;"	v
+bgcolor	cls_code.php	/^    private $bgcolor =0xFFFFFF;$/;"	v
+big5	lib_main.php	/^    $big5 = array('一', '二', '三', '四', '五', '六', '七', '八', '九', '十');$/;"	v
+bin	bcode128.class.php	/^				$bin = ob_get_contents();$/;"	v
+bin	bcode128.class.php	/^			  $bin = ob_get_contents();$/;"	v
+bin	bcode128.class.php	/^                    $bin = $firstPart;$/;"	v
+bin	bcode128.class.php	/^                $bin = substr_replace($bin, $cr, $chunks[$i]['offset'], 21);$/;"	v
+bin	bcode128.class.php	/^            $bin = $firstPart;$/;"	v
+bin	bcode128.class.php	/^            $bin = substr_replace($bin, pack("Cnn", 0x01, $this->dpi, $this->dpi), 13, 5);$/;"	v
+bin_code	cls_code.php	/^        $this->bin_code = $this->codes[$val_sum];$/;"	v
+bin_code	cls_code.php	/^    private $bin_code ='';$/;"	v
+bit	cls_lunar.php	/^		$bit = decbin($yearData[3]);$/;"	v
+bitArray	cls_lunar.php	/^		$bitArray = array_slice($bitArray,0,($leapMonth==0?12:13));$/;"	v
+bonus	lib_main.php	/^    $bonus = array();$/;"	v
+bottom_color	bcode128.class.php	/^			$bottom_color = imagecolorallocate($img,$t_bottom_color['red'],$t_bottom_color['green'],$t_bottom_color['blue']); $/;"	v
+bottom_color	bcode128.class.php	/^			$bottom_color=$color;$/;"	v
+bottom_color	bcode128.class.php	/^	protected $bottom_color='';$/;"	v
+bottom_font	bcode128.class.php	/^	protected $bottom_font='font\/Arial.ttf';$/;"	v
+bottom_margin	bcode128.class.php	/^	protected $bottom_margin=5;$/;"	v
+bottom_size	bcode128.class.php	/^	protected $bottom_size=15;$/;"	v
+bottom_text	bcode128.class.php	/^	protected $bottom_text='';$/;"	v
+brand	lib_common.php	/^    $brand = $GLOBALS['db']->getAll($sql_select);$/;"	v
+brand_exists	lib_main.php	/^function brand_exists($brand_name)$/;"	f
+brand_id	lib_goods.php	/^    $brand_id = intval($brand_id);$/;"	v
+brand_list	lib_goods.php	/^function brand_list ($is_show = 0)$/;"	f
+breakMobileIntoGroup	cls_sms.php	/^    private function breakMobileIntoGroup ()$/;"	f
+break_pages	lib_main.php	/^function break_pages($record_count, $page_size, $current_page)$/;"	f
+brush_order	lib_c2c.php	/^    $brush_order = $GLOBALS['db']->getRow($sql_select);$/;"	v
+build	cls_google_sitemap.php	/^    function build( $file_name = null )$/;"	f
+build_attr_html	lib_goods.php	/^function build_attr_html($cat_id, $goods_id = 0)$/;"	f
+buyer_nick	lib_c2c.php	/^    $buyer_nick = mysql_real_escape_string($buyer_nick);$/;"	v
+bytes	lib_c2c.php	/^    $bytes = file_put_contents('ddXML.xml', $send_goods);$/;"	v
+c	bcode128.class.php	/^                    $c = 0xedb88320 ^ (self::SHR($c, 1));$/;"	v
+c	bcode128.class.php	/^                    $c = self::SHR($c, 1);$/;"	v
+c	bcode128.class.php	/^            $c = $n;$/;"	v
+c	bcode128.class.php	/^            $c = count($chunks);$/;"	v
+c	bcode128.class.php	/^            $c = self::$crc_table[($c ^ ord($buf[$n])) & 0xff] ^ (self::SHR($c, 8));$/;"	v
+c	bcode128.class.php	/^        $c = $crc;$/;"	v
+c	bcode128.class.php	/^        $c = strlen($data);$/;"	v
+c	cls_json.php	/^        $c           = '';$/;"	v
+c	lib_c2c.php	/^    $c            = new TopClient;$/;"	v
+c	lib_c2c.php	/^    $c = new TopClient;$/;"	v
+cDay	cls_date.php	/^       function   cDay($d)   {   $/;"	f
+c_len	cls_phpzip.php	/^        $c_len   = strlen($zdata);$/;"	v
+cat_exists	lib_main.php	/^function cat_exists($cat_name, $parent_cat, $exclude = 0)$/;"	f
+cdrec	cls_phpzip.php	/^        $cdrec = "\\x50\\x4b\\x01\\x02";$/;"	v
+certificate_id	init.php	/^    $certificate_id = trim($_CFG['certificate_id']);$/;"	v
+ch	cls_code.php	/^            $ch = substr($this->code,$i,$step);$/;"	v
+ch	cls_json.php	/^            if ($this->ch == '-' || $this->ch == '+')$/;"	v
+ch	cls_json.php	/^        $this->ch   = '';$/;"	v
+ch	cls_json.php	/^        $this->ch = !isset($this->text{$this->at}) ? '' : $this->text{$this->at};$/;"	v
+ch	cls_json.php	/^        if ($this->ch == 'e' || $this->ch == 'E')$/;"	v
+ch	cls_json.php	/^    var $ch   = '';$/;"	v
+ch	cls_sms.php	/^        $ch = curl_init();$/;"	v
+ch	lib_c2c.php	/^    $ch = curl_init();$/;"	v
+ch	lib_main.php	/^    $ch = curl_init();$/;"	v
+ch	lib_wav.php	/^    $ch = curl_init();$/;"	v
+changefreq	cls_google_sitemap.php	/^        $this->changefreq = $changefreq;$/;"	v
+charset	cls_google_sitemap.php	/^    var $charset = "UTF-8";$/;"	v
+chart_color	lib_main.php	/^function chart_color($n)$/;"	f
+check	lib_c2c.php	/^function search_shipping ($target_id, $check = '') {$/;"	v
+check	lib_main.php	/^function sanitize_url($url , $check = 'http:\/\/')$/;"	v
+checkMobileNumber	cls_sms.php	/^    private function checkMobileNumber ($number)$/;"	f
+checkUserIsExist	lib_c2c.php	/^function checkUserIsExist($buyer_nick, $platform, $order_sn) {$/;"	f
+check_authz	lib_main.php	/^function check_authz($authz)$/;"	f
+check_authz_json	lib_main.php	/^function check_authz_json($authz)$/;"	f
+check_goods_attr_exist	lib_goods.php	/^function check_goods_attr_exist($goods_attr, $goods_id, $product_id = 0)$/;"	f
+check_goods_product_exist	lib_goods.php	/^function check_goods_product_exist($goods_id, $conditions = '')$/;"	f
+check_goods_sn_exist	lib_goods.php	/^function check_goods_sn_exist($goods_sn, $goods_id = 0)$/;"	f
+check_goods_specifications_exist	lib_goods.php	/^function check_goods_specifications_exist($goods_id)$/;"	f
+check_product_sn_exist	lib_goods.php	/^function check_product_sn_exist($product_sn, $product_id = 0)$/;"	f
+check_s	bcode128.class.php	/^				$check_s=self::K_STARTA;$/;"	v
+check_s	bcode128.class.php	/^			   $check_s=self::K_STARTB;$/;"	v
+check_s	bcode128.class.php	/^			   $check_s=self::K_STARTC;$/;"	v
+chk_err	image.class.php	/^     function chk_err($errID){$/;"	f
+chk_size	image.class.php	/^     function chk_size(){$/;"	f
+chk_type	image.class.php	/^     function chk_type(){$/;"	f
+chunk	bcode128.class.php	/^            $chunk = $packed['chunk'];$/;"	v
+chunks	bcode128.class.php	/^            $chunks = $this->detectChunks($bin);$/;"	v
+chunks	bcode128.class.php	/^        $chunks = array();$/;"	v
+city	lib_c2c.php	/^    $city = mb_substr($city, 0, 2, 'utf-8').'%';$/;"	v
+cls_sql_dump	cls_sql_dump.php	/^    function cls_sql_dump(&$db, $max_size=0)$/;"	f
+cls_sql_dump	cls_sql_dump.php	/^class cls_sql_dump$/;"	c
+cn_key	lib_index_info.php	/^        $cn_key = array($/;"	v
+code	cls_code.php	/^            $this->code= $code;$/;"	v
+code	cls_code.php	/^    private $code ='';$/;"	v
+codes	cls_code.php	/^    private $codes = array("212222","222122","222221","121223","121322","131222","122213","122312","132212","221213","221312","231212","112232","122132","122231","113222","123122","123221","223211","221132","221231","213212","223112","312131","311222","321122","321221","312212","322112","322211","212123","212321","232121","111323","131123","131321","112313","132113","132311","211313","231113","231311","112133","112331","132131","113123","113321","133121","313121","211331","231131","213113","213311","213131","311123","311321","331121","312113","312311","332111","314111","221411","431111","111224","111422","121124","121421","141122","141221","112214","112412","122114","122411","142112","142211","241211","221114","413111","241112","134111","111242","121142","121241","114212","124112","124211","411212","421112","421211","212141","214121","412121","111143","111341","131141","114113","114311","411113","411311","113141","114131","311141","411131","211412","211214","211412","2331112");$/;"	v
+color	bcode128.class.php	/^		$color = imagecolorallocate($img,$t_color['red'],$t_color['green'],$t_color['blue']); $/;"	v
+color	bcode128.class.php	/^	protected $color='#000';$/;"	v
+color	cls_code.php	/^        $this->color = $color;$/;"	v
+color	cls_code.php	/^        $this->color = imagecolorallocate($this->image,$this->color >> 16,($this->color >> 8)&0x00FF,$this->color & 0xFF);$/;"	v
+color	cls_code.php	/^    private $color =0x000000;$/;"	v
+colour	bcode128.class.php	/^			$colour = substr( $colour, 1 );$/;"	v
+condition	lib_goods.php	/^    $condition = '';$/;"	v
+condition	lib_index_info.php	/^            $condition = " platform=$role_id ";$/;"	v
+conditions	lib_goods.php	/^function check_goods_product_exist($goods_id, $conditions = '')$/;"	v
+conditions	lib_goods.php	/^function product_list($goods_id, $conditions = '')$/;"	v
+conditions	lib_goods.php	/^function product_number_count($goods_id, $conditions = '')$/;"	v
+config	lib_main.php	/^    $config = array ();$/;"	v
+configs	lib_main.php	/^    $configs = $GLOBALS['db']->getAll($sql_select);$/;"	v
+confirm_inventor_enough	lib_c2c.php	/^function confirm_inventor_enough ($gift)$/;"	f
+content	cls_phpzip.php	/^                        $content = fread ($fd, filesize ($filename));$/;"	v
+content	cls_sms.php	/^    public $content;$/;"	v
+content	lib_template.php	/^    $content = file_get_contents($file);$/;"	v
+convertLunarToSolar	cls_lunar.php	/^	function convertLunarToSolar($year,$month,$date){$/;"	f
+convertSolarMonthToLunar	cls_lunar.php	/^	function convertSolarMonthToLunar($year,$month) {$/;"	f
+convertSolarToLunar	cls_lunar.php	/^	function convertSolarToLunar($year,$month,$date){$/;"	f
+count	lib_goods.php	/^    $count = $GLOBALS['db']->getOne($sql);$/;"	v
+countIntegral	cls_integral.php	/^     public function countIntegral ($platform, $way)$/;"	f
+cr	bcode128.class.php	/^            $cr = pack('H*', '0000004C74455874436F707972696768740047656E657261746564207769746820426172636F64652047656E657261746F7220666F722050485020687474703A2F2F7777772E626172636F64657068702E636F6D597F70B8');$/;"	v
+cr	bcode128.class.php	/^            $cr = pack('H*', 'FFFE004447656E657261746564207769746820426172636F64652047656E657261746F7220666F722050485020687474703A2F2F7777772E626172636F64657068702E636F6D');$/;"	v
+cr	bcode128.class.php	/^            $cr = pack('Na13N', 9, $data, $crc);$/;"	v
+crc	bcode128.class.php	/^            $crc = self::crc($data, 13);$/;"	v
+crc	bcode128.class.php	/^    private static function crc($data, $len) {$/;"	f
+crc	cls_phpzip.php	/^        $crc     = crc32($data);$/;"	v
+crc_table	bcode128.class.php	/^	private static $crc_table = array();$/;"	v
+crc_table_computed	bcode128.class.php	/^    private static $crc_table_computed = false;$/;"	v
+createBarCode	cls_code.php	/^    public function createBarCode($image_type ='jpg',$file_name=null)$/;"	f
+createFun	image.class.php	/^               $createFun = 'ImageCreateFrom'.($type=='jpg'?'jpeg':$type);$/;"	v
+createGiftSql	lib_c2c.php	/^function createGiftSql ($gift_info, $order_sn)$/;"	f
+createOrderSql	lib_c2c.php	/^function createOrderSql ($user_info, $order_info, $goods_info)$/;"	f
+createProCitDis	lib_c2c.php	/^function createProCitDis ($proCitDis, $parent_id = 1, $region_type = 1)$/;"	f
+create_html_editor	lib_main.php	/^function create_html_editor($input_name, $input_value = '')$/;"	f
+crm_admin_priv	lib_main.php	/^function crm_admin_priv($action, $message = '', $timeout = 3000, $req_msg = true)$/;"	f
+crm_msg	lib_main.php	/^function crm_msg($message='失败',$code=false,$timeout='2000'){$/;"	f
+css_path	lib_template.php	/^        $css_path = '..\/themes\/' . $template_name . "\/style_$template_style.css";$/;"	v
+css_path	lib_template.php	/^    $css_path = '..\/themes\/' . $template_name . '\/style.css';$/;"	v
+ctrl_dir	cls_phpzip.php	/^    var $ctrl_dir     = array();$/;"	v
+ctrldir	cls_phpzip.php	/^        $ctrldir = implode('', $this -> ctrl_dir);$/;"	v
+curdir	cls_phpzip.php	/^            $curdir = getcwd();$/;"	v
+curl	lib_c2c.php	/^function curl($url, $postFields = null)$/;"	f
+curlPhone	lib_main.php	/^function curlPhone($phone, $exten) {$/;"	f
+curlPostSMS	cls_sms.php	/^    private function curlPostSMS()$/;"	f
+curl_get	lib_c2c.php	/^function curl_get($url)$/;"	f
+curl_post	lib_c2c.php	/^function curl_post($url ,$file)$/;"	f
+current_time	lib_index_info.php	/^    $current_time     = date('Y-m-d',$_SERVER['REQUEST_TIME']);$/;"	v
+cycle_time	cls_sql_dump.php	/^        $cycle_time = ceil(($total-$pos) \/ $this->offset); \/\/每次取offset条数。需要取的次数$/;"	v
+d	cls_organizeSales.php	/^    private function d()$/;"	f
+data	bcode128.class.php	/^            $data = 'pHYs' . pack('NNC', $meters, $meters, 0x01);$/;"	v
+data	bcode128.class.php	/^            $data = substr($data, $jump);$/;"	v
+data	bcode128.class.php	/^        $data = substr($bin, 8);$/;"	v
+data	cls_phpzip.php	/^        $data    = implode('', $this -> datasec);$/;"	v
+data	cls_sms.php	/^    private $data = array ($/;"	v
+data	cls_sql_dump.php	/^            $data = $this->db->getAll("SELECT * FROM $table LIMIT " . ($this->offset * $i + $pos) . ', ' . $this->offset);$/;"	v
+data	lib_c2c.php	/^    $data      = array();$/;"	v
+data	lib_c2c.php	/^    $data = curl_exec($ch);$/;"	v
+data_count	cls_sql_dump.php	/^            $data_count = count($data);$/;"	v
+datasec	cls_phpzip.php	/^    var $datasec      = array();$/;"	v
+date	bcode128.class.php	/^		$date=array();$/;"	v
+date1	lunar.php	/^            $date1 = strtotime($year."-01-01");\/\/当年1月1日$/;"	v
+date2	lunar.php	/^            $date2 = strtotime($year."-".$month."-".$day);$/;"	v
+dateHash	cls_lunar.php	/^		$dateHash=array('0'=>'','1'=>'一','2'=>'二','3'=>'三','4'=>'四','5'=>'五','6'=>'六','7'=>'七','8'=>'八','9'=>'九','10'=>'十 ');$/;"	v
+dateTime	lib_wav.php	/^    $dateTime = strtotime(date('Y-m-d'));$/;"	v
+date_end	lib_index_info.php	/^        $date_end   = strtotime(date('Y-m-d 23:59:59',$_SERVER['REQUEST_TIME']))-24*3600;$/;"	v
+date_end	lib_index_info.php	/^        $date_end   = strtotime(date('Y-m-d 23:59:59',$_SERVER['REQUEST_TIME']));$/;"	v
+date_end	lib_index_info.php	/^        $date_end   = strtotime(date('Y-m-t 23:59:59', $_SERVER['REQUEST_TIME'])); \/\/ 本月末$/;"	v
+date_start	lib_index_info.php	/^        $date_start = strtotime(date('Y-m-01 00:00:00', $_SERVER['REQUEST_TIME'])); \/\/ 本月初$/;"	v
+date_start	lib_index_info.php	/^        $date_start = strtotime(date('Y-m-d 00:00:00',$_SERVER['REQUEST_TIME']))-24*3600;  \/\/昨天$/;"	v
+date_start	lib_index_info.php	/^        $date_start = strtotime(date('Y-m-d 00:00:00',$_SERVER['REQUEST_TIME'])); \/\/今天$/;"	v
+day	cls_date.php	/^           $this->day   =   $offset   +   1;   $/;"	v
+day	cls_date.php	/^       var   $day;   $/;"	v
+day	cls_lunar.php	/^		$day	= $day[2];$/;"	v
+day	cls_lunar.php	/^		$day	= explode('-', $res);$/;"	v
+day	lib_goods.php	/^        $day = getdate();$/;"	v
+day	lib_main.php	/^    $day   = empty($_POST[$prefix . 'Day']) ? '0' : $_POST[$prefix . 'Day'];$/;"	v
+dayCyl	cls_date.php	/^           $this->dayCyl   =   $offset   +   40;   $/;"	v
+dayCyl	cls_date.php	/^       var   $dayCyl;   $/;"	v
+days	lunar.php	/^                                    $days = $days - $Larray[13];$/;"	v
+days	lunar.php	/^                        $days = $days - $Larray[12];$/;"	v
+days	lunar.php	/^                        if($days > $Larray[$i]) $days = $days - $Larray[$i];$/;"	v
+days	lunar.php	/^                  $days = $Larray[0] - $days;$/;"	v
+days	lunar.php	/^                  $days = $days - $Larray[0];$/;"	v
+days	lunar.php	/^            $days = $day;$/;"	v
+days	lunar.php	/^            $days=round(($date2-$date1)\/3600\/24);$/;"	v
+db	cls_exchange.php	/^        $this->db        = &$db;$/;"	v
+db	cls_exchange.php	/^    var $db;$/;"	v
+db	cls_integral.php	/^          $this->db    = &$db;$/;"	v
+db	cls_integral.php	/^     var $db;$/;"	v
+db	cls_sql_dump.php	/^        $this->db = &$db;$/;"	v
+db	cls_sql_dump.php	/^    var $db;$/;"	v
+db	init.php	/^$db = new cls_mysql($db_host, $db_user, $db_pass, $db_name);$/;"	v
+db_host	init.php	/^$db_host = $db_user = $db_pass = $db_name = NULL;$/;"	v
+dd	cls_lunar.php	/^		$dd = $month_days_ary[$month];$/;"	v
+dd	lib_c2c.php	/^    $dd = new ddClient(2100001198);$/;"	v
+decode	cls_json.php	/^    function decode($text,$type=0) \/\/ 榛樿?type=0杩斿洖obj,type=1杩斿洖array$/;"	f
+delete_goods	lib_goods.php	/^function delete_goods($goods_id)$/;"	f
+delete_list	lib_goods.php	/^    $delete_list = array_diff($exist_list, $cat_list);$/;"	v
+detectChunks	bcode128.class.php	/^	 private function detectChunks($bin) {$/;"	f
+dh	cls_phpzip.php	/^            $dh = opendir($dir);$/;"	v
+dir	cls_phpzip.php	/^            $dir = ($dir == '') ? '.\/' : $dir . '\/';$/;"	v
+dir	cls_phpzip.php	/^        $dir = rtrim($dir,'\/');$/;"	v
+dir	lib_goods.php	/^        $dir = IMAGE_DIR;$/;"	v
+dir	lib_goods.php	/^    $dir = 'images';$/;"	v
+dir	lib_main.php	/^    $dir         = @opendir($directory);$/;"	v
+dir_name	lib_main.php	/^    $dir_name = 'records\/record_'.($user_id%7)."\/{$user_id}";$/;"	v
+display	cls_date.php	/^       function   display()   {   $/;"	f
+district	lib_c2c.php	/^    $district = mb_substr($district, 0, 2, 'utf-8').'%';$/;"	v
+domain_url	init.php	/^    $domain_url     = $ecs->url();$/;"	v
+down_img	lib_goods.php	/^            $down_img = ROOT_PATH . 'temp\/' . basename($image_url);$/;"	v
+dpi	bcode128.class.php	/^		$this->dpi<72 && $this->dpi=72;$/;"	v
+dpi	bcode128.class.php	/^		$this->dpi>300 && $this->dpi=300;$/;"	v
+dpi	bcode128.class.php	/^	protected $dpi=72; \/\/编码类型$/;"	v
+drop	cls_exchange.php	/^    function drop($id)$/;"	f
+drop	cls_phpzip.php	/^    function zip($dir, $zipfilename, $drop=false)$/;"	v
+dtime	cls_phpzip.php	/^        $dtime    = dechex($this->unix2DosTime($time));$/;"	v
+dump_escape_string	cls_sql_dump.php	/^function dump_escape_string($str)$/;"	f
+dump_null_string	cls_sql_dump.php	/^function dump_null_string($str)$/;"	f
+dump_sql	cls_sql_dump.php	/^        $this->dump_sql = $this->make_head($vol);$/;"	v
+dump_sql	cls_sql_dump.php	/^    var $dump_sql  = '';$/;"	v
+dump_table	cls_sql_dump.php	/^    function dump_table($path, $vol)$/;"	f
+dyna_libs	lib_template.php	/^$dyna_libs = array($/;"	v
+e	cls_lunar.php	/^					$e=$between-(empty($yearMonth[$i-1])?0:$yearMonth[$i-1])+1;$/;"	v
+e	cls_lunar.php	/^					$e=1;$/;"	v
+e	cls_lunar.php	/^			$e = 1;$/;"	v
+e	cls_lunar.php	/^		$e=0;$/;"	v
+earth	cls_lunar.php	/^		 $earth = array('申','酉','戌','亥','子','丑','寅','卯','辰','巳','午','未');$/;"	v
+ecs	init.php	/^$ecs = new ECS($db_name, $prefix);$/;"	v
+edit	cls_exchange.php	/^    function edit($set, $id)$/;"	f
+edit_libs	lib_template.php	/^    $edit_libs = array();$/;"	v
+editor	lib_main.php	/^    $editor = new FCKeditor($input_name);$/;"	v
+encode	cls_json.php	/^    function encode($arg, $force = true)$/;"	f
+end	cls_organizeSales.php	/^            $end = strtotime(date("Y-m-$period 23:59:59", $begining));$/;"	v
+end	cls_organizeSales.php	/^        $end = strtotime(date("Y-m-$period 23:59:59", $begining));$/;"	v
+end_time	lib_index_info.php	/^            $end_time   = strtotime(date('Y-m-d 23:59:59',$_SERVER['REQUEST_TIME']));$/;"	v
+end_time	lib_index_info.php	/^        $end_time   = strtotime(date('Y-m-t 23:59:59',time()));$/;"	v
+end_time	lib_index_info.php	/^    $end_time      = strtotime(date('Y-m-1',$_SERVER['REQUEST_TIME']));$/;"	v
+end_time	lib_index_info.php	/^    $end_time   = strtotime(date('Y-m-t 23:59:59',$_SERVER['REQUEST_TIME']));$/;"	v
+ent_ac	init.php	/^    $ent_ac         = trim($_GET['ent_ac']);$/;"	v
+ent_email	init.php	/^    $ent_email      = trim($_GET['ent_email']);$/;"	v
+ent_id	init.php	/^    $ent_id         = trim($_GET['ent_id']);$/;"	v
+ent_sign	init.php	/^    $ent_sign       = trim($_GET['ent_sign']);$/;"	v
+eof_ctrl_dir	cls_phpzip.php	/^    var $eof_ctrl_dir = "\\x50\\x4b\\x05\\x06\\x00\\x00\\x00\\x00";$/;"	v
+err	init.php	/^$err = new ecs_error('message.htm');$/;"	v
+errID	image.class.php	/^          $this->errID = $errID;$/;"	v
+errID	image.class.php	/^     var $errID = 0;              \/\/ 错误代码，默认为0$/;"	v
+errMsg	image.class.php	/^               $this->errMsg = "上传的文件过大";$/;"	v
+errMsg	image.class.php	/^               $this->errMsg = "文件上传不合法";$/;"	v
+errMsg	image.class.php	/^               $this->errMsg = "无控件名传入";$/;"	v
+errMsg	image.class.php	/^               $this->errMsg = '上传文件的大小超过了HTML表单中MAX_FILE_SIZE选项指定的值';$/;"	v
+errMsg	image.class.php	/^               $this->errMsg = '上传的文件超出了php.ini中upload_max_filesize设定的最大值';$/;"	v
+errMsg	image.class.php	/^               $this->errMsg = '文件只有部分被上传';$/;"	v
+errMsg	image.class.php	/^               $this->errMsg = '暂时只支持jpg、jpeg、gif格式的图片';$/;"	v
+errMsg	image.class.php	/^               $this->errMsg = '没有文件被上传';$/;"	v
+errMsg	image.class.php	/^     var $errMsg = "";            \/\/ 错误信息$/;"	v
+error	cls_json.php	/^    function error($m)$/;"	f
+error	lib_main.php	/^function make_json_response($content='', $error="0", $message='', $append=array())$/;"	v
+errorMsg	cls_sql_dump.php	/^    function errorMsg()$/;"	f
+error_msg	cls_exchange.php	/^        $this->error_msg = '';$/;"	v
+error_msg	cls_exchange.php	/^    var $error_msg;$/;"	v
+error_msg	cls_sql_dump.php	/^                $this->error_msg = 'Can not write ' . $path;$/;"	v
+error_msg	cls_sql_dump.php	/^            $this->error_msg = $path . ' is not exists';$/;"	v
+error_msg	cls_sql_dump.php	/^            $this->error_msg = 'It need a array';$/;"	v
+error_msg	cls_sql_dump.php	/^    var $error_msg = '';$/;"	v
+ex	cls_code.php	/^            $ex = $sx + $this->unit_width*(int) $this->bin_code{$i} -1;$/;"	v
+ex	cls_code.php	/^        $ex = 0;$/;"	v
+exchange	cls_exchange.php	/^    function exchange($table, &$db , $id, $name)$/;"	f
+exchange	cls_exchange.php	/^class exchange$/;"	c
+exclude	lib_main.php	/^function cat_exists($cat_name, $parent_cat, $exclude = 0)$/;"	v
+exist_list	lib_goods.php	/^    $exist_list = $GLOBALS['db']->getCol($sql);$/;"	v
+express	lib_c2c.php	/^        $express = $yhdClient->execute($req, $sk['accessToken']);$/;"	v
+express	lib_c2c.php	/^        $express = json_decode($express, true);$/;"	v
+ext	lib_template.php	/^    $ext  = array('png', 'gif', 'jpg', 'jpeg');$/;"	v
+extLink	lib_wav.php	/^    $extLink = array();$/;"	v
+extList	lib_wav.php	/^    $extList = $GLOBALS['db']->getAll($sql);$/;"	v
+extendOnlineTime	lib_c2c.php	/^function extendOnlineTime ()$/;"	f
+extension	image.class.php	/^               $extension = strtolower($arrTmp['extension']);$/;"	v
+ey	cls_code.php	/^        $ey = $this->heith;$/;"	v
+f	bcode128.class.php	/^				$f=str_split($this->string);$/;"	v
+f	bcode128.class.php	/^			   $f=str_split($this->string);$/;"	v
+f	bcode128.class.php	/^			   $f=str_split($this->string,2);$/;"	v
+fd	cls_phpzip.php	/^                        $fd = fopen ($filename, 'rb');$/;"	v
+field	lib_goods.php	/^            " SET $field = '$value' , last_update = '". gmtime() ."' " .$/;"	v
+fieldStr	lib_wav.php	/^    $fieldStr = implode(',', $fields);$/;"	v
+fields	cls_sql_dump.php	/^            $fields = array_keys($data[0]);$/;"	v
+fields	lib_c2c.php	/^    $fields = implode(',', array_keys($order));$/;"	v
+fields	lib_wav.php	/^        empty($fields) && $fields = array_keys($vals);$/;"	v
+fields	lib_wav.php	/^    $fields = array();$/;"	v
+file	cls_phpzip.php	/^                        $file = array_merge($file, $this -> get_filelist($dir .'\/'. $files, "$pref$files\/"));$/;"	v
+file	cls_phpzip.php	/^        $file = array();$/;"	v
+file	cls_phpzip.php	/^    function file()$/;"	f
+file	lib_template.php	/^    $file = '..\/themes\/' . $tmp_name . '\/' . $tmp_file;$/;"	v
+file_name	cls_google_sitemap.php	/^    function build( $file_name = null )$/;"	v
+file_name	lib_c2c.php	/^    $file_name = substr($url ,(strrpos($url ,'\/')+1),(strpos($urls,'\\.php')-4));$/;"	v
+file_newname	image.class.php	/^               $file_newname = $_FILES[$this->inputName]['name'];$/;"	v
+file_newname	image.class.php	/^               $file_newname = date("YmdHis").rand(1000,9999)."00.".$extension; \/\/重命名新文件， 00表示为上传的为原图$/;"	v
+filed	lib_goods.php	/^        $filed = '*';$/;"	v
+filed	lib_goods.php	/^    $filed = trim($filed);$/;"	v
+filed	lib_goods.php	/^function get_product_info($product_id, $filed = '')$/;"	v
+filelist	cls_phpzip.php	/^                $filelist = $dir;$/;"	v
+filelist	cls_phpzip.php	/^                $filelist = $this -> get_filelist($dir);$/;"	v
+filename	cls_phpzip.php	/^                            $filename = basename($filename);$/;"	v
+filter	lib_common.php	/^    $filter = array ($/;"	v
+filter	lib_goods.php	/^        $filter = $result['filter'];$/;"	v
+filter	lib_index_info.php	/^        $filter = array($/;"	v
+filter	lib_index_info.php	/^    $filter = array($/;"	v
+filter	lib_main.php	/^    $filter = array ($/;"	v
+filter	lib_stock_manager.php	/^    $filter = array($/;"	v
+filterAlias	lib_c2c.php	/^function filterAlias ($goodsSn) {$/;"	f
+filter_page	lib_common.php	/^function filter_page($sql_one,$sql_select,$act){$/;"	f
+filterfile	lib_main.php	/^    $filterfile = basename(PHP_SELF, '.php');$/;"	v
+final_list	lib_main.php	/^    $final_list = array();$/;"	v
+firstPart	bcode128.class.php	/^                    $firstPart = substr($bin, 0, 33);$/;"	v
+firstPart	bcode128.class.php	/^            $firstPart = substr($bin, 0, $offset);$/;"	v
+firstPart	bcode128.class.php	/^            $firstPart = substr($bin, 0, 33);$/;"	v
+flag	lib_goods.php	/^                $flag = true;$/;"	v
+flag	lib_goods.php	/^        $flag = false;$/;"	v
+flusher_id	lib_c2c.php	/^    $flusher_id = $GLOBALS['db']->getOne($sql_select);$/;"	v
+font_height	cls_code.php	/^        $this->font_height = $this->unit_width*150;$/;"	v
+font_height	cls_code.php	/^    public $font_height = 15;$/;"	v
+font_type	cls_code.php	/^        $this->font_type = $font_type;$/;"	v
+font_type	cls_code.php	/^    private $font_type = 15;$/;"	v
+footer	cls_google_sitemap.php	/^    var $footer = "\\t<\/urlset>\\n";$/;"	v
+force	cls_json.php	/^    function encode($arg, $force = true)$/;"	v
+format	lib_main.php	/^function stamp2date ($str, $format = 'Y-m-d')$/;"	v
+format_tasks_list	lib_common.php	/^function format_tasks_list($tasks_list,$period_list,$group_list){$/;"	f
+found	bcode128.class.php	/^                    $found = $i;$/;"	v
+found	bcode128.class.php	/^            $found = -1;$/;"	v
+fp	cls_phpzip.php	/^                $fp = fopen($zipfilename, 'wb');$/;"	v
+fp	cls_sql_dump.php	/^        $fp = fopen($path,'rb');$/;"	v
+fr	cls_phpzip.php	/^        $fr = "\\x50\\x4b\\x03\\x04";$/;"	v
+func	lib_c2c.php	/^        $func = shipping_sync_.$brush_order['team'];$/;"	v
+fw	cls_code.php	/^            $fw=11;$/;"	v
+fw	cls_code.php	/^        $fw = 10; \/\/編號為2或3的字體的寬度為10，為4或5的字體寬度為11$/;"	v
+g	bcode128.class.php	/^		$g = hexdec( $g );$/;"	v
+generate_goods_sn	lib_goods.php	/^function generate_goods_sn($goods_id)$/;"	f
+getCapitalNum	cls_lunar.php	/^	function getCapitalNum($num,$isMonth){$/;"	f
+getDaysBetweenLunar	cls_lunar.php	/^	function getDaysBetweenLunar($year,$month,$date){$/;"	f
+getDaysBetweenSolar	cls_lunar.php	/^	function getDaysBetweenSolar($year,$cmonth,$cdate,$dmonth,$ddate){$/;"	f
+getHeight	cls_code.php	/^    public function getHeight()$/;"	f
+getImageInfo	image.class.php	/^     function getImageInfo($img) {$/;"	f
+getIntegralList	cls_integral.php	/^     public function getIntegralList ($platform = '', $start = '', $end = '')$/;"	f
+getIntegralWay	cls_integral.php	/^     public function getIntegralWay ()$/;"	f
+getLeapMonth	cls_lunar.php	/^	function getLeapMonth($year){$/;"	f
+getLunarByBetween	cls_lunar.php	/^	function getLunarByBetween($year,$between){$/;"	f
+getLunarMonthDays	cls_lunar.php	/^	function getLunarMonthDays($year,$month){$/;"	f
+getLunarMonths	cls_lunar.php	/^	function getLunarMonths($year){$/;"	f
+getLunarYearDays	cls_lunar.php	/^	function getLunarYearDays($year){$/;"	f
+getLunarYearMonths	cls_lunar.php	/^	function getLunarYearMonths($year){$/;"	f
+getLunarYearName	cls_lunar.php	/^	function getLunarYearName($year){$/;"	f
+getProCitDis	lib_c2c.php	/^function getProCitDis($state, $city, $district)$/;"	f
+getSingleWavInfo	lib_wav.php	/^function getSingleWavInfo($single = true) {$/;"	f
+getSolarMonthDays	cls_lunar.php	/^	function getSolarMonthDays($year,$month){$/;"	f
+getValidCode	cls_code.php	/^    public function getValidCode()$/;"	f
+getValueFromChar	cls_code.php	/^    private function getValueFromChar($ch)$/;"	f
+getWavInfo	lib_wav.php	/^function getWavInfo() {$/;"	f
+getWidth	cls_code.php	/^    public function getWidth()$/;"	f
+getYearZodiac	cls_lunar.php	/^	function getYearZodiac($year){$/;"	f
+get_admin	lib_main.php	/^function get_admin ($role_id = 0) {$/;"	f
+get_admin_by_all	lib_main.php	/^function get_admin_by_all(){$/;"	f
+get_admin_id	lib_main.php	/^function get_admin_id ($role_id)$/;"	f
+get_admin_list_by_group	lib_main.php	/^function get_admin_list_by_group($group_id)$/;"	f
+get_admin_tasks_list	lib_index_info.php	/^function get_admin_tasks_list($where){$/;"	f
+get_admin_tmp_list	lib_main.php	/^function get_admin_tmp_list ($role = 0)$/;"	f
+get_admin_userlist	lib_main.php	/^function get_admin_userlist ($manager = 0)$/;"	f
+get_area_taobao	lib_main.php	/^function get_area_taobao ($type = 1, $parent = '')$/;"	f
+get_article_list	lib_main.php	/^function get_article_list($filter)$/;"	f
+get_attr_groups	lib_main.php	/^function get_attr_groups($cat_id)$/;"	f
+get_attr_list	lib_goods.php	/^function get_attr_list($cat_id, $goods_id = 0)$/;"	f
+get_back_reason	lib_main.php	/^function get_back_reason ()$/;"	f
+get_bonus_type	lib_main.php	/^function get_bonus_type()$/;"	f
+get_brand_id	lib_common.php	/^function get_brand_id()$/;"	f
+get_brand_id_name	lib_common.php	/^function get_brand_id_name()$/;"	f
+get_charset_list	lib_main.php	/^function get_charset_list()$/;"	f
+get_commemoration	lib_index_info.php	/^function get_commemoration(){$/;"	f
+get_customer_type	lib_main.php	/^function get_customer_type($str = '') {$/;"	f
+get_disease	lib_main.php	/^function get_disease()$/;"	f
+get_editable_libs	lib_template.php	/^function get_editable_libs($curr_template, $curr_page_libs)$/;"	f
+get_errMsg	image.class.php	/^     function get_errMsg(){$/;"	f
+get_filelist	cls_phpzip.php	/^    function get_filelist($dir)$/;"	f
+get_filter	lib_main.php	/^function get_filter($param_str = '')$/;"	f
+get_from_where	lib_main.php	/^function get_from_where()$/;"	f
+get_goods_articles	lib_goods.php	/^function get_goods_articles($goods_id)$/;"	f
+get_goods_by_brand	lib_goods.php	/^function get_goods_by_brand($brand_id)$/;"	f
+get_goods_list	lib_main.php	/^function get_goods_list($filter)$/;"	f
+get_goods_num	lib_index_info.php	/^function get_goods_num($where){$/;"	f
+get_goods_packing	lib_main.php	/^function get_goods_packing ($goods_id)$/;"	f
+get_goods_specifications_list	lib_goods.php	/^function get_goods_specifications_list($goods_id)$/;"	f
+get_goods_type_specifications	lib_goods.php	/^function get_goods_type_specifications()$/;"	f
+get_group_goods	lib_goods.php	/^function get_group_goods($goods_id)$/;"	f
+get_group_list	lib_main.php	/^function get_group_list ($role_id)$/;"	f
+get_head	cls_sql_dump.php	/^    function get_head($path)$/;"	f
+get_hot_sale	lib_index_info.php	/^function get_hot_sale($start_time = 0,$end_time = 0){$/;"	f
+get_income	lib_main.php	/^function get_income()$/;"	f
+get_index_alarm_stock	lib_index_info.php	/^function get_index_alarm_stock(){$/;"	f
+get_index_group	lib_index_info.php	/^function get_index_group(){$/;"	f
+get_index_role	lib_index_info.php	/^function get_index_role(){$/;"	f
+get_intro_list	lib_goods.php	/^function get_intro_list()$/;"	f
+get_linked_goods	lib_goods.php	/^function get_linked_goods($goods_id)$/;"	f
+get_low_stock_goods	lib_goods.php	/^function get_low_stock_goods($filter = 'low_qty')$/;"	f
+get_md5_string	lib_c2c.php	/^function get_md5_string($url)$/;"	f
+get_member_price_list	lib_goods.php	/^function get_member_price_list($goods_id)$/;"	f
+get_name	cls_exchange.php	/^    function get_name($id, $name = '')$/;"	f
+get_nature_stats	lib_index_info.php	/^function get_nature_stats(){$/;"	f
+get_only_group_list	lib_common.php	/^function get_only_group_list($where=''){$/;"	f
+get_order_owner	lib_c2c.php	/^function get_order_owner ($role_id)$/;"	f
+get_packing_article	lib_main.php	/^function get_packing_article ($packing_id)$/;"	f
+get_packing_brand_info	lib_main.php	/^function get_packing_brand_info($packing_id)$/;"	f
+get_packing_goods	lib_main.php	/^function get_packing_goods($packing_id)$/;"	f
+get_packing_goods_list	lib_main.php	/^function get_packing_goods_list ($packing_id)$/;"	f
+get_packing_info	lib_main.php	/^function get_packing_info ($packing_id)$/;"	f
+get_packing_syn_goods	lib_c2c.php	/^function get_packing_syn_goods ($package_sn)$/;"	f
+get_pay_ids	lib_main.php	/^function get_pay_ids()$/;"	f
+get_position_list	lib_main.php	/^function get_position_list()$/;"	f
+get_product_info	lib_goods.php	/^function get_product_info($product_id, $filed = '')$/;"	f
+get_random_name	cls_sql_dump.php	/^    function get_random_name()$/;"	f
+get_rank_list	lib_main.php	/^function get_rank_list($is_special = false)$/;"	f
+get_ranklist	lib_index_info.php	/^function get_ranklist($sql_sub,$ranklist_name,$start,$end){$/;"	f
+get_ranklist_date	lib_index_info.php	/^function get_ranklist_date(){$/;"	f
+get_role	lib_main.php	/^function get_role($where='role_id NOT IN (3, 4, 5, 8)')$/;"	f
+get_role_by_all	lib_main.php	/^function get_role_by_all(){$/;"	f
+get_role_group_list	lib_common.php	/^function get_role_group_list(){$/;"	f
+get_role_list	lib_main.php	/^function get_role_list($type = '')$/;"	f
+get_role_str	lib_index_info.php	/^function get_role_str(){$/;"	f
+get_sale_alarm_list	lib_index_info.php	/^function get_sale_alarm_list(){$/;"	f
+get_sel_goods	lib_common.php	/^function get_sel_goods($goods_id = 0,$brand_id=0)$/;"	f
+get_service	lib_main.php	/^function get_service($user_id)$/;"	f
+get_service_class	lib_main.php	/^function get_service_class()$/;"	f
+get_service_manner	lib_main.php	/^function get_service_manner()$/;"	f
+get_setted	lib_template.php	/^function get_setted($lib, &$arr)$/;"	f
+get_shipping	lib_c2c.php	/^function get_shipping ($region, $id = 0)$/;"	f
+get_string	bcode128.class.php	/^	private function get_string() { $/;"	f
+get_table_data	cls_sql_dump.php	/^    function get_table_data($table, $pos)$/;"	f
+get_table_df	cls_sql_dump.php	/^    function get_table_df($table, $add_drop = false)$/;"	f
+get_tables_list	cls_sql_dump.php	/^    function get_tables_list($path)$/;"	f
+get_task_progress	lib_index_info.php	/^function get_task_progress(){$/;"	f
+get_template_info	lib_template.php	/^function get_template_info($template_name, $template_style='')$/;"	f
+get_template_region	lib_template.php	/^function get_template_region($tmp_name, $tmp_file, $lib=true)$/;"	f
+get_type	bcode128.class.php	/^	private function get_type() { $/;"	f
+get_type_list	lib_main.php	/^function get_type_list($where_addr = '')$/;"	f
+get_unit_list	lib_goods.php	/^function get_unit_list()$/;"	f
+get_user_active	lib_main.php	/^function get_user_active()$/;"	f
+get_user_rank	lib_main.php	/^function get_user_rank($rankid, $where)$/;"	f
+get_user_rank_list	lib_goods.php	/^function get_user_rank_list()$/;"	f
+get_where_sql	lib_main.php	/^function get_where_sql($filter)$/;"	f
+get_yes_no	lib_main.php	/^function get_yes_no($var)$/;"	f
+gift_info	lib_c2c.php	/^    $gift_info = json_decode($gift, true);$/;"	v
+gift_info	lib_c2c.php	/^    count($gift_info_item) && $gift_info = $gift_info_item;$/;"	v
+gift_info	lib_c2c.php	/^    count($gift_info_package) && $gift_info = $gift_info_package;$/;"	v
+gift_info_total	lib_c2c.php	/^            $gift_info_total = read_gift_info ($order_info['team'], $order_info['confirm_time'], $order_info['goods_amount'], '', '', $gift_info_total['gift_id']);$/;"	v
+gift_info_total	lib_c2c.php	/^        $gift_info_total = read_gift_info($order_info['team'], $order_info['confirm_time'], $order_info['goods_amount'], '', '');$/;"	v
+gl	lunar.php	/^$gl = date("Y-m-d",$lunar->L2S($nl));   $/;"	v
+goods_attr	lib_goods.php	/^    $goods_attr = product_goods_attr_list($goods_id);$/;"	v
+goods_attr_id	lib_goods.php	/^    $goods_attr_id = array();$/;"	v
+goods_id	lib_goods.php	/^    $goods_id = $GLOBALS['db']->getCol($sql);$/;"	v
+goods_id	lib_goods.php	/^    $goods_id = intval($goods_id);$/;"	v
+goods_id	lib_goods.php	/^function build_attr_html($cat_id, $goods_id = 0)$/;"	v
+goods_id	lib_goods.php	/^function check_goods_sn_exist($goods_sn, $goods_id = 0)$/;"	v
+goods_id	lib_goods.php	/^function get_attr_list($cat_id, $goods_id = 0)$/;"	v
+goods_info	lib_c2c.php	/^            $goods_info = $GLOBALS['db']->getRow($name_sql);$/;"	v
+goods_list	lib_c2c.php	/^    $goods_list = $GLOBALS['db']->getAll($sql_select);$/;"	v
+goods_list	lib_goods.php	/^                case '0_qty'    : $goods_list = get_low_stock_goods('0_qty'); break;    \/\/ 0库存$/;"	v
+goods_list	lib_goods.php	/^                case 'deadline' : $goods_list = get_low_stock_goods('deadline'); break; \/\/ 将过期产品$/;"	v
+goods_list	lib_goods.php	/^                case 'low_qty'  : $goods_list = get_low_stock_goods('low_qty'); break;  \/\/ 库存低于最低库存$/;"	v
+goods_list	lib_goods.php	/^        $goods_list = $GLOBALS['db']->getAll($sql_select);$/;"	v
+goods_list	lib_goods.php	/^    $goods_list = $GLOBALS['db']->getAll($sql_select);$/;"	v
+goods_list	lib_goods.php	/^function goods_list($is_delete, $real_goods=1)$/;"	f
+goods_list	lib_index_info.php	/^        $goods_list          = array();$/;"	v
+goods_list	lib_index_info.php	/^    $goods_list = get_goods_num($where); $/;"	v
+goods_list	lib_main.php	/^        $goods_list = $GLOBALS['db']->getAll($sql);$/;"	v
+goods_quantity_list	lib_index_info.php	/^        $goods_quantity_list = $GLOBALS['db']->getAll($sql_select);$/;"	v
+goods_res	lib_goods.php	/^    \/\/    $goods_res = $GLOBALS['db']->getRow($sql);$/;"	v
+goods_sn	lib_c2c.php	/^            $goods_sn = str_replace('【1111购物狂欢节】', '', $goods_sn);$/;"	v
+goods_sn	lib_c2c.php	/^        elseif ((strpos($title, 'TB_') !== false || strpos(trim($title), 'TC_') !== false) && $goods_sn = strstr(trim($title), '-', true))$/;"	v
+goods_sn	lib_c2c.php	/^function read_gift_info ($team, $now_time, $order_amount, $goods_sn = '', $goods_num = '', $drop_gift_id = '')$/;"	v
+goods_sn	lib_goods.php	/^        $goods_sn = $new_sn;$/;"	v
+goods_sn	lib_goods.php	/^    $goods_sn = $GLOBALS['_CFG']['sn_prefix'] . str_repeat('0', 6 - strlen($goods_id)) . $goods_id;$/;"	v
+goods_sn	lib_goods.php	/^    $goods_sn = trim($goods_sn);$/;"	v
+goods_sn_str	lib_index_info.php	/^        $goods_sn_str = implode("','",$goods_sn_list);$/;"	v
+goods_stock	lib_c2c.php	/^        $goods_stock = $GLOBALS['db']->getOne($sql);$/;"	v
+goods_type_list	lib_main.php	/^function goods_type_list($selected)$/;"	f
+google_sitemap	cls_google_sitemap.php	/^class google_sitemap$/;"	c
+google_sitemap_item	cls_google_sitemap.php	/^    function google_sitemap_item($loc, $lastmod = '', $changefreq = '', $priority = '')$/;"	f
+google_sitemap_item	cls_google_sitemap.php	/^class google_sitemap_item$/;"	c
+group_id	lib_index_info.php	/^            $group_id  = intval($_SESSION['group_id']);$/;"	v
+group_id	lib_index_info.php	/^    $group_id  = $_SESSION['group_id'];$/;"	v
+group_id	lib_index_info.php	/^    $group_id = $_SESSION['group_id'];$/;"	v
+group_id	lib_main.php	/^    $group_id = intval($group_id);$/;"	v
+group_list	lib_common.php	/^        $group_list = array($/;"	v
+group_list	lib_common.php	/^    $group_list = $GLOBALS['db']->getAll($sql_select);$/;"	v
+group_list	lib_index_info.php	/^        $group_list = get_index_group();$/;"	v
+group_list	lib_index_info.php	/^    $group_list = $GLOBALS['db']->getAll($sql_select);$/;"	v
+group_ranklist_total	lib_index_info.php	/^        $group_ranklist_total = count($statistics['group_ranklist']);$/;"	v
+grp	lib_main.php	/^    $grp = str_replace("\\r", '', $GLOBALS['db']->getOne($sql));$/;"	v
+handle_gallery_image	lib_goods.php	/^function handle_gallery_image($goods_id, $image_files, $image_descs, $image_urls)$/;"	f
+handle_goods_article	lib_goods.php	/^function handle_goods_article($goods_id)$/;"	f
+handle_goods_attr	lib_goods.php	/^function handle_goods_attr($goods_id, $id_list, $is_spec_list, $value_price_list)$/;"	f
+handle_group_goods	lib_goods.php	/^function handle_group_goods($goods_id)$/;"	f
+handle_link_goods	lib_goods.php	/^function handle_link_goods($goods_id)$/;"	f
+handle_member_price	lib_goods.php	/^function handle_member_price($goods_id, $rank_list, $price_list)$/;"	f
+handle_other_cat	lib_goods.php	/^function handle_other_cat($goods_id, $cat_list)$/;"	f
+head	cls_sql_dump.php	/^        $head = "-- ecshop v2.x SQL Dump Program\\r\\n".$/;"	v
+header	cls_google_sitemap.php	/^    var $header = "<\\x3Fxml version=\\"1.0\\" encoding=\\"UTF-8\\"\\x3F>\\n\\t<urlset xmlns=\\"http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9\\">";$/;"	v
+height	bcode128.class.php	/^		$height=$this->height-$this->margin_top-$this->margin_bottom-$sub_height-$top_height;$/;"	v
+height	bcode128.class.php	/^		$this->height = $height;$/;"	v
+height	bcode128.class.php	/^	protected $height=50;$/;"	v
+height	cls_code.php	/^        $this->height = $height;$/;"	v
+height	image.class.php	/^                         $height  =  $srcHeight;$/;"	v
+height	image.class.php	/^                         $height = (int)($srcHeight*$scale);	\/\/199$/;"	v
+height	image.class.php	/^                    $height = $srcHeight;$/;"	v
+heith	cls_code.php	/^            $this->heith = $this->unit_width*35;$/;"	v
+heith	cls_code.php	/^    private $heith = 55;$/;"	v
+hex2rgb	bcode128.class.php	/^	private function hex2rgb( $colour ) {$/;"	f
+hexdtime	cls_phpzip.php	/^        $hexdtime = '\\x' . $dtime[6] . $dtime[7]$/;"	v
+hideContact	lib_main.php	/^function hideContact($val){$/;"	f
+history	lib_main.php	/^    $history = $GLOBALS['db']->getRow($sql_select);$/;"	v
+hot_sale_goods	lib_index_info.php	/^    $hot_sale_goods = get_hot_sale();$/;"	v
+html	lib_goods.php	/^    $html = '<table width="100%" id="attrTable">';$/;"	v
+httpStatusCode	cls_sms.php	/^            $httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);$/;"	v
+httpStatusCode	lib_c2c.php	/^        $httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);$/;"	v
+i	cls_date.php	/^               if($leap>0   &&   $i==($leap+1)   &&   $this->isLeap==false)   {   $/;"	v
+i	cls_date.php	/^               if($this->isLeap==true   &&   $i==($leap+1))   $/;"	v
+i	cls_date.php	/^           if($offset==0   &&   $leap>0   &&   $i==$leap+1)   $/;"	v
+i	cls_json.php	/^                    foreach ($arg AS $i => $v)$/;"	v
+i	cls_json.php	/^                foreach ($arg AS $i => $v)$/;"	v
+i	cls_json.php	/^                foreach (get_object_vars($arg) AS $i => $v)$/;"	v
+i	cls_json.php	/^        $i           = '';$/;"	v
+i	cls_json.php	/^        $i = '';$/;"	v
+i	lib_template.php	/^            $i = 0;$/;"	v
+i	lib_template.php	/^        $i = 0;$/;"	v
+id	cls_exchange.php	/^        $this->id        = $id;$/;"	v
+id	cls_exchange.php	/^        \/\/$sql = 'DELETE FROM ' . $this->table . " WHERE $this->id = '$id'";$/;"	v
+id	cls_exchange.php	/^    function is_only($col, $name, $id = 0, $where='')$/;"	v
+id	cls_exchange.php	/^    function num($col, $name, $id = 0)$/;"	v
+id	cls_exchange.php	/^    var $id;$/;"	v
+id	lib_c2c.php	/^function get_shipping ($region, $id = 0)$/;"	v
+ids	lib_main.php	/^    $ids = array('is_cod' => '0', 'is_not_cod' => '0');$/;"	v
+image	cls_code.php	/^        $this->image = ImageCreate($this->width+2*$this->quiet_zone,$this->heith + $this->font_height);$/;"	v
+image	cls_code.php	/^    private $image = null;$/;"	v
+imageFun	image.class.php	/^               $imageFun = 'image'.($type=='jpg'?'jpeg':$type); $/;"	v
+imageInfo	image.class.php	/^          $imageInfo = getimagesize($img);$/;"	v
+imageSize	image.class.php	/^               $imageSize = filesize($img);$/;"	v
+imageType	image.class.php	/^               $imageType = strtolower(substr(image_type_to_extension($imageInfo[2]),1));$/;"	v
+image_url	lib_goods.php	/^            $image_url = trim($image_urls[$key]);$/;"	v
+img	bcode128.class.php	/^		$img=imagecreate($this->width,$this->height); $/;"	v
+img	bcode128.class.php	/^	public function img() { $/;"	f
+img	init.php	/^    $img = new captcha('..\/data\/captcha\/');$/;"	v
+imgFormat	image.class.php	/^     private $imgFormat = array ('gif', 'jpg', 'jpeg');$/;"	v
+img_ext	lib_goods.php	/^    $img_ext = substr($source_img, strrpos($source_img, '.'));$/;"	v
+img_name	lib_goods.php	/^        $img_name = $goods_id . '_G_' . $rand_name;$/;"	v
+img_name	lib_goods.php	/^        $img_name = $goods_id . '_P_' . $rand_name;$/;"	v
+img_name	lib_goods.php	/^        $img_name = $goods_id . '_thumb_G_' . $rand_name;$/;"	v
+img_name	lib_goods.php	/^        $img_name = $goods_id . '_thumb_P_' . $rand_name;$/;"	v
+img_original	lib_goods.php	/^            $img_original = $GLOBALS['image']->upload_image($upload);$/;"	v
+img_original	lib_goods.php	/^            $img_original = reformat_image_name('gallery', $goods_id, $img_original, 'source');$/;"	v
+img_type	bcode128.class.php	/^	protected $img_type='png';$/;"	v
+img_url	lib_goods.php	/^                $img_url    = $newname;$/;"	v
+img_url	lib_goods.php	/^            $img_url = $img_original = htmlspecialchars($image_url);$/;"	v
+img_url	lib_goods.php	/^            $img_url = $img_original;$/;"	v
+img_url	lib_goods.php	/^            $img_url = reformat_image_name('gallery', $goods_id, $img_url, 'goods');$/;"	v
+index	lib_c2c.php	/^        foreach ($arrObjData as $index => $value) {$/;"	v
+index_spread_activity	lib_index_info.php	/^function index_spread_activity(){$/;"	f
+info	image.class.php	/^               $info = array($/;"	v
+info	image.class.php	/^          $info  = $this->getImageInfo($image);$/;"	v
+info	lib_template.php	/^    $info = array();$/;"	v
+info	lib_wav.php	/^        $info = $GLOBALS['db']->getAll($sql_select);$/;"	v
+initialize_code	bcode128.class.php	/^	private function initialize_code() { $/;"	f
+inputName	image.class.php	/^               $this->inputName = $inputName;$/;"	v
+inputName	image.class.php	/^     var $inputName;              \/\/ 控件名$/;"	v
+input_value	lib_main.php	/^function create_html_editor($input_name, $input_value = '')$/;"	v
+insertDaysData	cls_organizeSales.php	/^    private function insertDaysData ($data)$/;"	f
+insertFunc	cls_organizeSales.php	/^                $insertFunc = $this->insertFuncArr[$period];$/;"	v
+insertFunc	cls_organizeSales.php	/^                $insertFunc = 'insertMonthServicerData';$/;"	v
+insertFuncArr	cls_organizeSales.php	/^    private $insertFuncArr = array('t'=>'insertMonthData', 'd'=>'insertDaysData');$/;"	v
+insertMonthData	cls_organizeSales.php	/^    private function insertMonthData($data)$/;"	f
+insertMonthServicerData	cls_organizeSales.php	/^    private function insertMonthServicerData($data)$/;"	f
+insert_config	lib_main.php	/^function insert_config($parent, $code, $value)$/;"	f
+integral	cls_integral.php	/^class integral$/;"	c
+integralSentTotal	cls_integral.php	/^     public function integralSentTotal ()$/;"	f
+integral_list	cls_integral.php	/^          $integral_list = $this->db->getAll($sql);$/;"	v
+interlace	image.class.php	/^               $interlace  =  $interlace? 1:0;$/;"	v
+ip	lib_main.php	/^    $ip = real_ip();$/;"	v
+isFlusher	lib_c2c.php	/^function isFlusher($account, $order_sn, $platform) {$/;"	f
+isLeap	cls_date.php	/^                   $this->isLeap   =   false;   $/;"	v
+isLeap	cls_date.php	/^                   $this->isLeap   =   true;   $/;"	v
+isLeap	cls_date.php	/^           $this->isLeap   =   false;   $/;"	v
+isLeap	cls_date.php	/^       var   $isLeap;   $/;"	v
+isLeapYear	cls_lunar.php	/^	function isLeapYear($year){$/;"	f
+isLocalPhone	lib_main.php	/^function isLocalPhone($phone) {$/;"	f
+isMonth	cls_lunar.php	/^		$isMonth = $isMonth || false;$/;"	v
+isRename	image.class.php	/^          if(!empty($isRename)) $this->isRename = $isRename;$/;"	v
+isRename	image.class.php	/^     var $isRename = true;        \/\/ 是否重命名，默认为true$/;"	v
+is_brush_order	lib_c2c.php	/^function is_brush_order($order_sn)$/;"	f
+is_complate	lib_index_info.php	/^                    $is_complate = false;$/;"	v
+is_complate	lib_index_info.php	/^            $is_complate = true;$/;"	v
+is_only	cls_exchange.php	/^    function is_only($col, $name, $id = 0, $where='')$/;"	f
+is_set_height	cls_code.php	/^        $this->is_set_height = true;$/;"	v
+is_set_height	cls_code.php	/^    public $is_set_height = false;$/;"	v
+is_short	cls_sql_dump.php	/^    var $is_short  = false;$/;"	v
+is_spec	lib_goods.php	/^        $is_spec = $is_spec_list[$key];$/;"	v
+is_uploaded	image.class.php	/^     function is_uploaded(){$/;"	f
+items	cls_google_sitemap.php	/^    var $items = array();$/;"	v
+jd	lib_c2c.php	/^    $jd = new JdClient;$/;"	v
+json	init.php	/^$json = new JSON;$/;"	v
+json	lib_main.php	/^    $json = new JSON;$/;"	v
+jump	bcode128.class.php	/^            $jump = $size + 12;$/;"	v
+k	bcode128.class.php	/^		foreach ($f as $k=>$v) {$/;"	v
+k	bcode128.class.php	/^		foreach ($options as $k=>$v) {$/;"	v
+k	cls_json.php	/^                $k = $this->str();$/;"	v
+k	cls_json.php	/^        $k = '';$/;"	v
+k	lib_c2c.php	/^        foreach ($postFields as $k => $v)$/;"	v
+k	lib_c2c.php	/^    foreach($request_arr as $k=>$v){$/;"	v
+k	lib_template.php	/^                foreach ($lib_matches AS $k => $v)$/;"	v
+key	cls_json.php	/^        foreach ($_arr as $key => $val)$/;"	v
+key	cls_sms.php	/^        foreach ($this->data as $key=>$val){$/;"	v
+key	cls_sql_dump.php	/^            foreach($arr as $key => $val)$/;"	v
+key	lib_goods.php	/^        foreach ($filter as $key=>$val)$/;"	v
+key	lib_goods.php	/^    \/\/foreach ($row as $key=>&$val)$/;"	v
+key	lib_goods.php	/^    foreach ($attr AS $key => $val)$/;"	v
+key	lib_goods.php	/^    foreach ($id_list AS $key => $id)$/;"	v
+key	lib_goods.php	/^    foreach ($image_descs AS $key => $img_desc)$/;"	v
+key	lib_goods.php	/^    foreach ($rank_list AS $key => $rank)$/;"	v
+key	lib_goods.php	/^    foreach ($row AS $key => $val)$/;"	v
+key	lib_goods.php	/^    foreach ($row as $key => $value)$/;"	v
+key	lib_index_info.php	/^            foreach($order_sheet_list as $key=>$sheet){$/;"	v
+key	lib_index_info.php	/^            foreach($ranklist as $key=>&$finish_order){$/;"	v
+key	lib_index_info.php	/^        foreach($my_ranking as $key=>&$val){$/;"	v
+key	lib_index_info.php	/^        foreach($package as $key=>&$package_val){$/;"	v
+key	lib_index_info.php	/^        foreach($ranklist as $key=>&$sale_group){$/;"	v
+key	lib_index_info.php	/^    foreach($unlimit as $key=>&$row){$/;"	v
+key	lib_main.php	/^        foreach ($append AS $key => $val)$/;"	v
+key	lib_main.php	/^    foreach ($list AS $key=>$val) {$/;"	v
+key	lib_main.php	/^    foreach ($list as $key=>$val)$/;"	v
+key	lib_main.php	/^    foreach ($modules AS $key => $value)$/;"	v
+key	lib_main.php	/^    foreach ($packing_list  as $key=>$val)$/;"	v
+key	lib_main.php	/^    foreach ($packing_list as $key=>$val)$/;"	v
+key	lib_main.php	/^    foreach ($total as $key=>$val)$/;"	v
+key	lib_main.php	/^    foreach ($type_list as $key=>$val)$/;"	v
+key	lib_main.php	/^function assoc_value ($arr, $key = 0)$/;"	v
+key	lib_template.php	/^            foreach ($matches AS $key => $val)$/;"	v
+key	lib_template.php	/^    foreach ($arr AS $key => $val)$/;"	v
+key	lib_template.php	/^    foreach ($regions AS $key => $val)$/;"	v
+keyStr	lib_wav.php	/^    $keyStr   = implode(',', $keys);$/;"	v
+keys	lib_wav.php	/^    $keys = array();$/;"	v
+keysA	bcode128.class.php	/^        $this->keysA = ' !"#$%&\\'()*+,-.\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\\]^_';$/;"	v
+keysB	bcode128.class.php	/^        $this->keysB = ' !"#$%&\\'()*+,-.\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\\\]^_`abcdefghijklmnopqrstuvwxyz{|}~'.chr(127);$/;"	v
+keysC	bcode128.class.php	/^        $this->keysC = '0123456789';$/;"	v
+l	cls_json.php	/^        $l           = '';$/;"	v
+lYearDays	cls_date.php	/^       function   lYearDays($y)   {   $/;"	f
+last	lib_main.php	/^    $last = strtolower($val{strlen($val)-1});$/;"	v
+lastmod	cls_google_sitemap.php	/^        $this->lastmod = $lastmod;$/;"	v
+lastmod	cls_google_sitemap.php	/^    function google_sitemap_item($loc, $lastmod = '', $changefreq = '', $priority = '')$/;"	v
+ld	cls_date.php	/^$ld   =new Lunar(2012, 12, 11);$/;"	v
+leap	cls_date.php	/^           $leap   =   $this->leapMonth($i);   \/\/闰哪个月   $/;"	v
+leap	cls_date.php	/^           $leap=0;   $/;"	v
+leapDays	cls_date.php	/^       function   leapDays($y)   {   $/;"	f
+leapMonth	cls_date.php	/^       function   leapMonth($y)   {   $/;"	f
+leapMonth	cls_lunar.php	/^			$leapMonth = $this->getLeapMonth($year);$/;"	v
+leapMonth	cls_lunar.php	/^		$leapMonth = $yearData[0];$/;"	v
+leapMonth	cls_lunar.php	/^		$leapMonth=0;$/;"	v
+len	cls_lunar.php	/^		$len = ($yearData[0]==0?12:13);$/;"	v
+len	cls_lunar.php	/^		$len = count($monthArray);$/;"	v
+length	bcode128.class.php	/^		$length=strlen($this->string);$/;"	v
+length	image.class.php	/^               $length = ($type != $_type ? $length+1 : $length);$/;"	v
+length	image.class.php	/^               $length = strlen("00.".$type) * (-1);$/;"	v
+lib	lib_template.php	/^function get_template_region($tmp_name, $tmp_file, $lib=true)$/;"	v
+lib_matches	lib_template.php	/^            $lib_matches = array();$/;"	v
+libs	lib_template.php	/^    $libs = array();$/;"	v
+limit	bcode128.class.php	/^			$limit=(int)$v;$/;"	v
+limit	bcode128.class.php	/^			$limit=array_search($v,$search);$/;"	v
+limit	lib_index_info.php	/^    $limit       = ' LIMIT '.($page-1)*$page_size.",$recorder_size";$/;"	v
+limit_width	bcode128.class.php	/^			$limit_width=$t_width\/mb_strlen($this->top_text,'utf8'); \/\/单个字符宽度$/;"	v
+limit_width	bcode128.class.php	/^			$limit_width=$t_width\/strlen($this->bottom_text); \/\/单个字符宽度$/;"	v
+linked_type	lib_goods.php	/^        $linked_type = $val['is_double'] == 0 ? $GLOBALS['_LANG']['single'] : $GLOBALS['_LANG']['double'];$/;"	v
+list	lib_main.php	/^    $list = $GLOBALS['db']->getAll($sql);$/;"	v
+list	lib_main.php	/^    $list = array ();$/;"	v
+list	lib_main.php	/^    $list = array();$/;"	v
+list_link_postfix	lib_main.php	/^function list_link_postfix()$/;"	f
+list_nav	lib_main.php	/^function list_nav ()$/;"	f
+list_page	lib_index_info.php	/^        $list_page = array ();$/;"	v
+list_page	lib_index_info.php	/^        $list_page = array();$/;"	v
+list_page	lib_index_info.php	/^    $list_page = array (1,2,3,4,5,6,7);$/;"	v
+list_page	lib_index_info.php	/^    $list_page = array();$/;"	v
+loc	cls_google_sitemap.php	/^        $this->loc = $loc;$/;"	v
+localPhone	lib_main.php	/^    $localPhone = file('localPhone.txt');$/;"	v
+log_info	lib_main.php	/^    $log_info = $GLOBALS['_LANG']['log_action'][$action] . $GLOBALS['_LANG']['log_action'][$content] .': ';$/;"	v
+logistics	lib_c2c.php	/^    $logistics = logistics_code($order_info['shipping_id']);$/;"	v
+logistics_code	lib_c2c.php	/^function logistics_code($shipping_id)$/;"	f
+logo_filename	lib_template.php	/^        $logo_filename      = explode(': ', $arr[7]);$/;"	v
+low_stock_goods	lib_goods.php	/^        $low_stock_goods = $GLOBALS['db']->getCol($sql_select);$/;"	v
+low_stock_goods	lib_goods.php	/^    $low_stock_goods = array ();$/;"	v
+low_stock_goods	lib_goods.php	/^    $low_stock_goods = array_filter($low_stock_goods);$/;"	v
+lst	lib_main.php	/^    $lst = '';$/;"	v
+lunar	cls_lunar.php	/^$lunar = new Lunar();$/;"	v
+lunar	lunar.php	/^$lunar = new Lunar();$/;"	v
+lunarArray	cls_lunar.php	/^		$lunarArray = array();$/;"	v
+lunarInfo	cls_date.php	/^       var   $lunarInfo   =   array(   $/;"	v
+lunarInfo	cls_lunar.php	/^	var $lunarInfo = array($/;"	v
+lunar_ary	cls_lunar.php	/^		$lunar_ary = array();$/;"	v
+m	cls_lunar.php	/^			$m = ($leapMonth!=0&&$t==$leapMonth+1)?('闰'.$this->getCapitalNum($t- 1,true)):$this->getCapitalNum(($leapMonth!=0&&$leapMonth+1<$t?($t-1):$t),true);$/;"	v
+m	cls_lunar.php	/^		$m='';$/;"	v
+m	cls_sms.php	/^        $m = $n = 1;$/;"	v
+make_crc_table	bcode128.class.php	/^	private static function make_crc_table() {$/;"	f
+make_head	cls_sql_dump.php	/^    function make_head($vol)$/;"	f
+make_json_error	lib_main.php	/^function make_json_error($msg)$/;"	f
+make_json_response	lib_main.php	/^function make_json_response($content='', $error="0", $message='', $append=array())$/;"	f
+make_json_result	lib_main.php	/^function make_json_result($content, $message='', $append=array())$/;"	f
+manager	lib_main.php	/^                $manager = $temp[0];$/;"	v
+manager	lib_main.php	/^                $manager = implode(',', $temp);$/;"	v
+manager	lib_main.php	/^            $manager = $GLOBALS['db']->getAll($sql_select);$/;"	v
+map	cls_google_sitemap.php	/^        $map = $this->header . "\\n";$/;"	v
+margin_bottom	bcode128.class.php	/^	protected $margin_bottom=0;$/;"	v
+margin_left	bcode128.class.php	/^						$this->margin_left=$this->margin_right=$t_array[0];$/;"	v
+margin_left	bcode128.class.php	/^						$this->margin_left=$this->margin_top=$this->margin_right=$this->margin_bottom=$v;$/;"	v
+margin_left	bcode128.class.php	/^	protected $margin_left=0;$/;"	v
+margin_right	bcode128.class.php	/^	protected $margin_right=0;$/;"	v
+margin_top	bcode128.class.php	/^						$this->margin_top=$this->margin_bottom=$t_array[1];$/;"	v
+margin_top	bcode128.class.php	/^	protected $margin_top=0;$/;"	v
+mask	bcode128.class.php	/^            $mask = $mask >> ($n - 1);$/;"	v
+mask	bcode128.class.php	/^        $mask = 0x40000000;$/;"	v
+matches	lib_template.php	/^        $matches = array();$/;"	v
+max	lib_goods.php	/^        $max = pow(10, strlen($sn_list[0]) - strlen($goods_sn) + 1) - 1;$/;"	v
+max_size	cls_sql_dump.php	/^            $this->max_size = $max_size;$/;"	v
+max_size	cls_sql_dump.php	/^    function __construct(&$db, $max_size =0)$/;"	v
+max_size	cls_sql_dump.php	/^    function cls_sql_dump(&$db, $max_size=0)$/;"	v
+max_size	cls_sql_dump.php	/^    var $max_size  = 2097152; \/\/ 2M$/;"	v
+message	lib_main.php	/^function crm_admin_priv($action, $message = '', $timeout = 3000, $req_msg = true)$/;"	v
+message	lib_main.php	/^function make_json_result($content, $message='', $append=array())$/;"	v
+meters	bcode128.class.php	/^            $meters = (int)($this->dpi * 39.37007874);$/;"	v
+min_width	bcode128.class.php	/^				$min_width=$min_width+$v;$/;"	v
+min_width	bcode128.class.php	/^		$min_width=0;$/;"	v
+mobile	cls_sms.php	/^                $this->mobile = breakMobileIntoGroup($this->mobile);$/;"	v
+mobile	cls_sms.php	/^            $this->mobile = array_unique($this->mobile);$/;"	v
+mobile	cls_sms.php	/^        $this->mobile = $phone;$/;"	v
+mobile	cls_sms.php	/^    public $mobile;$/;"	v
+mobileGroup	cls_sms.php	/^        $mobileGroup = array();$/;"	v
+modules	lib_main.php	/^    $modules     = array();$/;"	v
+monCyl	cls_date.php	/^           $this->monCyl   =   14;   $/;"	v
+monCyl	cls_date.php	/^       var   $monCyl;   $/;"	v
+month	cls_date.php	/^           $this->month   =   $i;   $/;"	v
+month	cls_date.php	/^       var   $month;   $/;"	v
+month	cls_lunar.php	/^		$month= $day[1];$/;"	v
+month	cls_lunar.php	/^		if($this->isLeapYear($year) && $month == 2) $dd++;$/;"	v
+month	cls_lunar.php	/^$month = $lunar->convertSolarMonthToLunar(2012, 1);$/;"	v
+month	lib_index_info.php	/^        ." WHERE $month=MONTH(birthday) $where AND is_black=0"$/;"	v
+month	lib_index_info.php	/^    $month         = date('n',time());$/;"	v
+month	lib_main.php	/^    $month = empty($_POST[$prefix . 'Month']) ? '0' : $_POST[$prefix . 'Month'];$/;"	v
+month	lunar.php	/^            if($this->IsLeapYear($year) && $month == 2)$/;"	v
+monthArray	cls_lunar.php	/^		$monthArray = $this->getLunarYearMonths($year);$/;"	v
+monthData	cls_lunar.php	/^		 $monthData = $this->getLunarMonths($year);$/;"	v
+monthData	cls_lunar.php	/^		$monthData = $this->getLunarMonths($year);$/;"	v
+monthDays	cls_date.php	/^       function   monthDays($y,$m)   {   $/;"	f
+monthHash	cls_lunar.php	/^		 $monthHash = array('1'=>31,'2'=>$this->isLeapYear($year)?29:28,'3'=>31,'4'=>30,'5'=>31,'6'=>30,'7'=>31,'8'=>31,'9'=>30,'10'=>31,'11'=>30,'12'=>31);$/;"	v
+monthHash	cls_lunar.php	/^		$monthHash=array('0'=>'','1'=>'正月','2'=>'二月','3'=>'三月','4'=>'四月','5'=>'五月','6'=>'六月','7'=>'七月','8'=>'八月','9'=>'九月','10'=>'十月','11'=>'冬月','12'=>'腊月');$/;"	v
+month_days_ary	cls_lunar.php	/^		$month_days_ary = array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);$/;"	v
+move_image_file	lib_goods.php	/^function move_image_file($source, $dest)$/;"	f
+move_plugin_library	lib_template.php	/^function move_plugin_library($tmp_name, &$msg)$/;"	f
+move_uploaded	image.class.php	/^     function move_uploaded(){        \/\/移动上传文件$/;"	f
+msg_type	lib_main.php	/^function admin_priv($priv_str, $msg_type = '' , $msg_output = true)$/;"	v
+msg_type	lib_main.php	/^function sys_msg($msg_detail, $msg_type = 0, $links = array(), $auto_redirect = true)$/;"	v
+my_ranking	lib_index_info.php	/^            $my_ranking = array($/;"	v
+my_ranking	lib_index_info.php	/^        $my_ranking = array_combine($cn_key,$my_ranking);$/;"	v
+n	cls_json.php	/^            $n = '-';$/;"	v
+n	cls_json.php	/^        $n = '';$/;"	v
+n	lib_main.php	/^        $n = $n % 8;$/;"	v
+nStr	cls_date.php	/^           $nStr   =   array('   ','01','02','03','04','05','06','07','08','09','10','11','12');   $/;"	v
+nStr1	cls_date.php	/^           $nStr1   =   array('0','1','2','3','4','5','6','7','8','9','0');   $/;"	v
+nStr2	cls_date.php	/^           $nStr2   =   array('0','1','2','3','　');   $/;"	v
+name	cls_exchange.php	/^            $name = $this->name;$/;"	v
+name	cls_exchange.php	/^        $this->name      = $name;$/;"	v
+name	cls_exchange.php	/^    function get_name($id, $name = '')$/;"	v
+name	cls_exchange.php	/^    var $name;$/;"	v
+name	cls_phpzip.php	/^        $name     = str_replace('\\\\', '\/', $name);$/;"	v
+name_sql	lib_c2c.php	/^            $name_sql = 'SELECT goods_name, goods_sn FROM '.$GLOBALS['ecs']->table('goods').$/;"	v
+nav	lib_main.php	/^        $nav = list_nav();$/;"	v
+nav	lib_main.php	/^    $nav = array ($nav_1st, $nav_2nd, $nav_3rd);$/;"	v
+nav_1st	lib_main.php	/^    $nav_1st = array ();$/;"	v
+nav_2nd	lib_main.php	/^    $nav_2nd = array ();$/;"	v
+nav_3rd	lib_main.php	/^    $nav_3rd = array ();$/;"	v
+new_offset	cls_phpzip.php	/^        $new_offset        = strlen(implode('', $this->datasec));$/;"	v
+new_sn	lib_goods.php	/^            $new_sn = $goods_sn . mt_rand(0, $max);$/;"	v
+new_sn	lib_goods.php	/^        $new_sn = $goods_sn . mt_rand(0, $max);$/;"	v
+newname	lib_goods.php	/^                $newname    = dirname($img_original) . '\/' . $GLOBALS['image']->random_filename() . substr(basename($img_original), $pos);$/;"	v
+next	cls_json.php	/^    function next()$/;"	f
+nl	cls_date.php	/^           $nl   =   sprintf("%s%s-%s",($this->isLeap?"":""),$nStr[$this->month],$this->cDay($this->day));      $/;"	v
+nl	cls_date.php	/^$nl   =$ld->display();$/;"	v
+nl	lunar.php	/^$nl = date("Y-m-d",$lunar->S2L($today));$/;"	v
+now_time	lib_c2c.php	/^        $now_time = time() +28800;$/;"	v
+now_time	lib_c2c.php	/^    $now_time = time();$/;"	v
+now_time	lib_main.php	/^    $now_time = time() + 8*3600;$/;"	v
+nowtime	lib_goods.php	/^        $nowtime = time() +8*30*24*3600;$/;"	v
+num	cls_exchange.php	/^    function num($col, $name, $id = 0)$/;"	f
+num	cls_json.php	/^    function num()$/;"	f
+numeric	cls_json.php	/^                        $numeric = false;$/;"	v
+numeric	cls_json.php	/^        $numeric     = true;$/;"	v
+nums	lib_goods.php	/^    $nums = $GLOBALS['db']->getOne($sql);$/;"	v
+nums	lib_goods.php	/^    $nums = empty($nums) ? 0 : $nums;$/;"	v
+o	cls_json.php	/^        $o = new StdClass();$/;"	v
+obj	cls_json.php	/^    function obj()$/;"	f
+object_to_array	cls_json.php	/^    function object_to_array($obj)$/;"	f
+objectsIntoArray	lib_c2c.php	/^function objectsIntoArray($arrObjData, $arrSkipIndices = array())$/;"	f
+offline_admin_list	lib_main.php	/^function offline_admin_list ($role = 0)$/;"	f
+offset	bcode128.class.php	/^            $offset = 4 + (ord($bin[4]) << 8 | ord($bin[5]));$/;"	v
+offset	bcode128.class.php	/^        $offset = 0;$/;"	v
+offset	cls_date.php	/^           $offset   =   round($this->time\/86400+25537);   $/;"	v
+offset	cls_sql_dump.php	/^    var $offset    = 300;$/;"	v
+ol	lib_main.php	/^    $ol = new OptionList();$/;"	v
+old_offset	cls_phpzip.php	/^    var $old_offset   = 0;$/;"	v
+opt	lib_goods.php	/^                $opt    = trim(htmlspecialchars($opt));$/;"	v
+options	lib_template.php	/^    $options = array('region' => '', 'sort_order' => 0, 'display' => 0);$/;"	v
+order	lib_c2c.php	/^    $order  = array_merge($user_info, $order_info);$/;"	v
+orderAssign	lib_c2c.php	/^function orderAssign ()$/;"	f
+order_by	lib_c2c.php	/^            $order_by = ' ORDER BY goods_num DESC';$/;"	v
+order_by	lib_c2c.php	/^        $order_by = ' ORDER BY order_amount DESC';$/;"	v
+order_by	lib_c2c.php	/^    $order_by = '';    \/\/ 赠品条件$/;"	v
+order_by	lib_index_info.php	/^    $order_by = ' ORDER BY num_service DESC';$/;"	v
+order_by	lib_index_info.php	/^    $order_by = isset($_REQUEST['order_by']) ? mysql_real_escape_string($_REQUEST['order_by']): ' ORDER BY final_amount DESC';$/;"	v
+order_info	lib_main.php	/^            $order_info = $GLOBALS['db']->getRow(sprintf($sql_select,$GLOBALS['ecs']->table('ordersyn_info'),$sn));$/;"	v
+order_info	lib_main.php	/^        $order_info = $GLOBALS['db']->getRow(sprintf($sql_select,$GLOBALS['ecs']->table($table),$sn));$/;"	v
+order_sheet_list	lib_index_info.php	/^        $order_sheet_list = $GLOBALS['db']->getAll($sql_select);$/;"	v
+order_source_list	lib_main.php	/^    $order_source_list = $GLOBALS['db']->getAll($sql_select);$/;"	v
+order_source_list	lib_main.php	/^function order_source_list () {$/;"	f
+organizeSales	cls_organizeSales.php	/^class organizeSales$/;"	c
+out	cls_phpzip.php	/^                $out = $this -> file();$/;"	v
+out_file	bcode128.class.php	/^			  $this->out_file==NULL && header('Content-Type: image\/gif');$/;"	v
+out_file	bcode128.class.php	/^	protected $out_file=NULL;$/;"	v
+p	lib_template.php	/^        $p = xml_parser_create();                                                   \/\/把xml解析到数组$/;"	v
+package	lib_index_info.php	/^    $package = array();$/;"	v
+package_goods	lib_index_info.php	/^    $package_goods = $GLOBALS['db']->getAll($sql_select);$/;"	v
+package_list	lib_index_info.php	/^    $package_list = $GLOBALS['db']->getAll($sql_select);$/;"	v
+package_sn	lib_index_info.php	/^    $package_sn = array();$/;"	v
+package_sn	lib_index_info.php	/^    $package_sn = implode("','", $package_sn);$/;"	v
+packed	bcode128.class.php	/^            $packed = unpack('Nsize\/a4chunk', $data);$/;"	v
+packing_list	lib_main.php	/^    $packing_list = $GLOBALS['db']->getAll($sql);$/;"	v
+packing_name	lib_c2c.php	/^            $packing_name = $GLOBALS['db']->getOne($sql_select);$/;"	v
+page	lib_index_info.php	/^        $page           = $page > $page_size ? 1 : $page;$/;"	v
+page	lib_index_info.php	/^        $page = 1;$/;"	v
+page	lib_index_info.php	/^    $page           = $page > $page_size ? 1 : $page;$/;"	v
+page	lib_index_info.php	/^    $page          = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;$/;"	v
+page	lib_index_info.php	/^    $page          = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1 ;$/;"	v
+page	lib_index_info.php	/^    $page          = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;$/;"	v
+page	lib_index_info.php	/^    $page = $page > $page_size ? 1 : $page;$/;"	v
+page	lib_index_info.php	/^    if($page_size < $page || $page == 0){$/;"	v
+page	lib_stock_manager.php	/^    $page = isset($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;$/;"	v
+page_and_size	lib_main.php	/^function page_and_size($filter)$/;"	f
+page_count	lib_stock_manager.php	/^    $page_count = ceil($record_count\/9);$/;"	v
+page_libs	lib_template.php	/^$page_libs = array($/;"	v
+page_set	lib_common.php	/^        $page_set = array ();$/;"	v
+page_set	lib_common.php	/^    $page_set = array (1,2,3,4,5,6,7);$/;"	v
+page_set	lib_main.php	/^        $page_set = array ();$/;"	v
+page_set	lib_main.php	/^    $page_set = array (1,2,3,4,5,6,7);$/;"	v
+page_size	lib_index_info.php	/^        $page_size      = ceil($recorder_count\/$recorder_size);$/;"	v
+page_size	lib_index_info.php	/^    $page_size      = ceil($recorder_count\/$recorder_size);$/;"	v
+param	cls_sms.php	/^        $param = array();$/;"	v
+param_str	lib_goods.php	/^    $param_str = '-' . $goods_id;$/;"	v
+param_str	lib_goods.php	/^    $param_str = '-' . $is_delete . '-' . $real_goods;$/;"	v
+param_str	lib_main.php	/^function set_filter($filter, $sql, $param_str = '')$/;"	v
+params	lib_c2c.php	/^    $params    = $urls[1];$/;"	v
+params	lib_c2c.php	/^    $params    = explode('&',$params);$/;"	v
+params	lib_c2c.php	/^    $params = $arr[1];$/;"	v
+parent	lib_main.php	/^function get_area_taobao ($type = 1, $parent = '')$/;"	v
+parentIsExist	cls_integral.php	/^     public function parentIsExist($parent_id)$/;"	f
+parent_id	lib_c2c.php	/^function createProCitDis ($proCitDis, $parent_id = 1, $region_type = 1)$/;"	v
+parent_id	lib_main.php	/^    $parent_id = $db->getOne($sql);$/;"	v
+parseCode	cls_code.php	/^    private function parseCode()$/;"	f
+path	image.class.php	/^               $path = $this->savePath = $this->saveDir.$file_newname;		\/\/文件的成功保存路径$/;"	v
+pattern	cls_sms.php	/^        $pattern = '\/^1[3458]\\d{9}$';$/;"	v
+pattern	lib_template.php	/^        $pattern = '\/(<!--\\\\s*TemplateBeginEditable\\\\sname="%s"\\\\s*-->)(.*?)(<!--\\\\s*TemplateEndEditable\\\\s*-->)\/s';$/;"	v
+percent	lib_index_info.php	/^                $percent = $percent > 0 ? $percent : 1; $/;"	v
+percent	lib_index_info.php	/^                $percent = ($val['task_value']\/$val['purpose_value']*100);$/;"	v
+person_ranklist_total	lib_index_info.php	/^        $person_ranklist_total = count($statistics['person_ranklist']); $/;"	v
+phone	lib_main.php	/^        $phone = substr($phone, 1);$/;"	v
+platform	lib_c2c.php	/^    $platform = $GLOBALS['db']->getOne($sql_select);$/;"	v
+platform	lib_main.php	/^        $platform = implode(',', $platform);$/;"	v
+platform_condition	lib_index_info.php	/^    $platform_condition = $role_id_str ? " s.platform IN($role_id_str) " : " s.platform=$role_id";$/;"	v
+platform_list	lib_index_info.php	/^        $platform_list = get_index_role();$/;"	v
+platform_list	lib_index_info.php	/^        $platform_list = platform_list(); $/;"	v
+platform_list	lib_index_info.php	/^    $platform_list = $GLOBALS['db']->getAll($sql_select);$/;"	v
+platform_list	lib_main.php	/^function platform_list ($platform = array ())$/;"	f
+platform_path	lib_c2c.php	/^    $platform_path = array (6 => 'taobao', 21 => 'taobao01', 22 => 'taobao02');$/;"	v
+pos	cls_sql_dump.php	/^                    $pos = 0;$/;"	v
+pos	cls_sql_dump.php	/^            $pos = strpos($val, ':');$/;"	v
+pos	lib_goods.php	/^                $pos        = strpos(basename($img_original), '.');$/;"	v
+position	lib_goods.php	/^function reformat_image_name($type, $goods_id, $source_img, $position='')$/;"	v
+position_list	lib_main.php	/^    $position_list = array();$/;"	v
+postBodyString	lib_c2c.php	/^        $postBodyString = "";$/;"	v
+postFields	lib_c2c.php	/^function curl($url, $postFields = null)$/;"	v
+post_pos	cls_sql_dump.php	/^            $post_pos = $this->get_table_data($table, $pos);$/;"	v
+post_pos	cls_sql_dump.php	/^        $post_pos = $pos;$/;"	v
+poster	lib_main.php	/^    $poster = array('phone' => $phone, 'exten' => $exten);$/;"	v
+pref	cls_phpzip.php	/^            $pref = isset($args[1]) ? $args[1] : '';$/;"	v
+price	lib_c2c.php	/^                $price = $total_fee\/$num;$/;"	v
+price	lib_goods.php	/^            $price = '';$/;"	v
+price	lib_goods.php	/^            $price = join(chr(13), $price_list);$/;"	v
+price	lib_goods.php	/^        $price = $price_list[$key];$/;"	v
+price_list	lib_goods.php	/^            $price_list = array();$/;"	v
+price_list	lib_goods.php	/^    $price_list = array();$/;"	v
+priority	cls_google_sitemap.php	/^        $this->priority = $priority;$/;"	v
+proc_thumb	lib_goods.php	/^    $proc_thumb = (isset($GLOBALS['shop_id']) && $GLOBALS['shop_id'] > 0)? false : true;$/;"	v
+productStats	cls_organizeSales.php	/^    public function productStats($period,$admin_list = '')$/;"	f
+product_goods_attr_list	lib_goods.php	/^function product_goods_attr_list($goods_id)$/;"	f
+product_id	lib_goods.php	/^    $product_id = intval($product_id);$/;"	v
+product_id	lib_goods.php	/^function check_goods_attr_exist($goods_attr, $goods_id, $product_id = 0)$/;"	v
+product_id	lib_goods.php	/^function check_product_sn_exist($product_sn, $product_id = 0)$/;"	v
+product_list	lib_goods.php	/^function product_list($goods_id, $conditions = '')$/;"	f
+product_number_count	lib_goods.php	/^function product_number_count($goods_id, $conditions = '')$/;"	f
+product_sn	lib_goods.php	/^    $product_sn = trim($product_sn);$/;"	v
+public_notice	lib_index_info.php	/^function public_notice(){$/;"	f
+put_tables_list	cls_sql_dump.php	/^    function put_tables_list($path, $arr)$/;"	f
+pwd_info	lib_index_info.php	/^    $pwd_info  = authority_judge();$/;"	v
+pwd_info	lib_index_info.php	/^    $pwd_info = array();$/;"	v
+pwd_info	lib_index_info.php	/^    $pwd_info = authority_judge();$/;"	v
+queryEarliestOrderTime	cls_organizeSales.php	/^    private function queryEarliestOrderTime()$/;"	f
+queryOrderGoods	cls_organizeSales.php	/^    private function queryOrderGoods($start_time,$end_time,$admin_list)$/;"	f
+quiet_zone	cls_code.php	/^        $this->quiet_zone = $this->unit_width*60;$/;"	v
+quiet_zone	cls_code.php	/^    private $quiet_zone = 6;$/;"	v
+r	bcode128.class.php	/^		$r = hexdec( $r );$/;"	v
+radios	image.class.php	/^                         $radios = 1;$/;"	v
+rand_name	lib_goods.php	/^    $rand_name = gmtime() . sprintf("%03d", mt_rand(1,999));$/;"	v
+rank_list	lib_main.php	/^    $rank_list = array();$/;"	v
+ranklist	lib_index_info.php	/^        $ranklist = $GLOBALS['db']->getAll($sql.$sql_sub);$/;"	v
+ranklist	lib_index_info.php	/^        $ranklist = $GLOBALS['db']->getAll($sql.$sql_sub.$order_by);$/;"	v
+ranklist_date	lib_index_info.php	/^    $ranklist_date = get_ranklist_date();$/;"	v
+ratios_y	image.class.php	/^                         $ratios_y = 210*$_POST['h']\/$_POST['w'];$/;"	v
+read_gift_info	lib_c2c.php	/^function read_gift_info ($team, $now_time, $order_amount, $goods_sn = '', $goods_num = '', $drop_gift_id = '')$/;"	f
+read_modules	lib_main.php	/^function read_modules($directory = '.')$/;"	f
+real_goods	lib_goods.php	/^function goods_list($is_delete, $real_goods=1)$/;"	v
+rec	lib_template.php	/^    $rec = $GLOBALS['db']->query($sql);$/;"	v
+record	cls_sql_dump.php	/^                $record = array_map("dump_escape_string", $data[$j]);   \/\/过滤非法字符$/;"	v
+record	cls_sql_dump.php	/^                $record = array_map("dump_null_string", $record);     \/\/处理null值$/;"	v
+record_count	lib_stock_manager.php	/^    $record_count = count($alarm_stock_goods['bit']);$/;"	v
+record_operate	lib_main.php	/^function record_operate ($sql, $table)$/;"	f
+record_size	lib_stock_manager.php	/^    $record_size = 9;$/;"	v
+recorder_count	lib_index_info.php	/^        $recorder_count = count($goods_list);$/;"	v
+recorder_count	lib_index_info.php	/^    $recorder_count = $GLOBALS['db']->getOne($sql_select);$/;"	v
+recorder_count	lib_index_info.php	/^    $recorder_count = count($GLOBALS['db']->getAll($sql_select));$/;"	v
+recorder_count	lib_index_info.php	/^    $recorder_count = count($unlimit);$/;"	v
+recorder_size	lib_index_info.php	/^    $recorder_size = 10;$/;"	v
+recorder_size	lib_index_info.php	/^    $recorder_size = 7;$/;"	v
+recorder_size	lib_index_info.php	/^    $recorder_size = isset($_REQUEST['page_size']) ? intval($_REQUEST['page']) : 5;$/;"	v
+recorder_size	lib_index_info.php	/^    $recorder_size = isset($_REQUEST['recorder_size']) ? $_REQUEST['recorder_size'] : 7;$/;"	v
+records_list	lib_main.php	/^    $records_list = scandir("\/WebSite\/$dir_name");$/;"	v
+reformat_image_name	lib_goods.php	/^function reformat_image_name($type, $goods_id, $source_img, $position='')$/;"	f
+region	lib_c2c.php	/^    $region = array();$/;"	v
+regions	lib_template.php	/^    static $regions = array();$/;"	v
+reponse	lib_c2c.php	/^    $reponse = curl_exec($ch);$/;"	v
+report_statistics_limit	lib_main.php	/^function report_statistics_limit ($profile_id)$/;"	f
+req	lib_c2c.php	/^        $req = new LogisticsConsignResendRequest;$/;"	v
+req	lib_c2c.php	/^        $req = new LogisticsOfflineSendRequest;$/;"	v
+req	lib_c2c.php	/^        $req = new OrderDetailGetRequest;$/;"	v
+req	lib_c2c.php	/^    $req = new LogisticsOrderShipmentsUpdateRequest;$/;"	v
+req	lib_c2c.php	/^    $req = new LogisticsPartnersGetRequest;$/;"	v
+req	lib_c2c.php	/^    $req = new OrderSopOutstorageRequest;$/;"	v
+req	lib_c2c.php	/^    $req = new TradeFullinfoGetRequest;$/;"	v
+res	cls_integral.php	/^          $res = $this->db->getAll($sql);$/;"	v
+res	cls_integral.php	/^          $res = $this->db->getOne($sql);$/;"	v
+res	cls_lunar.php	/^				$res = "三十";$/;"	v
+res	cls_lunar.php	/^				$res = "二十";$/;"	v
+res	cls_lunar.php	/^				$res = "廿".$dateHash[$num-20];$/;"	v
+res	cls_lunar.php	/^				$res = '初'.$dateHash[$num];$/;"	v
+res	cls_lunar.php	/^				$res = '十'.$dateHash[$num-10];$/;"	v
+res	cls_lunar.php	/^			$res = $monthHash[$num];$/;"	v
+res	cls_lunar.php	/^		$res = date('Y-m-d', $res+$between*24*60*60);$/;"	v
+res	cls_lunar.php	/^		$res = mktime(0,0,0,$yearData[1],$yearData[2],$year);$/;"	v
+res	cls_lunar.php	/^		$res='';$/;"	v
+res	cls_lunar.php	/^		$res=0;$/;"	v
+res	cls_lunar.php	/^		$res=array();$/;"	v
+res	cls_sms.php	/^        $res = curl_exec($ch);$/;"	v
+res	lib_c2c.php	/^        $res = $GLOBALS['db']->getRow($sql);$/;"	v
+res	lib_c2c.php	/^        $res = true;$/;"	v
+res	lib_c2c.php	/^    $res = $GLOBALS['db']->getAll($sql);$/;"	v
+res	lib_c2c.php	/^    $res = $GLOBALS['db']->getOne($sql);$/;"	v
+res	lib_c2c.php	/^    $res = $GLOBALS['db']->getRow($sql);$/;"	v
+res	lib_goods.php	/^    $res = $GLOBALS['db']->getAll($sql_select);$/;"	v
+res	lib_goods.php	/^    $res = $GLOBALS['db']->getOne($sql);$/;"	v
+res	lib_goods.php	/^    $res = $GLOBALS['db']->query($sql);$/;"	v
+res	lib_main.php	/^    $res = $GLOBALS['db']->getAll($sql);$/;"	v
+res	lib_main.php	/^    $res = $GLOBALS['db']->getRow($sql);$/;"	v
+res	lib_main.php	/^    $res = $GLOBALS['db']->query($sql);$/;"	v
+res	lib_main.php	/^    $res = array ();$/;"	v
+res	lib_main.php	/^    $res = array('error' => $error, 'message' => $message, 'content' => $content);$/;"	v
+resort	lib_main.php	/^function resort($total)$/;"	f
+resource	lib_common.php	/^        $resource   = $GLOBALS['db']->getAll($sql_select);$/;"	v
+resource	lib_common.php	/^        $resource   = array();$/;"	v
+resp	lib_c2c.php	/^        $resp = $dd->execute('POST', $params, 'dangdang.item.itemid.get');$/;"	v
+resp	lib_c2c.php	/^        $resp = json_decode($resp, true);$/;"	v
+resp	lib_c2c.php	/^    $resp = $c->execute($req);$/;"	v
+resp	lib_c2c.php	/^    $resp = $dd->execute('POSTXML', $params, 'dangdang.order.goods.send');$/;"	v
+resp	lib_c2c.php	/^    $resp = $jd->execute($req);$/;"	v
+resp	lib_c2c.php	/^    $resp = json_decode(json_encode($resp), true);$/;"	v
+result	bcode128.class.php	/^		$result=$this->get_string();$/;"	v
+result	cls_json.php	/^        $result = empty($type) ? $return : $this->object_to_array($return);$/;"	v
+result	cls_organizeSales.php	/^            $result = $this->queryOrderGoods($begining, $end, $admin_list);$/;"	v
+result	cls_organizeSales.php	/^        $result = $GLOBALS['db']->getAll($sql_select);$/;"	v
+result	cls_organizeSales.php	/^        $result = $GLOBALS['db']->getOne($sql_select);$/;"	v
+result	image.class.php	/^          $result = move_uploaded_file($_FILES[$this->inputName]['tmp_name'],$this->saveDir."\/".$file_newname);$/;"	v
+result	lib_c2c.php	/^    $result = $yhdClient->execute($req, $sk['accessToken']);$/;"	v
+result	lib_c2c.php	/^    $result = objectsIntoArray($result);$/;"	v
+result	lib_common.php	/^    $result = array('filter'=>$filter,'result'=>$resource);$/;"	v
+result	lib_goods.php	/^    $result = $GLOBALS['db']->getRow($sql);$/;"	v
+result	lib_goods.php	/^    $result = get_filter($param_str);$/;"	v
+result	lib_index_info.php	/^    $result =  $GLOBALS['db']->getAll($sql_select.$where." ORDER BY weight DESC, issue_time DESC");$/;"	v
+result	lib_main.php	/^    $result = $GLOBALS['db']->getAll($sql_select);$/;"	v
+result	lib_main.php	/^    $result = curl_exec($ch);$/;"	v
+result	lib_template.php	/^            $result      = preg_match_all('\/([\\s|\\S]{0,20})(<!--\\\\s#BeginLibraryItem\\\\s")([^"]+)("\\\\s-->)\/',$/;"	v
+result	lib_template.php	/^        $result  = preg_match_all('\/(<!--\\\\s*TemplateBeginEditable\\\\sname=")([^"]+)("\\\\s*-->)\/', $content, $matches, PREG_SET_ORDER);$/;"	v
+result	lib_wav.php	/^        $result = $GLOBALS['db']->getRow($sql_select);$/;"	v
+result	lib_wav.php	/^        $result = array();$/;"	v
+result	lib_wav.php	/^    $result = json_decode(curl_exec($ch),true);$/;"	v
+result_id	lib_goods.php	/^        $result_id = $GLOBALS['db']->getOne($sql);$/;"	v
+results	lib_goods.php	/^    $results = $GLOBALS['db']->getAll($sql);$/;"	v
+return	cls_json.php	/^        $return = $this->val();$/;"	v
+returnValue	cls_json.php	/^                    $returnValue = '[' . $s . ']';$/;"	v
+returnValue	cls_json.php	/^                    $returnValue = '{' . $s . '}';$/;"	v
+returnValue	cls_json.php	/^                $returnValue = $arg?'true':'false';$/;"	v
+returnValue	cls_json.php	/^                $returnValue = '"' . strtr($arg, array($/;"	v
+returnValue	cls_json.php	/^                $returnValue = 'null';$/;"	v
+returnValue	cls_json.php	/^                $returnValue = '{' . $s . '}';$/;"	v
+returnValue	cls_json.php	/^                $returnValue = is_numeric($arg) ? (string) $arg : 'null';$/;"	v
+returnValue	cls_json.php	/^        $returnValue = '';$/;"	v
+return_arr	lib_goods.php	/^    $return_arr = array();$/;"	v
+return_array	lib_goods.php	/^    $return_array = $GLOBALS['db']->getRow($sql);$/;"	v
+return_array	lib_goods.php	/^    $return_array = array();$/;"	v
+return_bytes	lib_main.php	/^function return_bytes($val)$/;"	f
+return_value	lib_template.php	/^                $return_value = false;$/;"	v
+return_value	lib_template.php	/^    $return_value = true;$/;"	v
+role	lib_main.php	/^            $manager && $role = " (manager={$_SESSION['admin_id']} OR role_id IN ($manager)) AND status=1 ";$/;"	v
+role	lib_main.php	/^            $role = " manager={$_SESSION['admin_id']} ";$/;"	v
+role	lib_main.php	/^        $role = " role_id=$role_id AND stats=1 ";$/;"	v
+role	lib_main.php	/^    $role = "";$/;"	v
+role_code	lib_main.php	/^    $role_code = $GLOBALS['db']->getOne($sql_select);$/;"	v
+role_desc	lib_index_info.php	/^        $role_desc = $GLOBALS['db']->getOne($sql_select);$/;"	v
+role_group	lib_common.php	/^    $role_group = $GLOBALS['db']->getAll($sql_select);$/;"	v
+role_group_list	lib_common.php	/^    $role_group_list = array();$/;"	v
+role_id	lib_index_info.php	/^            $role_id   = intval($_SESSION['role_id']);$/;"	v
+role_id	lib_index_info.php	/^    $role_id   = $_SESSION['role_id'];$/;"	v
+role_id	lib_index_info.php	/^    $role_id  = $_SESSION['role_id'];$/;"	v
+role_id_list	lib_index_info.php	/^            $role_id_list = $GLOBALS['db']->getCol($sql_select);$/;"	v
+role_id_str	lib_index_info.php	/^                $role_id_str = implode(',',$role_id_list);$/;"	v
+role_id_str	lib_index_info.php	/^        $role_id_str = get_role_str();$/;"	v
+role_id_str	lib_index_info.php	/^    $role_id_str = get_role_str();$/;"	v
+role_list	cls_integral.php	/^          $role_list = get_role_list(1);$/;"	v
+role_ranklist_total	lib_index_info.php	/^        $role_ranklist_total = count($statistics['role_ranklist']);$/;"	v
+row	init.php	/^        $row = $db->GetRow($sql);$/;"	v
+row	lib_goods.php	/^    $row = $GLOBALS['db']->GetAll($sql);$/;"	v
+row	lib_goods.php	/^    $row = $GLOBALS['db']->getAll($sql);$/;"	v
+row	lib_main.php	/^    $row = $GLOBALS['db']->getAll($sql);$/;"	v
+rres	lib_c2c.php	/^    $rres = implode('', $gift_info);$/;"	v
+s	cls_date.php	/^     $s   =   $nStr2[floor($d\/10)];   $/;"	v
+s	cls_json.php	/^        $s           = '';$/;"	v
+s	cls_json.php	/^        $s = '';$/;"	v
+sales_stats	lib_index_info.php	/^function sales_stats ($start,$end) {$/;"	f
+sanitize_url	lib_main.php	/^function sanitize_url($url , $check = 'http:\/\/')$/;"	f
+saveDir	image.class.php	/^          if(!empty($saveDir)) $this->saveDir = $saveDir;$/;"	v
+saveDir	image.class.php	/^     var $saveDir = ".\/uploads\/"; \/\/ 保存目录$/;"	v
+savePath	image.class.php	/^     var $savePath = "";          \/\/ 保存路径$/;"	v
+saveWavInfo	lib_wav.php	/^function saveWavInfo() {$/;"	f
+scale	image.class.php	/^                    $scale = min($maxWidth\/$srcWidth, $maxHeight\/$srcHeight); \/\/ 计算缩放比例$/;"	v
+scan_phone_records	lib_main.php	/^function scan_phone_records($user_id)$/;"	f
+search	bcode128.class.php	/^			    $search=str_split($this->keysA);$/;"	v
+search	bcode128.class.php	/^			   $search=str_split($this->keysB);$/;"	v
+search_ship	lib_c2c.php	/^        $search_ship = '("'.implode('","', $ship).'")';$/;"	v
+search_shipping	lib_c2c.php	/^function search_shipping ($target_id, $check = '') {$/;"	f
+secondPart	bcode128.class.php	/^                    $secondPart = substr($bin, 33);$/;"	v
+secondPart	bcode128.class.php	/^            $secondPart = substr($bin, $offset);$/;"	v
+secondPart	bcode128.class.php	/^            $secondPart = substr($bin, 33);$/;"	v
+send	cls_sms.php	/^    public function send($phone, $msg, $send_date, $username = '')$/;"	f
+sendTime	cls_sms.php	/^    public $sendTime;$/;"	v
+send_goods	lib_c2c.php	/^    $send_goods = $smarty->fetch('dangdang_XML.htm');$/;"	v
+send_times	cls_sms.php	/^                $send_times = ceil(count($this->mobile)\/100);$/;"	v
+service_ranklist_total	lib_index_info.php	/^        $service_ranklist_total = count($statistics['service_ranklist']);$/;"	v
+sess	init.php	/^$sess = new cls_session($db, $ecs->table('sessions'), $ecs->table('sessions_data'), 'ECSCP_ID');$/;"	v
+setBgcolor	cls_code.php	/^    public function setBgcolor($bgcoloe)$/;"	f
+setCode	cls_code.php	/^    public function setCode($code)$/;"	f
+setColor	cls_code.php	/^    public function setColor($color)$/;"	f
+setFontType	cls_code.php	/^    public function setFontType($font_type)$/;"	f
+setHeight	cls_code.php	/^    public function setHeight($height)$/;"	f
+setText	cls_code.php	/^    public function setText($text)$/;"	f
+setType	cls_code.php	/^    public function setType($type)$/;"	f
+setUnitWidth	cls_code.php	/^    public function setUnitWidth($unit_width) $/;"	f
+set_admin_session	lib_main.php	/^function set_admin_session($user_id, $username, $role_id, $group_id, $ext, $action_list, $last_time)$/;"	f
+set_filter	lib_main.php	/^function set_filter($filter, $sql, $param_str = '')$/;"	f
+set_modules	lib_main.php	/^    $set_modules = true;$/;"	v
+set_wh	bcode128.class.php	/^	public function set_wh($width=200,$height=50) {$/;"	f
+setdpijpg	bcode128.class.php	/^	private function setdpijpg(&$bin) {$/;"	f
+setdpipng	bcode128.class.php	/^	private function setdpipng(&$bin) {$/;"	f
+shipping	lib_c2c.php	/^    $shipping = $resp['logistics_partners']['logistics_partner'];$/;"	v
+shipping_able	lib_c2c.php	/^    $shipping_able = $c->execute($req, $sk['access_token']);$/;"	v
+shipping_able	lib_c2c.php	/^    $shipping_able = $json->decode($json->encode($shipping_able), true);$/;"	v
+shipping_resp	lib_c2c.php	/^        $shipping_resp = $c->execute($req, $sk['access_token']);$/;"	v
+shipping_sync_10	lib_c2c.php	/^function shipping_sync_10($order_info)$/;"	f
+shipping_sync_14	lib_c2c.php	/^function shipping_sync_14($order_info)$/;"	f
+shipping_sync_16	lib_c2c.php	/^function shipping_sync_16($order_info)$/;"	f
+shipping_sync_6	lib_c2c.php	/^function shipping_sync_6($order_info)$/;"	f
+single_goods	lib_index_info.php	/^    $single_goods = $GLOBALS['db']->getAll($sql_select);$/;"	v
+size	bcode128.class.php	/^            $size = $packed['size'];$/;"	v
+sky	cls_lunar.php	/^		 $sky = array('庚','辛','壬','癸','甲','乙','丙','丁','戊','己');$/;"	v
+smarty	init.php	/^$smarty = new cls_template;$/;"	v
+sn_list	lib_goods.php	/^    $sn_list = $GLOBALS['db']->getCol($sql);$/;"	v
+sort_flag	lib_main.php	/^function sort_flag($filter)$/;"	f
+source_dir	lib_template.php	/^    $source_dir = ROOT_PATH . 'themes\/' . $GLOBALS['_CFG']['template'];$/;"	v
+spec	lib_goods.php	/^            $spec = $val['attr_id'];$/;"	v
+spec	lib_goods.php	/^    $spec = 0;$/;"	v
+splitAddr	lib_c2c.php	/^function splitAddr ($addr)$/;"	f
+spread_activity_list	lib_index_info.php	/^    $spread_activity_list = $GLOBALS['db']->getAll($sql_select);$/;"	v
+sql	cls_exchange.php	/^        $sql = "SELECT `$name` FROM " . $this->table . " WHERE $this->id = '$id'";$/;"	v
+sql	cls_exchange.php	/^        $sql = 'SELECT COUNT(*) FROM ' .$this->table. " WHERE $col = '$name'";$/;"	v
+sql	cls_exchange.php	/^        $sql = 'UPDATE ' . $this->table . " SET role_id=-1, transfer=-1 WHERE $this->id = '$id'";$/;"	v
+sql	cls_exchange.php	/^        $sql = 'UPDATE ' . $this->table . ' SET ' . $set . " WHERE $this->id = '$id'";$/;"	v
+sql	cls_integral.php	/^          $sql = 'SELECT * FROM '.$this->table.$/;"	v
+sql	cls_integral.php	/^          $sql = 'SELECT * FROM '.$this->table;$/;"	v
+sql	cls_integral.php	/^          $sql = 'SELECT integral_way_id, integral_way, scale_type FROM '.$this->table;$/;"	v
+sql	cls_integral.php	/^          $sql = 'SELECT user_id FROM '.$this->table." WHERE user_id=$parent_id";$/;"	v
+sql	init.php	/^        $sql = 'SELECT user_id,user_name,password,action_list,role_id,group_id,ext,last_login FROM ' .$ecs->table('admin_user') .$/;"	v
+sql	lib_c2c.php	/^        $sql = 'SELECT SUM(quantity) FROM '.$/;"	v
+sql	lib_c2c.php	/^        $sql = 'SELECT shipping_id id, shipping_name name, shipping_code code FROM '.$/;"	v
+sql	lib_c2c.php	/^    $sql = 'INSERT INTO '.$GLOBALS['ecs']->table('region')$/;"	v
+sql	lib_c2c.php	/^    $sql = 'SELECT company_code, company_name FROM '.$GLOBALS['ecs']->table('shipping').$/;"	v
+sql	lib_c2c.php	/^    $sql = 'SELECT gift_info, goods_num, order_amount FROM '.$/;"	v
+sql	lib_c2c.php	/^    $sql = 'SELECT id FROM '.$GLOBALS['ecs']->table('area_taobao').' WHERE name="'.$tmp.'"';$/;"	v
+sql	lib_c2c.php	/^    $sql = 'SELECT operator FROM '.$GLOBALS['ecs']->table('ordersyn_info').$/;"	v
+sql	lib_c2c.php	/^    $sql = 'SELECT order_sn FROM '.$GLOBALS['ecs']->table('ordersyn_info').$/;"	v
+sql	lib_c2c.php	/^    $sql = 'SELECT region_id FROM '.$GLOBALS['ecs']->table('region').$/;"	v
+sql	lib_c2c.php	/^    $sql = 'SELECT user_id FROM '.$GLOBALS['ecs']->table('admin_user')." WHERE assign=1";$/;"	v
+sql	lib_c2c.php	/^    $sql = 'SELECT user_id,admin_id,role_id,group_id FROM '.$GLOBALS['ecs']->table('users').' WHERE ';$/;"	v
+sql	lib_c2c.php	/^    $sql = 'UPDATE '.$GLOBALS['ecs']->table('admin_user').$/;"	v
+sql	lib_c2c.php	/^    $sql = 'UPDATE '.$GLOBALS['ecs']->table('ordersyn_goods').' o, '.$/;"	v
+sql	lib_c2c.php	/^    $sql = 'UPDATE '.$GLOBALS['ecs']->table('ordersyn_info').' i, '$/;"	v
+sql	lib_c2c.php	/^    $sql = array_filter($sql);$/;"	v
+sql	lib_c2c.php	/^    count($values) && $sql = 'INSERT INTO '.$GLOBALS['ecs']->table('ordersyn_goods').$/;"	v
+sql	lib_goods.php	/^                $sql = "DELETE FROM " . $GLOBALS['ecs']->table('member_price') .$/;"	v
+sql	lib_goods.php	/^                $sql = "INSERT INTO " . $GLOBALS['ecs']->table('member_price') . " (goods_id, user_rank, user_price) " .$/;"	v
+sql	lib_goods.php	/^                $sql = "UPDATE " . $GLOBALS['ecs']->table('member_price') .$/;"	v
+sql	lib_goods.php	/^                $sql = '';$/;"	v
+sql	lib_goods.php	/^            $sql = "INSERT INTO " . $GLOBALS['ecs']->table('goods_attr') . " (goods_id, attr_id, attr_value, attr_price) " .$/;"	v
+sql	lib_goods.php	/^            $sql = "INSERT INTO " . $GLOBALS['ecs']->table('goods_gallery') . " (goods_id, img_url, img_desc, thumb_url, img_original) " .$/;"	v
+sql	lib_goods.php	/^            $sql = "UPDATE " . $GLOBALS['ecs']->table('goods_attr') . "$/;"	v
+sql	lib_goods.php	/^        $sql    = $result['sql'];$/;"	v
+sql	lib_goods.php	/^        $sql = "DELETE FROM " . $GLOBALS['ecs']->table('goods_cat') .$/;"	v
+sql	lib_goods.php	/^        $sql = "INSERT INTO " . $GLOBALS['ecs']->table('goods_cat') .$/;"	v
+sql	lib_goods.php	/^        $sql = "SELECT COUNT(*) FROM " . $GLOBALS['ecs']->table('member_price') .$/;"	v
+sql	lib_goods.php	/^        $sql = "SELECT COUNT(*) FROM " .$GLOBALS['ecs']->table('products'). " AS p WHERE goods_id = $goods_id $where";$/;"	v
+sql	lib_goods.php	/^        $sql = "SELECT goods_attr_id FROM " . $GLOBALS['ecs']->table('goods_attr') . " WHERE goods_id = '$goods_id' AND attr_id = '$id' AND attr_value = '$value' LIMIT 0, 1";$/;"	v
+sql	lib_goods.php	/^        $sql = "SELECT goods_id FROM " . $GLOBALS['ecs']->table('goods') ."$/;"	v
+sql	lib_goods.php	/^        $sql = "SELECT product_id FROM " . $GLOBALS['ecs']->table('products') ."$/;"	v
+sql	lib_goods.php	/^        $sql = "SELECT product_id, goods_id, goods_attr, product_sn, product_number$/;"	v
+sql	lib_goods.php	/^        $sql = "UPDATE " . $GLOBALS['ecs']->table('goods') .$/;"	v
+sql	lib_goods.php	/^        $sql = 'SELECT COUNT(*) FROM '.$GLOBALS['ecs']->table('goods')." AS g WHERE g.is_delete='$is_delete' $where";$/;"	v
+sql	lib_goods.php	/^        $sql = 'SELECT g.goods_id,g.goods_name,g.goods_type,g.goods_sn,g.shop_price,g.integral,g.shelflife,g.bar_code,g.warn_number,g.cost_price,'.$/;"	v
+sql	lib_goods.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('collect_goods') . " WHERE goods_id " . db_create_in($goods_id);$/;"	v
+sql	lib_goods.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('comment') . " WHERE comment_type = 0 AND id_value " . db_create_in($goods_id);$/;"	v
+sql	lib_goods.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('goods') .$/;"	v
+sql	lib_goods.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('goods_article') . " WHERE goods_id " . db_create_in($goods_id);$/;"	v
+sql	lib_goods.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('goods_attr') . " WHERE goods_id " . db_create_in($goods_id);$/;"	v
+sql	lib_goods.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('goods_cat') . " WHERE goods_id " . db_create_in($goods_id);$/;"	v
+sql	lib_goods.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('goods_gallery') . " WHERE goods_id " . db_create_in($goods_id);$/;"	v
+sql	lib_goods.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('group_goods') . " WHERE goods_id " . db_create_in($goods_id);$/;"	v
+sql	lib_goods.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('group_goods') . " WHERE parent_id " . db_create_in($goods_id);$/;"	v
+sql	lib_goods.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('link_goods') . " WHERE goods_id " . db_create_in($goods_id);$/;"	v
+sql	lib_goods.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('link_goods') . " WHERE link_goods_id " . db_create_in($goods_id);$/;"	v
+sql	lib_goods.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('member_price') . " WHERE goods_id " . db_create_in($goods_id);$/;"	v
+sql	lib_goods.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('products') .$/;"	v
+sql	lib_goods.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('tag') . " WHERE goods_id " . db_create_in($goods_id);$/;"	v
+sql	lib_goods.php	/^    $sql = "DELETE FROM " . $GLOBALS['ecs']->table('virtual_card') . " WHERE goods_id " . db_create_in($goods_id);$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT $filed FROM  " . $GLOBALS['ecs']->table('products') . " WHERE product_id = '$product_id'";$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('user_rank') .$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT COUNT(a.attr_id)$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT DISTINCT cat_id$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT DISTINCT goods_id FROM " . $GLOBALS['ecs']->table('goods') .$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT SUM(product_number)$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT a.attr_id, a.attr_name, a.attr_input_type, a.attr_type, a.attr_values, v.attr_value, v.attr_price ".$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT cat_id FROM " . $GLOBALS['ecs']->table('goods_cat') .$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT g.article_id, a.title " .$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT g.goods_attr_id, g.attr_value, g.attr_id, a.attr_name$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT gg.goods_id, CONCAT(g.goods_name, ' -- [', gg.goods_price, ']') AS goods_name " .$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT goods_attr_id, attr_value FROM " . $GLOBALS['ecs']->table('goods_attr') . " WHERE goods_id = '$goods_id'";$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT goods_id$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT goods_sn FROM " . $GLOBALS['ecs']->table('goods') .$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT goods_thumb, goods_img, original_img " .$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT img_url, thumb_url, img_original " .$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT lg.link_goods_id AS goods_id, g.goods_name, lg.is_double " .$/;"	v
+sql	lib_goods.php	/^    $sql = "SELECT user_rank, user_price FROM " .$/;"	v
+sql	lib_goods.php	/^    $sql = "UPDATE " . $GLOBALS['ecs']->table('goods_article') . " SET " .$/;"	v
+sql	lib_goods.php	/^    $sql = "UPDATE " . $GLOBALS['ecs']->table('group_goods') . " SET " .$/;"	v
+sql	lib_goods.php	/^    $sql = "UPDATE " . $GLOBALS['ecs']->table('link_goods') . " SET " .$/;"	v
+sql	lib_goods.php	/^    $sql="SELECT goods_id FROM ". $GLOBALS['ecs']->table('goods')."WHERE goods_sn='$product_sn'";$/;"	v
+sql	lib_goods.php	/^    \/\/    $sql = 'SELECT IF(SUM(quantity), SUM(quantity), 0) goods_number, COUNT(quantity) stock_times FROM '.$/;"	v
+sql	lib_index_info.php	/^    $sql = 'SELECT SUM(final_amount) final_amount,COUNT(*) num,admin_id,admin_name,platform,group_id FROM '.$/;"	v
+sql	lib_index_info.php	/^    $sql = 'SELECT sg.goods_sn,g.goods_name,g.warn_number,g.goods_id,SUM(sg.quantity) quantity,sg.status FROM '$/;"	v
+sql	lib_main.php	/^            $sql = 'INSERT INTO ' . $GLOBALS['ecs']->table('admin_log') . ' (log_time,do_admin,log_info,ip_address,module,code,sn,role_id,eff_id,admin_id,user_rank,table_name)VALUES';$/;"	v
+sql	lib_main.php	/^            $sql = 'SELECT COUNT(*) FROM '.$GLOBALS['ecs']->table('users')." WHERE customer_type=$val[type_id] AND admin_id=$_SESSION[admin_id]";$/;"	v
+sql	lib_main.php	/^            $sql = 'SELECT COUNT(*) FROM '.$GLOBALS['ecs']->table('users').' u,'.$GLOBALS['ecs']->table('user_address')." a WHERE u.customer_type=$val[type_id] $where_addr AND admin_id=$_SESSION[admin_id]";$/;"	v
+sql	lib_main.php	/^        $sql = 'INSERT INTO ' . $GLOBALS['ecs']->table('admin_log').'(log_time,do_admin,log_info,ip_address,module,code,sn,role_id,admin_id,table_name)'.$/;"	v
+sql	lib_main.php	/^        $sql = 'SELECT * FROM '.$GLOBALS['ecs']->table('customer_type').' WHERE available>0 ORDER BY sort ASC';$/;"	v
+sql	lib_main.php	/^        $sql = 'SELECT g.goods_id, g.goods_name, g.goods_thumb FROM '.$GLOBALS['ecs']->table('packing_goods').' pg, '.$GLOBALS['ecs']->table('goods').' g WHERE pg.goods_id=g.goods_id AND pg.packing_id='.$val['packing_id'];$/;"	v
+sql	lib_main.php	/^        $sql = 'SELECT type_name,type_id FROM '.$GLOBALS['ecs']->table('customer_type').$/;"	v
+sql	lib_main.php	/^    $sql  = 'SELECT role_id, role_name, action_list, compete, manager FROM '$/;"	v
+sql	lib_main.php	/^    $sql = "SELECT * FROM ". $GLOBALS['ecs']->table('admin_user')."$/;"	v
+sql	lib_main.php	/^    $sql = "SELECT COUNT(*) FROM " .$GLOBALS['ecs']->table('brand').$/;"	v
+sql	lib_main.php	/^    $sql = "SELECT COUNT(*) FROM " .$GLOBALS['ecs']->table('category').$/;"	v
+sql	lib_main.php	/^    $sql = "SELECT attr_group FROM " . $GLOBALS['ecs']->table('goods_type') . " WHERE cat_id='$cat_id'";$/;"	v
+sql	lib_main.php	/^    $sql = "SELECT suppliers_id, suppliers_name, suppliers_desc$/;"	v
+sql	lib_main.php	/^    $sql = 'INSERT INTO ' . $ecs->table('shop_config') . ' (parent_id, code, value) ' .$/;"	v
+sql	lib_main.php	/^    $sql = 'INSERT INTO '.$GLOBALS['ecs']->table($table_name[0].'_record').$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT * FROM ' . $GLOBALS['ecs']->table('region').$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT * FROM '.$GLOBALS['ecs']->table('admin_action');$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT * FROM '.$GLOBALS['ecs']->table('disease')." WHERE available=1 ORDER BY common_rate ASC";$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT * FROM '.$GLOBALS['ecs']->table('from_where')." WHERE available=1 AND enddate=0 OR enddate>$time ORDER BY sort ASC";$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT * FROM '.$GLOBALS['ecs']->table('income').' WHERE available=1 ORDER BY sort ASC';$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT * FROM '.$GLOBALS['ecs']->table('packing_goods').' pg, '.$GLOBALS['ecs']->table('brand')." b WHERE pg.brand_id=b.brand_id AND pg.packing_id=$packing_id";$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT * FROM '.$GLOBALS['ecs']->table('packing_goods').' pg, '.$GLOBALS['ecs']->table('goods').$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT * FROM '.$GLOBALS['ecs']->table('service_class').' WHERE available=1';$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT * FROM '.$GLOBALS['ecs']->table('service_manner').' WHERE available=1';$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT a.article_id, a.title '.$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT article FROM '.$GLOBALS['ecs']->table('packing_article')." WHERE packing_id=$packing_id";$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT cat_id, cat_name FROM ' . $GLOBALS['ecs']->table('goods_type') . ' WHERE enabled = 1';$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT goods_id, goods_name, num, extension FROM '.$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT goods_id, goods_name, shop_price '.$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT id FROM ' . $ecs->table('shop_config') . " WHERE code = '$parent' AND type = 1";$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT p.* FROM '.$GLOBALS['ecs']->table('packing_goods').' pg, '.$GLOBALS['ecs']->table('packing')." p WHERE pg.packing_id=p.packing_id AND pg.goods_id=$goods_id AND pg.extension=2";$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT packing_name, packing_id, packing_type, packing_price, packing_cycle, packing_img, packing_img_a, packing_desc, keywords, packing_promote, is_on_sale, is_shipping, promote_start_time, promote_end_time FROM '.$GLOBALS['ecs']->table('packing')." WHERE packing_id=$packing_id";$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT pay_id, is_cod FROM ' .$GLOBALS['ecs']->table('payment'). ' WHERE enabled = 1';$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT position_id, position_name, ad_width, ad_height '.$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT rank_id, rank_name, min_points FROM ' . $GLOBALS['ecs']->table('user_rank');$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT reason_id, reason FROM '.$GLOBALS['ecs']->table('back_reason')." WHERE availabled=1 ORDER BY sort ASC";$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT region_name, region_id FROM '.$GLOBALS['ecs']->table('region')." WHERE region_type=$type";$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT role_id,role_name FROM '.$GLOBALS['ecs']->table('role').$where;$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT role_name, role_id FROM '.$GLOBALS['ecs']->table('role')." WHERE 1 AND $where";$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT status FROM '.$GLOBALS['ecs']->table('contact_status')." WHERE where_use='anywhere'";$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT type_id, type_name FROM '.$GLOBALS['ecs']->table('customer_type').' ORDER BY sort ASC';$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT type_id, type_name, type_money FROM ' . $GLOBALS['ecs']->table('bonus_type') .$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT u.user_id, u.user_name, u.max_customer, u.add_time, u.last_login, r.role_name, u.transfer, u.manager, u.status, u.stats'$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT user_id, user_name FROM ' . $GLOBALS['ecs']->table('users') . $where.$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT user_id,user_name FROM '.$GLOBALS['ecs']->table('admin_user').$where; $/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT user_name, user_id FROM '.$GLOBALS['ecs']->table('admin_user');$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT user_name,user_id,group_id,role_id FROM '.$/;"	v
+sql	lib_main.php	/^    $sql = 'SELECT user_name,user_id,group_id,role_id FROM '.$GLOBALS['ecs']->table('admin_user').' WHERE status>0 AND stats>0';$/;"	v
+sql	lib_main.php	/^    $sql = 'TRUNCATE TABLE ' .$GLOBALS['ecs']->table($table_name);$/;"	v
+sql	lib_main.php	/^    $sql = mysql_real_escape_string($sql);$/;"	v
+sql	lib_template.php	/^    $sql = 'SELECT code, library FROM ' . $GLOBALS['ecs']->table('plugins') . " WHERE library > ''";$/;"	v
+sql	lib_wav.php	/^        $sql = 'INSERT INTO '.$GLOBALS['ecs']->table('wavtime').$/;"	v
+sql	lib_wav.php	/^    $sql = 'SELECT user_id,ext FROM '.$GLOBALS['ecs']->table('admin_user').' WHERE ext>0';$/;"	v
+sql_finish_order_ranklist	lib_index_info.php	/^        $sql_finish_order_ranklist = " AND platform={$_SESSION['role_id']} ";$/;"	v
+sql_finish_order_ranklist	lib_index_info.php	/^        $sql_finish_order_ranklist = " AND platform={$_SESSION['role_id']} AND group_id={$_SESSION['group_id']} ";$/;"	v
+sql_group_ranklist	lib_index_info.php	/^        $sql_group_ranklist = " AND platform={$_SESSION['role_id']}";$/;"	v
+sql_info	cls_sql_dump.php	/^        $sql_info = array('date'=>'', 'mysql_ver'=> '', 'php_ver'=>0, 'ecs_ver'=>'', 'vol'=>0);$/;"	v
+sql_insert	cls_organizeSales.php	/^            $sql_insert = 'REPLACE INTO '.$GLOBALS['ecs']->table('sales_day').'(the_day,goods_sn,goods_amount,goods_number)VALUES('.$/;"	v
+sql_insert	cls_organizeSales.php	/^            $sql_insert = 'REPLACE INTO '.$GLOBALS['ecs']->table('sales_month').'(the_month,goods_sn,goods_amount,goods_number)VALUES('.$/;"	v
+sql_insert	cls_organizeSales.php	/^            $sql_insert = 'REPLACE INTO `crm_service_sales`(the_month,goods_sn,goods_amount,goods_number,role_id,group_id,admin_id)VALUES('.$/;"	v
+sql_insert	lib_c2c.php	/^            $sql_insert = 'INSERT INTO '.$GLOBALS['ecs']->table('user_contact').$/;"	v
+sql_insert	lib_c2c.php	/^        $sql_insert = "INSERT INTO ".$GLOBALS['ecs']->table('flush_order').$/;"	v
+sql_insert	lib_index_info.php	/^                $sql_insert = 'INSERT INTO '.$GLOBALS['ecs']->table('admin_task').$/;"	v
+sql_num	cls_sql_dump.php	/^    var $sql_num   = 0;$/;"	v
+sql_role_ranklist	lib_index_info.php	/^        $sql_role_ranklist = " GROUP BY platform ";$/;"	v
+sql_select	cls_organizeSales.php	/^        $sql_select = 'SELECT MAX(the_day) add_time FROM '.$GLOBALS['ecs']->table('sales_day');$/;"	v
+sql_select	cls_organizeSales.php	/^        $sql_select = 'SELECT MAX(the_month) add_time FROM '.$GLOBALS['ecs']->table('sales_month');$/;"	v
+sql_select	cls_organizeSales.php	/^        $sql_select = 'SELECT MAX(the_month) add_time FROM '.$GLOBALS['ecs']->table('service_sales');$/;"	v
+sql_select	cls_organizeSales.php	/^        $sql_select = 'SELECT MIN(add_time) add_time FROM '.$GLOBALS['ecs']->table('order_info');$/;"	v
+sql_select	cls_organizeSales.php	/^        $sql_select = 'SELECT SUM(g.goods_number) goods_number,SUM(g.goods_price*goods_number) goods_amount,g.goods_sn,g.goods_price,'.$/;"	v
+sql_select	lib_c2c.php	/^            $sql_select = 'SELECT packing_name FROM '.$GLOBALS['ecs']->table('packing').' p, '.$/;"	v
+sql_select	lib_c2c.php	/^        $sql_select = 'SELECT user_id FROM '.$GLOBALS['ecs']->table('user_contact').$/;"	v
+sql_select	lib_c2c.php	/^        $sql_select = 'SELECT user_id,group_id,role_id,admin_id FROM '.$/;"	v
+sql_select	lib_c2c.php	/^    $sql_select = 'SELECT 1mall_code FROM '.$GLOBALS['ecs']->table('shipping').$/;"	v
+sql_select	lib_c2c.php	/^    $sql_select = 'SELECT b.source_order_id,b.brush_order_sn order_sn,b.brush_platform team,i.tracking_sn,i.shipping_id FROM '.$/;"	v
+sql_select	lib_c2c.php	/^    $sql_select = 'SELECT flusher_id FROM '.$GLOBALS['ecs']->table('flusher').$/;"	v
+sql_select	lib_c2c.php	/^    $sql_select = 'SELECT g.goods_sn outer_iid,pg.goods_name title,pg.num num FROM '.$/;"	v
+sql_select	lib_c2c.php	/^    $sql_select = 'SELECT goods_sn,goods_number FROM '.$GLOBALS['ecs']->table('order_goods')." WHERE order_id={$order_info['b']}";$/;"	v
+sql_select	lib_c2c.php	/^    $sql_select = 'SELECT jd_code FROM '.$GLOBALS['ecs']->table('shipping').$/;"	v
+sql_select	lib_c2c.php	/^    $sql_select = 'SELECT role_code FROM '.$GLOBALS['ecs']->table('role')." WHERE role_id=$platform";$/;"	v
+sql_select	lib_common.php	/^    $sql_select = 'SELECT brand_id,brand_name FROM '.$GLOBALS['ecs']->table('brand')." WHERE is_show=1";$/;"	v
+sql_select	lib_common.php	/^    $sql_select = 'SELECT brand_name FROM '.$GLOBALS['ecs']->table('brand')." WHERE is_show=1";$/;"	v
+sql_select	lib_common.php	/^    $sql_select = 'SELECT g.group_id,g.group_name,r.role_id,r.role_name FROM '.$GLOBALS['ecs']->table('group').$/;"	v
+sql_select	lib_common.php	/^    $sql_select = 'SELECT goods_id,goods_name,goods_sn FROM '.$GLOBALS['ecs']->table('goods') .$where;$/;"	v
+sql_select	lib_common.php	/^    $sql_select = 'SELECT group_id,group_name FROM '.$GLOBALS['ecs']->table('group').$where;$/;"	v
+sql_select	lib_goods.php	/^        $sql_select = 'SELECT DISTINCT s.goods_sn FROM '.$GLOBALS['ecs']->table('goods').' g,'.$GLOBALS['ecs']->table('stock_goods').$/;"	v
+sql_select	lib_goods.php	/^        $sql_select = 'SELECT SUM(quantity) qty, g.warn_number, g.goods_sn FROM '.$GLOBALS['ecs']->table('stock_goods').$/;"	v
+sql_select	lib_goods.php	/^    $sql_select = 'SELECT brand_id,brand_id rec_id,brand_name,brand_desc,is_show FROM '.$GLOBALS['ecs']->table('brand');$/;"	v
+sql_select	lib_goods.php	/^    $sql_select = 'SELECT goods_name,goods_id FROM '.$GLOBALS['ecs']->table('goods')." WHERE brand_id=$brand_id";$/;"	v
+sql_select	lib_index_info.php	/^                    $sql_select = 'SELECT COUNT(*) FROM '.$GLOBALS['ecs']->table('service').$/;"	v
+sql_select	lib_index_info.php	/^                    $sql_select = 'SELECT SUM(final_amount) FROM '$/;"	v
+sql_select	lib_index_info.php	/^            $sql_select = 'SELECT role_id FROM '.$GLOBALS['ecs']->table('role').$/;"	v
+sql_select	lib_index_info.php	/^            $sql_select = 'SELECT task_id FROM '.$GLOBALS['ecs']->table('tasks').$/;"	v
+sql_select	lib_index_info.php	/^        $sql_select   = 'SELECT goods_sn,status FROM '.$GLOBALS['ecs']->table('order_sheet').$/;"	v
+sql_select	lib_index_info.php	/^        $sql_select = 'SELECT COUNT(*) FROM '.$GLOBALS['ecs']->table('admin_task').' AS at '.$where;$/;"	v
+sql_select	lib_index_info.php	/^        $sql_select = 'SELECT goods_sn,goods_name,SUM(quantity) AS quantity FROM '$/;"	v
+sql_select	lib_index_info.php	/^        $sql_select = 'SELECT role_describe FROM '.$GLOBALS['ecs']->table('role').$/;"	v
+sql_select	lib_index_info.php	/^    $sql_select = "SELECT '生日' AS subject,u.user_id,u.user_name,rank_points,birthday,SUM(final_amount) AS sale_amount,COUNT(*) AS order_count FROM ".$GLOBALS['ecs']->table('users')$/;"	v
+sql_select	lib_index_info.php	/^    $sql_select = 'SELECT COUNT(*) FROM '.$GLOBALS['ecs']->table('spread_activity').' a,'.$GLOBALS['ecs']->table('role')$/;"	v
+sql_select	lib_index_info.php	/^    $sql_select = 'SELECT activity_id,r.role_name,activity_name,act_describe,start_time,end_time FROM '.$GLOBALS['ecs']->table('spread_activity').' a,'.$GLOBALS['ecs']->table('role')$/;"	v
+sql_select	lib_index_info.php	/^    $sql_select = 'SELECT at.task_id,at.task_value,t.task_name,t.purpose_value,column_name FROM '.$/;"	v
+sql_select	lib_index_info.php	/^    $sql_select = 'SELECT g.goods_sn, SUM(g.goods_number) goods_number FROM '$/;"	v
+sql_select	lib_index_info.php	/^    $sql_select = 'SELECT g.goods_sn, g.goods_number FROM '$/;"	v
+sql_select	lib_index_info.php	/^    $sql_select = 'SELECT group_id,group_name FROM '.$GLOBALS['ecs']->table('group');$/;"	v
+sql_select	lib_index_info.php	/^    $sql_select = 'SELECT notice_id,notice_type,title,a.user_name AS writed_name,issue_time FROM '$/;"	v
+sql_select	lib_index_info.php	/^    $sql_select = 'SELECT p.packing_desc,pg.goods_id,g.goods_sn,pg.num FROM '$/;"	v
+sql_select	lib_index_info.php	/^    $sql_select = 'SELECT role_id,role_name FROM '.$GLOBALS['ecs']->table('role').' WHERE role_type>0';$/;"	v
+sql_select	lib_index_info.php	/^    $sql_select = 'SELECT s.admin_id,a.user_name,COUNT(*) AS num_service FROM '.$/;"	v
+sql_select	lib_main.php	/^            $sql_select = 'SELECT role_id FROM '.$GLOBALS['ecs']->table('role')." WHERE manager={$_SESSION['admin_id']}";$/;"	v
+sql_select	lib_main.php	/^        $sql_select = "SELECT platform,admin_id FROM %s WHERE order_id=%s";$/;"	v
+sql_select	lib_main.php	/^        $sql_select = 'SELECT eff_id,role_id,admin_id,user_rank FROM '.$GLOBALS['ecs']->table($table).$where;$/;"	v
+sql_select	lib_main.php	/^    $sql_select = 'SELECT * FROM '.$GLOBALS['ecs']->table('user_active')." WHERE available=1";$/;"	v
+sql_select	lib_main.php	/^    $sql_select = 'SELECT FROM_UNIXTIME(s.service_time) service_time,s.admin_name,c.class,m.manner,s.logbook FROM '.$/;"	v
+sql_select	lib_main.php	/^    $sql_select = 'SELECT config_name,config_value FROM '.$GLOBALS['ecs']->table('profile_config')." WHERE profile_id=$profile_id";$/;"	v
+sql_select	lib_main.php	/^    $sql_select = 'SELECT group_id,group_name FROM '.$GLOBALS['ecs']->table('group');$/;"	v
+sql_select	lib_main.php	/^    $sql_select = 'SELECT group_id,group_name FROM '.$GLOBALS['ecs']->table('role').' r, '.$GLOBALS['ecs']->table('group').$/;"	v
+sql_select	lib_main.php	/^    $sql_select = 'SELECT log_id,do_times FROM '.$GLOBALS['ecs']->table('admin_log').$/;"	v
+sql_select	lib_main.php	/^    $sql_select = 'SELECT role_describe FROM '.$GLOBALS['ecs']->table('role')." WHERE role_id={$_SESSION['role_id']}";$/;"	v
+sql_select	lib_main.php	/^    $sql_select = 'SELECT role_id FROM '.$GLOBALS['ecs']->table('role')." WHERE role_describe='$role_code'";$/;"	v
+sql_select	lib_main.php	/^    $sql_select = 'SELECT role_id,role_name FROM '.$GLOBALS['ecs']->table('role').' WHERE role_type=3';$/;"	v
+sql_select	lib_main.php	/^    $sql_select = 'SELECT role_name,role_id,role_describe FROM '.$GLOBALS['ecs']->table('role')." WHERE role_type>0 ";$/;"	v
+sql_select	lib_main.php	/^    $sql_select = 'SELECT source_id,source_name FROM '.$GLOBALS['ecs']->table('order_source');$/;"	v
+sql_select	lib_main.php	/^    $sql_select = 'SELECT user_id FROM '.$GLOBALS['ecs']->table('admin_user')." WHERE status>0 AND role_id=$role_id";$/;"	v
+sql_select	lib_main.php	/^    $sql_select = 'SELECT user_name,user_id FROM '.$GLOBALS['ecs']->table('admin_user')." WHERE group_id=$group_id";$/;"	v
+sql_select	lib_main.php	/^    $sql_select = 'SELECT user_name,user_id,group_id,role_id FROM '.$/;"	v
+sql_select	lib_stock_manager.php	/^    $sql_select = 'SELECT g.goods_sn,g.goods_name,SUM(quantity) AS quantity,warn_number FROM '$/;"	v
+sql_select	lib_wav.php	/^    $sql_select = 'SELECT u.user_id,u.user_name,w.number_info,w.time_info FROM '.$GLOBALS['ecs']->table('wavtime').$/;"	v
+sql_update	lib_index_info.php	/^                $sql_update = 'UPDATE '.$GLOBALS['ecs']->table('admin_task').$/;"	v
+sql_update	lib_main.php	/^        $sql_update = 'UPDATE '.$GLOBALS['ecs']->table('admin_log').$/;"	v
+sql_update	lib_stock_manager.php	/^            $sql_update = 'UPDATE '.$GLOBALS['ecs']->table('stock_goods')$/;"	v
+srcHeight	image.class.php	/^               $srcHeight = $info['height'];$/;"	v
+srcImg	image.class.php	/^               $srcImg     = $createFun($image);$/;"	v
+srcWidth	image.class.php	/^               $srcWidth  = $info['width'];$/;"	v
+stamp2date	lib_main.php	/^function stamp2date ($str, $format = 'Y-m-d')$/;"	f
+start	cls_integral.php	/^     public function getIntegralList ($platform = '', $start = '', $end = '')$/;"	v
+start_codes	cls_code.php	/^    private $start_codes =array('A'=>self::STARTA,'B'=>self::STARTB,'C'=>self::STARTC);$/;"	v
+start_sql	cls_sql_dump.php	/^            $start_sql = "INSERT INTO `$table` ( `" . implode("`, `", $fields) . "` ) VALUES ";$/;"	v
+start_time	lib_index_info.php	/^            $start_time = strtotime(date('Y-m-d 00:00:00',$_SERVER['REQUEST_TIME']));$/;"	v
+start_time	lib_index_info.php	/^        $start_time = strtotime(date('Y-m-1 00:00:00',time()));$/;"	v
+start_time	lib_index_info.php	/^    $start_time    = strtotime(date('Y-m-1',strtotime("-3 month")));$/;"	v
+start_time	lib_index_info.php	/^    $start_time = strtotime(date('Y-m-1 00:00:00',$_SERVER['REQUEST_TIME']));$/;"	v
+state	lib_c2c.php	/^    $state = mb_substr($state, 0, 2, 'utf-8').'%';$/;"	v
+statistics	lib_index_info.php	/^    $statistics = sales_stats($date_start,$date_end);$/;"	v
+stats_service	lib_index_info.php	/^function stats_service($start,$end) {$/;"	f
+status	lib_main.php	/^    $status = $GLOBALS['db']->getOne($sql);$/;"	v
+stock_alarm	lib_index_info.php	/^    $stock_alarm = array();$/;"	v
+stock_goods	lib_stock_manager.php	/^    $stock_goods = $GLOBALS['db']->getAll($sql_select);$/;"	v
+str	cls_json.php	/^    function str()$/;"	f
+str	cls_sql_dump.php	/^            $str = '';$/;"	v
+str	cls_sql_dump.php	/^        $str = 'NULL';$/;"	v
+str	cls_sql_dump.php	/^        $str = @file_get_contents($path);$/;"	v
+str	cls_sql_dump.php	/^        $str = date('Ymd');$/;"	v
+str	cls_sql_dump.php	/^        $str = fread($fp, 250);$/;"	v
+string	bcode128.class.php	/^		$this->string=$string;$/;"	v
+string	bcode128.class.php	/^	protected $string; \/\/编码文本$/;"	v
+style	lib_index_info.php	/^                $style = 'class="';$/;"	v
+sub_dir	lib_goods.php	/^    $sub_dir = date('Ym', gmtime());$/;"	v
+sub_height	bcode128.class.php	/^			$sub_height=$t_height+$this->bottom_margin; \/\/预留高度$/;"	v
+sub_height	bcode128.class.php	/^		$sub_height=0;$/;"	v
+sub_menu_list	lib_main.php	/^function sub_menu_list ($file)$/;"	f
+submitSql	lib_c2c.php	/^function submitSql ($sql)$/;"	f
+suit_rule	cls_integral.php	/^                         $suit_rule = $val;$/;"	v
+sum	cls_date.php	/^           $sum   =   348;   $/;"	v
+suppliers_list	lib_main.php	/^    $suppliers_list = suppliers_list_info(' is_check = 1 ');$/;"	v
+suppliers_list_info	lib_main.php	/^function suppliers_list_info($conditions = '')$/;"	f
+suppliers_list_name	lib_main.php	/^function suppliers_list_name()$/;"	f
+suppliers_name	lib_main.php	/^    $suppliers_name = array();$/;"	v
+sx	cls_code.php	/^            $sx =$ex + 1;$/;"	v
+sx	cls_code.php	/^        $sx = $this->quiet_zone;$/;"	v
+sy	cls_code.php	/^        $sy = 0;$/;"	v
+sys_joindate	lib_main.php	/^function sys_joindate($prefix)$/;"	f
+sys_msg	lib_main.php	/^function sys_msg($msg_detail, $msg_type = 0, $links = array(), $auto_redirect = true)$/;"	f
+t	bcode128.class.php	/^			$t=str_split($this->bottom_text);$/;"	v
+t	bcode128.class.php	/^			$t=str_split($v);$/;"	v
+t	cls_json.php	/^                                $t = (integer) sprintf('%01c', hexdec($this->next()));$/;"	v
+t	cls_json.php	/^        $t = '';$/;"	v
+t	cls_lunar.php	/^					$t=$i+1;$/;"	v
+t	cls_lunar.php	/^					$t=$i+2;$/;"	v
+t	cls_lunar.php	/^			$t = 1;$/;"	v
+t	cls_lunar.php	/^		$t=0;$/;"	v
+t	cls_organizeSales.php	/^    private function t()$/;"	f
+t	init.php	/^        $t = new transport('-1',5);$/;"	v
+t_array	bcode128.class.php	/^					$t_array=@explode(',',$v);$/;"	v
+t_bottom_color	bcode128.class.php	/^			$t_bottom_color=$this->hex2rgb($this->bottom_color);$/;"	v
+t_color	bcode128.class.php	/^		$t_color=$this->hex2rgb($this->color);$/;"	v
+t_height	bcode128.class.php	/^			$t_height = abs($t_info[5] - $t_info[1]); \/\/字体高度$/;"	v
+t_info	bcode128.class.php	/^			$t_info=imagettfbbox($this->bottom_size, 0, $this->bottom_font, $this->bottom_text);$/;"	v
+t_info	bcode128.class.php	/^			$t_info=imagettfbbox($this->top_size, 0, $this->top_font, $this->top_text);$/;"	v
+t_m_width	bcode128.class.php	/^			$t_m_width=(($this->width-($this->margin_left+$this->margin_right)-$limit_width)\/(mb_strlen($this->top_text,'utf8')-1)); \/\/间隔宽度$/;"	v
+t_num	cls_code.php	/^        $t_num = strlen($this->text);$/;"	v
+t_sx	cls_code.php	/^        $t_sx = ($t_x -$fw)\/2;        \/\/目的为了使文字居中平均分布$/;"	v
+t_top_color	bcode128.class.php	/^			$t_top_color=$this->hex2rgb($this->top_color);$/;"	v
+t_width	bcode128.class.php	/^			$t_width = abs($t_info[4] - $t_info[0]); \/\/字体宽度$/;"	v
+t_x	bcode128.class.php	/^				$t_x=$t_x+$b_m_width;$/;"	v
+t_x	bcode128.class.php	/^				$t_x=$t_x+$t_m_width;$/;"	v
+t_x	bcode128.class.php	/^			$t_x=$this->margin_left; $/;"	v
+t_x	cls_code.php	/^        $t_x = $this->width\/$t_num;$/;"	v
+t_y	bcode128.class.php	/^			$t_y=$this->margin_top+$t_height; \/\/字体Y坐标$/;"	v
+t_y	bcode128.class.php	/^			$t_y=($this->height-$t_height-$this->margin_bottom)+$t_height; \/\/字体Y坐标$/;"	v
+table	cls_exchange.php	/^        $this->table     = $table;$/;"	v
+table	cls_exchange.php	/^    var $table;$/;"	v
+table	cls_integral.php	/^          $this->table = $table;$/;"	v
+table	cls_integral.php	/^     var $table;$/;"	v
+table	cls_sql_dump.php	/^        foreach($tables as $table => $pos)$/;"	v
+table	lib_main.php	/^            $table = 'ordersyn_info';$/;"	v
+table	lib_main.php	/^        $table = 'order_info';$/;"	v
+table	lib_main.php	/^        $table = 'users';$/;"	v
+table_df	cls_sql_dump.php	/^                $table_df = $this->get_table_df($table, true);$/;"	v
+table_df	cls_sql_dump.php	/^            $table_df = "DROP TABLE IF EXISTS `$table`;\\r\\n";$/;"	v
+table_df	cls_sql_dump.php	/^            $table_df = '';$/;"	v
+table_name	lib_c2c.php	/^function userIsExist ($user_info, $table_name = 'users')$/;"	v
+table_name	lib_main.php	/^    $table_name = explode('_', $table);$/;"	v
+tables	cls_sql_dump.php	/^        $tables = $this->get_tables_list($path);$/;"	v
+target_dir	lib_template.php	/^    $target_dir = ROOT_PATH . 'themes\/' . $tmp_name;$/;"	v
+task_num	lib_index_info.php	/^        $task_num   = $GLOBALS['db']->getOne($sql_select);$/;"	v
+tasks_list	lib_index_info.php	/^            $tasks_list = $GLOBALS['db']->getCol($sql_select); $/;"	v
+tasks_total	lib_index_info.php	/^        $tasks_total = count($admin_tasks_list);$/;"	v
+temp	bcode128.class.php	/^				else $temp=0;$/;"	v
+temp	bcode128.class.php	/^				if ($temp==0) $temp=1;$/;"	v
+temp	bcode128.class.php	/^		$temp=0;$/;"	v
+temp	cls_date.php	/^                   $temp   =   $this->leapDays($this->year);   $/;"	v
+temp	cls_date.php	/^                   $temp   =   $this->monthDays($this->year,   $i);   $/;"	v
+temp	cls_date.php	/^               $temp   =   $this->lYearDays($i);   $/;"	v
+temp	cls_date.php	/^           $temp=0;   $/;"	v
+temp	cls_lunar.php	/^			$temp=0;$/;"	v
+temp	cls_lunar.php	/^		$temp=0;$/;"	v
+temp	lib_c2c.php	/^        $temp = json_decode($val, true);$/;"	v
+temp	lib_c2c.php	/^    $temp = explode(' ', $addr);$/;"	v
+temp_sn	lib_c2c.php	/^    $temp_sn = '';$/;"	v
+template_author	lib_template.php	/^        $template_author    = explode(': ', $arr[5]);$/;"	v
+template_desc	lib_template.php	/^        $template_desc      = explode(': ', $arr[3]);$/;"	v
+template_files	lib_template.php	/^$template_files = array($/;"	v
+template_name	lib_template.php	/^        $template_name      = explode(': ', $arr[1]);$/;"	v
+template_style	lib_template.php	/^        $template_style = '';$/;"	v
+template_style	lib_template.php	/^    if (empty($template_style) || $template_style == '')$/;"	v
+template_style	lib_template.php	/^function get_template_info($template_name, $template_style='')$/;"	v
+template_type	lib_template.php	/^        $template_type      = explode(': ', $arr[8]);$/;"	v
+template_uri	lib_template.php	/^        $template_uri       = explode(': ', $arr[2]);$/;"	v
+template_version	lib_template.php	/^        $template_version   = explode(': ', $arr[4]);$/;"	v
+text	cls_code.php	/^                $this->text = $code;$/;"	v
+text	cls_code.php	/^        $this->text = $text;$/;"	v
+text	cls_code.php	/^    private $text ='';$/;"	v
+text	cls_json.php	/^        $this->text = strtr(stripslashes($text), array($/;"	v
+text	cls_json.php	/^    var $text = '';$/;"	v
+the_day	cls_organizeSales.php	/^        $the_day = date('Y-m-d', strtotime($result) - 60*24*3600);$/;"	v
+the_month	cls_organizeSales.php	/^        $the_month = date('Y-m', strtotime($result) - 60*3600*24);$/;"	v
+the_month	cls_organizeSales.php	/^        $the_month = date('Y-m-d', strtotime($result) - 30*24*3600);$/;"	v
+thumb	image.class.php	/^     function thumb($image,$is_save=true,$suofang=0,$type='',$maxWidth=500,$maxHeight=500,$interlace=true)$/;"	f
+thumbImg	image.class.php	/^                    $thumbImg = imagecreate($width, $height);$/;"	v
+thumbImg	image.class.php	/^                    $thumbImg = imagecreatetruecolor($width, $height);$/;"	v
+thumbImg01	image.class.php	/^                    $thumbImg01 = imagecreatetruecolor($_POST['w'],$_POST['h']);$/;"	v
+thumbImg02	image.class.php	/^                    $thumbImg02 = imagecreatetruecolor(210,$ratios_y);$/;"	v
+thumb_url	lib_goods.php	/^                $thumb_url = $GLOBALS['image']->make_thumb($down_img, $GLOBALS['_CFG']['thumb_width'],  $GLOBALS['_CFG']['thumb_height']);$/;"	v
+thumb_url	lib_goods.php	/^                $thumb_url = $GLOBALS['image']->make_thumb($image_files['tmp_name'][$key], $GLOBALS['_CFG']['thumb_width'],  $GLOBALS['_CFG']['thumb_height']);$/;"	v
+thumb_url	lib_goods.php	/^                $thumb_url = $img_original;$/;"	v
+thumb_url	lib_goods.php	/^                $thumb_url = htmlspecialchars($image_url);$/;"	v
+thumb_url	lib_goods.php	/^                $thumb_url = is_string($thumb_url) ? $thumb_url : '';$/;"	v
+thumb_url	lib_goods.php	/^                $thumb_url = reformat_image_name('gallery_thumb', $goods_id, $thumb_url, 'thumb');$/;"	v
+thumb_url	lib_goods.php	/^            $thumb_url = reformat_image_name('gallery_thumb', $goods_id, $thumb_url, 'thumb');$/;"	v
+thumbname01	image.class.php	/^                    $thumbname01 = substr_replace($image,"01.".$type,$length);		\/\/大头像$/;"	v
+thumbname02	image.class.php	/^                    $thumbname02 = substr_replace($image,"02.".$type,$length);		\/\/小头像$/;"	v
+thumbname03	image.class.php	/^                         $thumbname03 = substr_replace($image,"03.".$type,$length);	\/\/缩略图与原图同时存在，$/;"	v
+tidy_date	lib_index_info.php	/^    $tidy_date = array();$/;"	v
+tidy_date	lib_index_info.php	/^    $tidy_date = tidysql();$/;"	v
+tidysql	lib_index_info.php	/^function tidysql($sql_ranklist_name = ''){$/;"	f
+time	cls_date.php	/^               $this->time   =   mktime(0,0,0,$month,$day,$year);      $/;"	v
+time	cls_date.php	/^               $this->time   =   mktime(0,0,0,$objDate->getMonth(),$objDate->getDate(),$objDate->getYear()); $/;"	v
+time	cls_date.php	/^       var   $time;   $/;"	v
+time	cls_phpzip.php	/^    function add_file($data, $name, $time = 0)$/;"	v
+time	lib_main.php	/^    $time = date('Y-m-d');$/;"	v
+time	lib_main.php	/^    $time = time();$/;"	v
+time_now	lib_stock_manager.php	/^    $time_now = time();$/;"	v
+timearray	cls_phpzip.php	/^        $timearray = ($unixtime == 0) ? getdate() : getdate($unixtime);$/;"	v
+timely_stock_alarm	lib_stock_manager.php	/^function timely_stock_alarm(){$/;"	f
+tmp	lib_c2c.php	/^        $tmp = explode('=',$v);$/;"	v
+tmp	lib_c2c.php	/^        $tmp =explode('=',$value);$/;"	v
+tmp	lib_c2c.php	/^    $tmp = next($region);$/;"	v
+tmp_arr	cls_sql_dump.php	/^            $tmp_arr = explode("\\n", $str);$/;"	v
+tmp_arr	cls_sql_dump.php	/^        $tmp_arr = $this->db->getRow("SHOW CREATE TABLE `$table`");$/;"	v
+tmp_dump_sql	cls_sql_dump.php	/^                            $tmp_dump_sql = " ( '" . implode("', '" , $record) . "' ),\\r\\n";$/;"	v
+tmp_dump_sql	cls_sql_dump.php	/^                            $tmp_dump_sql = " ( '" . implode("', '" , $record) . "' );\\r\\n";$/;"	v
+tmp_dump_sql	cls_sql_dump.php	/^                            $tmp_dump_sql = $start_sql . "\\r\\n" . $tmp_dump_sql;$/;"	v
+tmp_dump_sql	cls_sql_dump.php	/^                        $tmp_dump_sql = " ( '" . implode("', '" , $record) . "' );\\r\\n";$/;"	v
+tmp_dump_sql	cls_sql_dump.php	/^                        $tmp_dump_sql = $start_sql . "\\r\\n" . $tmp_dump_sql;$/;"	v
+tmp_dump_sql	cls_sql_dump.php	/^                    $tmp_dump_sql = $start_sql . " ('" . implode("', '" , $record) . "');\\r\\n";$/;"	v
+tmp_dump_sql	cls_sql_dump.php	/^                $tmp_dump_sql = empty($tmp_str_pos) ? $tmp_dump_sql : substr($tmp_dump_sql, 0, $tmp_str_pos - 1) . 'NULL' . substr($tmp_dump_sql, $tmp_str_pos + 5);$/;"	v
+tmp_goods_list	lib_index_info.php	/^    $tmp_goods_list = get_goods_num($where);$/;"	v
+tmp_sql	cls_sql_dump.php	/^        $tmp_sql = $tmp_arr['Create Table'];$/;"	v
+tmp_sql	cls_sql_dump.php	/^        $tmp_sql = substr($tmp_sql, 0, strrpos($tmp_sql, ")") + 1); \/\/去除行尾定义。$/;"	v
+tmp_str_pos	cls_sql_dump.php	/^                $tmp_str_pos = strpos($tmp_dump_sql, 'NULL');         \/\/把记录中null值的引号去掉$/;"	v
+today	lib_goods.php	/^        $today = local_mktime(23, 59, 59, $day['mon'], $day['mday'], $day['year']);$/;"	v
+today	lunar.php	/^$today = date("Y-m-d");$/;"	v
+today_time	lib_c2c.php	/^    $today_time = strtotime('2012-12-21 08:00:00');$/;"	v
+token	init.php	/^    $token          = $_GET['token'];$/;"	v
+top_color	bcode128.class.php	/^			$top_color = imagecolorallocate($img,$t_top_color['red'],$t_top_color['green'],$t_top_color['blue']); $/;"	v
+top_color	bcode128.class.php	/^			$top_color=$color;$/;"	v
+top_color	bcode128.class.php	/^	protected $top_color='';$/;"	v
+top_font	bcode128.class.php	/^	protected $top_font='font\/microhei.ttc';$/;"	v
+top_height	bcode128.class.php	/^			$top_height=$t_height+$this->top_margin; \/\/预留高度$/;"	v
+top_height	bcode128.class.php	/^		$top_height=0;$/;"	v
+top_margin	bcode128.class.php	/^	protected $top_margin=5;$/;"	v
+top_size	bcode128.class.php	/^	protected $top_size=15;$/;"	v
+top_text	bcode128.class.php	/^	protected $top_text='';$/;"	v
+total	cls_sql_dump.php	/^        $total = $this->db->getOne("SELECT COUNT(*) FROM $table");$/;"	v
+trans_group_list	lib_main.php	/^function trans_group_list()$/;"	f
+trans_part_list	lib_main.php	/^function trans_part_list()$/;"	f
+truncate_table	lib_main.php	/^function truncate_table($table_name)$/;"	f
+ts	cls_organizeSales.php	/^    private function ts()$/;"	f
+type	bcode128.class.php	/^				$this->type = 'A';$/;"	v
+type	bcode128.class.php	/^				$this->type = 'B';$/;"	v
+type	bcode128.class.php	/^			$this->type = 'C';$/;"	v
+type	bcode128.class.php	/^			$this->type=$this->get_type();$/;"	v
+type	bcode128.class.php	/^	protected $type="auto"; \/\/编码类型$/;"	v
+type	cls_code.php	/^        $this->type = $type;$/;"	v
+type	cls_code.php	/^        $this->type=='C'?$step=2:$step=1;$/;"	v
+type	cls_code.php	/^    private $type ='B';$/;"	v
+type	cls_sql_dump.php	/^                $type = trim(substr($val, 0, $pos), "-\\n\\r\\t ");$/;"	v
+type	image.class.php	/^               $type = empty($type)?$info['type']:$type;$/;"	v
+type	image.class.php	/^               $type = strtolower($type);$/;"	v
+type	lib_main.php	/^        $type = " WHERE role_type>=$type";$/;"	v
+type	lunar.php	/^            if($Larray[$month]>30 && $type == 1 && count($Larray) >=13)	$day = $Larray[13] + $day;$/;"	v
+type_list	lib_main.php	/^    $type_list = $GLOBALS['db']->getAll($sql);$/;"	v
+u	cls_json.php	/^                                $u = $u * 16 + $t;$/;"	v
+u	cls_json.php	/^                            $u = 0;$/;"	v
+u	cls_json.php	/^        $u = '';$/;"	v
+unc_len	cls_phpzip.php	/^        $unc_len = strlen($data);$/;"	v
+unit_width	cls_code.php	/^        $this->unit_width = $unit_width;$/;"	v
+unit_width	cls_code.php	/^    public $unit_width = 1.5; \/\/单位宽度 缺省1个象素$/;"	v
+unix2DosTime	cls_phpzip.php	/^    function unix2DosTime($unixtime = 0)$/;"	f
+unlimit	lib_index_info.php	/^        $unlimit = $GLOBALS['db']->getAll($sql.'HAVING quantity<800 ORDER BY SUM(sg.quantity) DESC');$/;"	v
+unlimit	lib_index_info.php	/^    $unlimit        = $GLOBALS['db']->getAll($sql.'HAVING quantity<=warn_number ORDER BY SUM(sg.quantity) DESC');$/;"	v
+update_crc	bcode128.class.php	/^	private static function update_crc($crc, $buf, $len) {$/;"	f
+update_goods	lib_goods.php	/^function update_goods($goods_id, $field, $value)$/;"	f
+upload	lib_goods.php	/^            $upload = array($/;"	v
+url	cls_sms.php	/^    public $url = 'http:\/\/n.020sms.com\/MSMSEND.ewing';$/;"	v
+url	lib_c2c.php	/^    $url  = $urls[0];$/;"	v
+url	lib_c2c.php	/^    $url  = get_md5_string($url);$/;"	v
+url	lib_c2c.php	/^    $url =get_md5_string($url);$/;"	v
+url	lib_main.php	/^        $url = $check . $url;$/;"	v
+url	lib_main.php	/^    $url =  'http:\/\/192.168.1.240\/call.php';$/;"	v
+url	lib_wav.php	/^    $url = 'http:\/\/192.168.1.240\/wavTime\/wavTime.php';$/;"	v
+urls	lib_c2c.php	/^    $urls = explode('?',$url);$/;"	v
+user	lib_c2c.php	/^        $user = $GLOBALS['db']->getRow($sql_select);$/;"	v
+userIsExist	lib_c2c.php	/^function userIsExist ($user_info, $table_name = 'users')$/;"	f
+user_id	lib_c2c.php	/^        $user_id = $GLOBALS['db']->getOne($sql_select);$/;"	v
+user_info	lib_main.php	/^        $user_info = $GLOBALS['db']->getAll($sql_select);$/;"	v
+user_list	lib_main.php	/^    $user_list = array();$/;"	v
+username	cls_sms.php	/^    public function send($phone, $msg, $send_date, $username = '')$/;"	v
+v	bcode128.class.php	/^				$v=mb_substr($this->top_text, $i, 1,'utf8');$/;"	v
+v	cls_json.php	/^                    $v = $this->encode($v);$/;"	v
+v	cls_json.php	/^        $v           = '';$/;"	v
+v	cls_json.php	/^        $v = '';$/;"	v
+val	cls_code.php	/^                    $val = (int)($ch);$/;"	v
+val	cls_code.php	/^            $val = $this->getValueFromChar($ch);$/;"	v
+val	cls_code.php	/^        $val = ord($ch);$/;"	v
+val	cls_json.php	/^            $val = (is_array($val) || is_object($val)) ? $this->object_to_array($val) : $val;$/;"	v
+val	cls_json.php	/^    function val()$/;"	f
+val	cls_sql_dump.php	/^                $val = trim ($val, "\\r;");$/;"	v
+val	lib_main.php	/^        $val = substr_replace($val,'****',3,4);$/;"	v
+val	lib_main.php	/^    $val = $json->encode($res);$/;"	v
+val	lib_main.php	/^    $val = trim($val);$/;"	v
+val_sum	cls_code.php	/^        $val_sum = $this->start_codes[$this->type];$/;"	v
+val_sum	cls_code.php	/^        $val_sum = $val_sum%103;$/;"	v
+valid_code	cls_code.php	/^        $this->valid_code = $val_sum;$/;"	v
+valid_code	cls_code.php	/^    private $valid_code = -1;$/;"	v
+validateString	lib_c2c.php	/^    $validateString = md5($validateString_new);$/;"	v
+validateString_new	lib_c2c.php	/^    $validateString_new ='';$/;"	v
+vals	lib_template.php	/^    $vals = array();$/;"	v
+vals	lib_wav.php	/^        $vals = $val;$/;"	v
+vals	lib_wav.php	/^        $vals = array_values($vals);$/;"	v
+value	cls_sql_dump.php	/^                $value = trim(substr($val, $pos+1), "\/\\n\\r\\t ");$/;"	v
+value	lib_c2c.php	/^                $value = objectsIntoArray($value, $arrSkipIndices); \/\/ recursive call$/;"	v
+value	lib_goods.php	/^            $value = $value_price_list[$key];$/;"	v
+value	lib_goods.php	/^            $value = join(chr(13), $value_list);$/;"	v
+value	lib_main.php	/^    $value = $key ? 0 : 1;$/;"	v
+valueStr	lib_wav.php	/^    $valueStr = implode("'),('", $values);$/;"	v
+value_list	lib_goods.php	/^            $value_list = array();$/;"	v
+values	lib_c2c.php	/^    $values = implode("','", array_values($order));$/;"	v
+values	lib_main.php	/^            $values = join(',',$values);$/;"	v
+values	lib_wav.php	/^    $values = array();$/;"	v
+vp_list	lib_goods.php	/^                $vp_list = explode(chr(13), $value_price_list[$key]);$/;"	v
+wavTimes	lib_wav.php	/^    $wavTimes = getWavInfo();$/;"	v
+where	cls_integral.php	/^          $where = array (' available=1 ');$/;"	v
+where	lib_c2c.php	/^    $where    = array('level' => 'level=0', 'status=1'); \/\/ 赠品条件$/;"	v
+where	lib_common.php	/^    $where = " WHERE is_delete=0 AND goods_sn NOT LIKE '%\\_%' "; $/;"	v
+where	lib_goods.php	/^        $where = $filter['cat_id'] > 0 ? " AND " . get_children($filter['cat_id']) : '';$/;"	v
+where	lib_goods.php	/^        $where = '';$/;"	v
+where	lib_index_info.php	/^        $where = " AND u.admin_id={$_SESSION['admin_id']}";$/;"	v
+where	lib_index_info.php	/^        $where = " WHERE at.admin_id={$_SESSION['admin_id']} AND FROM_UNIXTIME(at.record_time,'%Y-%m-%d')='$current_time'";$/;"	v
+where	lib_index_info.php	/^        $where = "AND  CONCAT(p.role_id,p.group_id,p.admin_id)IN("$/;"	v
+where	lib_index_info.php	/^        $where = "AND  p.role_id={$_SESSION['role_id']}";$/;"	v
+where	lib_index_info.php	/^    $where = " WHERE i.add_time>=$start_time AND i.add_time<=$end_time AND i.order_status IN (1,5) AND shipping_status IN(1,2,0)";$/;"	v
+where	lib_main.php	/^            $where = " WHERE user_id IN($sn)";$/;"	v
+where	lib_main.php	/^            $where = " WHERE user_id=$sn";$/;"	v
+where	lib_main.php	/^    $where  = isset($filter->is_delete) && $filter->is_delete == '1' ?$/;"	v
+where	lib_main.php	/^    $where = ' WHERE a.cat_id = c.cat_id AND c.cat_type = 1 ';$/;"	v
+where	lib_main.php	/^    $where = ' WHERE role_id>31';$/;"	v
+where	lib_main.php	/^    $where = ' WHERE status>0 AND stats>0';$/;"	v
+where	lib_main.php	/^    $where = '';$/;"	v
+where	lib_main.php	/^    $where = get_where_sql($filter); \/\/ 取得过滤条件$/;"	v
+white	bcode128.class.php	/^		$white = imagecolorallocate($img, 255, 255, 255); \/\/背景色白色$/;"	v
+width	bcode128.class.php	/^			$this->width=$result['min_width']+($this->margin_left+$this->margin_right);$/;"	v
+width	bcode128.class.php	/^		$this->width = $width;$/;"	v
+width	bcode128.class.php	/^		$width=($this->width-($this->margin_left+$this->margin_right))\/$result['min_width'];$/;"	v
+width	bcode128.class.php	/^	protected $width=200;$/;"	v
+width	cls_code.php	/^    public $width = -1;$/;"	v
+width	image.class.php	/^                         $width   =  $srcWidth;$/;"	v
+width	image.class.php	/^                         $width  = (int)($srcWidth*$scale);	\/\/147$/;"	v
+width	image.class.php	/^                    $width  = $srcWidth;$/;"	v
+word	cls_json.php	/^    function word()$/;"	f
+x	bcode128.class.php	/^				$x=$x+($width*$v);$/;"	v
+x	bcode128.class.php	/^		$x=$this->margin_left; $/;"	v
+y	bcode128.class.php	/^		$y=$this->margin_top+$top_height; $/;"	v
+year	cls_date.php	/^               $year   =   $objDate;   $/;"	v
+year	cls_date.php	/^           $this->year   =   $i;   $/;"	v
+year	cls_date.php	/^       var   $year;   $/;"	v
+year	cls_lunar.php	/^			$year = $between>0? $year : ($year-1);$/;"	v
+year	cls_lunar.php	/^		 $year = $year.'';$/;"	v
+year	cls_lunar.php	/^		$year	= $day[0];$/;"	v
+year	lib_main.php	/^    $year  = empty($_POST[$prefix . 'Year']) ? '0' :  $_POST[$prefix . 'Year'];$/;"	v
+yearCyl	cls_date.php	/^           $this->yearCyl   =   $i-1864;   $/;"	v
+yearCyl	cls_date.php	/^       var   $yearCyl;   $/;"	v
+yearData	cls_lunar.php	/^		$yearData = $this->lunarInfo[$year - $this->MIN_YEAR];$/;"	v
+yearData	cls_lunar.php	/^		$yearData = $this->lunarInfo[$year-$this->MIN_YEAR];$/;"	v
+yearMonth	cls_lunar.php	/^			$yearMonth = $this->getLunarYearMonths($year);$/;"	v
+yearMonth	cls_lunar.php	/^		$yearMonth = $this->getLunarMonths($year);$/;"	v
+yearMonth	cls_lunar.php	/^		$yearMonth=array();$/;"	v
+yhdClient	lib_c2c.php	/^        $yhdClient = new YhdClient();$/;"	v
+yhdClient	lib_c2c.php	/^    $yhdClient = new YhdClient();$/;"	v
+zdata	cls_phpzip.php	/^        $zdata   = gzcompress($data);$/;"	v
+zdata	cls_phpzip.php	/^        $zdata   = substr(substr($zdata, 0, strlen($zdata) - 4), 2); \/\/ fix crc bug$/;"	v
+zip	cls_phpzip.php	/^    function zip($dir, $zipfilename, $drop=false)$/;"	f
+zodiac	cls_lunar.php	/^		 $zodiac = array('猴','鸡','狗','猪','鼠','牛','虎','兔','龙','蛇','马','羊');$/;"	v

@@ -1,0 +1,10 @@
+<details class="left-menu" open>
+    <summary>相关制度</summary>
+    {foreach from=$index_role item=val}
+    <li><a href="company_role.php?act=get_rule&id={$val.id}">{$val.title}</a></li>
+    {/foreach}
+</details>
+<!--<details class="left-menu" open>-->
+<!--    <summary>添加规章制度</summary>-->
+<!--    <li><a href="#">添加</a></li>-->
+<!--</details>-->

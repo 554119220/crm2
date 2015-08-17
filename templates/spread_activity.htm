@@ -1,0 +1,64 @@
+<!--推广活动登记-->
+<br/>
+<h3>
+  <font color="red">{$current_time}</font>,{$role_name}平台推广活动登记,
+  您的平台本月共有<font color=red><i>{$activity_num}</i></font>个活动
+</h3>
+<br/>
+<div>
+  <input type="button" onclick="activity('nothing')" value="本月所有活动" class="b_submit"/>
+  <input type="button" class="b_submit" value="创建活动" onclick="addMoreActivity('add',0)"/>
+</div>
+<div id="forms_div">
+  {$forms_div}
+</div>
+
+<div id="resource">
+  <table cellpadding=0 cellspacing=0 width=100% border=0 class="wu_table_list rb_border wu_rb_border tr_hover" id="activity_tbl">
+    <tr>
+      <th width=22%>活动名称</th>
+      <th width=10%>优惠条件</th>
+      <th width=10%>开始时间</th>
+      <th width=10%>结束时间</th>
+      <th width=10%>商品名</th>
+      <th width=23%>基本描述</th>
+      <th width=8%>操作</th>
+    </tr>
+    {if $activity_list neq null}
+    {foreach from=$activity_list item=val}
+    <tr>
+      <td>{$val.activity_name}</td>
+      <td>{$val.activity_type}</td>
+      <td>{$val.start_time}</td>
+      <td>{$val.end_time}</td>
+      <td><button onclick="getActivityGoods({$val.activity_id})" class="btn_new">查看商品</button></td>
+      <td style="text-align:left;">&nbsp;{$val.act_describe}</td>
+      <td>
+        <!-- <button class="btn_new" onclick="modActivity('view',{$val.activity_id})">修改</button> -->
+        <button class="btn_new" onclick="removeTr(this,{$val.activity_id})">撤销</button>
+      </td>
+    </tr>
+    {/foreach}
+    {else}
+    <tr><td colspan="7">没有活动</td></tr>
+    {/if}
+  </table>
+  {if $filter neq null}
+  <div class="bottom_tip" id="page">
+    <div class="tip_left">
+      <p>共{$filter.record_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </div>
+    <div class="tip_center">
+      <span><a href="performance.php?act={$filter.act}&page=1&page_size={$filter.page_size}{$filter.condition}" id="page_link">&lt;&lt;</a></span>
+      {foreach from=$filter.page_set item=v}
+      <span{if $v eq $filter.page} class="cur"{/if}>{if $v eq $filter.page}{$v}{else}<a href="performance.php?act={$filter.act}&page={$v}&page_size={$filter.page_size}{$filter.condition}">{$v}</a>{/if}</span>
+      {/foreach}
+      <span><a href="performance.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}{$filter.condition}">&gt;&gt;</a></span>
+    </div>
+    <div class="tip_right">
+      跳转到第
+      <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+    </div>
+  </div>
+  {/if}
+</div>

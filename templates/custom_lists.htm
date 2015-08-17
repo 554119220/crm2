@@ -1,0 +1,134 @@
+<div class="content-head">
+  <div class="finder-title">{$curr_title}<font>{$num}</font></div>
+  <div class="finder-packet" id="">
+    <div class="packet-items" id="">
+     
+      <input type="hidden" id="cache_data" value="{$cache_data}"/>
+    </div>
+  </div>
+  <div class="finder-header-wrapper" style="" id="" >
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td class="left_scroll">
+          <!--*********左上-BEGIN***********-->
+          <table width="200px" height="100%" border="0" cellpadding="0" cellspacing="1" style="border-left:1px #ccc solid;display:none">
+            <colgroup>
+              <col width="80px">
+              <col width="100px">
+              <col width="120px">
+            </colgroup>
+            <tr bgcolor="#FFFFFF">
+              <td height="20" align="center">用户名</td>
+              <td align="center">订单编号</td>
+            </tr>
+          </table>
+          <!--**************左上-END**********-->
+        </td>
+        <td width="50%">
+          <div id='scroll1' style="max-width:80%;overflow:hidden;">
+            <!--***********右上-BEGIN********-->
+            <table style="width:1200px" height="100%" border="0" cellpadding="0" cellspacing="1" >
+            <colgroup>
+                <col width="5%">
+                <col width="5%">
+                <col width="5%">
+                <col width="5%">
+                <col width="5%">
+                <col width="5%">
+                <col width="5%">
+                <col width="5%">
+                <col width="5%">
+              </colgroup>
+              <tr bgcolor="#FFFFFF">
+                <td align="center">客户名称</td>
+                 <td align="center">操作</td>
+                <td height="20px" align="center">性别</td>
+                <td align="center">年龄段</td>
+                <!--td align="center">平台</td-->
+                <td align="center">添加时间</td>
+                <td align="center">联系方式</td>
+                <td align="center">上次服务时间</td>
+                <td align="center">所属客服</td>
+                <td align="center">备注</td>
+              </tr>
+            </table>
+            <!--************右上-END**********-->
+          </div> 
+        </td>
+      </tr>
+      <tr>
+        <td width="50%" align="left" valign="top">
+          <div id='scroll2'>
+            <!--*************左下-BEGIN**************-->
+            <table width="199px" height="100%" border="0" cellpadding="0" cellspacing="1" style="display:none">
+              <colgroup>
+                <col width="40px">
+                <col width="160px">
+              </colgroup>
+              <tr bgcolor="#FFFFFF" id="tr_1_{$val.order_id}" class="tr_list">
+                <td width="200px" align="center">4444444</td>
+                <td align="center" width="50px">5555555</td>
+              </tr>
+        
+            </table>
+            <!--*************左下-END***********-->
+          </div>
+        </td>
+        <td align="left" valign="top">
+          <div style="max-width:80%; max-height:420px;overflow:scroll" onscroll="javascript:syncscroll(this)">
+            <!--***********右下-BEGIN***********-->
+            <table style="width:1200px" height="100%" border="0" cellpadding="0" cellspacing="1">
+              <colgroup>
+                 <col width="5%">
+                <col width="5%">
+                <col width="5%">
+                <col width="5%">
+                <col width="5%">
+                <col width="5%">
+                <col width="5%">
+                <col width="5%">
+                <col width="5%">
+              </colgroup>
+             {foreach from=$account_list item=users}
+              <tr bgcolor="#FFFFFF" id="tr_2_{$val.order_id}" class="tr_list">
+                <td align="center">{$users.user_name}</td>
+                 <td align="center"><input type="button" value="删除" onclick="del_users({$users.user_id})"/><a href="users.php?act=edit_custom&uid={$users.user_id}">编辑</a><a href="users.php?act=custom_change&uid={$users.user_id}">转移</a></td>
+                {if $users.sex eq 1}
+                <td align="center">男</td>
+                {elseif  $users.sex eq 2}
+                <td align="center">女</td>
+                {else $users.sex eq 0}
+                <td align="center">不详</td>
+                {/if}
+                <td align="center">{$users.age_group}</td>
+                <td align="center">{$users.add_time}</td>
+                <td align="center">{$users.mobile_phone}</td>
+                <td align="center">{$users.last_time}</td>
+                <td align="center">{$users.role_name}</td>
+                <td align="center">{$users.remarks}</td>
+              </tr>
+         {/foreach}
+            </table>
+            <!--*************右下-END*****************-->
+          </div>
+        </td>
+      </tr>
+    </table>
+    <p id="y">&nbsp;</p>
+    <p id="x">&nbsp;</p>
+  </div>
+   <div id="turn-page">
+    {$lang.total_records} <span id="totalRecords">{$record_count}</span>
+    {$lang.total_pages} <span id="totalPages">{$page_count}</span>
+    {$lang.page_current} <span id="pageCurrent">{$filter.page}</span>
+    <span id="page-link">
+      {literal}<a href="users.php?act=query&page=1">{/literal}{$lang.page_first}</a>
+      {literal}<a href="users.php?act=query&page={$pageprev}">{/literal}{$lang.page_prev}</a>
+      {literal}<a href="users.php?act=query&page={$pagenext}">{/literal}{$lang.page_next}</a>
+      {literal}<a href="users.php?act=query&page={$page_count}">{/literal}{$lang.page_last}</a>
+    </span>
+  </div>  
+</div>
+
+
+

@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="styles/config.css" type="text/css" charset="utf-8"/>
+<div>
+    <div class="finder-title mt10">{$curr_title}</div>
+    <div id="config">
+        <form onsubmit="return sendConfigInfo(this)">
+            <table>
+                <tbody>
+                    {foreach from=$configs item=val}
+                    <tr>
+                        <th>{$val.config_name_zh}：</th>
+                        {if $val.config_type eq 'text'}
+                        <td>
+                            <label>
+                                <input type="{$val.config_type}" name="{$val.config_name}" id="{$val.config_name}" value="{$val.config_value}" {if $val.checked eq $val.config_value} checked{/if}{if $val.is_required} required{/if}{if $val.pattern} pattern="{$val.pattern}"{/if}{if $val.placeholder} placeholder="输入整数，单位：月"{/if}> {$val.config_unit}
+                            </label>
+                        </td>
+                        {else}
+                        <td>
+                            <label><input type="{$val.config_type}" name="{$val.config_name}" value="1"{if $val.config_value eq 1} checked{/if}{if $val.is_required} required{/if}> 是</label>
+                                <label><input type="{$val.config_type}" name="{$val.config_name}" value="0"{if $val.config_value eq 0} checked{/if}{if $val.is_required} required{/if}> 否</label>
+                        </td>
+                    </tr>
+                    {/if}
+                    {if $val.config_intro}
+                    <tr><th colspan="2">{$val.config_intro}</th></tr>
+                    {/if}
+                    {/foreach}
+                    <tr>
+                        <th><input type="submit" class="b_submit" value="保存"></th>
+                        <td><input type="reset" class="b_submit" value="重置"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>

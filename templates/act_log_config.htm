@@ -1,0 +1,19 @@
+<div width="100%">
+  <form action="javascript:void(0)" onsubmit="saveLogConfig(this)">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" class="form_table general_table">
+      {foreach from=$config_list item=val}
+      <tr>
+        <th>{$val.analyse_name}</th>
+        <td>
+          <input type="number" name="{$val.analyse_code}" value="{$val.analyse_value}" min="0" required /> 次
+        </td>
+      </tr>
+      {/foreach}
+      <tr>
+        <td colspan="2" style="text-align:center;padding-right:6px;">
+          <input type="submit" value="修 改" class="btn_new" style="font-size:16px;"/>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>

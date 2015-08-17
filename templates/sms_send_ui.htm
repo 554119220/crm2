@@ -1,0 +1,120 @@
+<div class="content-head">
+    <div class="finder-title"><br>短信息</div>
+    <div class="main-div" id="sms-send">
+        <form method="POST" action="javascript:void(0)" name="sms-send-form" onsubmit="return sendSms();">
+            <table>
+                {if $admin_list}
+                <tr>
+                    <td class="label">手机号码：</td>
+                    <td><input name="send_num" type="text" size="35" /></td>
+                </tr>
+                {/if}
+                <tr>
+                    <td class="label">按地区选择顾客：</td>
+                    {insert_scripts files="validator.js,region.js"}
+                    <td>
+                        <select name="province" id="selProvinces" onchange="region.changed(this, 2, 'selCities')">
+                            <option value="0">{$lang.select_please}</option>
+                            {foreach from=$province_list item=province}
+                            <option value="{$province.region_id}"{if $province.region_id eq $user_region.province} selected{/if}>{$province.region_name}</option>
+                            {/foreach}
+                        </select>
+                        <select name="city" id="selCities" style="display:none" onchange="region.changed(this, 3, 'selDistricts')">
+                            <option value="0">{$lang.select_please}</option>
+                            {foreach from=$city_list item=city}
+                            <option value="{$city.region_id}"{if $city.region_id eq $user_region.city} selected{/if}>{$city.region_name}</option>
+                            {/foreach}
+                        </select>
+                        <select name="district" id="selDistricts" style="display:none">
+                            <option value="0">{$lang.select_please}</option>
+                            {foreach from=$district_list item=district}
+                            <option value="{$district.region_id}"{if $district.region_id eq $user_region.district} selected{/if}>{$district.region_name}</option>
+                            {/foreach}
+                        </select>
+                        <label><input type="checkbox" name="nationwide" value="1"> 全国</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">顾客等级：</td>
+                    <td>
+                        <select id="send_rank" name="send_rank">
+                            <option value='0'>请选择</option>
+                            {html_options options=$send_rank}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">顾客类型：</td>
+                    <td>
+                        <select name="eff_id" id="eff_id">
+                            <option value="0">请选择</option>
+                            {foreach from=$effect_list item=val}
+                            <option value="{$val.eff_id}">{$val.eff_name}</option>
+                            {/foreach}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">销售平台：</td>
+                    <td>
+                        <select id="platform" name="platform">
+                            <option value='0'>请选择</option>
+                            <option value='-1'>全部</option>
+                            {foreach from=$platform item=p}
+                            <option value="{$p.role_id}">{$p.role_name}</option>
+                            {/foreach}
+                        </select>
+                    </td>
+                </tr>
+                {if $admin_list}
+                <tr>
+                    <td class="label">所属客服：</td>
+                    <td>
+                        <select id="admin_id" name="admin_id">
+                            <option value='0'>请选择</option>
+                            {foreach from=$admin_list item=list}
+                            <option value="{$list.user_id}">{$list.user_name}</option>
+                            {/foreach}
+                        </select>
+                    </td>
+                </tr>
+                {/if}
+                <tr>
+                    <td class="label">性 别：</td>
+                    <td>
+                        <label><input type="radio" name="sex" value="1"> 男</label>
+                        <label><input type="radio" name="sex" value="2"> 女</label>
+                        <label><input type="radio" name="sex" value="3"> 未知</label>
+                        <label><input type="radio" name="sex" value="4"> 全部</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">定时发送：</td>
+                    <td><input class="Wdate" name="sendtime" type="text" value="{$start_time}" onClick="WdatePicker()"></td>
+                </tr>
+                <tr>
+                    <td class="label">短信内容：</td>
+                    <td>
+                        <textarea id="sms" name="sms" rows="9" cols="42" maxlength="70" onblur="statsSMSNumber()" oninput="notice();"></textarea>
+                        <br>『<span id="notice"><strong>还剩下<font color=red>70</font>个字符</strong></span>』</td>
+                </tr>
+                <tr>
+                    <td class="label">附加选项：</td>
+                    <td>
+                        <label><input type="checkbox" name="plus_name" value="1"> 加上姓名</label>
+                        <label><input type="checkbox" id="increase_words" name="increase_words" value="1" onclick="increaseWords()"> 增加70字</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><strong>如选择了“加上姓名”，请在短信内相应位置加上 {Y}，Y 必须大写，否则短信中将不会出现顾客姓名</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" name="submit" value="{$lang.button_submit}" class="b_submit"/>
+                        <input type="reset" value="{$lang.button_reset}" class="b_submit"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>

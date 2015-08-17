@@ -1,0 +1,45 @@
+{if $show}
+<link rel="stylesheet" href="styles/stats.css" type="text/css" />
+<div id="loadDiv">
+    <!-- 页标题 -->
+    <div class="page_title">月新增顾客统计</div>
+
+    <!-- 数据显示区 -->
+    <div style="width:100%; height:auto">
+        <!-- 查询条件 -->
+        <div>
+            <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+            查询日期：<input class="Wdate" id="start_time" type="text" value="{$start_time}" size="10" onClick="WdatePicker({dateFmt:'yyyy-MM',{$min_date}})">
+            至<input class="Wdate" id="end_time" type="text" value="{$end_time}" size="10" onClick="WdatePicker({dateFmt:'yyyy-MM',{$max_date}})">
+            <button value="report_forms.php?act=user_stats_monthly" onclick="statsUserMonthly(this)" class="b_submit" style="margin:2px 0 0 5px">
+                查询
+            </button>
+        </div>
+        <div id="user_stream_analysis">
+            {/if}
+            {foreach from=$user_stats key=keys item=values}
+            <table border='1'>
+                <caption><h2>{$role_list[$keys]}</h2></caption>
+                <tr>
+                    <th>姓名</th>
+                    <th>总量</th>
+                    {foreach from=$date_list item=mon}
+                    <th>{$mon}</th>
+                    {/foreach}
+                </tr>
+                {foreach from=$values key=key item=val}
+                <tr>
+                    <td>{$admin_list[$key]}</td>
+                    <td>{$total[$key]}{if $admin_list[$key] eq '共计'}{$role_total[$keys]}{/if}</td>
+                    {foreach from=$date_list item=v}
+                    <td title="{$v}">{$val[$v]}</td>
+                    {/foreach}
+                </tr>
+                {/foreach}
+            </table>
+            {/foreach}
+            {if $show}
+        </div>
+    </div>
+</div>
+{/if}

@@ -1,0 +1,54 @@
+<div id="sch_knowlage_main_div">
+  <br />
+  <h3>产品知识</h3>
+  <br />
+  <div class="panel_div" width="50%">
+    <form name="sch_goods_knowlage_form" action="javascript:void(0)" onsubmit="schGoodsForKnowLage(this)">
+      商品名：
+      <input type="text" name="keyword" value="{$keyword}"/>
+      <input type="submit" name="" value="搜 索" class="b_submit" />
+      <a href="service.php?act=add_knowlage" target="_blank" class="b_submit" style="padding:5px">添加新产品知识</a>
+    </form>
+  </div><br/>
+  <div id="resource">
+    <table class="wu_table_list rb_border wu_rb_border tr_hover " id="knowlage_table" cellpadding="0" cellspacing="0" border="0" width="80%">
+      <tr>
+        <th align="center" width="10%">商品编号</th>
+        <th width="50%">产品名称</th>
+        <th width="10%">服用说明</th>
+        <th width="10%">产品说明</th>
+        <th width="10%">相关话术</th>
+        <th width="12%">平台链接</th>
+      </tr>
+      {if $goods_list neq null}
+      {foreach from=$goods_list item=val}
+      <tr>
+        <td>{$val.goods_sn}</td> 
+        <td style="text-align:left;padding-left:10px;">{$val.goods_name}</td> 
+        <td>
+          <a class="btn_new" href="service.php?act=add_knowlage&knowlage_id={$val.introduction}&goods_sn={$val.goods_sn}&goods_name={$val.goods_name}&knowlage_class=2" target="_blank">
+            {if $val.introduction} 修改 {else}<font color="#873C46"> 添加 </font>{/if}
+          </a>
+        </td>
+        <td>
+          <a class="btn_new" href="service.php?act=add_knowlage&knowlage_id={$val.goods_knowlage}&goods_sn={$val.goods_sn}&goods_name={$val.goods_name}&knowlage_class=1" target="_blank">
+            {if $val.goods_knowlage}修改 {else}<font color="#873C46"> 添加 </font> {/if}
+          </a>
+          </td>
+          <td>
+            <a class="btn_new" href="service.php?act=add_knowlage&knowlage_id={$val.talk_skill}&goods_sn={$val.goods_sn}&goods_name={$val.goods_name}&knowlage_class=3" target="_blank"> 添加 </a>
+        </td>
+        <td>
+          <a class="btn_new" href="{$val.goods_id}" target="_blank" >修改</a>
+        </td> 
+      </tr>
+      {/foreach}
+      {else}
+      <tr><td colspan="6">没有查询结果</td></tr>
+      {/if}
+    </table> 
+  </div>
+</div>
+
+<div id="mod_knowlage_div" class="hide" style="width:95%;height:95%"></div>
+<div id="general_sch_div" class="hide" style="width:95%;height:95%"></div>

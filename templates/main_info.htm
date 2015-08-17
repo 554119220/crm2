@@ -1,0 +1,79 @@
+<h3>{$hello}</h3> <br/>
+<!--任务进展-->
+{if !$pwd_info.company_mgr}
+<div id="task_progress">{$task_progress}</div>
+{/if}
+
+<!--统计情况-->
+<div class="stuffsortab-div portlet" style="display:block;width:97.5%" id="nature_stats_index">
+    {$nature_stats_index}
+</div>
+
+<!--内部公告-->
+<div class="stuffsortab-div portlet" id="publice_notice_index">{$index_public_notice}</div>
+
+<!--销量警报-->
+<div class="stuffsortab-div portlet" id="index_sale_alarm">{$index_sale_alarm_div}</div>
+
+<!--库存警报-->
+<div class="stuffsortab-div portlet" id="index_stock_alarm">{$index_stock_alarm_div}</div>
+
+<!--本月推广活动-->
+<div class="stuffsortab-div portlet" id="spread_activity">{$spread_activity_div}</div>
+
+<!--本月顾客记念日-->
+<!--<div class="stuffsortab-div portlet" id="index_commemoration"> {$commemoration} </div>-->
+
+<!--编辑公告或者提醒-->
+{if $pwd_info.statistic_manager_rule eq 1}
+<div class="stuffsortab-div portlet" id="public_notice">
+    <table width="100%" cellpadding="0" cellspacing="0" class="index_small rb_border">
+        <tr>
+            <td class="home-stuff-heading">
+                &nbsp;发布公告<img src="images/update.png"/>
+            </td>
+            <form name="public_notice_form">
+            </tr>
+            <tr>
+                <td>
+                    {if $pwd_info.company_mgr}
+                    <select id="platform" onchange="getGroupList(this)">
+                        <option value="0">所有部门</option>
+                        {foreach from=$role_list item=val}
+                        <option value="{$val.role_id}">{$val.role_name}</option>
+                        {/foreach}
+                    </select>
+                    {/if}
+                    {if $pwd_info.company_mgr || $pwd_info.role_mgr}
+                    <select id="group_id" onchange="getAdminList(this)">
+                        <option value="0">所有组</option>
+                    </select>
+                    {/if}
+                    <select id="admin_id">
+                        <option value="0">请选择员工</option>
+                    </select>
+                    <select id="notice_type">
+                        <option value="1">重要通知</option>
+                        <option value="2">紧急通知</option>
+                        <option value="0">好消息</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>标题：
+                    <input type="text" name="notice_tile" id="notice_title" maxlength="16"/>
+                    <label><input type="radio" name="remind_time" id="remind_time" value="0" />今天</label>
+                    <label><input type="radio" name="remind_time" id="remind_time" value="1" checked />明天</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea id="index_message" placeholder="按Ctrl+Enter发布" onkeydown="issueNotice(this)"></textarea>
+                </td>
+            </tr>
+        </form>
+    </table>
+</div>
+{/if}
+
+

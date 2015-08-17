@@ -1,0 +1,45 @@
+<div class="blank"></div>
+<div class="finder-title mt10">推广登记表</div>
+<form method="post" name="spread" class="table_form mt10">
+  <table border="0" class="spread w835">
+    <tr>
+      <td>PV：<input type="text" name="spread_pv" value="" size="5"/></td>
+      <td>UV：<input type="text" name="spread_uv" value="" size="5"/></td>
+      <td>订单数：<input type="text" name="orders" value="" size="3"/></td>
+      <td>销售额：<input type="text" name="sale" value="" size="5"/>&nbsp;元</td>
+      <td>刷单数量：<input type="text" name="scalping_num" value="" size="3"/></td>
+      <td>刷单金额：<input type="text" name="scalping_amount" value="" size="5"/>&nbsp;元</td>
+    </tr>
+
+    <tr>
+      <td colspan="6">
+        <table border="0" id="ad_table">
+          <tr>
+            <td>广告：</td>
+            <td>
+              <select name="adname_id[]" id="ad_name1">
+                {foreach from=$ad_list item=v}
+                <option value="{$v.id}">{$v.activity_name}</option>
+                {/foreach}   
+              </select>
+            </td>
+            <td>&nbsp;&nbsp;广告费用：<input type="text" name="ad_costs[]" id="ad_costs1" size="5" value=""/>&nbsp;元</td>
+            <td>&nbsp;&nbsp;收益：<input type="text" name="ad_revenue[]" id="ad_revenue1" size="5" value=""/>&nbsp;元</td>
+            <td>&nbsp;&nbsp;收藏数：<input type="text" name="favorite_num[]" id="favorite_num1" size="3" value=""/></td>
+            <td>&nbsp;&nbsp;转化订单数：<input type="text" name="change_order[]" id="change_order1" size="3" value=""/></td>
+            <td><span class="cursor" onclick="insertRowElement(this)">[&nbsp;+&nbsp;]</span></td>
+          </tr>   
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td align="left">工作内容：</td>
+      <td colspan="6" vertical=><textarea name="job_content" rows="5" cols="50"></textarea></td>
+    </tr>
+    <tr>
+      <td align="left" style="border:0 !important">总结分析：</td>
+      <td colspan="6" style="border:0 !important"><textarea name="summary" rows="5" cols="50"></textarea></td>
+    </tr>
+    <tr><td colspan="7" align="center"><input type="button" value="提交" onclick="addSpread(this)" class="input_submit"/></td></tr>
+  </table>
+</form>

@@ -1,0 +1,25 @@
+<div style="background:white;width:100%;padding-top:20px;">
+  <form name="transfer_form">
+    <table cellspacing="5" style="margin:0 auto;width:80%">
+      <tr>
+        <td><span>请输入你要转出的顾客的电话号码（以逗号间隔）</span></td>
+      </tr>
+      <tr>
+        <td>
+          <textarea name="from_phone" id="from_phone" style="width:80%" rows="6" onclick="this.value='';document.getElementById('from_phone').onclick='';" style="color:gray" >020-******,135******,020-******</textarea>
+        </td>
+      </tr>
+      <tr valign="center">
+        <td>&nbsp;
+          <select name="to_admin" id="to_admin" value="" />
+            <option value="0">请选择目标客服</option>
+            {foreach from=$admin_list item=list}
+            <option value="{$list.user_id}">{$list.user_name}</option>
+            {/foreach}
+          </select>
+          &nbsp;<input type="button" class="input_submit" value="确认转移" onclick="transfer(this.form)" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>

@@ -1,0 +1,48 @@
+<table border="0" style="margin-top:6px;" cellpadding="0" cellspacing="0" width="90%" class="wu_table_list rb_border wu_rb_border tr_hover">
+  <tr>
+    <th width="15%">操作人</th>
+    <th width="20%">操作时间</th>
+    <th width="65%">内容</th>
+  </tr> 
+  {if $admin_log}
+  {foreach from=$admin_log item=val}
+  <tr>
+    <td>{$val.user_name}</td>
+    <td>{$val.log_time}</td>
+    <td style="text-align:left;padding-left:6px;">
+      {$val.log_info}
+      {if is_array($val.sn)}
+      {foreach from=$val.sn item=l}
+      <!--<button class="btn_new" onclick="getMoreSecurityInfo('{$val.module}',{$l})">{$l}</button>  -->
+      <button class="btn_new" {if $val.module eq 'users'}onclick="getInfo({$l})"{/if}>{$l}</button>  
+      {/foreach}
+      {else}
+      <button class="btn_new" {if $val.module eq 'users'}onclick="getInfo({$val.sn})"{/if}>{$val.sn}</button>  
+      {/if}
+      {if $val.admin_id neq $val.do_admin }
+      ------ <font color="red">操作了非自己的{if $val.module eq 'users'}顾客{else}订单{/if}</font>  
+      {/if}
+    </td>
+  </tr>
+  {/foreach}
+  {else}
+  <tr>
+    <td colspan="3">没有操作记录</td>
+  </tr>
+  {/if}
+</table>
+<div class="page_div">
+  <div class="tip_left">
+    <p>共{if $filter.record_count}{$filter.record_count}{else}0{/if}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+  <div class="tip_center">
+    <span><a href="performance.php?act={$filter.act}&page=1&page_size={$filter.page_size}{$filter.condition}" id="page_link">&lt;&lt;</a></span>
+    {foreach from=$filter.page_set item=v}
+    <span {if $v eq $filter.page} class="cur"{/if}>{if $v eq $filter.page}{$v}{else}<a href="performance.php?act={$filter.act}&page={$v}&page_size={$filter.page_size}{$filter.condition}">{$v}</a>{/if}</span>
+    {/foreach}
+    <span><a href="performance.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}{$filter.condition}">&gt;&gt;</a></span>
+  </div>
+  <div class="tip_right">跳转到第
+    <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+  </div>
+</div>

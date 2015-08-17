@@ -1,0 +1,46 @@
+{if $show}
+<div class="finder-title mt10">客服销量来源统计</div>
+<div class="gridlist-action">
+    <div class="nav-search">
+        <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+        下单日期：<input class="Wdate" id="start_time" type="text" value="" onclick="WdatePicker({{$min_date}})">
+        至<input class="Wdate" id="end_time" type="text" value="" onclick="WdatePicker({{$max_date}})">
+        <button value="report_forms.php?act=stats_member" onclick="statsMember(this)" class="b_submit">查询</button>
+    </div>
+</div>
+<table border="0" class="all_table_list c_b rb_border" cellpadding="0" cellspacing="0" width="600">
+    <thead>
+     <tr id="sortByThis">
+          <th>销售平台</th>
+          <th>客服单数</th>
+          <th>客服销量</th>
+          <th>平台总单数</th>
+          <th>平台总销量</th>
+          <th>单数占比</th>
+          <th>销量占比</th>
+     </tr>
+     </thead>
+     <tbody id="stats_member">
+          {/if}
+          {foreach from=$stats_res item=val}
+          <tr>
+               <td>{$val.role_name}</td>
+               <td>{$val.order_num}</td>
+               <td>{$val.final_amount}</td>
+               <td>{$val.total}</td>
+               <td>{$val.total_amount}</td>
+               <td>{$val.order_ratio}</td>
+               <td>{$val.amount_ratio}</td>
+          </tr>
+          {/foreach}
+          <tr>
+               <td colspan="7">
+                    总单数：<strong id="order_num">{$total.order_num}</strong> &nbsp;&nbsp;
+                    总金额：<strong id="amount">{$total.final_amount}</strong>
+               </td>
+          </tr>
+          {if $show}
+     </tbody>
+</table>
+<input type="hidden" id="colHL">
+{/if}

@@ -1,0 +1,2 @@
+2015-06-13 09:38:33	<?xml version="1.0" encoding="utf-8" ?><error_response><code>15</code><msg>Remote service error</msg><sub_code>isv.logistics-offline-service-error:AT0011</sub_code><request_id>ze25ee1g0bse</request_id></error_response><!--top010178020163.n.et2-->
+2015-06-13 17:31:40	<?xml version="1.0" encoding="utf-8" ?><error_response><code>15</code><msg>Remote service error</msg><sub_code>isv.logistics-update-company-or-mailno-error:P07</sub_code><sub_msg>未作修改</sub_msg><request_id>15pyp9gvlhykp</request_id></error_response><!--top010179134173.s.et2-->

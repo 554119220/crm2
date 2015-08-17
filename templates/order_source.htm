@@ -1,0 +1,14 @@
+<table border="0">
+    <thead>
+        <th align="center">订单来源</th>
+        <th align="center">订单数量</th>
+        <th align="center">销售金额</th>
+    </thead>
+    {foreach from=$order_source item=val}
+    <tr>
+        <td align="center">{if $val.source_name eq ''}其它{else}{$val.source_name}{/if}</td>
+        <td align="center">{$val.order_number}</td>
+        <td align="center">{$val.final_amount}</td>
+    </tr>
+    {/foreach}
+</table>

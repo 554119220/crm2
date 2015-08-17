@@ -1,0 +1,41 @@
+<table style="margin-left:15px" width="100%" cellspacing="0" cellpadding="0" class="all_table_list rb_borde" >
+  <tr >
+    <th width="3%"><input type="checkbox" id="all_user" onclick="getAllUse(this)"/></th>
+    <th width="10%">用户名</th>
+    <th width="10%">所属部门</th>
+    <th width="15%">添加时间</th>
+    <th width="15%">最近购买时间</th>
+    <th width="15%">最近服务时间</th>
+    <th width="10%">顾客类型</th>
+    <th width="10%">疾病分类</th>
+  </tr>
+  {foreach from=$account_list item=val}
+  <tr>
+    <td><input type="checkbox" value="{$val.user_id}"></td>
+    <td>{$val.user_name}</td>
+    <td>{$val.role_name}</td>
+    <td>{$val.add_time}</td>
+    <td>{$val.order_time}</td>
+    <td>{$val.service_time}</td>
+    <td>{$val.active_name}</td>
+    <td>{$val.eff_name}</td>
+  </tr>
+  {/foreach}
+</table>
+
+<!-- 分页 -->
+<div class="bottom_tip">
+  <div class="tip_left">
+    <p>共{$filter.record_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+  <div class="tip_center">
+    <span><a href="users.php?act={$filter.act}&page=1&page_size={$filter.page_size}{$condition}" id="page_link">&lt;&lt;</a></span>
+    {foreach from=$filter.page_set item=val}
+    <span {if $val eq $filter.page} class="cur"{/if}>{if $val eq $filter.page}{$val}{else}<a href="users.php?act={$filter.act}&page={$val}&page_size={$filter.page_size}{$condition}">{$val}</a>{/if}</span>
+    {/foreach}
+    <span><a href="users.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}{$condition}">&gt;&gt;</a></span>
+  </div>
+  <div class="tip_right">跳转到第
+    <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+  </div>
+</div>

@@ -1,0 +1,176 @@
+﻿<div class="content-head">
+     <div class="finder-title">{$curr_title}<font>{$num}</font></div>
+     <div class="finder-packet" id="">
+          <div class="packet-items" id="">
+               <ul id="sub_tag" class="clearfix" style="width:100%;float:left">
+                    <!-- 针对订单状态进行的分类 -->
+                    {foreach from=$platform_list item=val name=i}
+                    {if !in_array($val.role_id,array(1,2,9,23,29))}
+                    <li id="tag_{$val.role_id}" class="{if $val.role_id eq $platform}current-tab{else}last{/if}">
+                    <a href="order.php?act={$act}&platform={$val.role_id}">
+                         {if $val.role_id}{$val.role_describe}-{/if}{$val.role_name}
+                    </a>
+                    </li>
+                    {/if}
+                    {/foreach}
+               </ul>
+               <input type="hidden" id="cache_data" value="{$cache_data}"/>
+          </div>
+     </div>
+
+     <div class="gridlist-action" style="width:850px">
+          <!-- 查询订单 -->
+          <div class="nav-search">
+               <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+               下单日期：<input class="Wdate" id="start_time" type="text" value="{$start_time}" onClick="WdatePicker()">
+               至<input class="Wdate" id="end_time" type="text" value="{$end_time}" onClick="WdatePicker()">
+               <select id="keyfields" onchange="changeKeywordsArae(this)">
+                    <option value="consignee"{if $kf eq 'consignee'} selected{/if}>收货人</option>
+                    <option value="order_sn"{if $kf eq 'order_sn'} selected{/if}>订单编号</option>
+                    <option value="qq"{if $kf eq 'qq'} selected{/if}>QQ</option>
+                    <option value="aliww"{if $kf eq 'aliww'} selected{/if}>旺旺</option>
+                    <option value="mobile"{if $kf eq 'mobile'} selected{/if}>手机号码</option>
+                    <option value="tel"{if $kf eq 'tel'} selected{/if}>固话</option>
+                    <option value="region"{if $kf eq 'region'} selected{/if}>收货地区</option>
+                    <option value="address"{if $kf eq 'address'} selected{/if}>收货地址</option>
+                    <option value="admin_name"{if $kf eq 'admin_name'} selected{/if}>健康顾问</option>
+               </select>
+               <span id="keywordsArea"><input type="text" id="keywords" value="{$kw}"></span>
+          </div>
+          <button value="order.php?act={$act}&platform={$platform}" onclick="searchOrder(this)" class="b_submit" style="margin:2px 0 0 5px">搜索</button>
+          <button value="order.php?act=rand_order&a=verify&platform={$platform}&order_type=1" onclick="giveMeOrder(this)" class="b_submit">获取订单</button>
+     </div>
+
+     <!-- 订单列表 -->
+     <div class="finder-header-wrapper list-div" style="" id="" >
+          <table border="0" cellpadding="0" cellspacing="0">
+               <tr>
+                    <td class="left_scroll">
+                         <!-- 左上-BEGIN -->
+                         <table width="110px" height="100%" border="0" cellpadding="0" cellspacing="1" style="border-left:1px #ccc solid">
+                              <colgroup>
+                                   <col width="110px">
+                              </colgroup>
+                              <tr>
+                                   <td height="20" align="center">用户名</td>
+                              </tr>
+                         </table>
+                         <!-- 左上-END -->
+                    </td>
+                    <td>
+                         <div id='scroll1' style="width:749px; ">
+                           <!-- 右上-BEGIN -->
+                              <table height="100%" border="0" cellpadding="0" cellspacing="1" >
+                                   <colgroup>
+                                        <col width="65px">
+                                        <col width="69px">
+                                        <col width="150px">
+                                        <col width="82px">
+                                        {if $act eq 'history_users_order'}
+                                        <col width="80px">
+                                        {/if}
+                                        <!--col width="80px"-->
+                                        <col width="418px">
+                                   </colgroup>
+                                   <tr height="27px" bgcolor="#eee">
+                                        <td align="center">操作</td>
+                                        <td height="20px" align="center">收货人</td>
+                                        <td align="center">下单时间</td>
+                                        <td align="center">总金额</td>
+                                        {if $act eq 'history_users_order'}
+                                        <td align="center">健康顾问</td>
+                                        {/if}
+                                        <!--td align="center">添加人</td-->
+                                        <td align="center">发货必看</td>
+                                   </tr>
+                              </table>
+                              <!-- 右上-END -->
+                         </div> 
+                    </td>
+               </tr>
+               <tbody id="order_list">
+                    <tr>
+                         <td align="left" valign="top">
+                              <div id='scroll2'>
+                                   <!-- 左下-BEGIN -->
+                                   <table width="110px" height="100%" border="0" id="left_table" cellpadding="0" cellspacing="1">
+                                        <colgroup>
+                                             <col width="110px">
+                                        </colgroup>
+                                        {foreach from=$order_list item=val}
+                                        <tr bgcolor="#FFFFFF" id="tr_1_{$val.order_id}" class="tr_list">
+                                          <td width="200px" align="center">
+                                            {if $val.is_black eq 1}
+                                            <img src="images/black_member.png" class="png_btn" alt="黑名单顾客" title="黑名单顾客"/>
+                                            {/if}
+                                            {$val.buyer}</td>
+                                        </tr>
+                                        {/foreach}
+                                      </table>
+                                      <!-- 左下-END -->
+                                    </div>
+                                  </td>
+                                  <td align="left" valign="top">
+                              <div style="width:748px;" class="y-scroll" onscroll="javascript:syncscroll(this)">
+                                   <!-- 右下-BEGIN -->
+                                   <table height="100%" border="0" id="right_table" cellpadding="0" cellspacing="1">
+                                        <colgroup>
+                                             <col width="65px">
+                                             <col width="70px">
+                                             <col width="150px">
+                                             <col width="80px">
+                                             {if $act eq 'history_users_order'}
+                                             <col width="80px">
+                                             {/if}
+                                             <!--col width="80px"-->
+                                             <col width="400px">
+                                        </colgroup>
+                                        {foreach from=$order_list item=val}
+                                        <tr bgcolor="#FFFFFF" id="tr_2_{$val.order_id}"
+                                          class="tr_list {if $val.pay_id eq 3}tr_bg_list{/if}">
+                                             <td align="center">
+                                                  <!--a href="order.php?act=order_lock&id={$val.order_id}" id="lock_{$val.order_id}" title="锁定后，只有锁定该订单的客服才可对该订单进行操作">
+                                                       {if $val.order_lock eq $admin_id}{if $val.order_lock}解锁{else}锁定{/if}{else}{$val.lock_status}{/if}
+                                                  </a-->
+                                                  <font>【{$val.role_describe}】</font>
+                                                  <a href='order.php?act=order_detail&id={$val.order_id}& {$act}=1' title='订单详情'>
+                                                      <img src='images/add.gif' class='pt7 f_r'>
+                                                  </a>
+                                             </td>
+                                             <td height="20" align="center">{$val.consignee}</td>
+                                             <td align="center">{$val.short_order_time}</td>
+                                             <td align="center">{$val.formated_total_fee}</td>
+                                             {if $act eq 'history_users_order'}
+                                             <td align="center" title="{$val.admin_name}">{$val.admin_name|truncate:4}</td>
+                                             {/if}
+                                             <!--td align="center" title="{$val.add_admin}">{$val.add_admin|truncate:4}</td-->
+                                             <td align="center" title="{$val.remarks}" ondblclick="showMsg({req_msg:true,timeout:5000,message:'{$val.remarks}'})">{$val.remarks|truncate:20}</td>
+                                        </tr>
+                                        {/foreach}
+                                   </table>
+                                   <!-- 右下-END -->
+                              </div>
+                         </td>
+                    </tr>
+               </tbody>
+          </table>
+     </div>
+
+     <!-- 分页 -->
+     <div class="bottom_tip">
+          <div class="tip_left">
+               <p>共{$record_count}条记录,当前页:{$page_start}-{$page_end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          </div>
+          <div class="tip_center">
+               <span><a href="order.php?act={$act}{$page_link}&page=1&page_size={$page_size}" id="page_link"><<</a></span>
+               {foreach from=$page_set item=v}
+               <span{if $v eq $page} class="cur"{/if}>{if $v eq $page}{$v}{else}<a href="order.php?act={$act}{$page_link}&page={$v}&page_size={$page_size}">{$v}</a>{/if}</span>
+               {/foreach}
+               <span><a href="order.php?act={$act}{$page_link}&page={$page_count}&page_size={$page_size}">>></a></span>
+          </div>
+          <div class="tip_right">
+               跳转到第
+               <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+          </div>
+     </div>
+</div>

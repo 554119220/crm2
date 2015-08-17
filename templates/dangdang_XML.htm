@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="GBK"?>
+<request>
+    <functionID>{$method}</functionID>
+    <time>{$time}</time>
+    <OrdersList>
+        <OrderInfo> 
+            <orderID>{$order_info.order_sn}</orderID>
+            <logisticsName>{$order_info.shipping_name}</logisticsName> 
+            <logisticsTel>{$order_info.shipping_tel}</logisticsTel> 
+            <logisticsOrderID>{$order_info.tracking_sn}</logisticsOrderID>
+            <SendGoodsList>
+                {foreach from=$goods_list item=val}
+                <ItemInfo>
+                    <itemID>{$val.goods_sn}</itemID>
+                    <sendGoodsCount>{$val.goods_number}</sendGoodsCount>
+                </ItemInfo>
+                {/foreach}
+            </SendGoodsList>
+        </OrderInfo> 
+    </OrdersList>
+</request>

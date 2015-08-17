@@ -1,0 +1,146 @@
+﻿{if isset($shipping)}
+<!-- 配送方式 -->
+<select name='shipping' onchange="saveOrderInfo(this)">
+     <option value="0">请选择</option>
+     {foreach from=$shipping item=val}
+     <option value="{$val.shipping_id}">{$val.shipping_name}</option>
+     {/foreach}
+</select>
+{/if}
+
+{if isset($province_list)}
+<!-- 地区选项 -->
+{insert_scripts files="validator.js,region.js"}
+<select name="province" id="selProvinces" onchange="region.changed(this, 2, 'selCities')">
+     <option value="0">{$lang.select_please}</option>
+     {foreach from=$province_list item=province}
+     <option value="{$province.region_id}" {if $province.region_id eq $user_region.province}selected{/if}>{$province.region_name}</option>
+     {/foreach}
+</select>
+<select name="city" id="selCities" onchange="region.changed(this, 3, 'selDistricts')">
+     <option value="0">{$lang.select_please}</option>
+     {foreach from=$city_list item=city}
+     <option value="{$city.region_id}" {if $city.region_id eq $user_region.city}selected{/if}>{$city.region_name}</option>
+     {/foreach}
+</select>
+<select name="district" id="selDistricts" onchange="saveOrderInfo(this)" style="display:none">
+     <option value="0">{$lang.select_please}</option>
+     {foreach from=$district_list item=district}
+     <option value="{$district.region_id}" {if $district.region_id eq $user_region.district}selected{/if}>{$district.region_name}</option>
+     {/foreach}
+</select>
+{/if}
+
+{if isset($address)}
+<!-- 详细地址 -->
+<input type="text" name="address" value="{$address}" size="50" onblur="saveOrderInfo(this)"/>
+{/if}
+
+{if isset($best_time)}
+<!-- 配送时间 -->
+<!--input type="text" name="best_time" value="{$best_time}" onblur="saveOrderInfo(this)"/-->
+{insert_scripts files="../admin/My97DatePicker/WdatePicker.js"}
+<input class="Wdate cursor" name="best_time" value="" type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" onblur="saveOrderInfo(this)">
+{/if}
+
+{if isset($consignee)}
+<!-- 收货人 -->
+<input type="text" name="consignee" value="{$consignee}" onblur="saveOrderInfo(this)"/>
+{/if}
+
+{if isset($mobile)}
+<!-- 手机号码 -->
+<input type="text" name="mobile" value="{$mobile}" onblur="saveOrderInfo(this)"/>
+{/if}
+
+{if isset($tel)}
+<!-- 电话号码 -->
+<input type="text" name="tel" value="{$tel}" onblur="saveOrderInfo(this)"/>
+{/if}
+
+{if isset($inv_title)}
+<!-- 发票抬头 -->
+<input type="text" name="inv_title" value="{$inv_title}" onblur="saveOrderInfo(this)"/>
+{/if}
+
+{if isset($inv_no)}
+<!-- 发票抬头 -->
+<input type="text" name="inv_no" value="{$inv_no}" onblur="saveOrderInfo(this)"/>
+{/if}
+
+{if isset($zipcode)}
+<!-- 邮编 -->
+<input type="text" name="zipcode" value="{$zipcode}" onblur="saveOrderInfo(this)"/>
+{/if}
+
+{if isset($pay_fee)}
+<input type="text" name="pay_fee" value="{$pay_fee}" onblur="saveOrderInfo(this)"/>
+{/if}
+
+{if isset($goods_list)}
+<!-- 添加商品 -->
+<tr>
+     <td>操作</td>
+     <td>货号</td>
+     <td>商品名称</td>
+     <td>价格</td>
+     <td>购买量</td>
+     <td>说明</td>
+</tr>
+{foreach from=$goods_list item=val}
+<tr id="rec_{$val.rec_id}">
+     <td><a href="order.php?act=delete_goods&rec_id={$val.rec_id}" title="删除"><img src="images/no.gif" title="删除" alt="删除"></a></td>
+     <td>{$val.goods_sn}</td>
+     <td>
+         {if $val.packing_goods}
+         <details open>
+             <summary>{$val.goods_name}</summary>
+             {foreach from=$val.packing_goods item=v}
+             <p><strong>{$v.goods_name}【数量：{$v.num}】</strong></p>
+             {/foreach}
+         </details>
+         {else}
+         {$val.goods_name}
+         {/if}
+     </td>
+     <td>{$val.goods_price}</td>
+     <td>{$val.goods_number}</td>
+     <td>{$lang.gift[$val.is_gift]}</td>
+</tr>
+{/foreach}
+{/if}
+
+{if $act eq 'add_time'}
+{insert_scripts files="../admin/My97DatePicker/WdatePicker.js"}
+起始日期：<input class="Wdate cursor" id="start_time" value="" type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
+结束日期：<input class="Wdate cursor" id="end_time" value="" type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
+{/if}
+
+{if isset($to_seller)}
+<input type="text" name="to_seller" value="{$to_seller}" size="50" onblur="saveOrderInfo(this)"/>
+{/if}
+
+{if isset($remarks)}
+<input type="text" name="remarks" value="{$remarks}" size="50" onblur="saveOrderInfo(this)"/>
+{/if}
+
+{if isset($shipping_fee)}
+<input type="text" name="shipping_fee" value="{$shipping_fee}" size="5" onblur="saveOrderInfo(this)"/>
+{/if}
+
+{if isset($goods_amount)}
+<input type="text" name="goods_amount" value="{$goods_amount}" size="5" onblur="saveOrderInfo(this)"/>
+{/if}
+
+{if isset($final_amount)}
+<input type="text" name="final_amount" value="{$final_amount}" size="5" onblur="saveOrderInfo(this)"/>
+{/if}
+
+{if $packing_goods}
+<details open>
+    <summary>{$packing_goods[0].packing_name}</summary>
+    {foreach from=$packing_goods item=v}
+    <p><strong>{$v.goods_name}【数量：{$v.num}】</strong></p>
+    {/foreach}
+</details>
+{/if}

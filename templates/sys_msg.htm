@@ -1,0 +1,55 @@
+<br/><div>
+  <div class="finder-title">消息中心</div>
+  <div class="list_panel" style="width:50%;">
+    <form name="schServiceForm" action="javascript:void(0)" onsubmit="searchMsg(this)" >
+      <span> 起始 
+        <input name="startTime" id="startTime" type="text" maxlength="12" onClick="WdatePicker({dateFmt:'yyyy-M-d'})"/>
+      </span>
+      <span> 终止 
+        <input name="endTime" id="endTime" type="text" maxlength="12" onClick="WdatePicker({dateFmt:'yyyy-M-d'})">
+      </span>
+      <span><select name="role_id">
+          <option value="0">部门</option>
+          {foreach from=$role_list item=v}
+          <option value="{$v.role_id}">{$v.role_name}</option>
+          {/foreach}
+      </select></span>
+      <select name="status">
+        <option value="3" {if $status eq 3}selected{/if}>全部</option>
+        <option value="0" {if $status eq 0}selected{/if}>未读</option>
+        <option value="1" {if $status eq 1}selected{/if}>已读</option>
+      </select>
+      <input type="submit" class="input_submits" value="搜索" />
+    </form>
+  </div>
+  <div id="resource">
+    <table border="0" cellpadding="0" cellspacing="0" class="wu_table_list rb_border wu_rb_border tr_hover" width="970px">
+      <tr>
+        <th width="7%">消息类型</th>
+        <th width="40%">内容</th>
+        <th width="8%">状态</th>
+        <th width="10%">添加时间</th>
+        <th width="15%">操作</th>
+      </tr>
+      {if $msg_list}
+      {foreach from=$msg_list item=v}
+      <tr>
+        <td>{$v.title}</td>
+        <td style="text-align:left;padding-left:5px;">{$v.content}</td>
+        <td {if $v.status eq 0}id="m_{$v.notice_id}"{/if}>{if $v.status eq 1}已读{else}<font color="red">未读</font>{/if}</td>
+        <td>{$v.issue_time}</td>
+        <td align="center">
+          {if $v.status eq 0}
+          <button class="btn_new" value="{$v.notice_id}" onclick="markStatus(this)">标记已读</button>
+          {/if}
+        </td>
+      </tr>
+      {/foreach}
+      {else}
+      <tr>
+        <td colspan="5">没有消息</td>
+      </tr>
+      {/if}
+    </table>
+  </div>
+</div>

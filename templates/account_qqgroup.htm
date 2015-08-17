@@ -1,0 +1,64 @@
+<br><br>
+<div id="new"></div>
+<div><span>
+    <form name="search_qqgroup", action="" method="POST">
+    群管理员:<input type="text" name="admin" />
+    群号: <input type="text" name="qqgroup" />
+    主题: <input type="text" name="subject" />
+    QQ号: <input type="text" name="qq" />&nbsp; 
+    <span><a id="search_url" style="border: 1px solid #DDD;padding:2px 5px 2px 5px" onmouseover="cheVal()" href="#">搜索</a></span>
+    <wuspan id="error_message"></wuspan>
+    </form>
+</span></div>
+<br>
+<hr width="100%">
+<br>
+<div class="wu">
+  <div id="tabs1">
+  <ul>
+    {foreach from=$account_qq item=val }
+    <li><a href="performance.php?act=getQqGroup&qq={$val.user_name}"><span>{$val.user_name}</span></a></li> 
+    {/foreach}
+  </ul>
+</div>
+</div>
+<div class="content-head">
+     <div class="finder-header-wrapper" style="" id="qqgGrouplist" >
+     <table border="0" cellpadding="0" cellspacing="0" style="clear:both">
+          <tr>
+               <td width="1024px">
+                    <div id='scroll1' style="max-width:100%;overflow:hidden;"> 
+                      <hr class="wuhr" width="1024">
+                      <table style="width:1024px" height="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#666">               
+                              <tr bgcolor="#ddedfb">
+                                   <td align="center">QQ</td>
+                                   <td height="20px" align="center">群号</td>
+                                   <td align="center">主题</td>
+                                   <td align="center">管理员</td>
+                                   <td align="center">最近更新时间</td>
+                                   <td align="center">最近更新人</td>
+                                   <td align="center">操作</td>
+                              </tr>
+                                {foreach from=$qq_group item=val}
+                              <tr bgcolor="#FFFFFF" id="tr_2_{$val.account_id}">
+                                   <td height="20" align="center">{$val.qq}</td>
+                                   <td align="center">{$val.qqgroup}</td>
+                                   <td align="center">{$val.subject}</td>
+                                   <td align="center" title="管理员详细信息"><a href="performance.php?act=getAdminInfo&strAdmin={$val.admin_id}&qqgroup={$val.qqgroup}">{$val.admin_id}</a>
+                                   </td>
+                                   <td align="center">{$val.updateTime}</td> 
+                                   <td align="center">{$val.updater}</td>
+                                   <td align="center">
+                                     <font color="blue" onclick="delgroup({$val.group_id},{$val.qqgroup})">删除</font>
+                                     <font color="blue" onclick="updgroup({$val.group_id},{$val.qqgroup})">修改</font>
+                                   </td>
+                              </tr>
+                              {/foreach}
+                         </table>
+                   </div> 
+               </td>
+          </tr>
+     </table>
+     </div>
+</div> 
+<div id="even"></div>

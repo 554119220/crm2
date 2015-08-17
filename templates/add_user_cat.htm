@@ -1,0 +1,21 @@
+<div class="w830">
+<div class="finder-title mt10">自定义分类</div>
+
+<table id="user_cat" height="100%" cellpadding="0" cellspacing="0" width="824" class="all_table_list rb_border mb10">
+     <tr><th>排序</th><th>名称</th><th>描述</th><th>启用</th><th>操作</th></tr>
+     {foreach from=$cat_list item=val name=i}
+     <tr class="tr_list">
+          <td>{if $smarty.foreach.i.index eq 0}-{else}↑{/if}</td>
+          <td>{$val.cat_name}</td>
+          <td>{$val.cat_desc}</td>
+          <td><img src="images/{$val.available}.gif" /></td>
+          <td><!--a href="{$val.cat_id}">删除</a--></td>
+     </tr>
+     {/foreach}
+</table>
+<form action="javascript:void(0)" name="user_cat" method="post" onsubmit="return addUserCat()">
+分类名称：<input type="text" name="cat_name" value=""/>
+分类说明：<input name="cat_desc" size="50">
+&nbsp; <input type="submit" value="添加" class="input_submits"/>
+</form>
+</div>

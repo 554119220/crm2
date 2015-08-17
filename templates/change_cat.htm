@@ -1,0 +1,12 @@
+<div class="change_cat">
+    <form action="javascript:void(0)" method="post" id="change_cat" name="change_cat" onsubmit="submitNewCat()">
+        <p>
+            {foreach from=$cat_list item=val name=i}
+            <label><input type="radio" name="cat" value="{$val.cat_tag}"/>{$val.cat_name}</label>
+            {if $smarty.foreach.i.iteration%2 eq 0}</p><p>{/if}
+            {/foreach}
+        </p>
+        <div class="blank"></div>
+        <input type="hidden" id="user_id" value="{$user_id}"/>
+    </form>
+</div>

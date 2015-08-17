@@ -1,0 +1,53 @@
+<table width="100%" cellspacing="0" cellpadding="0" class="all_table_list w830 border c_ball_table_list rb_border tr_hover">
+  <tr id="caption">
+    <th width="75">顾客</th>
+    <th width="75">等级</th>
+    <th width="75">订单金额</th>
+    <th width="100">积分规则</th>
+    <th width="80">当前积分</th>
+    <th width="60">积分变量</th>
+    <th width="60">原积分</th>
+    <th width="50px">增/减</th>
+    <th width="130">增减时间</th>
+    <th width="130">有效期</th>
+    <th width="130">确认时间</th>
+    <th width="75">确认人</th>
+  </tr>
+  {foreach from=$integral item=val}
+  <tr>
+    <td>{$val.user_name}</td>
+    <td>{$val.rank_name}</td>
+    <td>{$val.goods_amount}</td>
+    <td><button value="{$val.integral_id}">{$val.integral_title}</button></td>
+    <td>{$val.cur_integral}</td>
+    <td>{$val.exchange_points}</td>
+    <td>{$val.pre_points}</td>
+    <td>
+      {if $val.increase_reduce eq 0}-
+      {else}+
+      {/if}
+    </td>
+    <td>{$val.receive_time}</td>
+    <td>{$val.validity}</td>
+    <td>{$val.confirm_time}</td>
+    <td>{$val.admin_name}</td>
+  </tr>
+  {/foreach}
+</table>
+
+<!-- 分页 -->
+<div class="bottom_tip">
+  <div class="tip_left">
+    <p>共{$filter.recorder_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+  <div class="tip_center">
+    <span><a href="service.php?act={$filter.act}&page=1&page_size={$filter.page_size}" id="page_link">&lt;&lt;</a></span>
+    {foreach from=$filter.page_set item=v}
+    <span{if $v eq $filter.page} class="cur"{/if}>{if $v eq $filter.page}{$v}{else}<a href="service.php?act={$filter.act}&page={$v}&page_size={$filter.page_size}">{$v}</a>{/if}</span>
+    {/foreach}
+    <span><a href="service.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}">&gt;&gt;</a></span>
+  </div>
+  <div class="tip_right">跳转到第
+    <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+  </div>
+</div>

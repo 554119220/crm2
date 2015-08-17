@@ -1,0 +1,60 @@
+<style type="text/css" media="screen">
+    #tableList,#tableList thead th {border-bottom:2px solid #7B98C9; font-family:"Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif; font-weight:400; font-size:0.88rem}
+    #tableList thead th {font-size:1.05rem}
+    tbody tr {height:35px}
+    #tableList>tbody>tr>td {border-top:1px solid #7B98C9}
+    .thLeft {text-align:left}
+    .thPaddingLeft {padding-left:10px}
+    .tdPaddingLeft {padding-left:10px}
+    .tableGoodsSn {width:80px}
+    .tableGoodsName {width:150px}
+    .tableTime {width:150px}
+    #tableList>tbody>tr:nth-child(2n) {background:#FFF}
+    #tableList>tbody>tr:hover {background:#D0D0D0}
+    .addBtn {margin:5px; padding:3px 12px; border-radius:3px; border:1px solid #898989; color:#333}
+    .addBtn:hover {background:#628ACC}
+    .addBtn>a:hover {color:#FFF}
+    .floatRight {float:right}
+</style>
+<div class="content-head">
+    <br>
+    <div class="finder-title">{$curr_title}</div>
+    <div style="width:85%">
+        <span class="addBtn floatRight"><a href="service.php?act=add_promote">添加促销</a></span>
+        <br style="clear:both"/>
+        <div>
+            <table id="tableList" cellspacing="0" cellpadding="0">
+                <thead>
+                    <th class="tableTitle thLeft thPaddingLeft">活动名称</th>
+                    <th class="tableGoodsSn thLeft thPaddingLeft">商品编号</th>
+                    <th class="tableGoodsName thLeft thPaddingLeft">促销商品</th>
+                    <th class="tablePrice thLeft thPaddingLeft">促销价格</th>
+                    <th class="tablePrice thLeft thPaddingLeft">最低价格</th>
+                    <th class="tableTime thLeft thPaddingLeft">开始时间</th>
+                    <th class="tableTime thLeft thPaddingLeft">结束时间</th>
+                    <th class="thLeft thPaddingLeft">当前状态</th>
+                    <th class="tableGoodsSn thLeft thPaddingLeft">操 作</th>
+                </thead>
+                <tbody>
+                    {foreach from=$promotion_list item=promotion}
+                    <tr>
+                        <td class="tdPaddingLeft">{$promotion.promote_name|truncate:11}</td>
+                        <td class="tdPaddingLeft">{$promotion.goods_sn}</td>
+                        <td class="tdPaddingLeft">{$promotion.goods_name|truncate:8}</td>
+                        <td class="tdPaddingLeft">{$promotion.promote_price}</td>
+                        <td class="tdPaddingLeft">{$promotion.cost_price}</td>
+                        <td class="tdPaddingLeft">{$promotion.start_time}</td>
+                        <td class="tdPaddingLeft">{$promotion.end_time}</td>
+                        <td class="tdPaddingLeft">{$promotion.promote_status}</td>
+                        <td class="tdPaddingLeft">
+                            <a href="service.php?act=edit_promote&id={$promotion.promote_id}">[编辑]</a>
+                            <a href="service.php?act=delete_promote&id={$promotion.promote_id}">[删除]</a>
+                        </td>
+                    </tr>
+                    {/foreach}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

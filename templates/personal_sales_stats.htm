@@ -1,0 +1,106 @@
+<style type="text/css" media="screen">
+    .stats-sum {color:red; font-weight:bold}
+    .stats-intro { padding:2px 10px; font-size:1.1rem}
+    .stats-intro li {height:25px}
+    .stats-intro sup { background:yellow}
+</style>
+<div class="content-head">
+    <div class="finder-title mt10">{$curr_title}<font>{$num}</font></div>
+    <details>
+        <summary class="stats-sum">销量统计算法解释</summary>
+        <ul class="stats-intro">
+            <li>今天：统计当日0点0分0秒起，到当日23点59分59秒止的订单，包含退货订单</li>
+            <li>昨天：统计昨日0点0分0秒起，到昨日23点59分59秒止的订单，包含退货订单</li>
+            <li>当月：统计1号0点0分0秒起，到当月最后一天<sup>[1]</sup>23点59分59秒止的订单，包含退货订单</li>
+            <li>本月退货：统计退货时间在当月1号0点0分0秒起，到当月最后一天<sup>[2]</sup>23点59分59秒止的订单</li>
+            <li>注：<mark>[1]、[2]</mark>最后一天：28号、29号、30号、31号（如果有）</li>
+        </ul>
+    </details>
+    <div class="gridlist-action" style="width:1170px; height:35px">
+        <div class="nav-search">
+            {if $personal_stats_query}
+            <form name="sale_date" onsubmit="return querySales(this)" style="display:inline">
+                销售日期：
+                <input class="Wdate" name="start_time" type="text"value="{$start_time}" size="13px" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',{$min_date}})">
+                <input class="Wdate" name="end_time" type="text" value="{$end_time}" size="13px" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',{$min_date}})">
+                <input type="submit" value="查询" class="b_submit">
+            </form>
+            {/if}
+            {if !$group_list}
+            <select name="roles" id="role_id" onchange="getGroupList(this)">
+                <option value="0">请选择</option>
+                {foreach  from=$role_list item=role}
+                <option value="{$role.role_id}">{$role.role_name}</option>
+                {/foreach}
+            </select>
+            {/if}
+            <select name="group_id" id="group_id">
+                <option value="0">请选择</option>
+                {foreach from=$group_list item=val}
+                <option value="{$val.group_id}">{$val.group_name}</option>
+                {/foreach}
+            </select>
+            <input type="button" value="检索" class="b_submit" onclick="filterByThis()">
+            <button class="b_submit" onclick="salesCompletedFilter(true)">目标已完成</button>
+            <button class="b_submit" onclick="salesCompletedFilter(false)">目标未完成</button>
+        </div>
+    </div>
+
+    {if $sales_list}
+    <!-- 个人销量统计 -->
+    <div class="mt10">
+        <table border="0" id="person_style" cellpadding="0" cellspacing="0" class="all_table_list border c_b" width="100%">
+            <thead>
+                <tr>
+                    <th style="text-align:left" width="90px"> </th>
+                    <th style="text-align:left" width="90px"> </th>
+                    <th colspan="2">今日通话</th>
+                    <th colspan="2">今天</th>
+                    <th colspan="2">昨天</th>
+                    <th colspan="3">本月</th>
+                    <th colspan="2">本月退货</th>
+                    <th colspan="4"> </th>
+                </tr>
+                <tr id="sortByThis">
+                    <th id="rank">排 名</th>
+                    <th>客 服</th>
+                    <th>数量</th><th>时长(分钟)</th>
+                    <th>订单数量</th><th>订单金额</th>
+                    <th>订单数量</th><th>订单金额</th>
+                    <th>订单数量</th><th>订单金额</th><th>客单价</th>
+                    <th>订单数量</th><th>订单金额</th>
+                    <th>目标销量</th>
+                    <th>预计销量</th>
+                    <!--th onclick="sortByThisCol(this)">完成进度</th-->
+                    <th>剩余任务</th>
+                    <th>今日任务</th>
+                </tr>
+            </thead>
+            <tbody class="align_right">
+                {foreach from=$sales_list item=val name=i}
+                <tr{if !$smarty.foreach.i.last} group="{$val.group_id}" role="{$val.role_id}" admin="{$val.admin_id}" role_code='{$val.role_code}'{/if}>
+                    <th>{if !$smarty.foreach.i.last}{$smarty.foreach.i.iteration}{/if}</th>
+                    <th>{$val.admin_name}</th>
+                    <th title="通话数量">{if $number_info[$val.admin_name]}{$number_info[$val.admin_name]}{else}0{/if}</th>
+                    <th title="通话时长（单位：分钟）">{if $time_info[$val.admin_name]}{$time_info[$val.admin_name]}{else}0{/if}</th>
+                    <th title="今日订单数量">{if $val.today_count}{$val.today_count}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+                    <th title="今日订单金额">{if $val.today_amount}{$val.today_amount}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+                    <th title="昨日订单数量">{if $val.yesterday_count}{$val.yesterday_count}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+                    <th title="昨日订单金额">{if $val.yesterday_amount}{$val.yesterday_amount}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+                    <th title="当月订单数量">{if $val.month_count}{$val.month_count}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+                    <th title="当月订单金额">{if $val.month_amount}{$val.month_amount}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+                    <th title="当月客单价"{if $smarty.foreach.i.last} id="pct"{/if}>{$val.PCT}</th>
+                    <th title="当月退货数量">{if $val.return_count}{$val.return_count}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+                    <th title="当月退货金额">{if $val.return_amount}{$val.return_amount}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+                    <th title="当月目标销量{if $val.target gt $val.month_amount}：未完成{else}：已完成{/if}"{if $val.target gt $val.month_amount}style="color:red"{/if}>{$val.target}</th>
+                    <th title="预计当月销量">{if $val.forecast}{$val.forecast}{elseif $smarty.foreach.i.last}{else}0{/if}</th>
+                    <!--th>{$val.progress}</th-->
+                    <th title="当月剩余任务">{$val.remain_sales}</th>
+                    <th title="今日任务">{$val.today_target}</th>
+                </tr>
+                {/foreach}
+            </tbody>
+        </table>
+    </div>
+    {/if}
+</div>

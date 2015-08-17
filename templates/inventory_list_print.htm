@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  	<meta charset="utf-8">
+    <title>打印盘点记录</title>
+    <style type="text/css">
+    table {margin-top: 12px;}
+    table caption {
+    	font-weight: bold;
+    	font-size: 24px;
+    	text-align: center;
+    	line-height: 24px;}
+    </style>
+  </head>
+  <body>
+  <table border=1px width=100% cellpadding="0" cellspacing="0" style="border-collapse:collapse">
+  <caption>{$start_time}到{$end_time}盘点记录</caption>
+  <tr>
+  	<th width="5%">编号</th>
+  	<th width="19%">商品名称</th>
+  	<th width="10%">盘点前库存</th>
+  	<th width="10%">下单未发货</th>
+  	<th width="10%">下单且发货</th>
+  	<th width="8%">逻辑库存</th>
+  	<th width="8%">实际库存</th>
+  	<th width="20%">盘点前已下单(盘点时发货)</th> 
+  </tr>
+  {foreach from=$inventory_storage item=val}
+  	<tr>
+  		<td>{$val.goods_sn}</td>
+  		<td style="text-align:left;padding-left:3px">{$val.goods_name}</td>
+  		<td>{$val.quantity}</td>
+  		<td>{$val.place_goods_num}</td>
+  		<td>{$val.delive_goods_num}</td>
+  		<td>{$val.logic_quantity}</td>
+  		<td id="td_{$val.storage_id}">
+  			<label ondblclick="modActualQuantity(this,{$val.actual_quantity},{$val.storage_id})">{$val.actual_quantity}</label>
+      </td>
+      <td>{$val.before_inventory_num}</td>
+  </tr>
+  {/foreach}
+  </table>
+  </body>
+</html>

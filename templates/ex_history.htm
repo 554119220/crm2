@@ -1,0 +1,46 @@
+<table width="80%" class="all_table_list rb_border c_b" border="0" cellpadding="0" cellspacing="0" >
+  <tr>
+    <th width="50px">顾客姓名</th>
+    <th width="100px">从Ta</th>
+    <th width="100px">到Ta</th>
+    <th width="100px">最后购买</th>
+    <th width="100px">最后服务</th>
+    <th width="100px">转移时间</th>
+    <th width="100px">所属平台</th>
+    {if $admin.panel eq 3}
+    <th width="100px">状态</th>
+    {/if}
+  </tr>
+  {foreach from=$customer item=val}
+  <tr>
+    <td>{$val.user_name}</td>
+    <td>{$val.from_admin_name}</td>
+    <td>{$val.to_admin_name}</td>
+    <td>{$val.add_time}</td>
+    <td>{$val.service_time}</td>
+    <td>{$val.exchangetime}</td>
+    <td>{$val.role_name}</td>
+    {if $admin.panel eq 3}
+    <td>{if $val.to_admin_id eq $admin.admin_id}已淘{else}已放弃{/if}</td>
+    {/if}
+  </tr>
+  {/foreach}
+</table>
+<input type="hidden" id="title" value="{$type}">
+
+<!-- 分页 -->
+<div class="bottom_tip">
+  <div class="tip_left">
+    <p>共{$filter.total}条记录,当前页:{$page_start}-{$page_end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+  <div class="tip_center">
+    <span><a href="users.php?act={$filter.act}&page={$filter.pre_page}&page_size={$filter.page_size}" id="page_link"><<</a></span>
+    {foreach from=$filter.page_set item=v}
+    <span{if $v eq $filter.page} class="cur"{/if}>{if $v eq $filter.page}{$v}{else}<a href="users.php?act={$filter.act}&page={$v}&page_size={$filter.page_size}">{$v}</a>{/if}</span>
+    {/foreach}
+    <span><a href="users.php?act={$filter.act}&page={$filter.next_page}&page_size={$filter.page_size}">>></a></span>
+  </div>
+  <div class="tip_right">跳转到第
+    <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+  </div>
+</div>

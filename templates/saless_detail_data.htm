@@ -1,0 +1,66 @@
+<table cellspacing="0" cellpadding="0" style="width:920px">
+    <tr>
+        <th style="border:1px solid #7B98C9">总销量：</th><td style="border:1px solid #7B98C9">{$final_total.total}</td>
+        <th style="border:1px solid #7B98C9">在线支付：</th><td style="border:1px solid #7B98C9">{$final_total.pay}</td>
+        <th style="border:1px solid #7B98C9">货到付款：</th><td style="border:1px solid #7B98C9">{$final_total.shipping}</td>
+    </tr>
+    <tr>
+        <th style="border:1px solid #7B98C9">总单数：</th><td style="border:1px solid #7B98C9">{$final_number.total}</td>
+        <th style="border:1px solid #7B98C9">在线支付：</th><td style="border:1px solid #7B98C9">{$final_number.pay}</td>
+        <th style="border:1px solid #7B98C9">货到付款：</th><td style="border:1px solid #7B98C9">{$final_number.shipping}</td>
+    </tr>
+</table>
+<table class="tableList" cellspacing="0" cellpadding="0">
+    <thead>
+        <th>支付方式</th>
+        <th>金额</th>
+        <th>数量</th>
+        <th>支付方式</th>
+        <th>金额</th>
+        <th>数量</th>
+    </thead>
+    <tr>
+        {foreach from=$pay_list name=i key=key item=val}
+        <td class="stats-name">{$val}</td>
+        <td>{$pay_final[$key]}</td>
+        <td>{$pay_number[$key]}</td>
+        {if $smarty.foreach.i.iteration%2 neq 0 and $smarty.foreach.i.last}
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        {/if}
+        {if $smarty.foreach.i.iteration%2 eq 0 and !$smarty.foreach.i.last}
+    </tr>
+    <tr>
+        {/if}
+        {/foreach}
+    </tr>
+</table>
+<table class="tableList" cellspacing="0" cellpadding="0">
+    <thead>
+        <th>配送方式</th>
+        <th>金额</th>
+        <th>数量</th>
+        <th>配送方式</th>
+        <th>金额</th>
+        <th>数量</th>
+    </thead>
+    <tbody>
+        <tr>
+            {foreach from=$shipping_list name=i key=key item=val}
+            <td class="stats-name">{$val}</td>
+            <td>{$shipping_final[$key]}</td>
+            <td>{$shipping_number[$key]}</td>
+            {if $smarty.foreach.i.iteration%2 neq 0 and $smarty.foreach.i.last}
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            {/if}
+            {if $smarty.foreach.i.iteration%2 eq 0 and !$smarty.foreach.i.last}
+        </tr>
+        <tr>
+            {/if}
+            {/foreach}
+        </tr>
+    </tbody>
+</table>

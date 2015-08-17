@@ -1,0 +1,25 @@
+/* 售前销量 */
+#pageSearch {margin-bottom:10px}
+
+#dataList {min-width:660px}
+table[id='dataList'] {border:1px solid #CCC}
+table[id='dataList'] thead {background:#d5e0cc}
+table[id='dataList'] thead tr {height:27px; font-size:13px}
+table[id='dataList'] thead tr th {padding:5px 5px; text-align:center}
+table[id='dataList'] thead tr td {padding:5px 5px; text-align:center}
+table[id='dataList'] tbody tr {height:19px; font-size:14px}
+table[id='dataList'] tbody tr td {text-align:center}
+/*table[id='dataList'] tbody tr:nth-child(even) {background:#c4c4c4; color:#fff}*/
+/*table[id='dataList'] tbody tr th:first-child {}*/
+table[id='dataList'] tbody tr:hover {background:#0060c0; color:#fff; cursor:pointer}
+table[id='dataList'] tbody tr:last-child {background:#F1F1F1}
+
+
+input[name='order_month'] {width:100px}
+
+/* 档案顾客统计 */
+#users-data-stats table {margin-bottom:10px; border:1px rgb(17,131,138) solid; font-size:14px; margin:10px}
+#users-data-stats table thead tr th:first-child {background:rgb(0,0,0); color:rgb(255,255,255); font-weight:bolder}
+#users-data-stats table tr th {text-align:center; background:none; padding:2px 5px; border:1px rgb(17,131,138) solid; font-size:14px}
+#users-data-stats table tr td {text-align:center; border:1px rgb(17,131,138) solid; padding:2px 5px}
+#users-data-stats table tbody tr:hover {background:rgb(120,184,120); color:rgb(255,255,255)}

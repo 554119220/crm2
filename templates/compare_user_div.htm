@@ -1,0 +1,118 @@
+<div class="mb_10">
+  <table cellpadding="0" cellspacing="0" border="0" width="100%" >
+    <td width="50%">
+      <table cellpadding="0" cellspacing="0" width="100%" class="form_table">
+        <tr>
+         <th width="20%">姓名：</th> 
+         <td>{$first_user.user_name}</td>
+        </tr>
+        <tr>
+          <th width="20%">手机：</th>
+          <td class="td_al">
+            {foreach from=$first_user.mobile item=val}
+            <span class="mgl_7">{$val}</span>
+            {/foreach}
+          </td>
+        </tr>
+        <tr>
+          <th width="20%">电话：</th>
+          <td class="td_al">
+            {foreach from=$first_user.tel item=val}
+            <span class="mgl_7">{$val}</span>
+            {/foreach}
+          </td>
+        </tr>
+        <tr>
+          <th width="20%">地址：</th>
+          <td>
+            {foreach from=$first_user.address_list item=val}
+            <span class="mg_8">{$val}</span>
+            {/foreach}
+          </td>
+        </tr>
+        <tr>
+          <th width="20%">QQ：</th>
+          <td>
+            {foreach from=$first_user.qq item=val}
+            <span class="mgl_7">{$val}</span>
+            {/foreach}
+          </td>
+        </tr>
+        <tr>
+          <th width="20%">旺旺：</th>
+          <td>
+            {foreach from=$first_user.aliww item=val}
+            <span class="mgl_7">{$val}</span>
+            {/foreach}
+          </td>
+        </tr>
+        <tr>
+          <th width="20%">添加时间：</th>
+          <td>{$first_user.add_time} </td>
+        </tr>
+        <tr>
+          <th width="20%">最近购买时间：</th>
+          <td>{$first_user.order_time}</td>
+        </tr>
+      </table>
+    </td>
+    <td width="50%">
+      <table cellpadding="0" cellspacing="0" width="100%" class="form_table">
+        <tr>
+          <th width="20%">姓名：</th> 
+          <td>{$second_user.user_name}</td>
+        </tr>
+        <tr>
+          <th width="20%">手机：</th>
+          <td class="td_al">
+            {foreach from=$second_user.mobile item=val}
+            <span class="mgl_7">{$val}</span>
+            {/foreach}
+          </td>
+        </tr>
+        <tr>
+          <th width="20%">电话：</th>
+          <td class="td_al" >
+            {foreach from=$second_user.tel item=val}
+            <span class="mgl_7">{$val}</span>
+            {/foreach}
+          </td>
+        </tr>
+        <tr>
+          <th width="20%">地址：</th>
+          <td>
+            {foreach from=$second_user.address_list item=val}
+            <span class="mgl_7">{$val}</span>
+            {/foreach}
+          </td>
+        </tr>
+        <tr>
+          <th width="20%">QQ：</th>
+          <td>
+            {foreach from=$second_user.qq item=val}
+            <span class="mgl_7">{$val}</span>
+            {/foreach}
+          </td>
+        </tr>
+        <tr>
+          <th width="20%">旺旺：</th>
+          <td>
+            {foreach from=$second_user.aliww item=val}
+            <span class="ml_7">{$val}</span>
+            {/foreach}
+          </td>
+        </tr>
+        <tr>
+          <th width="20%">添加时间：</th>
+          <td>{$second_user.add_time} </td>
+        </tr>
+        <tr>
+          <th width="20%">最近购买时间：</th>
+          <td>{$second_user.order_time}</td>
+        </tr>
+      </table>
+    </td>
+  </table>
+</div>
+<input type="hidden" id="first_user" value="{$first_user.user_id}" title="{$firset_user.user_name}"/>
+<input type="hidden" id="second_user" value="{$second_user.user_id}" title="{$second_user.user_name}"/>

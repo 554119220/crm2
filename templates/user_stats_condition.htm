@@ -1,0 +1,6 @@
+<li class="checked"><label><input type="radio" name="role_id" value="{$role_id}" checked onclick="sendStatsCondition(this)">全部</label></li>
+{foreach from=$admin_list item=val}
+<li><label>
+     <input type="checkbox" name="admin_list" value="{$val.user_id}" onclick="sendStatsCondition(this)">{$val.user_name}
+</label></li><wbr>
+{/foreach}

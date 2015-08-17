@@ -1,0 +1,50 @@
+﻿<ul class="clearfix">
+  <li class="current-tab">
+  <a>进货单列表</a>
+  </li>
+</ul>
+
+<div class="all_table_list c_b">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+      <th align="center">进货单编号</th>
+      <th align="center">操作</th>
+      <th align="center">进货单日期</th>
+      <th align="center">确认人员</th>
+      <th align="center">联系人</th>
+      <th align="center">联系电话</th>
+    </tr>
+
+    {foreach from=$stock_list item=v}
+            <tr bgcolor="#FFFFFF" id="tr_2_{$v.stock_id}" class="tr_list">
+              <td align="center">{$v.stock_sn}</td>
+              <td align="center">
+                <a href="storage.php?act=detail_stock&id={$v.stock_id}"
+                  title="进货单编号"><img src="images/add.gif" alt="查看" title="查看"></a>
+                &nbsp;&nbsp;&nbsp;<a href="storage.php?act=edit&stock_id={$v.stock_id}"><img src="images/edit.gif" alt="编辑" title="编辑"></a>
+              </td>
+              <td height="20" align="center">{$v.arrival_day}</td>
+              <td align="center">{$v.confirmer}</td>
+              <td align="center">{$v.contacter}</td>
+              <td align="center">{$v.phone}</td>
+            </tr>
+            {/foreach}
+  </table>
+</div>
+
+<div class="bottom_tip">
+  <div class="tip_left"><p>每页显示14条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;跳转到第<input type="text" name="num" size="4">&nbsp;页</p></div>
+  <div class="tip_center">
+    <span><a href=""><<</a></span>
+    <span class="cur">1</span>
+    <span><a href="">2</a></span>
+    <span><a href="">3</a></span>
+    <span><a href="">4</a></span>
+    <span>...</span>
+    <span><a href="">10</a></span>
+    <span><a href="">11</a></span>
+    <span><a href="">12</a></span>
+    <span><a href="">>></a></span>
+  </div>
+  <div class="tip_right">共223条记录,当前页:1-20条</div>
+</div>

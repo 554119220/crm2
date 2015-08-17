@@ -1,0 +1,21 @@
+<div class="w830">
+<div class="finder-title mt10">品牌管理</div>
+
+<table id="brand_list" height="100%" cellpadding="0" cellspacing="0" width="824" class="all_table_list rb_border mb10">
+     <tr><th>品牌编号</th><th>品牌名称</th><th>品牌介绍</th><th>品牌展示</th><th>操作</th></tr>
+     {foreach from=$brand_list item=val}
+     <tr class="tr_list">
+          <td>{$val.brand_id}</td>
+          <td>{$val.brand_name}</td>
+          <td>{$val.brand_desc}</td>
+          <td><img src="images/{$val.is_show}.gif" id="brand_{$val.rec_id}" onclick="showOrHideBrand({$val.rec_id})"/></td>
+          <td><!--a href="{$val.brand_id}">删除</a--></td>
+     </tr>
+     {/foreach}
+</table>
+<form action="javascript:void(0)" name="brand" method="post" onsubmit="return addBrand()">
+品牌名称：<input type="text" name="brand_name" value=""/>
+品牌简介：<input name="brand_desc" size="50">&nbsp;
+<input type="submit" value="添加" class="input_submits"/>
+</form>
+</div>

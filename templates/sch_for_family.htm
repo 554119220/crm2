@@ -1,0 +1,43 @@
+<div style="margin:1px 3px;background:#2673C4;color:#FFF;text-align:center;padding:5px;border-radius:3px">
+  {if $type eq 0}
+  添加家庭成员&nbsp;&nbsp;&nbsp;
+  <span style="background:#68af02;color:#FFFFFF;display:none;width:60px;padding-left:14px;padding-right:14px;" id="alarm_span"></span>
+  {else}
+  添加朋友
+  <span style="background:#68af02;color:#FFFFFF;display:none;width:60px;padding-left:14px;padding-right:14px;" id="alarm_span"></span>
+  {/if}
+  <label style="float:right;margin-right:6px;cursor:pointer" onclick="close_pop()" ><b>X</b></label>
+</div>
+<form name="form_add_family" style="margin-bottom:5px;margin-top:10px">
+  {if $type eq 0}
+  <input type="text" id="family_name" value="{$family_info.family_name}" {if $family_info.family_name eq ''}placeholder="新家庭名称"{else}disabled="disabled"{/if} />
+  {if $family_info neq ''}
+  <input type="button" class="b_submit" value="修改家庭名称" />
+  {/if}
+  &nbsp;注意：家庭关系是以{$family_user}为参照点。
+  {/if}
+</form>
+<table class="wu_table_list rb_border wu_rb_border tr_hover" cellpadding="0" cellspacing="0" width="640px" id="form_sch_family_user">
+  <tr>
+    <th width="10%">姓名</th>
+    <th width="25%">联系方式</th>
+    <th width="20%">地址</th>
+    <th width="30%">操作</th>
+  </tr>
+  {foreach from=$user_list item=val}
+  <tr>
+    <td>{$val.user_name}</td>
+    <td>{$val.home_phone}<font color="red" size="4">|</font>{$val.mobile_phone}</td>
+    <td>{$val.address_name}</td>
+    <td>
+      <select id="type_id_{$val.user_id}">
+        <option value="0">请选择关系</option>
+        {foreach from=$grade_list item=grade}
+        <option value="{$grade.grade_id}">{$grade.grade_name}</option>
+        {/foreach}
+      </select>
+      <input type="button" onclick="addToFamily({$user_id},{$val.user_id})" class="b_submit" value="添加"/>
+    </td>
+  </tr>
+  {/foreach}
+</table>

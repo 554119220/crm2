@@ -1,0 +1,17 @@
+<div class="change_cat">
+    <form action="javascript:void(0)" method="post" name="date" onsubmit="submitReceiveDate()">
+        <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+        <p>时间：<input class="Wdate" type="text" name="receive_time" onClick="WdatePicker()" placeholder="买家收货时间" title="未收货可不填"></p>
+        <p>
+        <label><input type="radio" name="receive_status" value="2"{if $info.receive_status eq 2} checked{/if}>尚未收到</label>
+        <label><input type="radio" name="receive_status" value="3"{if $info.receive_status eq 3} checked{/if}>超区派送</label>
+        <label><input type="radio" name="receive_status" value="4"{if $info.receive_status eq 4} checked{/if}>拒收</label>
+        <label><input type="radio" name="receive_status" value="1"{if $info.receive_status eq 1} checked{/if}>其它：</label>
+        <textarea name="others" title="提示：" rows="8" cols="40" placeholder="造成未派送成功的其它原因">{if $info.others}{$info.add_time}{$info.others}{/if}</textarea>
+        </p>
+        <p>
+        <input type="hidden" id="id" value="{$id}"/>
+        <input type="submit" value="确定" class="input_submits"/>
+        </p>
+    </form>
+</div>

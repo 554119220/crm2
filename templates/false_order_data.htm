@@ -1,0 +1,14 @@
+{foreach from=$order_list item=val name=i}
+<tr>
+    <td>{$val.platform}</td>
+    <td>{$val.consignee}</td>
+    <td align="left">{$val.prov} {$val.city} {$val.dist} {$val.addr}</td>
+    <td>{$val.shipping_name}</td>
+    <td>{$val.tracking_sn}</td>
+    <td>{$val.add_time}</td>
+    <td ondblclick="replaceToInputHTML(this,{$val.order_id},'text',addOrderSnForBrush)" platform="6"> </td>
+    <td ondblclick="replaceToInputHTML(this,{$val.order_id},'text',addOrderSnForBrush)" platform="10"> </td>
+    <td ondblclick="replaceToInputHTML(this,{$val.order_id},'text',addOrderSnForBrush)" platform="14"> </td>
+    <td ondblclick="replaceToInputHTML(this,{$val.order_id},'text',addOrderSnForBrush)" platform="16"> </td>
+</tr>
+{/foreach}

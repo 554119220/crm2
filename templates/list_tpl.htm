@@ -1,0 +1,44 @@
+{if $content eq 'users_list'}
+<table cellpadding="0" cellspacing="1" class="rb_border">
+    {foreach name=no from=$user_list item=user}
+    <tr id="tr_{$user.user_id}" height="30px">
+        <td align="center" width="40px">
+            <input type="checkbox" name="checkboxes[]" value="{$user.user_id}" onclick="addToRecycle(this)" notice="{if $user.user_money neq 0}1{else}0{/if}"/>
+        </td>
+        <td class="first-cell pos" width="84px">
+            {if $user.referrals_id}<a href="users.php?act=user_detail&id={$user.referrals_id}">{/if}
+                {$user.user_name}
+            {if $user.referrals_id}</a>{/if}
+            <a href="users.php?act=user_detail&id={$user.user_id}">
+                <img src="images/add.gif" style="margin-top:7px"/>
+            </a>
+        </td>
+        <!--td class="first-cell pos" width="80px">
+            {if $user.aliww}<a target="_blank" href="http://www.taobao.com/webww/ww.php?ver=3&touid={$user.aliww}&siteid=cntaobao&status=2&charset=utf-8" title="{$user.aliww}"><img border="0" src="http://amos.alicdn.com/realonline.aw?v=2&uid={$user.aliww}&site=cntaobao&s=2&charset=utf-8" alt="{$user.aliww}" /></a>{/if}
+            {if $user.qq}<a href="tencent://message/?uin={$user.qq}" title="{$user.qq}" name="msg"><img alt="{$user.qq}" src="http://wpa.qq.com/pa?p=1:{$user.qq}:17"></a>{/if}
+        </td-->
+        <td align="center" width="85px">
+            {if $user.sex eq 1}男{elseif $user.sex eq 2}女{elseif $user.sex eq 0}未知{/if}
+        </td>
+        <td align="center" width="84px">{$user.age_group}</td>
+        <td align="center" width="88px" title="绑定时间：{$user.bind_time}">{$user.card_number}</td>
+        <td align="center" width="85px">{$user.add_time}</td>
+        <td align="center" width="85px">
+            {if $user.service_time eq '1970-01-01' || $user.service_time eq 0}-{else}{$user.service_time}{/if}
+        </td>
+        <td align="center" width="86px">{$user.admin_name}</td>
+        <td align="center" width="85px">{$user.transfer_time}</td>
+        <td align="center" width="80px">
+          <img src="images/0.gif" alt="删除顾客" onclick="deleteUser(this,{$user.user_id})" />
+          <!--<button onclick="deleteUser(this)" value="{$user.user_id}" class="btn_new">删除</button>-->
+        </td>
+      </tr>
+      {foreachelse}
+      <tr>
+        <td class="no-records"{if $transfer eq 1} colspan="11"{else} colspan="10"{/if}>
+          {$lang.no_records}
+        </td>
+    </tr>
+    {/foreach}
+</table>
+{/if}

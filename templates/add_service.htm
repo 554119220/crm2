@@ -1,0 +1,84 @@
+<div class="blank"></div>
+<div class="w830">
+<div class="finder-title mt10 b_b_ed">客服登记表</div>
+<form  method="post" name="service_record" class="w830 c_b">
+  <table border="0" id="ad_table" class="mt10">
+    <tr height="30">
+      <th>咨询方式</th>
+      <th>咨询类型</th>
+      <th>所属平台</th>
+      <th>导购咨询</th>
+      <th>成交订单数</th>
+      <th>销售额</th> 
+      <th>套餐数量</th>
+      <th>套餐金额</th>
+      <th>新顾客</th>
+      <th>老顾客</th>
+    </tr>
+    <tr>
+      <td>
+              <select name="way_id[]">
+                  {foreach from=$way_name item=v}
+                    <option value="{$v.way_id}">{$v.way_name}</option>
+                  {/foreach}   
+              </select>
+      </td>
+
+      <td>
+              <select name="type_id[]">
+                  {foreach from=$type_name item=v}
+                      <option value="{$v.type_id}">{$v.type_name}</option>
+                  {/foreach}   
+              </select>
+      </td>
+
+      <td>
+              <select name="rid[]">
+                  {foreach from=$role_name item=v}
+                      <option value="{$v.role_id}">{$v.role_name}</option>
+                  {/foreach}   
+              </select>
+      </td>
+
+        <td>
+          <input type="text" name="guide_consulting[]" size="4" value=""/>&nbsp;次
+        </td>
+
+        <td>
+            <input type="text" name="success_deal[]"  size="4" value=""/></td>
+       </td>
+
+      <td>
+          <input type="text" name="amount[]"  size="4" value=""/>&nbsp;元
+      </td>
+
+      <td>
+            <input type="text" name="package_number[]" size="4" value=""/>
+      </td>
+
+       <td>
+            <input type="text" name="package_money[]" size="4" value=""/>
+      </td>
+      <td>
+           <input type="text" name="new_user[]" size="4" value=""/>     
+      </td>
+      <td>
+           <input type="text" name="old_user[]" size="4" value=""/>     
+      </td> 
+      <td><span style="cursor:pointer;" onclick="insertRowElement(this)">[&nbsp;+&nbsp;]</span></td>
+    </tr>   
+  </table>
+  <br/>
+
+  <table class="ml10">
+    <tr>
+      <td>
+        <span style="width:18px; float:left;padding-top:10px">工作内容</span><textarea name="job_content"  rows="5" cols="50"></textarea>
+      </td>
+    </tr>
+  </table>
+  <div class="b_b_ed pb10">
+  <input type="button" value="提交" onclick="addServiceRecord(this)" class="input_submit ml10 mt10"/>
+  </div>
+</form>
+</div>

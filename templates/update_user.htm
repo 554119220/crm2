@@ -1,0 +1,59 @@
+<br />
+<h3>修改{$user.user_name}的基本信息</h3>
+<div class="box_center">
+  <input type="hidden" id="id" value="{$user.user_id}"/>
+  <form action="javasctipt:void(0)" method="post"  name="form" onsubmit="updateAdmin(this)">
+    <table class="table_form table_tr list_table_form" cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <th width="13%">用户名<font color="red">*</font>：</th>
+        <td><input type="text" name="username" value="{$user.user_name}" disabled style="background:#F0F0F0" onBlur="user()" />
+          <span id="users" style="margin-left:5px;color:red"></span>
+        </td>
+      </tr>
+      <tr>
+        <th width="13%">工号：</th>
+        <td><input type="text" name="number" value="{$user.user_id}" disabled style="background:#F0F0F0"/></td>
+      </tr>
+      <tr>
+        <th width="13%">旧密码：</th>
+        <td><input type="password" name="pre_password" /></td>
+      </tr>
+      <tr>
+        <th width="13%"></th>
+        <td>
+          <font color="#666">如果要修改密码,请先填写旧密码,如留空,密码保持不变</font>
+        </td>
+      </tr>
+      <tr>
+        <th width="13%">新密码<font color="red">*</font>：</th>
+        <td><input type="password" name="password" /><span id="password" style="margin-left:5px;color:red">长度不能少于6</span></td>
+      </tr>
+      <tr>
+        <th width="13%">确认密码<font color="red">*</font>：</th>
+        <td><input type="password" name="pass" /><span id="pass" style="margin-left:5px;color:red"></span></td>
+      </tr>
+      <tr>
+        <th width="13%">手机<font color="red">*</font>：</th>
+        <td><input type="text" name="mobile" value="{$user.mobile}" />
+          <span id="mobile" style="margin-left:5px;color:red"></span>
+        </td>
+      </tr>
+      <tr>
+        <th>分机号：</th>
+        <td><input type="number" name="ext" value="{$user.ext}"/></td>
+      </tr>
+      <tr>
+        <th width="13%">姓名<font color="red">*</font>：</th>
+        <td><input type="text" name="name" value="{$user.user_name}"/></td>
+      </tr>
+      <th width="13%">角色名称<font color="red">*</font>：</th>
+      <td><select name="roles">
+          {foreach  from=$select item=role}
+          <option value="{$role.role_id}" {if $user.role_id eq $role.role_id}selected{/if}>{$role.role_name}</option>
+          {/foreach}
+        </select>&nbsp;&nbsp;
+        <input type="submit" value="确定" class="b_submit" />
+      </td>
+    </table>
+  </form>
+</div>

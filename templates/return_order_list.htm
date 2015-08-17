@@ -1,0 +1,168 @@
+﻿<div class="mb10 w1000 w-scroll">
+  <h3 class="pb5">{$curr_title}<font class="c_1">{$num}</font></h3>
+  <div class="finder-packet" id="">
+    <div class="packet-items" id="">
+      <ul id="sub_tag" class="clearfix">
+        <!-- 针对订单状态进行的分类 -->
+        {foreach from=$shipping_list item=val name=i}
+        <li id="tag_{$val.shipping_id}" class="{if $val.shipping_id eq $shipping_id}current-tab{else}last{/if}">
+        <a href="order.php?act=current_order&shipping_id={$val.shipping_id}">{$val.shipping_name}</a>
+        </li>
+        {/foreach}
+      </ul>
+    </div>
+  </div>
+
+  <div class="gridlist-action c_b">
+    <div class="nav-search">
+      <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+      下单日期：<input class="Wdate" id="start_time" type="text" value="{$start_time}" onClick="WdatePicker()">
+      至<input class="Wdate" id="end_time" type="text" value="{$end_time}" onClick="WdatePicker()">
+      <select id="keyfields" onchange="changeKeywordsArae(this)">
+        <option value="consignee"{if $kf eq 'consignee'} selected{/if}>收货人</option>
+        <option value="order_sn"{if $kf eq 'order_sn'} selected{/if}>订单编号</option>
+        <option value="qq"{if $kf eq 'qq'} selected{/if}>QQ</option>
+        <option value="aliww"{if $kf eq 'aliww'} selected{/if}>旺旺</option>
+        <option value="mobile"{if $kf eq 'mobile'} selected{/if}>手机号码</option>
+        <option value="tel"{if $kf eq 'tel'} selected{/if}>固话</option>
+        <option value="region"{if $kf eq 'region'} selected{/if}>收货地区</option>
+        <option value="address"{if $kf eq 'address'} selected{/if}>收货地址</option>
+        <option value="admin_name"{if $kf eq 'admin_name'} selected{/if}>健康顾问</option>
+      </select>
+      <span id="keywordsArea">
+        <input type="text" id="keywords" value="{$kw}">
+      </span>
+      <button value="order.php?act={$act}&shipping_id={$shipping_id}" onclick="searchOrder(this)" class="b_submit">搜索</button>
+    </div>
+  </div>
+
+  <!-- 查询订单 -->
+  <div class="finder-header-wrapper">
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr class="f_l">
+        <td class="left_scroll f_l">
+          <!--     左上-BEGIN     -->
+          <table width="150px" height="100%" cellpadding="0" cellspacing="1">
+            <colgroup>
+              <col width="60px">
+              {if $shipping_act}<col width="90px">{/if}
+            </colgroup>
+            <tr bgcolor="#FFFFFF">
+              <td height="20" align="center">用户名</td>
+              <!--td align="center">{if $act eq 'current_order'}打单{else}快递跟进{/if}</td-->
+            </tr>
+          </table>
+          <!--     左上-END     -->
+        </td>
+        <td width="50%">
+          <div id='scroll1' width="674">
+            <!--     右上-BEGIN     -->
+            <table height="100%" cellpadding="0" cellspacing="1">
+              <tr bgcolor="#eee" height="27px">
+                <td align="center" width="80px">操作</td>
+                <td align="center" width="123px">运单号</td>
+                <!--td align="center" width="153px">发货必看</td-->
+                <td align="center" width="77px">总金额</td>
+                <td align="center" width="75px">谁的单</td>
+                <td align="center" width="75px">谁添加</td>
+                <td align="center" width="115px">下单时间</td>
+                <td align="center" width="115px">退回时间</td>
+              </tr>
+            </table>
+            <!--     右上-END     -->
+          </div> 
+        </td>
+      </tr>
+      <tr class="f_l">
+        <td width="50%" align="left" valign="top">
+          <div id='scroll2'>
+            <!--     左下-BEGIN     -->
+            <table width="149px" height="100%" id="left_table" cellpadding="0" cellspacing="1">
+              {foreach from=$order_list item=val}
+              <tr bgcolor="#FFFFFF" id="tr_1_{$val.order_id}" class="tr_list">
+                <td width="63px" align="center" >{$val.buyer}</td>
+                <!--td align="center" width="89px">
+                     <span class="h_f">
+                          <img src="images/{if $val.shipping_status eq 5}1{else}0{/if}.gif" alt="{if $val.shipping_status eq 5}已送回{else}未收到{/if}" id="shipping_{$val.order_id}" onclick="return_goods_sign({$val.order_id})"/>
+                     </span>
+                </td-->
+              </tr>
+              {/foreach}
+            </table>
+            <!--     左下-END     -->
+          </div>
+        </td>
+        <td align="left" valign="top">
+          <div onscroll="javascript:syncscroll(this)" class="h800 y-scroll">
+            <div style="width:688px">
+              <!--     右下-BEGIN     -->
+              <table id="right_table" cellpadding="0" cellspacing="1">
+                {foreach from=$order_list item=val}
+                <tr bgcolor="#FFFFFF" id="tr_2_{$val.order_id}" class="tr_list" height="25px">
+                  <td width="82px" class="{if $val.pay_id eq 3}bg_pay{/if} b_r" align="center">
+                    {if $shipping_act}<span class="{if $val.review}fav_start-y{else}fav_start-x{/if}" id="review_{$val.order_id}"{if $access} onclick="review({$val.order_id})"{/if}></span>{/if}
+                    <font color="#666">【{$val.role_describe}】</font><a class="mt1" href="order.php?act=order_detail&id={$val.order_id}&{$act}=1" title="订单详情" ><img src="images/add.gif" alt="查看" title="查看" align="absmiddle"></a>
+                  </td>
+                  <td width="122px" class="b_r" align="center"{if $shipping_act} ondblclick="replaceToInput(this, {$val.order_id})"{/if}>{if $val.tracking_sn}{if $act eq 'history_order' || $act eq 'finished_order'}<a href="logistics_info.php?id={$val.order_id}" target="_blank">{$val.tracking_sn}</a>{else}{$val.tracking_sn}{/if}{else}{$val.shipping_name}{/if}</td>
+
+                  <!--td width="170px" class="b_r" align="center" title="{$val.remarks}">{$val.remarks|truncate:5}</td-->
+                  <td width="77px" align="center" class="b_r">{$val.formated_total_fee}</td>
+                  <td width="75px" align="center" class="b_r" title="{$val.admin_name}">{$val.admin_name|truncate:5}</td>
+                  <td width="75px" align="center" class="b_r" title="{$val.add_admin}">{$val.add_admin|truncate:5}</td>
+                  <td width="115px" align="center" class="b_r">{$val.short_order_time}</td>
+                  <td width="115px" align="center" class="b_r">{$val.return_time}</td>
+                  <!--td align="center">{$val.platform}</td-->
+                </tr>
+                {/foreach}
+              </table>
+              <!--     右下-END     -->
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 分页 -->
+    <div class="bottom_tip">
+      <div class="tip_left">
+        <p>共{$record_count}条记录,当前页:{$page_start}-{$page_end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+      </div>
+      <div class="tip_center">
+        <span><a href="order.php?act={$act}{$page_link}&page=1&page_size={$page_size}" id="page_link"><<</a></span>
+        {foreach from=$page_set item=v}
+        <span{if $v eq $page} class="cur"{/if}>{if $v eq $page}{$v}{else}<a href="order.php?act={$act}{$page_link}&page={$v}&page_size={$page_size}">{$v}</a>{/if}</span>
+        {/foreach}
+        <span><a href="order.php?act={$act}{$page_link}&page={$page_count}&page_size={$page_size}">>></a></span>
+      </div>
+      <div class="tip_right">跳转到第
+        <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+      </div>
+    </div>
+
+
+    <!--div class="aui_state_focus aui_state_lock" style="display: block; position: absolute; z-index: 1992; width: 718px; left: 324px; top: 0px;">
+
+    <div class="aui_outer">
+      <table class="aui_border">
+        <tbody>
+          <tr>
+            <td class="aui_c">
+              <div class="aui_inner">
+                <table class="aui_dialog">
+                  <tr><td></td></tr>
+                  <tr>
+                    <td class="aui_main" style="width: 700px; height: 500px;">
+
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  -->
+  <!--div style="width: 100%; height: 100%; position: fixed; z-index: 1991; top: 0px; left: 0px;background-color: rgb(0, 0, 0); opacity: 0.7; background-position: initial initial; background-repeat: initial initial; ">
+  </div-->

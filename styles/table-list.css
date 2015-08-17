@@ -1,0 +1,39 @@
+/*.content-head div {float:none; width:100%}*/
+/*.clearfix li.last {background:#efefef; font-size:14px; font-weight:bold; width:80px; display:block; border-radius:7px 7px 0 0; text-align:center; padding:4px; float:left; margin-right:2px;border:1px #e6e6e6 solid;border-bottom:0; z-index:999;}
+ * */
+.last,.current-tab,.tab-front,.tab-back{ float:left; border-radius:7px 7px 0 0; margin-right:1px; text-align:center}
+.last,.tab-back{background: -webkit-gradient(linear, 0 0, 0 100%, from(#D7DCE2), to(#F6F7F7));padding:0 5px; height:25px;line-height:25px;margin-top:5px}
+.last a{color:#3F4D69}
+
+.current-tab,.tab-front{background:-webkit-gradient(linear,0 0,0 100%, from(#0a5199), to(#3e91e5));padding:0px 5px;height:30px; }
+.current-tab a,.tab-front label{color:#FFF ; font:bold 12px "宋体";line-height:30px;}
+.clearfix li{border:1px #ccc solid;border-bottom:0; }
+.clearfix li a{display:block}
+
+.clearfix .last a:hover,.clearfix li:hover{background:-webkit-gradient(linear,0 0,0 100%, from(#0a5199), to(#3e91e5));border-radius:7px 7px 0 0 ; color:#fff; text-decoration:none; cursor:pointer;}
+.clearfix li span{cursor:pointer}
+
+.gridlist-action {clear:both; background: url(../images/tile_bg.png) repeat-x 0 -100px;padding: 7px 0 5px 7px; min-height:30px}
+
+.add_user{float:right}
+.add_user a {padding:2px 10px; float:left;border-radius:3px; border:1px #898989 solid; color:#333; background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #FFF), color-stop(1, #e9ecef));text-decoration:none;font:normal 12px "宋体"}
+.add_user a:hover{background:#ccc}
+.gridlist-action a:hover{ border:1px #222 solid}
+
+.all_table_list tr:nth-child(odd){background:#c6c3c3}
+.list-div table tr:nth-child(even){background:#eee}
+#detail ul li {float:left}
+
+
+/*===============================添加新顾客==============================*/
+#tabbody-div{border:1px #ccc solid;overflow:hidden;float:left;padding:20px 0 10px 10px;clear:both; width:830px; overflow:hidden}
+/*
+#base,#contact,#extends{width:80% !important;}
+#social{width:90%}
+*/
+#tabbody-div table .label{width:80px; text-align:right}
+#base,#contact,#extends table tr{height:35px}
+#extends label{padding-top:5px;float:left}
+/*===============================添加新顾客 end==============================*/
+
+tbody[id*='stats']>tr:hover {background:#78B878 !important; color:#fff}

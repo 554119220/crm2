@@ -1,0 +1,45 @@
+﻿<form action="order.php?act=handle_storage_back" name="BackGoods" method="post" onsubmit="return sendBackGoods()">
+     <table width="640px" border="1" style="border-collapse:collapse;border-color:#000;margin:10px 0">
+          <tbody>
+               <tr align="center">
+                    <td><strong>{$lang.goods_name}</strong><!-- 商品名称 --></td>
+                    <td><strong>商品说明</strong><!-- 商品说明 --></td>
+                    <td><strong>{$lang.goods_sn}</strong><!-- 商品货号 --></td>
+                    <td><strong>发出数量</strong><!-- 发出的商品数量 --></td>
+                    <td><strong>完好数量</strong><!-- 商品完好 可用于二次销售 --></td>
+                    <td><strong>损耗数量</strong><!-- 商品数量 --></td>
+                    <!--td><strong>{$lang.subtotal}</strong><价格小计></td-->
+               </tr>
+               <!-- {foreach from=$goods_list item=goods key=key} -->
+               {if isset($goods.package_goods_list)}
+               <tr>
+                    <td align="center"><strong>{$goods.goods_name}</strong><!-- 商品名称 -->{if $goods.is_gift}{if $goods.goods_price gt 0}{$lang.remark_favourable}{else}{$lang.remark_gift}{/if}{/if}{if $goods.parent_id gt 0}{$lang.remark_fittings}{/if}</td>
+                    <td align="center">套餐<!-- 商品说明 --></td>
+                    <td align="center">{$goods.goods_sn} <!-- 商品货号 --></td>
+                    <td align="center">{$goods.goods_number}<!-- 商品数量 --></td>
+                    <td align="center">-<!-- 商品完好数量 --></td>
+                    <td align="center">-<!-- 损耗商品数量 --></td>
+               </tr>
+               {foreach from=$goods.package_goods_list item=p}
+               <tr>
+                    <td align="center"><font style="font-weight:normal">{$p.goods_name}</font><!-- 商品名称 --></td>
+                    <td align="center"><font style="font-weight:normal">{$goods.goods_sn}</font><!-- 商品说明 --></td>
+                    <td align="center"><font style="font-weight:normal">{$p.goods_sn}</font><!-- 商品货号 --></td>
+                    <td align="center">{$goods.goods_number}<font style="font-weight:normal">×{$p.goods_number}</font><!-- 商品数量 --></td>
+                    <td align="center"><input type="text" name="intact_number[{$p.goods_sn}][]" value="" size="3"/></td>
+                    <td align="center"><input type="text" name="loss_number[{$p.goods_sn}][]" value="" size="3"/><!-- 商品数量 --></td>
+               </tr>
+               {/foreach}
+               {else}
+               <tr>
+                    <td align="center"><strong>{$goods.goods_name}</strong><!-- 商品名称 -->{if $goods.is_gift}{if $goods.goods_price gt 0}{$lang.remark_favourable}{else}{$lang.remark_gift}{/if}{/if}{if $goods.parent_id gt 0}{$lang.remark_fittings}{/if}</td>
+                    <td align="center">单品<!-- 商品说明 --></td>
+                    <td align="center">{$goods.goods_sn}<!-- 商品货号 --></td>
+                    <td align="center">{$goods.goods_number}<!-- 商品数量 --></td>
+                    <td align="center"><input type="text" name="intact_number[{$goods.goods_sn}][]" value="" size="3"/><!-- 商品单价 --></td>
+                    <td align="center"><input type="text" name="loss_number[{$goods.goods_sn}][]" value="" size="3"/><!-- 商品数量 --></td>
+               </tr>
+               {/if}
+               <!-- {/foreach} -->
+               <tr><td colspan="5" align="right"><input type="hidden" name="id" value="{$id}"/><input type="submit" value="确认"/></td></tr>
+          </form>

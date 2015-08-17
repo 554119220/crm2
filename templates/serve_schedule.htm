@@ -1,0 +1,37 @@
+<!--用户列表部分-->
+<table cellpadding="3" cellspacing="1">
+     <tr>
+          <th width="3%">
+               <input onclick='listTable.selectAll(this, "checkboxes")' type="checkbox">
+          </th>
+          <th width="5%">顾客</th>
+          <th width="3%">性别</th>
+          <th width="2%">联系方式</th>
+          <th width="5%">服务时间</th>
+          <th width="10%">预约时间</th>
+          <th width="10%">预约内容</th>
+          <th width="5%">所属客服</th>
+     </tr>
+     {foreach from=$user_list item=val name=no}
+     <tr id="tr_{$val.user_id}">
+          <td align="center">
+               <input type="checkbox" name="checkboxes[]" value="{$val.user_id}" notice="{if $val.user_money neq 0}1{else}0{/if}"/>
+          </td>
+          <td class="first-cell pos">
+               {$val.user_name}<a href="users.php?act=user_detail&id={$val.user_id}"><img src="images/add.gif"></a>
+          </td>
+          <td align="center">{if $val.sex eq 1}男{elseif $val.sex eq 2}女{else}无{/if}</td>
+          <td align="center">{$val.home_phone}{if $val.home_phone && $val.mobile_phone}<font color="red" size="4">|</font>{/if}{$val.mobile_phone}</td>
+          <td align="center">{$val.service_time}</td>
+          <td align="center">{$val.handler}</td>
+          <td align="center">{$val.logbook}</td>
+          <td align="center">{$val.admin_name}</td>
+     </tr>
+     {foreachelse}
+     <tr>
+          <td class="no-records"{if $transfer eq 1} colspan="11"{else} colspan="10"{/if}>
+               {$lang.no_records}
+          </td>
+     </tr>
+     {/foreach}
+</table>

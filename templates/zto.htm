@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//Ddiv XHTML 1.0 divansitional//EN" "http://www.w3.org/div/xhtml1/Ddiv/xhtml1-divansitional.ddiv">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>中通快递同步发货</title>
+    <style type="text/css" media="screen">
+      *{margin:0 auto;padding:0;}
+      div.box{width:100mm;height:190mm;padding-left:6px;}
+      div{font-family:"宋体","SimSun";}
+      .wd25{width:25mm;height:25mm;}
+      table{width:100%;padding:0px;margin:0px;}
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <table cellspacing="0" cellpadding="0">
+        <tr>
+          <td style="height:11mm;width:75mm;border-left: 0px;">
+            <div style="float:right;">
+              <span style="font-size:18px;font-weight:bold;">&nbsp;{$get_resp.waybill_code}</span><br/>
+              <span style="margin-top:5%;font-size:16px;">日期:{$now_time}</span>
+            </div>
+          </td>
+          <td rowspan="2" style="width:25mm;height:25mm;">
+            <img src="images/qrcode.jpg" style="width:100%" alt="alt"/>
+          </td>
+        </tr> 
+        <tr>
+          <td style="padding-left:6px;font-size:18px;">
+            寄件人：康健人生健康商城<br />
+            联系方式：020-66212023<br />
+            地址：广东省广州市白云区梅花园麦华路24号大院
+          </td> 
+        </tr>
+      </table>
+      <div style="height:25mm;padding-left:10px;font-size:14px;font-weight:bold">
+        收件人：{$get_resp.trade_order_info.consignee_name} <br />
+        电话：{$get_resp.trade_order_info.consignee_phone} <br />
+        地址： {$get_resp.trade_order_info.consignee_address.province}
+        {$get_resp.trade_order_info.consignee_address.city}
+        {$get_resp.trade_order_info.consignee_address.town}
+        {$get_resp.trade_order_info.consignee_address.address_detail}<br />
+        品名：保健食品
+      </div> 
+      <div style="height:15mm;font-size:56px;font-weight:bold;">
+        {$get_resp.trade_order_info.consignee_address.province}
+        {$get_resp.trade_order_info.consignee_address.city}
+      </div>
+      <div style="height:25mm;text-align:center;font-size:16px;font-weight:bold;margin-bottom:30px;">
+        <img src="code.png" alt="alt"/>
+      </div> 
+      <div style="height:23mm;">
+        <span class="style1 bold">
+          <!--{$get_resp.consignee_branch_name}-->
+        </span>
+        <span style="float:right;margin-right:5px;margin-top:5px;font-size:16px;"><img src="code1.png"/></span>
+      </div>
+      <div style="height:15mm;padding-left:10px;font-size:16px;font-weight:bold;">
+        收件人：{$get_resp.trade_order_info.consignee_name}<br/>
+        电话：{$get_resp.trade_order_info.consignee_phone} <br />
+        地址： {$get_resp.trade_order_info.consignee_address.province}
+        {$get_resp.trade_order_info.consignee_address.city}
+        {$get_resp.trade_order_info.consignee_address.town}
+        {$get_resp.trade_order_info.consignee_address.address_detail}<br />
+        品名： 保健食品 <br />
+      </div> 
+      <div style="height:25mm;padding-left:10px;font-size:14px;padding-top:55px;">
+        寄件人：康健人生健康商城 <br />
+        联系方式：020-66212023 <br />
+        日期：{$now_time} <br />
+        地址：广东省广州市白云区梅花园麦华路24号大院
+      </div> 
+    </div>
+  </body>
+</html>

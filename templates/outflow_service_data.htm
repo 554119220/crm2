@@ -1,0 +1,21 @@
+<tbody>
+<tr>
+    <th width="120px">姓名</th>
+    <th width="190px">顾客添加日期</th>
+    <th width="190px">最后一次服务</th>
+    <th width="120px">客服</th>
+</tr>
+{foreach from=$outflow_list item=val name=i}
+<tr id="tr_{$val.user_id}">
+    <td>
+        {$val.user_name}
+        <a href="users.php?act=user_detail&id={$val.user_id}">
+            <img src="images/add.gif" style="margin-top:7px"/>
+        </a>
+    </td>
+    <td>{$val.add_time}</td>
+    <td>{$val.service_time}</td>
+    <td>{$val.admin_name}</td>
+</tr>
+{/foreach}
+</tbody>

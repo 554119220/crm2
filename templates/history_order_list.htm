@@ -1,0 +1,157 @@
+﻿<div class="content-head">
+  <div class="finder-title">{$curr_title}<font>{$num}</font></div>
+  <div class="finder-packet" id="">
+    <div class="packet-items" id="">
+      <ul id="sub_tag" class="clearfix" style="width:100%;float:left">
+        <!-- 针对订单状态进行的分类 -->
+        <li id="tag_0" class="current-tab">
+        <a href="order.php?act={$act}&platform=0">全部</a>
+        </li>
+        {foreach from=$platform_list item=val}
+        <li id="tag_{$val.role_id}" class="last">
+        <a href="order.php?act={$act}&platform={$val.role_id}">{$val.role_describe}-{$val.role_name}</a>
+        </li>
+        {/foreach}
+      </ul>
+      <input type="hidden" id="cache_data" value="{$cache_data}"/>
+    </div>
+  </div>
+
+  <div class="gridlist-action">
+    <a href="">分派订单</a>
+  </div>
+  <div class="finder-header-wrapper" style="" id="" >
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td class="left_scroll">
+          <!--*********左上-BEGIN***********-->
+          <table width="200px" height="100%" border="0" cellpadding="0" cellspacing="1" style="border-left:1px #ccc solid">
+            <colgroup>
+              <col width="80px">
+              <col width="100px">
+              <col width="120px">
+            </colgroup>
+            <tr bgcolor="#FFFFFF">
+              <td height="20" align="center">用户名</td>
+              <td align="center">订单编号</td>
+            </tr>
+          </table>
+          <!--**************左上-END**********-->
+        </td>
+        <td width="50%">
+          <div id='scroll1' style="max-width:80%;overflow:hidden;">
+            <!--***********右上-BEGIN********-->
+            <table style="width:1200px" height="100%" border="0" cellpadding="0" cellspacing="1" >
+              <colgroup>
+                <col width="60px">
+                <col width="100px">
+                <col width="60px">
+                <!--col width="100px"-->
+                <col width="100px">
+                <col width="140px">
+                <col width="100px">
+                <col width="100px">
+                <col width="100px">
+                <col width="100px">
+                <col width="100px">
+              </colgroup>
+              <tr bgcolor="#FFFFFF">
+                <td align="center">操作</td>
+                <td align="center">运单号</td>
+                <td height="20px" align="center">收货人</td>
+                <td align="center">旺旺/QQ</td>
+                <!--td align="center">平台</td-->
+                <td align="center">下单时间</td>
+                <td align="center">总金额</td>
+                <td align="center">发货必看</td>
+                <td align="center">健康顾问</td>
+                <td align="center">订单状态</td>
+                <td align="center">添加人</td>
+              </tr>
+            </table>
+            <!--************右上-END**********-->
+          </div> 
+        </td>
+      </tr>
+      <tr>
+        <td width="50%" align="left" valign="top">
+          <div id='scroll2'>
+            <!--*************左下-BEGIN**************-->
+            <table width="199px" height="100%" border="0" cellpadding="0" cellspacing="1">
+              <colgroup>
+                <col width="40px">
+                <col width="160px">
+              </colgroup>
+              {foreach from=$order_list item=val}
+              <tr bgcolor="#FFFFFF" id="tr_1_{$val.order_id}" class="tr_list">
+                <td width="200px" align="center">{$val.buyer}</td>
+                <td align="center" width="50px">{$val.role_describe}-{$val.order_sn}</td>
+              </tr>
+              {/foreach}
+            </table>
+            <!--*************左下-END***********-->
+          </div>
+        </td>
+        <td align="left" valign="top">
+          <div style="max-width:80%; max-height:420px;overflow:scroll" onscroll="javascript:syncscroll(this)">
+            <!--***********右下-BEGIN***********-->
+            <table style="width:1200px" height="100%" border="0" cellpadding="0" cellspacing="1">
+              <colgroup>
+                <col width="60px">
+                <col width="100px">
+                <col width="60px">
+                <col width="100px">
+                <col width="140px">
+                <col width="100px">
+                <col width="100px">
+                <col width="100px">
+                <col width="100px">
+                <col width="100px">
+                <col width="100px">
+              </colgroup>
+              {foreach from=$order_list item=val}
+              <tr bgcolor="#FFFFFF" id="tr_2_{$val.order_id}" class="tr_list">
+                <td align="center">
+                  <font color="#666">【{$val.role_describe}】</font><a href="order.php?act=order_detail&id={$val.order_id}" title="订单详情">
+                    查看
+                  </a>
+                </td>
+                <td align="center">{$val.tracking_sn}</td>
+                <td height="20" align="center">{$val.consignee}</td>
+                <td align="center">{$val.aliww}{if $val.aliww && $val.qq}||{/if}{$val.qq}</td>
+                <!--td align="center">{$val.platform}</td-->
+                <td align="center">{$val.short_order_time}</td>
+                <td align="center">{$val.formated_total_fee}</td>
+                <td align="center">{$val.remarks}</td>
+                <td align="center" title="{$val.admin_name}">{$val.admin_name|truncate:5}</td>
+                <td align="center">{$val.order_status}</td>
+                <td align="center" title="{$val.add_admin}">{$val.add_admin|truncate:5}</td>
+              </tr>
+              {/foreach}
+            </table>
+            <!--*************右下-END*****************-->
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 分页 -->
+  <div class="bottom_tip">
+    <div class="tip_left"><p>每页显示14条&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;跳转到第<input type="text" name="num" size="4">&nbsp;页</p></div>
+    <div class="tip_center">
+      <span><a href=""><<</a></span>
+      <span class="cur">1</span>
+      <span><a href="">2</a></span>
+      <span><a href="">3</a></span>
+      <span><a href="">4</a></span>
+      <span>...</span>
+      <span><a href="">10</a></span>
+      <span><a href="">11</a></span>
+      <span><a href="">12</a></span>
+      <span><a href="">>></a></span>
+    </div>
+    <div class="tip_right">共223条记录,当前页:1-20条</div>
+  </div>
+</div>
+

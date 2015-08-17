@@ -1,0 +1,63 @@
+﻿<ul class="clearfix">
+  <li class="current-tab">
+  <a>添加服务</a>
+  </li>
+</ul>
+
+<form action="service.php?act=add_service" name="for_service" method="POST" style="clear:both">
+  <table width="820px" height="100%" class="align_left table_bg_1" cellpadding="1" cellspacing="1">
+    <tr>
+      <td width="100%">顾客姓名：<input name="user_name" type="text" size="10" onblur="ch_user()" /></td>
+      </tr>
+      <tr><td width="100%">客服姓名：<input name="admin_name" type="text" size="10" value="1" /></td></tr>
+      <tr><td width="100%">服务类型：<select name="service_class" id="service_class">
+          {foreach from=$service_class item=val}
+          <option value="{$val.class_id}">{$val.class}</option>
+          {/foreach}
+        </select>
+      </td>
+      </tr>
+      <tr>
+        <td width="100%">服务方式：
+        <select name="service_manner" id="service_manner">
+          {foreach from=$service_manner item=val}
+          <option value="{$val.manner_id}">{$val.manner}</option>
+          {/foreach}
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td width="430px">服务时间：
+        <input id="service_time" name="service_time" type="text" onClick="WdatePicker()"/>
+      </td>
+      </tr>
+
+      <tr>
+        <td width="350px">后续处理：
+          <label><input type="radio" name="after_disposal" value="已经完成"/>已完成</label>
+          <label><input type="radio" name="after_disposal" value="未处理" checked="checked"/>未处理</label>
+          <label><input type="radio" name="after_disposal" value="提交售后"/>提交售后</label>
+          <label><input type="radio" name="after_disposal" value="提交主管"/>提交主管</label>
+      </td>   
+      </tr> 
+      <tr>
+        <td width="310px">服务过程：<input name="logbook" type="text" onblur="ch_logbook()"/>
+      </td>
+    </tr>
+    <tr>
+      <td width="300px">预约时间：
+        <input id="handler" name="handler" type="text" onClick="WdatePicker()"/>
+      </td> 
+      </tr> 
+      <tr>
+        <td width="300px">
+        专项反馈：
+        <input type="textarea" name="special_feedback"  style="resize:none" size="10" /></td>
+    </tr>
+    <tr>
+      <td><input name="sub" type="button" onclick="submit_service(this)" value="提交" class="input_submits"/></td>
+      </tr>
+  </table>
+
+</form>

@@ -1,0 +1,112 @@
+<style type="text/css" media="screen">
+    .stats-18 {float:left; margin:auto 0; padding:auto 0}
+    .stats-18 table {margin-top:10px; margin:auto 0; padding:auto 0}
+    .stats-18 table tr {border:1px #ccc solid !important}
+    .trhover {background:rgba(0,128,0,0.5) !important; color:#fff !important; font-weight:bolder !important}
+    .stats-sum {color:red; font-weight:bold}
+    .stats-intro { padding:2px 10px; font-size:1.1rem}
+    .stats-intro li {height:25px}
+</style>
+<link rel="stylesheet" href="styles/stats.css" type="text/css" />
+<div id="loadDiv">
+    <!-- 页标题 -->
+    <div class="page_title">顾客统计</div>
+    <details>
+        <summary class="stats-sum">顾客统计说明</summary>
+        <ul class="stats-intro">
+            <li>顾客统计中，数据来源于顾客表；</li>
+            <li>顾客转移后，顾客的所属部门会随之变化</li>
+            <li>无论顾客是否有 有效的购买记录，只要顾客资料中显示是已购顾客，就会再统计中显示</li>
+        </ul>
+    </details>
+    <!-- 导航标签 -->
+    <div>
+        <!-- 部门标签 -->
+        <nav>
+            {if $role_id eq 0}
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=0"{if $selected_role eq 0} class='tagSelected'{/if}>全部</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=33"{if $selected_role eq 33} class='tagSelected'{/if}>客服一组</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=34"{if $selected_role eq 34} class='tagSelected'{/if}>客服二组</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=35"{if $selected_role eq 35} class='tagSelected'{/if}>客服三组</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=36"{if $selected_role eq 36} class='tagSelected'{/if}>客服四组</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=37"{if $selected_role eq 37} class='tagSelected'{/if}>售后服务部</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=38"{if $selected_role eq 38} class='tagSelected'{/if}>媒体广告</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=9"{if $selected_role eq 9} class='tagSelected'{/if}>会员1部</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=27"{if $selected_role eq 27} class='tagSelected'{/if}>会员2部</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=28"{if $selected_role eq 28} class='tagSelected'{/if}>会员3部</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=1"{if $selected_role eq 1} class='tagSelected'{/if}>中老年1部</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=29"{if $selected_role eq 29} class='tagSelected'{/if}>中老年2部</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=31"{if $selected_role eq 31} class='tagSelected'{/if}>中老年3部</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=13"{if $selected_role eq 13} class='tagSelected'{/if}>云客服</a>
+            {elseif $role_id eq 9}
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=9"{if $selected_role eq 9} class='tagSelected'{/if}>会员1部</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=27"{if $selected_role eq 27} class='tagSelected'{/if}>会员2部</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=28"{if $selected_role eq 28} class='tagSelected'{/if}>会员3部</a>
+            {elseif $role_id eq 1}
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=1"{if $selected_role eq 1} class='tagSelected'{/if}>中老年1部</a>
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=29"{if $selected_role eq 29} class='tagSelected'{/if}>中老年2部</a>
+            {elseif $role_id eq 13}
+            <a href="report_forms.php?act=user_stats&get=show_all&role_id=13">云客服</a>
+            {/if}
+        </nav>
+
+        <!-- 个人标签 -->
+        <!-- 说明：个人标签中可选的姓名随部门标签的切换而变动 -->
+        <ul id="adminList">
+            <li class="checked"><label>
+                    <input type="radio" name="role_id" value="{$role_id}" checked onclick="sendStatsCondition(this)">全部
+            </label></li>
+            {foreach from=$admin_list item=val}
+            <li><label>
+                    <input type="checkbox" name="admin_list" value="{$val.user_id}" onclick="sendStatsCondition(this)">{$val.user_name}
+            </label></li><wbr>
+            {/foreach}
+        </ul>
+
+        <ul id="displayShape">
+            <li class="checked"><label><input type="radio" name="display_shape" value="table" checked onclick="switchDisplayShape(this)">表格</label></li>
+            <li><label><input type="radio" name="display_shape" value="pieChart" onclick="switchDisplayShape(this)">饼状图</label></li>
+            <li><label><input type="radio" name="display_shape" value="lineChart" onclick="switchDisplayShape(this)">折线图</label></li>
+            <li><label><input type="radio" name="display_shape" value="mapChart" onclick="switchDisplayShape(this)">地域分布图</label></li>
+            <li><label><input type="radio" name="display_shape" value="sourceChart" onclick="switchDisplayShape(this)">来源饼状图</label></li>
+        </ul>
+
+        <ul id="overview">
+            {if $role_id eq 0}
+            <li>全部：{$total}</li>
+            <li>会员部：{$member}</li>
+            <li>中老年：{$middle_and_old_age}</li>
+            <li>云客服：{$cloud}</li>
+            <li>其它：{$others}</li>
+            {elseif $role_id eq 9}
+            <li>会员部：{$member}</li>
+            {elseif $role_id eq 1}
+            <li>中老年：{$middle_and_old_age}</li>
+            {elseif $role_id eq 13}
+            <li>云客服：{$cloud}</li>
+            {/if}
+        </ul>
+    </div>
+    <fieldset>
+        <legend>顾客总量</legend>
+        {foreach from=$overview.section item=val}
+        {if $val.role_id gt 32}
+        <div style="font-size:1.3rem;border:1px solid #000; margin:2px 2px;min-width:10px; display:inline-block; padding:2px 5px"><strong>{$val.role_name}：</strong>{$val.total}</div>
+        {/if}
+        {/foreach}
+    </fieldset>
+
+    <!-- 数据显示区 -->
+    <div id="dataDisplay" style="width:100%; height:500px">
+        <table border="1">
+            {foreach from=$stats_table item=val name=i}
+            <tr>
+                <th>{$val.admin_name}</th><td>{$val.user_number}</td>
+            </tr>
+            {if $smarty.foreach.i.iteration%10 eq 0}
+            </table><table border="1">
+            {/if}
+            {/foreach}
+        </table>
+    </div>
+</div>

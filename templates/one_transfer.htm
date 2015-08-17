@@ -1,0 +1,24 @@
+<!-- $Id: users_list.htm 17053 2010-03-15 06:50:26Z sxc_shop $ -->
+<div style="background:white;width:100%;padding-top:20px;">
+  <form name="transfer_form" id="transfer_form" method="post" action="" >
+    <table cellspacing="5" style="margin:0 auto;">
+      <tr valign="center">
+        <td>&nbsp;
+          <select name="to_admin" id="to_admin" value="" />
+            <option value="0">请选择目标客服</option>
+            {foreach from=$admin_list item=list}
+            <option value="{$list.user_id}">{$list.user_name}</option>
+            {/foreach}
+          </select>
+          &nbsp;<span style="color:red">再次输入客服名字进行确认</span>
+          <input type="text" name="to_admin_2" id="to_admin_2" value="" style="width:80px;" />
+        </td>
+      </tr>
+      <tr align="center">
+        <td><input type="button" style="font-size:25px;" value="确认转移"  onclick="oneTransfer({$admin_id})" /></td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+

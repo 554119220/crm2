@@ -1,0 +1,233 @@
+<br/>
+<div>
+  <h3>办公电脑管理</h3>
+  <br/>
+  <div style="margin-bottom:6px" class="top_form">
+    <form name="sch_admin_form" action="system.php" method="POST">
+      员工<input type="text" name="sch_admin_name" size="11px"/>
+      <select name="sch_condition">
+        <option value="1">座位号</option>
+        <option value="2">电脑编号</option>
+        <option value="3">手机</option>
+        <option value="4">营销QQ</option>
+        <option value="5">QQ</option>
+        <option value="6">多客服</option>
+        <option value="7">旺旺</option>
+        <option value="8">MAC</option>
+        <option value="8">IP</option>
+      </select>
+      <input type="text" name="sch_value" />
+      &nbsp;&nbsp;<font style="color:rgb(202,103,47);">主机</font>
+      <label><input type="radio" name="case_status" value="0" checked>正常</label>
+      <label><input type="radio" name="case_status" value="1" >待维修</label>
+      <font color="red">|</font>
+      &nbsp;&nbsp;<font style="color:rgb(202,103,47);">显示器</font>
+      <label><input type="radio" name="monitor_status" value="0" checked/>正常</label>
+      <label><input type="radio" name="monitor_status" value="1" />待维修</label>
+      <input class="b_submit" type="submit" value="搜索" />
+      <input type="hidden" name='act' value="sch_admin_seat" />
+    </form>
+  </div>
+  <div class="online_close" style="display:block;float:left;width:33%;clear:both">
+    <form name="pc_ac_info" method="POST" action="">
+      <div id="div_pc_info" style="border:1px solid;margin-right:8px;margin-bottom:8px;float:left;width:80%">
+        <table id="pc_info_table" cellpadding="0" cellspacing="0" class="table_form wu_table_form wu_min_input">
+          <tr>
+            <th>主机编号：</th>
+            <td><label id="will_edit_pc_number" name="will_edit_pc_number"></label></td>
+          </tr>
+          <tr>
+            <th>IP：</th>
+            <td width="30%">
+              <input type="text" name="ip" id="pc_ip" value="{$pc.ip}" maxlength='15' />
+            </td>
+          </tr>
+          <tr><th>MAC：</th>
+            <td width="30%">
+              <input type="text" name="pc_mac" id="pc_mac" value="{$pc.mac}"/>
+            </td>
+          </tr>
+          <tr>
+            <th>主机：</th>
+            <td width="30%">
+              <label><input type="radio" id="pc_case_normal" name="pc_case" value="0" {if $pc.case eq 0}checked{/if}/>正常</label>
+              <label><input type="radio" id="pc_case_abnormal" name="pc_case" value="1" {if $pc.case eq 1}checked{/if}/>待维修</label>
+            </td>
+          </tr>
+          <tr>
+            <th>显示器：</th>
+            <td width="30%">
+              <label><input type="radio" id="pc_monitor_normal" name="pc_monitor" value="0" {if $pc.monitor eq 0}checked{/if}/>正常</label>
+              <label><input type="radio" id="pc_monitor_abnormal" name="pc_monitor" value="1" {if $pc.monitor eq 1}checked{/if}/>待维修</label>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="right">
+              <input type="button" value="修改" class="b_submit" onclick="modifyPCInfo(this.form)" style="margin-right:8px" />
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="div_account_info" style="border:1px solid;margin-right:8px;;float:left;width:80%">
+        <table name="account_info" cellpadding="0" cellspacing="0" class="table_form wu_table_form wu_min_input">
+          <tr>
+            <th>员工：</th>
+            <td>
+              <label id="will_edit_admin"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>QQ ：</th>
+            <td>
+              <input type="text" name="account_qq" id="account_qq" list="account_qq_list" value=""/>
+              <datalist id="account_qq_list">
+              {foreach from=$account_info.qq item=val}
+              <option value="{$val}"/>
+              {/foreach}
+              </datalist>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">旺旺：</th>
+            <td>
+              <input type="text" name="account_wangwang" list="account_wangwang_list" id="account_wangwang" value=""/>
+              <datalist id="account_wangwang_list">
+              {foreach from=$account_info.wangwang item=val}
+              <option value="{$val}"/>
+              {/foreach}
+              </datalist>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">多客服：</th>
+            <td>
+              <input type="text" name="account_ppcrm" list="account_ppcrm_list" id="account_ppcrm" value=""/>
+              <datalist id="account_ppcrm_list">
+              {foreach from=$account_info.ppcrm item=val}
+              <option value="{$val}"/>
+              {/foreach}
+              </datalist>
+            </td>
+          </tr>
+          <tr>
+            <th width="50%">营销Q：</th>
+            <td>
+              <input type="text" name="account_qqcrm" list="account_qqcrm_list" id="account_qqcrm" value=""/>
+              <datalist id="account_qqcrm_list">
+              {foreach from=$account_info.qqcrm item=val}
+              <option value="{$val}"/>
+              {/foreach}
+              </datalist>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">电话：</th>
+            <td>
+              <input type="text" name="account_tel" id="account_tel" value=""/>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="right" >
+              <input type="hidden" name="act" value="modify_pc_ac_info"/>
+              <input type="hidden" name="admin_id" id="will_edit_admin_id" value=""/>
+              <button style="margin-right:8px" class="b_submit" name="user_info" onclick="getAdminInfo()"/>查看简历</button>
+              {if $super eq 0}
+              <input type="button" onclick="updateAdminAccount(this.form)" style="margin-right:8px" class="b_submit" value="修改"/>
+              {/if} 
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+    <div style="float:left;">
+      <ul class="tab1" style="float:none !important">
+        {foreach from=$room_info item=val}
+        <li style="float:none !important;">
+        <button class="btn_s" name='{$val.room}' onmouseover="tabSub(this)" onclick="tabSub(this)">{$val.room}</button>
+        </li>
+        {/foreach}
+      </ul>
+    </div>
+  </div>
+  <div id="box" style="width:62%;float:left">
+    <!--
+    座位<input type="text" name="seat" value="" maxlength="7" plcaceholder="座号"/>
+    位置<button>空闲</button><button>占有</button>
+    电脑<input type="text" maxlength="8" name="pc_number" plcaceholder="座号"/>
+    <button>正常</button><button>待维修</button>
+    -->
+    <form method="POST" action="" name="pc_manager_for">
+      {foreach from=$room_info item=val}
+      <div id="{$val.room}" {$val.status}>
+        <table class="wu_table_list rb_border tr_hover wu_rb_border" style="width:95%;border:1px solid;border-spacing: 1px !important;">
+          <tr> 
+            <th width="15%">座位号</th>
+            <th width="30%">使用者</th>
+            <th width="25%">主机编号</th>
+            <!--
+            <th width="8%">主机</th>
+            <th width="8%">显示器</th>
+            -->
+            <th width="30%">备注</th>
+          </tr>
+          {foreach from=$val.seat_info item=seat}
+          <tr>
+            <td>{$seat.seat}</td>
+            <td>
+              <!--如果已经有员工就座-->
+              <span id="{$seat.seat}_admin_field" style="width:60%"></span>
+              <span id="{$seat.seat}_control_field" style="float:right;margin-right:15px">
+                {if $seat.admin_id neq 0}
+                <label class="btn_new" onclick="getAdminAccount(this,{$seat.admin_id})">{$seat.admin_name}</label>
+                <img src="images/edit.gif" onclick="setInput({$seat.seat},'{$seat.admin_id}',0)" title="修改员工" >
+                <img src="images/0.gif" onclick="delAdmin({$seat.admin_id},{$seat.seat})" title="删除员工">
+                {else}
+                <img src="images/contact_add.png" title="添加员工" onclick="setInput({$seat.seat},0,0)" />
+                {/if}
+              </span>
+            </td>
+            <td>
+              <span id="{$seat.seat}_pc_number_field"></span>
+              <span id="{$seat.seat}_pc_control" style="float:right;margin-right:15px">
+              {if $seat.pc_number eq ''}
+              <img src="images/add_square.png" title="添加电脑" onclick="setInput('{$seat.seat}','',1)"/>
+              {else}
+                <label class="btn_new" onclick="getPcInfo(this,'{$seat.pc_number}')">{$seat.pc_number}</label>
+                <img src="images/edit.gif" onclick="setInput('{$seat.seat}','{$seat.pc_number}',1)" title="修改电脑编号">
+                <img src="images/0.gif" onclick="delAdmin({$seat.pc_number})" title="删除电脑">
+                {/if}
+              </span>
+            </td>
+            <!--
+            <td>{if $seat.case_status eq ''}
+              <select name="case_status">
+                <option value="0">正常</option>
+                <option value="1">待维修</option>
+              </select>
+              {else}
+              <button class="btn_new" onclick="set_info">{$seat.case_status}{/if}</button>
+            </td>
+            <td>
+              {if $seat.monitor_status eq ''}
+              <select name="monitor_status" onchange="alert(1)">
+                <option value="0">正常</option>
+                <option value="1">待维修</option>
+              </select>
+              {else}
+              <button class="btn_new">{$seat.moniotor_status}</button>
+              {/if}
+            </td>
+            -->
+            <td>
+              <input type="text" class="bottom_input" value=""/>
+            </td>
+          </tr>
+          {/foreach}
+        </table>
+        <br/>
+      </div>
+      {/foreach}
+    </form>
+  </div>
+</div>

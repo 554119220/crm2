@@ -1,0 +1,35 @@
+<ul class="clearfix">
+<div class="blank"></div>
+  <li class="current-tab">
+  <a>工作总结</a>
+  </li>
+</ul>
+<form method="post" name="worksummary_time">
+  <table class="all_table_list c_b mt10 " >
+    <thead>
+      <td>选择时间:</td>
+      <td><input type="text"  name="time" size="14" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" value="{$posttime}"/></td>
+      <td>选择姓名：</td>
+      <td> <input type="text" name="username" value="{$username}"/> </td>
+      <td> <input type="button" value="搜索" onclick="searchTime()"  class="input_submit" /></td>
+    </thead>
+  </table>
+</form>
+
+<br/>
+<table id="work_style">
+  <tr>
+    <td>日期：</td>
+    <td>姓名：</td>
+    <td>工作内容：</td>
+    <td>总结分析：</td>
+  </tr>
+  {foreach from=$work_list item=v}
+  <tr>
+    <td>{$v.add_time}</td>
+    <td>{$v.admin_id}</td>
+    <td>{$v.job_content}</td>
+    <td>{$v.summary}</td>
+  </tr>
+  {/foreach}
+</table>

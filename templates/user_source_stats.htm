@@ -1,0 +1,68 @@
+{if $show}
+<link rel="stylesheet" href="styles/stats.css" type="text/css" />
+<div id="loadDiv">
+    <!-- 页标题 -->
+    <div class="page_title">顾客来源统计</div>
+
+    <!-- 数据显示区 -->
+    <div style="width:100%; height:auto">
+        <!-- 查询条件 -->
+        <div>
+            来源：
+            <select name="from_id" id="from_id">
+                <option value="0">请选择来源</option>
+                {foreach from=$aSource_list key=key item=val}
+                <option value="{$key}">{$val}</option>
+                {/foreach}
+            </select>&nbsp;&nbsp;&nbsp;&nbsp;
+            <!--部门：
+            <select name="role_id" id="role_id">
+                <option value="0">请选择部门</option>
+                {foreach from=$aRole_list key=key item=val}
+                <option value="{$key}">{$val}</option>
+                {/foreach}
+            </select>&nbsp;&nbsp;&nbsp;&nbsp;
+            客服：
+            <select name="admin_id" id="admin_id">
+                <option value="0">请选择客服</option>
+                {foreach from=$aAdmin_list key=key item=val}
+                <option value="{$key}">{$val}</option>
+                {/foreach}
+            </select>&nbsp;&nbsp;&nbsp;&nbsp;
+            -->
+            <button value="report_forms.php?act=user_source_stats" onclick="statsUserSource(this)" class="b_submit" style="margin:2px 0 0 5px">
+                查询
+            </button>
+        </div>
+        <div id="user_stream_analysis">
+            {/if}
+            {foreach from=$aStats key=keys item=values}
+            <table border='1'>
+                <caption><h2>{$aRole_list[$keys]}</h2></caption>
+                <tr>
+                    <th>姓名</th>
+                    {foreach from=$aSource_used_list item=source_used}
+                    <th>{$aSource_list[$source_used]}</th>
+                    {/foreach}
+                </tr>
+                {foreach from=$values key=key item=val}
+                <tr>
+                    <td>{$aAdmin_list[$key]}</td>
+                    {foreach from=$aSource_used_list item=source_used}
+                    <th>{$val[$source_used]}</th>
+                    {/foreach}
+                </tr>
+                {/foreach}
+                <tr>
+                    <td>共计</td>
+                    {foreach from=$aSource_used_list key=k item=v}
+                    <td align="center"> {$aRole_stats[$keys][$v]} </td>
+                    {/foreach}
+                </tr>
+            </table>
+            {/foreach}
+            {if $show}
+        </div>
+    </div>
+</div>
+{/if}

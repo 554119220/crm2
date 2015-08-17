@@ -1,0 +1,250 @@
+<!--会员等级-->
+<div style="display:{if $plan eq 1}block{else}none{/if}">
+  <table id="cur_rank" style="margin-left:10px;margin-bottom:15px;" border="0" cellpadding="0" cellspacing="0" width="98%" class="all_table_list rb_border c_b border" >
+    <tr id="caption">
+      <th width="80px">会员等级</th>
+      <th width="80px">积分下限</th>
+      <th width="80px">积分上限</th>
+      <th width="80px">兑换比例</th>
+      <th width="80px">额外比例</th>
+      <th width="80px">折扣比例</th>
+      <th width="100px">修改时间&nbsp;↓</th>
+      <th width="80px">修改人</td>
+      <th width="100px">适用平台</th>
+      <th width="100px">有效期</th>
+      <th width="80px">是否特殊组</th>
+      <th width="100px" width="125px">操作</th>
+    </tr>
+    {foreach from=$user_rank item=val}
+    <tr>
+      <td>{$val.rank_name}</td>
+      <td>{$val.min_points}</td>
+      <td>{$val.max_points}</td>
+      <td>{$val.convert_scale}</td>
+      <td>{$val.integral_discount}</td>
+      <td>{$val.discount}</td>
+      <td>{$val.modify_time}</td>
+      <td>{$val.modify_admin}</td>
+      <td>{if $val.role_id eq 0}全平台{else}{$val.role_name}{/if}</td>
+      <td>{$val.validity}天</td>
+      <td>{$val.special_rank}</td>
+      <td>
+        <button class="lb_btn" id="btn_mod_rank" onclick="modTem(this,{$val.rank_id},1)">修&nbsp;改</button>
+        <button class="lb_btn" id="btn_del_rank" onclick="delRank(this,{$val.rank_id},'{$val.rank_name}')">删&nbsp;除</button>
+        <!--
+        <input class="b_submit" type="button" id="btn_mod_rank" onclick="modTem(this,{$val.rank_id},1)" value="修&nbsp;改"/>
+        <input class="b_submit" type="button" id="btn_del_rank" onclick="delRank(this,{$val.rank_id},'{$val.rank_name}')" value="删&nbsp;除"/>    
+        -->
+      </td>
+    </tr>
+    {/foreach}
+  </table>
+</div>
+
+<!--积分规则-->
+<div style="{if $plan eq 2}display:block{else}display:none{/if}">
+  <!--启用-->
+  <table style="clear:right;margin-left:10px;margin-bottom:15px" width="98%" cellspacing="0" cellpadding="0" class="all_table_list c_b rb_border tr_hover" id="cur_integral">
+    <tr id="caption">
+      <th width="80px">规则</th>
+      <th width="80px">赠送方式</th>
+      <th width="60px">赠送比例</th>
+      <th width="100px">启动时间</th>
+      <th width="100px">结束时间</th>
+      <th width="100px">适用平台</th>
+      <th width="100px">适用品牌</th>
+      <th width="100px">消费下/上限</th>
+      <th width="75px">添加人</th>
+      <th width="100px">修改时间</th>
+      <th width="75px">当前状态</th>
+      <th width="140">操作</th>
+    </tr>
+    {foreach from=$en_able item=val}
+    <tr>
+      <td>{$val.integral_title}</td>
+      <td>{$val.integral_way}</td>
+      <td>{$val.scale}</td>
+      <td>{$val.present_start}</td>
+      <td>{$val.present_end}</td>
+      <td>
+        {if $val.platform eq 0}
+        全平台
+        {else}
+        {$val.role_name}
+        {/if}
+      </td>
+      <td>
+        {if $val.suit_brand eq 0}
+        全品牌
+        {else}
+        {$val.brand_name}
+        {/if}
+      </td>
+      <td>{$val.min_consume}/{$val.max_consume}</td>
+      <td>{$val.user_name}</td>
+      <td>{$val.add_time}</td>
+      <td>已启用</td>
+      <td>
+          <button class="lb_btn" id="btn_mod_inte" onclick="modTem(this,{$val.integral_id},2)">修&nbsp;改</button>
+          <button class="lb_btn" id="btn_del_inte" onclick="delIntegral(this,{$val.integral_id},'{$val.integral_title}')">删&nbsp;除</button>
+          <!--
+        <input class="b_submit" type="button" id="btn_mod_inte" onclick="modTem(this,{$val.integral_id},2)" value="修&nbsp;改"/>
+        <input class="b_submit" type="button" id="btn_del_inte" onclick="delIntegral(this,{$val.integral_id},'{$val.integral_title}')" value="删&nbsp;除"/>
+        -->
+      </td>
+    </tr>
+    {/foreach}
+  </table>
+
+  <!-- 未启用 -->
+  <table id="dis_integral" style="margin-left:10px;margin-bottom:15px;display:none" border="0" cellpadding="0" cellspacing="0" width="98%" class="all_table_list rb_border c_b tr_hover" >
+    <tr>
+      <th width="80px">规则</th>
+      <th width="80px">赠送方式</th>
+      <th width="60px">赠送比例</th>
+      <th width="100px">启动时间</th>
+      <th width="100px">结束时间</th>
+      <th width="100px">适用平台</th>
+      <th width="100px">适用品牌</th>
+      <th width="120px">消费下/上限</th>
+      <th width="75px">添加人</th>
+      <th width="100px">修改时间</th>
+      <th width="75px">当前状态</th>
+      <th width="130px">操作</th>
+    </tr>
+    {foreach from=$dis_able item=val}
+    <tr>
+      <td>{$val.integral_title}</td>
+      <td>{$val.integral_way}</td>
+      <td>{$val.scale}</td>
+      <td>{$val.present_start}</td>
+      <td>{$val.present_end}</td>
+      <td>
+        {if $val.platform eq 0}
+        全平台
+        {else}
+        {$val.role_name}
+        {/if}
+      </td>
+      <td>{$val.brand_name}</td>
+      <td>{$val.min_consume}/{$val.max_consume}</td>
+      <td>{$val.user_name}</td>
+      <td>{$val.add_time}</td>
+      <td>未启用</td>
+      <td>
+        <button class="lb_btn" id="btn_mod_inte" onclick="enableInte(this,{$val.integral_id})">启&nbsp;用</button>
+        <button class="lb_btn" id="btn_del_inte" onclick="delIntegral(this,{$val.integral_id})">删&nbsp;除</button>
+        <!--
+        <input class="b_submit" type="button" id="btn_mod_inte" onclick="enableInte(this,{$val.integral_id})" value="启&nbsp;用"/>
+        <input class="b_submit" type="button" id="btn_del_inte" onclick="delIntegral(this,{$val.integral_id})" value="删&nbsp;除"/>
+        -->
+      </td>
+    </tr>
+    {/foreach}
+  </table>
+
+  <!--已过期-->
+  <table id="past_due_integral" style="margin-left:10px;margin-bottom:15px;display:none" border="0" cellpadding="0" cellspacing="0" width="98%" class="all_table_list rb_border c_b tr_hover" >
+    <tr>
+      <th width="80px">规则</th>
+      <th width="80px">赠送方式</th>
+      <th width="60px">赠送比例</th>
+      <th width="100px">启动时间</th>
+      <th width="100px">结束时间</th>
+      <th width="100px">适用平台</th>
+      <th width="100px">适用品牌</th>
+      <th width="120px">消费下/上限</th>
+      <th width="75px">添加人</th>
+      <th width="100px">修改时间</th>
+      <th width="75px">当前状态</th>
+      <th width="130px">操作</th>
+    </tr>
+    {foreach from=$past_due_integral item=val}
+    <tr>
+      <td>{$val.integral_title}</td>
+      <td>{$val.integral_way}</td>
+      <td>{$val.scale}</td>
+      <td>{$val.present_start}</td>
+      <td>{$val.present_end}</td>
+      <td>
+        {if $val.platform eq 0}
+        全平台
+        {else}
+        {$val.role_name}
+        {/if}
+      </td>
+      <td>{$val.brand_name}</td>
+      <td>{$val.min_consume}/{$val.max_consume}</td>
+      <td>{$val.user_name}</td>
+      <td>{$val.add_time}</td>
+      <td>未启用</td>
+      <td>
+        <button class="lb_btn" id="btn_mod_inte" onclick="enableInte(this,{$val.integral_id})">启&nbsp;用</button>
+        <button class="lb_btn" id="btn_del_inte" onclick="delIntegral(this,{$val.integral_id})">删&nbsp;除</button>
+        <!--
+        <input class="b_submit" type="button" id="btn_mod_inte" onclick="enableInte(this,{$val.integral_id})" value="启&nbsp;用"/>
+        <input class="b_submit" type="button" id="btn_del_inte" onclick="delIntegral(this,{$val.integral_id})" value="删&nbsp;除"/>
+        -->
+      </td>
+    </tr>
+    {/foreach}
+  </table>
+</div>
+
+<!--未确认积分-->
+<div style="{if $plan eq 3}display:block{else}display:none{/if}">
+  <table width="100%" style="clear:both" cellspacing="0" cellpadding="0" class="all_table_list rb_border border c_b" id="temp_inte">
+    <tr id="caption">
+      <th width="30px"><input type="checkbox" id="inte_nums" onclick="get_inte_nums(this)"/></th>
+      <th width="100">顾客</th>
+      <th width="140">等级</th>
+      <th width="80">订单金额</th>
+      <th width="80">积分规则</th>
+      <th width="80">最终积分</th>
+      <th width="60">原积分</th>
+      <th width="50px">增/减</th>
+      <th width="130">创建时间</th>
+      <th width="130">有效期</th>
+      <th width="100">操作</th>
+    </tr>
+    {foreach from=$integral item=val}
+    <tr>
+      <td><input type="checkbox" id="inte_num" value="{$val.user_integral_id}" onclick="get_inte_nums(this)"/></td>
+      <td>{$val.user_name}</td>
+      <td>{if $val.rankup neq ''}升级至{$val.rankup}{else}{$val.rank_name}{/if}</td>
+      <td>{$val.goods_amount}</td>
+      <td><button value="{$val.integral_id}" onclick="viewInte(this)">{$val.integral_title}</button></td>
+      <td>{$val.exchange_points}</td>
+      <td>{$val.pre_points}</td>
+      <td>
+        {if $val.increase_reduce eq 0}-
+        {else}+
+        {/if}
+      </td>
+      <td>{$val.receive_time}</td>
+      <td>{$val.validity}</td>
+      <td>
+        <button onclick="confirmIntegral({$val.user_integral_id},{$val.cur_integral},{$val.user_id},this)">确认</button>
+        <button>撤销</button>
+      </td>
+    </tr>
+    {/foreach}
+  </table>
+</div>
+
+<!-- 分页-->
+<div class="botom_tip" style="display:{if $plan eq 1 || $plan eq 2 }none{else}block{/if}">
+  <div class="tip_left">
+    <p>共{$filter.record_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+  <div class="tip_center">
+    <span><a href="service.php?act={$filter.act}&page=1&page_size={$filter.page_size}" id="page_link">&lt;&lt;</a></span>
+    {foreach from=$filter.page_set item=val}
+    <span{if $val eq $filter.page} class="cur"{/if}>{if $val eq $filter.page}{$val}{else}<a href="service.php?act={$filter.act}&page={$val}&page_size={$filter.page_size}">{$val}</a>{/if}</span>
+    {/foreach}
+    <span><a href="service.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}">&gt;&gt;</a></span>
+  </div>
+  <div class="tip_right">跳转到第
+    <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+  </div>
+</div>

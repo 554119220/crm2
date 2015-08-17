@@ -1,0 +1,173 @@
+<table width="100%" cellpadding="0" cellspacing="0" class="index_small tr_hover">
+  <tr>
+    <td class="home-stuff-heading">
+      <label><input type="radio" name="date_status" value="2" {if $date_status eq 2}checked{/if} onclick="getStatistics(this.value)"/>昨天</label>
+      <label><input type="radio" name="date_status" value="1" {if $date_status eq 1}checked{/if} onclick="getStatistics(this.value)"/>今天</label>
+      <label><input type="radio" name="date_status" value="0" {if !$date_status}checked{/if} onclick="getStatistics(this.value)"/>当月</label>
+      &nbsp;统计情况<img src="images/update.png"/>
+    </td>
+  </tr>
+  <tr style="none">
+    {if $pwd_info.ordinary_employee eq true}
+    <td>
+      <div class="datalist">
+        {foreach from=$stats_info.my_ranking item=val key=k}
+        <ul>
+          <li>
+          <h3>{$k}</h3>
+          <h4>{$val}</h4>
+          </li>
+        </ul>
+        {/foreach}
+      </div>
+    </td>
+    {else}
+    <td style="line-height:14px">
+      <ul id="ranking_ul">
+        <li>
+        <div class="ranklist_div">
+          <div class=ranklist_div_title>个人销量排行榜<label id="lab_hide_person_ranklist" onclick="popMoreRanklist('hide_person_ranklist','个人销量排行')">more</label></div>
+          <table cellpadding=0 cellspacing=0 width=100% id=hide_person_ranklist>
+            <tr>
+              <td>排名</td>
+              <td style="text-align:left">客服</td>
+              <td>销量</td>
+            </tr>
+            {foreach from=$stats_info.statistics.person_ranklist item=val name=i}
+            {if $smarty.foreach.i.index lt 5}
+            <tr>
+              <td><em class="{if $smarty.foreach.i.index lt 3}top_three{else}top_ten{/if}">{$smarty.foreach.i.iteration}</em></td>
+              <td style="text-align:left">{$val.admin_name}</td>
+              <td style="text-align:right">{$val.final_amount}&nbsp;&nbsp;</td>
+            </tr>
+            {else}
+            <tr class="hide">
+              <td><em class="top_ten">{$smarty.foreach.i.iteration}</em></td>
+              <td style="text-align:left">{$val.admin_name}</td>
+              <td style="text-align:right">{$val.final_amount}&nbsp;&nbsp;</td>
+            </tr>
+            {/if}
+            {/foreach}
+          </table>
+        </div>
+        </li>
+        <li>
+        <div class="ranklist_div">
+          <div class=ranklist_div_title>服务量排行榜<label id="lab_hide_service_ranklist" onclick="popMoreRanklist('hide_service_ranklist','服务量排行')">more</label></div>
+          <table cellpadding=0 cellspacing=0 width=100% id=hide_service_ranklist>
+            <tr>
+              <td>排名</td>
+              <td style="text-align:left">客服</td>
+              <td>服务量</td>
+            </tr>
+            {foreach from=$stats_info.statistics.service_ranklist item=val name=i}
+            {if $smarty.foreach.i.index lt 5}
+            <tr><td><em class="{if $smarty.foreach.i.index lt 3}top_three{else}top_ten{/if}">{$smarty.foreach.i.iteration}</em></td>
+              <td style="text-align:left">{$val.user_name}</td>
+              <td style="text-align:right">{$val.num_service}&nbsp;&nbsp;</td>
+            </tr>
+            {else}
+            <tr class="hide">
+              <td><em class="top_ten">{$smarty.foreach.i.iteration}</em></td>
+              <td style="text-align:left">{$val.user_name}</td>
+              <td style="text-align:right">{$val.num_service}&nbsp;&nbsp;</td>
+            </tr>
+            {/if}
+            {/foreach}
+          </table>
+        </div>
+        </li>
+        <li>
+        <div class="ranklist_div">
+          <div class=ranklist_div_title>成交订单量排行榜<label id="lab_hide_ordersum_ranklist" onclick="popMoreRanklist('hide_ordersum_ranklist','成交订单量排行')">more</label></div>
+          <table cellpadding=0 cellspacing=0 width=100% id=hide_ordersum_ranklist>
+            <tr>
+              <td>排名</td>
+              <td style="text-align:left">{if !$pwd_info.company_mgr}客服{else}部门{/if}</td>
+              <td>销量</td>
+            </tr>
+            {foreach from=$stats_info.statistics.finish_order_ranklist item=val name=i}
+            {if $smarty.foreach.i.index lt 5}
+            <tr>
+              <td><em class="{if $smarty.foreach.i.index lt 3}top_three{else}top_ten{/if}">{$smarty.foreach.i.iteration}</em></td>
+              <td style="text-align:left">
+                {if !$pwd_info.company_mgr}{$val.admin_name}{else}{$val.role_name}{/if}</td>
+              <td style="text-align:right"> {$val.num}&nbsp;&nbsp;</td>
+            </tr>
+            {else}
+            <tr class="hide">
+              <td><em class="top_ten">{$smarty.foreach.i.iteration}</em></td>
+              <td style="text-align:left">
+                {if !$pwd_info.company_mgr}{$val.admin_name}{else}{$val.role_name}{/if}
+              </td>
+              <td style="text-align:right">{$val.num}&nbsp;&nbsp;</td>
+            </tr>
+            {/if}
+            {/foreach}
+          </table>
+        </div>
+        </li>
+        {if $pwd_info.company_mgr || $pwd_info.statistic_part_mgr}
+        <li>
+        <div class="ranklist_div">
+          <div class=ranklist_div_title>部门销量排行榜<label id="lab_hide_role_ranklist" onclick="popMoreRanklist('hide_role_ranklist','部门销量排行')">more</label></div>
+          <table cellpadding=0 cellspacing=0 width=100% id=hide_role_ranklist>
+            <tr>
+              <td>排名</td>
+              <td style="text-align:left">部门</td>
+              <td>销量</td>
+            </tr>
+            {foreach from=$stats_info.statistics.role_ranklist item=val name=i}
+            {if $smarty.foreach.i.index lt 5}
+            <tr>
+              <td><em class="{if $smarty.foreach.i.index lt 3}top_three{else}top_ten{/if}">{$smarty.foreach.i.iteration}</em></td>
+              <td style="text-align:left">{$val.role_name}</td>
+              <td style="text-align:right">{$val.final_amount}&nbsp;&nbsp;</td>
+            </tr>
+          </tr>
+          {else}
+          <tr class="hide">
+            <td><em class="top_ten">{$smarty.foreach.i.iteration}</em></td>
+            <td style="text-align:left">{$val.role_name}</td>
+            <td style="text-align:right">{$val.final_amount}&nbsp;&nbsp;</td>
+          </tr>
+          {/if}
+          {/foreach}
+        </table>
+      </div>
+      </li>
+      {/if}
+      <li>
+      <div class="ranklist_div">
+        <div class=ranklist_div_title>团队销量排行榜<label id="lab_hide_group_ranklist" onclick="popMoreRanklist('hide_group_ranklist','团队销量排行')">more</label></div>
+        <table cellpadding=0 cellspacing=0 width=100% id=hide_group_ranklist>
+          <tr>
+            <td>排名</td>
+            <td>团队</td>
+            <td>销量</td>
+          </tr>
+          {foreach from=$stats_info.statistics.group_ranklist item=val name=i}
+          {if $smarty.foreach.i.index lt 5}
+          <tr>
+            <td><em class="{if $smarty.foreach.i.index lt 3}top_three{else}top_ten{/if}">{$smarty.foreach.i.iteration}</em></td>
+            <td style="text-align:left">{$val.group_name}</td>
+            <td style="text-align:right">{$val.final_amount}&nbsp;&nbsp;</td>
+          </tr>
+          {else}
+          <tr class="hide">
+            <td><em class="top_ten">{$smarty.foreach.i.iteration}</em></td>
+            <td style="text-align:left">{$val.group_name}</td>
+            <td style="text-align:right">{$val.final_amount}&nbsp;&nbsp;</td>
+          </tr>
+          {/if}
+          {/foreach}
+        </table>
+      </div>
+      </li>
+    </ul>
+  </div>
+</td>
+{/if}
+  </tr>
+</table>
+<input type="hidden" id="date_status" value="{$stats_info.date_status}"/>

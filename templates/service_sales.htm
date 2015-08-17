@@ -1,0 +1,95 @@
+<div class="content-head">
+    <div class="finder-title mt10">{$curr_title}<font>{$num}</font></div>
+    <div class="gridlist-action" style="width:1170px; height:35px">
+        <div class="nav-search">
+            年份：<input class="Wdate" type="text" value="{$months}" size="10px" onClick="WdatePicker({dateFmt:'yyyy',{$min_date}})" onchange="showThisMonth(this.value)">
+            <!--label><input type="checkbox" name="" value="amount" checked onclick="">金额</label-->
+            <label><input type="checkbox" name="" value="number" checked onclick="">销量</label>
+        </div>
+    </div>
+
+    {if $sales_list}
+    <!-- 个人销量统计 -->
+    <div class="mt10">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>
+                    <table border="1" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th height="20px">&nbsp;</th>
+                            <th height="20px"> </th>
+                        </tr>
+                        <tr>
+                            <th nowrap width="30px" height="20px">排 序</th>
+                            <th style="width:260px" height="20px">产 品</th>
+                        </tr>
+                    </table>
+                </th>
+                <th>
+                    <div id="topTable" style="width:800px;overflow:hidden;overflow-y:scroll">
+                        <table border="1" cellpadding="0" cellspacing="0" style="position:relative;border-left:none">
+                            <tr>
+                                {foreach from=$row_list key=date_list item=no_use}
+                                <th colspan="2" nowrap height="20px">{$no_use}</th>
+                                {/foreach}
+                            </tr>
+                            <tr>
+                                {foreach from=$row_list key=date_list item=no_use}
+                                <th nowrap width="70px" height="20px">销量</th><th nowrap width="70px" height="20px">金额</th>
+                                {/foreach}
+                            </tr>
+                        </table>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div id="leftTable" style="height:450px;overflow:hidden;overflow-x:scroll">
+                        <table border="1" cellpadding="0" cellspacing="0" style="position:relative;border-top:none">
+                            {foreach from=$sales_list item=val key=key name=i}
+                            <tr>
+                                <th nowrap width="30px" height="20px">{$smarty.foreach.i.iteration}</th>
+                                <th nowrap title="{$goods_list[$key]}" height="20px">{$goods_list[$key]}</th>
+                            </tr>
+                            {/foreach}
+                        </table>
+                    </div>
+                </td>
+                <td>
+                    <div id="mainTable" style="height:450px;width:800px;overflow:scroll" onscroll="tableLock(this)">
+                        <table border="1" cellpadding="0" cellspacing="0" style="border-left:none;border-top:none">
+                            {foreach from=$sales_list item=val key=key name=i}
+                            <tr>
+                                {foreach from=$row_list key=kk item=row}
+                                {foreach from=$val key=k item=v}
+                                {if $k eq $kk}
+                                <th nowrap width="70px" height="20px">{$v.goods_number}</th>
+                                <th nowrap width="70px" height="20px">{$v.goods_amount}</th>
+                                {/if}
+                                {/foreach}
+                                {if !isset($val[$kk])}
+                                <th nowrap width="70px" height="20px">-</th>
+                                <th nowrap width="70px" height="20px">-</th>
+                                {/if}
+                                {/foreach}
+                            </tr>
+                            {/foreach}
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    {/if}
+</div>
+<script type="text/javascript" charset="utf-8">
+
+var mainTable = document.getElementById('mainTable');
+var leftTable = document.getElementById('leftTable');
+var topTable  = document.getElementById('topTable');
+
+mainTable.onscroll = function () {
+    topTable.getElementsByTagName('table')[0].style.left = -this.scrollLeft + 'px';
+    leftTable.getElementsByTagName('table')[0].style.top = -this.scrollTop + 'px';
+};
+</script>

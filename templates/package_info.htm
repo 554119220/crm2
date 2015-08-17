@@ -1,0 +1,68 @@
+<div class="finder-title mt10">{$ur_here}</div>
+<div class="border content-head f_l" style="background:#fff;padding:0px 10px 10px 10px; width:600px">
+    <div class="finder-packet" id="">
+        <div class="packet-items" id="">
+            <input type="hidden" id="cache_data" value="{$cache_data}"/>
+        </div>
+    </div>
+
+    <div class="mt10" id="listDiv">
+        <form action="javascript:void(0)" id="package" name="package" method="post" onsubmit="addNewPackage()">
+            <table cellpadding="0" cellspacing="0" width="100%" class="table_form">
+                <tr>
+                    <td>
+                        <b>套餐编号：</b>
+                        {if $act eq 'update_package'}
+                        {$packing.packing_desc}
+                        <input type="hidden" name="packing_desc" value="{$packing.packing_desc}" size="20" onblur="checkPackageSn(this)" required />
+                        {else}
+                        <input type="text" name="packing_desc" value="" size="20" onblur="checkPackageSn(this)" required />
+                        {/if}
+                    </td>
+                </tr>
+                <tr><td><b>套餐名称：</b><input type="text" name="packing_name" value="{$packing.packing_name}" size="20" required/></td></tr>
+                <tr><td><b>套餐价格：</b><input type="text" name="packing_price" value="{$packing.packing_price}" size="20" required/></td></tr>
+                <tr><td><b>套餐说明：</b><input type="text" name="keywords" value="{$packing.keywords}" size="20" required/></td></tr>
+                <tr><td><b>服用天数：</b><input type="text" name="take_days" value="{$packing.take_days}" size="20" required/></td></tr>
+            </table>
+        </form>
+
+        <form action="javascript:void(0)" name="theForm" onsubmit="return addGoodsToPackage();">
+            <table cellpadding="0" cellspacing="0" width="100%" class="mt10">
+                <tr>
+                    <td>
+                        <input type="text" name="search" value="" oninput="searchGoods(this)" onblur="searchGoods(this)"/>
+                        <select name="goods_id" id="goods_id">
+                            <option value="0">请先输入要搜索的商品</option>
+                        </select>
+                        &nbsp;<b>数量：</b><input type="text" name="number" value="" required pattern="\d+" title="必须是整数" style="width:40px; height:17px"/>
+                        <input type="submit" name="submit" value="添加" class="b_submit"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div class="title_desc">商品列表</div>
+        <table border="0" id="goods_list" cellpadding="0" cellspacing="0" class="all_table_list" width="100%">
+            <tr>
+                <th width="10%" align="center">操作</th>
+                <th width="70%" align="center">商品名称</th>
+                <th width="20%" align="center">数量</th>
+            </tr>
+            {if $packing_goods}
+            {foreach from=$packing_goods item=val}
+            <tr id="tr_{$val.rec_id}">
+                <td>
+                    <a href="{$filename}.php?target_table=packing_goods&act=delete&rec_id={$val.rec_id}">删除</a>
+                    {if val.rec_id}<input type="hidden" form="package" name="rec_id[]" value="{$val.rec_id}"/>{/if}
+                </td>
+                <td>{$val.goods_name}</td><td>{$val.num}</td></tr>
+            {/foreach}
+            {/if}
+        </table>
+        <input type="submit" id="submit" form="package" value="保存套餐" class="input_submit_right"/>
+        <input type="hidden" name="act" form="package" value="{$act}" id="act"/>
+        {if $act eq 'update_package'}
+        <input type="hidden" name="id" form="package" value="{$packing.packing_id}" id="id"/>
+        {/if}
+    </div>
+</div>

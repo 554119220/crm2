@@ -1,0 +1,65 @@
+<div class="menu_headle">
+    <div class="o_menu_select">
+        <ul> 
+            <li>         
+                <select name="user_admin_id"{if $order_info.admin_id} disabled{/if}>
+                    <option>谁的顾客</option>
+                    {foreach from=$admin_list_user item=val}
+                    <option value="{$val.user_id}"{if $val.user_id eq $order_info.admin_id} selected{/if}>{$val.user_name}</option>
+                    {/foreach}
+                    {if $admin_id eq 359 || $admin_id=4}
+                    <option value="359"{if $order_info.admin_id eq 359} selected{/if}>王碧贝</option>
+                    {/if}
+                    {if $admin_id eq 493}
+                    <option value="493"{if $order_info.admin_id eq 493} selected{/if}>李健均</option>
+                    {/if}
+                </select>
+                </li>
+                <li>
+                    <select name="eff_id">
+                        <option>顾客分类</option>
+                        {foreach from=$effect_list item=val}
+                        <option value="{$val.eff_id}">{$val.eff_name}</option>
+                        {/foreach}
+                    </select>
+                </li>
+                <li>
+                    <select name="order_admin_id">
+                        <option>谁的订单</option>
+                        {foreach from=$admin_list_order item=val}
+                        <option value="{$val.user_id}"{if $order_info.admin_id eq $val.user_id} selected{/if}>{$val.user_name}</option>
+                        {/foreach}
+                        {if $admin_id eq 359 || $admin_id=4}
+                        <option value="359"{if $order_info.admin_id eq 359} selected{/if}>王碧贝</option>
+                        {/if}
+                        <option value="493"{if $order_info.admin_id eq 493} selected{/if}>李健均</option>
+                    </select>
+                </li>
+                <li>
+                    <select name="order_type">
+                        {foreach from=$order_type item=val}
+                        <option value="{$val.type_id}"{if $val.type_id eq 3}selected{/if}>{$val.type_name}</option>
+                        {/foreach}
+                    </select>
+                </li>
+                <li>
+                    <label><input type="checkbox" id="secrecy" value="1"><span>是否保密配送：</span></label>
+                </li>
+                </ul >
+            </div>
+
+            <div {if $blacklist_info.is_black eq 1 || $blacklist_info.is_black eq 3}style="display:none"{/if} id="blacklist_ignore_div">
+                <a class="input_submit_h" href="order.php?act=ordersyn_verify&id={$order_info.order_id}" title="确认无误，提交给仓库发货">提交订单</a>
+                <div class="blank"></div>
+                {if $hide_close eq 0}
+                <select name="close_reason" id="close_reason">
+                    <option value="0">订单关闭原因</option>
+                    {foreach from=$reason item=val}
+                    <option value="{$val.reason_id}">{$val.reason_name}</option>
+                    {/foreach}
+                </select>
+                <a class="input_submits mt10 f_l" href="order.php?act=ordersyn_del&id={$order_info.order_id}" title="删除后该订单不再显示">关闭订单</a>
+                {/if}
+            </div>
+        </div>
+    </div>

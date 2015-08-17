@@ -1,0 +1,152 @@
+<br />
+<h3>黑名单顾客</h3>
+<div class="box_nav">
+  <div class="detail_tab" style="margin:0">
+    <ul>
+      <li type="general_blacklist" class="o_select" onclick="showBlacklist(this)"><span>黑名单顾客</span></li>
+      <li type="network_blacklist" onclick="showBlacklist(this)"><span>网络黑名单</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="tools_div">
+  <div id="div_general_blacklist">
+    <form action="javascript:void(0)" name="sch_blacklist" onsubmit="schBlacklist()">
+      <table cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <th></th>
+          <td>
+            <input type="text" name="user_name" id="user_name" placeholder="姓名" />
+            <input type="text" name="phone" id="phone" maxlength="11" placeholder="联系方式" />
+          </td>
+          <th>谁拉进</th>
+          <td>
+            <input type="text" name="admin_name" value="" placeholder="员工姓名(回车搜索)" oninput="getBySendAdmin(this.form)">
+            <select id="admin_id" name="admin_id">
+              <option value="0">请选择员工</option>
+            </select>     
+          </td>
+          <td>
+            <input type="submit" class="b_submit" name="user_name" id="user_name" value="搜索" style="margin-bottom:0px"/>
+            <button type="button" id="blacklist_status" value="2" onclick="getBlacklistStatUser(this.value)" class="b_submit" >已审核</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <div id="div_network_blacklist" style="display:none">
+    <form name="sch_network_blacklist_form" action="javascript:void(0)" onsubmit="schNetBlacklist(this)">
+      <table>
+        <tr>
+          <th>姓名：</th>
+          <td>
+            <input type="text" name="user_name" value=""/>
+          </td>
+          <th>联系方式：</th>
+          <td>
+            <input type="text" name="keyword" value=""/>
+          </td>
+          <th>地址：</th>
+          <td>
+            <input type="text" name="address" value=""/>
+          </td>
+          <td>
+            <input type="submit" name="" value="搜 索" class="b_submit"/>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <form name="add_network_blacklist_form" action="javascript:void(0)" onsubmit="addNetworkBlacklist(this)">
+      <table cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td>
+            <input type="text" name="user_name" value="" placeholder="顾客姓名" required />
+          </td>
+          <td>
+            <select name="item_type">
+              <option value="0">选择联系方式</option>
+              {foreach from=$account_type item=val}
+              <option value="{$val.type_id}">{$val.type_name}</option>
+              {/foreach}
+            </select>        
+            <input type="text" name="number" />
+          </td>
+          <th>类型：</th>
+          <td>
+            <select name="type_id">
+              <option value="0">请选择欺骗类型</option>
+              {foreach from=$blacklist_type_list item=val}
+              <option value="{$val.type_id}">{$val.type_name}</option>
+              {/foreach}
+            </select>
+          </td>
+          <td>
+            <input type="submit" class="b_submit" value="接进黑名单" />
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="blacklist">
+    <div id="resource">
+      <table cellspacing="0" cellpadding="0" width="100%" class="wu_table_list rb_border wu_rb_border tr_hover" id="blacklist_table">
+        <tr>
+          <th width="10%">姓名</th>
+          <th width="10%">所属客服</th>
+          <th width="10%">平台</th>
+          <th width="15%">理由</th>
+          <th width="10%">谁拉进的</th>
+          <th width="20%">具体原因</th>
+          <th width="15%">拉黑时间</th>
+          <th width="10%">操作</th>
+        </tr>
+        {if $user_blacklist neq ''}
+        {foreach from=$user_blacklist item=val}
+        <tr>
+          <td>{$val.user_name}</td>
+          <td>{$val.admin_name}</td>
+          <td>{$val.role_name}</td>
+          <td>{if $val.type_name neq ''}{$val.type_name}{else}没理由{/if}</td>
+          <td>{$val.operator_in}</td>
+          <td>{if $val.reason neq ''}{$val.reason}{else}无{/if}</td>
+          <td>{$val.in_time}</td>
+          <!--
+          <td align="left">
+            【平台{$val.role_name}】
+            {$val.in_time}因【{if $val.type_name neq ''}{$val.type_name}{else}没理由{/if}】被{$val.operator_in}拉入黑名单【具体原因：{if $val.reason neq ''}{$val.reason}{else}无{/if}】
+          </td>
+          -->
+          <td>
+            {if $blackstatus eq 2}
+            <button class="btn_new" onclick="moveOutBlack({$val.user_id},'{$val.user_name}',this)">移出黑名单</button>
+            {elseif $blackstatus eq 0}
+            <button class="btn_new" onclick="checkBlack({$val.user_id},'{$val.user_name}',this,2)">审核</button>&nbsp;|&nbsp;
+            <button class="btn_new" onclick="checkBlack({$val.user_id},'{$val.user_name}',this,1)">撤消</button>
+            {/if}
+          </td>
+        </tr>
+        {/foreach}
+        {else}
+        <tr><td colspan="6" align="center">没有黑名单记录</td></tr>
+        {/if}
+      </table>
+
+
+      <div class="bottom_tip" id="bottom_tip">
+        <div class="tip_left">
+          <p>共{$filter.record_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        </div>
+        <div class="tip_center">
+          <span><a href="users.php?act={$filter.act}&page=1&page_size={$filter.page_size}{$condition}" id="page_link">&lt;&lt;</a></span>
+          {foreach from=$filter.page_set item=v}
+          <span {if $v eq $filter.page} class="cur"{/if}>{if $v eq $filter.page}{$v}{else}<a href="users.php?act={$filter.act}&page={$v}&page_size={$filter.page_size}{$condition}">{$v}</a>{/if}</span>
+          {/foreach}
+          <span><a href="users.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}{$condition}">&gt;&gt;</a></span>
+        </div>
+        <div class="tip_right">跳转到第
+          <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+        </div>
+      </div>
+    </div>
+  </div>

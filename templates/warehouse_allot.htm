@@ -1,0 +1,40 @@
+<!--=============================================================================
+#     FileName: warehouse_allot.htm
+#         Desc: warehouse allot
+#       Author: Wuyuanhang
+#        Email: 1828343841@qq.com
+#     HomePage: kjrs_crm
+#      Version: 0.0.1
+#   LastChange: 2014-09-15 15:26:19
+#      History:
+=============================================================================-->
+<br />
+<h3>仓库调拨</h3><br />
+<div class="gridlist-action" width="100%">
+  <form action="javascript:void(0)" name="allot_form" onsubmit="schAllot(this)">
+    调拨时间 ：
+    <input name="add_time" id="add_time" type="text" onClick="WdatePicker({dateFmt:'yyyy-M-d'})"/>
+    <select name="in_storage">
+      <option value="0">请选择仓库</option>
+      {foreach from=$warehouse_list item=val}
+      <option value="{$val.warehouse_id}">{$val.warehouse_name}</option>
+      {/foreach}
+    </select>
+    <label onclick="schAllot(this.form)"><input type="radio" name="status" value="0" {if $status eq 0}checked{/if} />未调拨</label>
+    <label onclick="schAllot(this.form)"><input type="radio" name="status" value="1" {if $status eq 1}checked{/if} />正在审核</label>
+    <label onclick="schAllot(this.form)"><input type="radio" name="status" value="2" {if $status eq 2}checked{/if} />正在验货</label>
+    <label onclick="schAllot(this.form)"><input type="radio" name="status" value="3" {if $status eq 3}checked{/if} />已调拨</label>
+    <input type="submit" name="" value="搜 索" class="b_submit"/>
+    <input type="button" name="" value="创建调拨记录" onclick="createAllot()" class="b_submit"/>
+  </form>
+  <div id="selItemStatusDiv" style="display:none">
+    <select id="statusItem">
+      <option value="0">未调拨</option>
+      <option value="1">正在审核</option>
+      <option value="2">正在验货</option>
+      <option value="3">已调拨</option>
+    </select>&nbsp;&nbsp;
+    <button class="btn_new" value='' id="btnChAllotStatus" onclick="chAllotLogStatus(this)">保存</button>
+  </div>
+</div>
+<div id="resource">{$allot_list_div}</div>

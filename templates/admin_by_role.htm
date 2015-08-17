@@ -1,0 +1,59 @@
+<table cellpadding="0" cellspacing="0" class="wu_table_list rb_border wu_rb_border tr_hover" width="90%" style="margin-bottom:65px">
+    <tr>
+        <th width="5%">ID</th>
+        <th width="10%">所在部门</th>
+        <th width="8%">姓名</th>
+        <th width="10%">联系电话</th>
+        <th width="10%">最后登录时间</th>
+        <th width="8%">登录次数</th>
+        <th width="5%">在职</th>
+        <th width="5%">统计</th>
+        <th width="6%">分配顾客</th>
+        <th width="6%">顾客上限</th>
+        <th width="10%">备注</th>
+        <th width="18%">操作</th>
+    </tr>
+    {foreach from=$account_list item=account}
+    <tr>
+        <td>{$account.user_id}</td>
+        <td>{$account.role_name}</td>
+        <td>{$account.user_name}</td>
+        <td>{$account.mobile}</td>
+        <td>{if $account.last_login eq "1970-01-01"}-{else}{$account.last_login}{/if}</td>
+        <td>{$account.login_times}</td>
+        <td>
+            <input type="button" class="b_submit" note="status" value="{if $account.status eq 1}是"{else}否" style="background:#E0E0E0"{/if} onclick="admindisable(this,{$account.user_id})">
+        </td>
+        <td>
+            <input type="button" class="b_submit" note="stats" value="{if $account.stats eq 1}是"{else}否" style="background:#E0E0E0"{/if} onclick="admindisable(this,{$account.user_id})">
+        </td>
+        <td>
+            <input type="button" class="b_submit" note="assign" value="{if $account.assign eq 1}是"{else}否" style="background:#E0E0E0"{/if} onclick="admindisable(this,{$account.user_id})">
+        </td>
+        <td ondblclick="replaceToInputHTML(this, {$account.user_id}, 'text', saveMaxCustomer)">{$account.max_customer}</td>
+        <td> </td>
+        <td>
+            <a class="btn" href="system.php?act=assign_authority&user_id={$account.user_id}" >分派权限</a>
+            <button class="btn" onclick="editAdminInfo({$account.user_id})">编辑</button>
+            <button class="btn" onclick="assignAuthority({$account.user_id})">查看日志</button>
+        </td>
+    </tr>
+    {/foreach}
+</table>
+
+<!-- 分页 -->
+<div class="bottom_tip">
+    <div class="tip_left">
+        <p>共{$filter.record_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </div>
+    <div class="tip_center">
+        <span><a href="system.php?act={$filter.act}&page=1&page_size={$filter.page_size}{$condition}" id="page_link">&lt;&lt;</a></span>
+        {foreach from=$filter.page_set item=v}
+        <span {if $v eq $filter.page} class="cur"{/if}>{if $v eq $filter.page}{$v}{else}<a href="system.php?act={$filter.act}&page={$v}&page_size={$filter.page_size}{$condition}">{$v}</a>{/if}</span>
+        {/foreach}
+        <span><a href="system.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}{$condition}">&gt;&gt;</a></span>
+    </div>
+    <div class="tip_right">跳转到第
+        <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+    </div>
+</div>

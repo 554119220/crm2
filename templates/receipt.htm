@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>订单收据</title>
+    <meta charset="utf-8" />
+    <style type="text/css" media="screen">
+    * {margin:0; padding:0}
+    body {width:550px; height:310px/*; border:1px solid #000*/}
+    .date{position:absolute; top:27px; left:395px}
+    .goodsList {position:absolute; top:112px; left:42px; width:480px; text-indent:2em; overflow:fixed}
+    .big5{position:absolute; top:226px; left:277px}
+    .printer{position:absolute; top:274px; left:454px}
+    </style>
+</head>
+<body>
+<div class="date">{$order_info.shipping_date}</div>
+<div class="goodsList">{$order_info.consignee} 购买
+{foreach from=$order_info.goods_list item=val}
+{$val.goods_name}{$val.goods_number}件 {$val.goods_price}元/瓶<wbr>
+{/foreach}
+共{$order_info.final_amount}元
+</div>
+<div class="big5">{$order_info.big5}</div>
+<div class="printer">{$order_info.printer|1}</div>
+</body>
+</html>

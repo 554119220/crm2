@@ -1,0 +1,32 @@
+<div id="view_admin_cate">
+    <div class="finder-title mt10">{$curr_title}</div>
+    <div id="nav-search">
+            {if !$group_list}
+            <select name="roles" id="role_id" onchange="getGroupList(this)">
+                <option value="0">请选择</option>
+                {foreach  from=$role_list item=role}
+                <option value="{$role.role_id}">{$role.role_name}</option>
+                {/foreach}
+            </select>
+            {/if}
+            <select name="group_id" id="group_id">
+                <option value="0">请选择</option>
+                {foreach from=$group_list item=val}
+                <option value="{$val.group_id}">{$val.group_name}</option>
+                {/foreach}
+            </select>
+            <input type="button" value="查询分组" class="b_submit" onclick="commonFilterByThis('admin_list')">
+    </div>
+    <ul id="admin_list">
+        {foreach from=$admin_list item=val}
+        <li group_id="{$val.group_id}" role_id="{$val.role_id}">
+        <a href="users.php?act=view_user_list&admin_id={$val.user_id}" name="rightShowArea">{$val.user_name}</a>
+        </li>
+        {/foreach}
+    </ul>
+    <div id="rightShowArea"></div>
+
+    <!-- 分页 -->
+    <div id="pageList" class="bottom_tip">
+    </div>
+</div>

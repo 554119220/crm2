@@ -1,0 +1,32 @@
+<br />
+<div class="finder-title">通话录音收藏列表
+  <font id="record_count">(共{$filter.record_count}条)</font>
+  <span style="float:right;margin-right:5px;">
+    <input type="button" name="" value="选择推送员工" onclick="selectAdmin()" class="b_submit"/>
+  </span>  
+  <div id="admin_list"></div>
+</div>
+<div class="box_nav">
+  <div class="detail_tab" style="margin:0">
+    <ul>
+      <li type="privacy" class="o_select" onclick="showTapeCollect(this)">私人<span></span></li>
+      <li type="boutique" onclick="showTapeCollect(this)"><span>精品通话案例</span></li>
+      <li type="my_public" onclick="showTapeCollect(this)"><span>我的公开</span></li>
+      <li type="collect_other_public" onclick="showTapeCollect(this)"><span>收藏他人公开</span></li>
+      <li type="other_public" onclick="showTapeCollect(this)"><span>他人分享</span></li>
+      <li type="recycle" onclick="showTapeCollect(this)"><span>回收站</span></li>
+    </ul>
+  </div>
+</div>
+<div class="gridlist-action" style="width:100%">
+  <form name="tape_collect_form" action="javascript:void(0)" onsubmit="schTapeCollect(this)">
+    顾客姓名： <input type="text" name="user_name" value="" />
+    &nbsp;&nbsp;<input type="submit" name="" value="搜 索" class="b_submit"/>
+    &nbsp;&nbsp;<input type="button" class="b_submit" value="清空回收站" onclick="clearTape('privacy')"/>
+    {if $tape_favorite_view }
+    <input type="button" class="b_submit" value="清除半年前录音" onclick="clearTape('half')"/>
+    {/if}
+    <input type="hidden" id="tape_collect_copyright" id="tape_collect_copyright" value="{$tape_collect_copyright}"/>
+  </form>
+</div>
+<div id="resource"> {$tape_collect_div} </div>

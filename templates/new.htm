@@ -1,0 +1,450 @@
+<!-- 顾客详细信息 -->
+<div class="layout">
+  <!--导航样式-->
+  <div class="box_nav">
+    <div class="detail_tab" style="margin:0">
+      <ul>
+        <li type="general" class="o_select" onclick="switchSubTab(this)"><span>基本信息</span></li>
+        <li type="list" onclick="switchSubTab(this)"><span>社会营销</span></li>
+        <li type="relation" onclick="switchSubTab(this)"><span>社会关系</span></li>
+        <li type="purchase" onclick="switchSubTab(this)"><span>购买记录</span></li>
+        <li type="service" onclick="switchSubTab(this)"><span>服务记录</span></li>
+        <li type="cancel" onclick="switchSubTab(this)"><span>退货记录</span></li>
+        <li type="remark" onclick="switchSubTab(this)"><span>个性分析</span></li>
+        <li type="new_order" onclick="switchSubTab(this)"><span>添加订单</span></li>
+        <li type="new_service" onclick="switchSubTab(this)"><span>添加服务</span></li>
+      </ul>
+    </div>
+  </div>
+  <!--导航样式 end-->
+
+  <div class="box_center user_list_info">
+    <!-- 顾客基本信息 -->
+    <div id="general" class="show">
+      <table class="table_form" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <th><font color="red">*</font><b>姓名：</b ></th>
+          <td width="100">{$user.user_name}<button value="users.php?act=edit&info=user_name&id={$user.user_id}&type=text" title="修改姓名" onclick="sendEditInfo(this)"></button></td>
+          <th><b>出生日期：</b></th>
+          <td width="160">
+            {$user.birthday}<button value="users.php?act=edit&info=birthday&id={$user.user_id}&type=text" title="出生日期" onchange="sendEditInfo(this)"></button>
+          </td>
+          <th><b>身份证：</b></th>
+          <td width="170">{$user.id_card}<button value="users.php?act=edit&info=id_card&id={$user.user_id}&type=text" title="出生日期" onchange="sendEditInfo(this)"></button></td>
+          <th><font color="red">*</font><b>性别：</b></th>
+          <td class="w70">{if $user.sex eq 1}男{elseif $user.sex eq 2}女{elseif $user.sex eq 0}不详{/if}<button value="users.php?act=edit&info=sex&id={$user.user_id}&type=radio" title="修改性别" onclick="sendEditInfo(this)"></button></td>
+        </tr>
+        <tr>
+
+          <th><b>电话：</b></th>
+          <td>{$user.home_phone}<button value="users.php?act=edit&info=home_phone&id={$user.user_id}&type=text" title="修改固话" onclick="sendEditInfo(this)"></button>
+          </td>
+          <th><b>手机：</b></th>
+          <td>{$user.mobile_phone}<button value="users.php?act=edit&info=mobile_phone&id={$user.user_id}&type=text" title="修改手机" onclick="sendEditInfo(this)">
+            </button>
+          </td>
+          <th><b>需求：</b></th>
+          <td>{$user.eff_name}<button value="users.php?act=edit&info=eff_id&id={$user.user_id}&type=select" title="修改需求" onclick="sendEditInfo(this)"></button>
+          </td> 
+          <th><b>上次服务：</b></th>
+          <td>{if $user.service_time eq ''}无服务记录{/if}</td>
+        </tr>
+
+        <tr>
+          <th> <b>服务平台：</b></th>
+          <td>{$user.platform}<button value="users.php?act=edit&info=platform&id={$user.user_id}&type=text" title="修改平台" onclick="sendEditInfo(this)"></button>
+          </td>
+          <th><b>添加时间：</b></th>
+          <td>{$user.add_time}</td>
+        </tr>
+        <tr>
+          <th><b>地址：</b></th>
+          <td colspan="4">
+            <table>
+              <tr>
+                <td>{$user.province}{$user.city}{$user.district}<button value="users.php?act=edit&info=district&id={$user.user_id}&type=select" title="修改固话" onclick="sendEditInfo(this)"></button>
+                  {$user.address}<button value="users.php?act=edit&info=address&i d={$user.user_id}&type=text" title="修改固话" onclick="sendEditInfo(this)"></button></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+
+    <!-- 社会营销 -->
+    <div id="list" class="hide">
+      <table class="table_form" width="70%">
+        <tr>
+          <td>
+            <th> 阿里旺旺 </th>
+            <td>{$user.aliww}<button value="users.php?act=edit&info=aliww&id={$user.user_id}&type=text" title="修改姓名" onclick="sendEditInfo(this)"></button>
+            </td>
+            <td>
+              <th> QQ </th>
+              <td>{$user.qq}<button value="users.php?act=edit&info=qq&id={$user.user_id}&type=text" title="修改姓名" onclick="sendEditInfo(this)"></button>
+              </td>
+              <td>
+                <span> E-mail</span>
+                {$user.email}<button value="users.php?act=edit&info=email&id={$user.user_id}&type=text" title="修改姓名" onclick="sendEditInfo(this)"></button>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- 个性分析 -->
+        <div id="remark" class="hide">
+          <table class="table_form">
+            <tr>
+              <th>健康状况</th>
+              <td>
+                {foreach from=$disease item=val name=i}
+                <label><input type="checkbox" name="disease" value="{$val.disease_id}" {if in_array($val.disease_id,$user.disease)} checked{/if} style="vertical-align:middle" onclick="addOne(this)"/> {$val.disease}</label>
+                {/foreach}
+              </td>
+            </tr>
+            <tr>
+              <th>性格</th>
+              <td>
+                {foreach from=$characters item=val name=i}
+                <label><input type="checkbox" name="characters" value="{$val.character_id}" {if in_array($val.character_id,$user.characters)} checked{/if} style="vertical-align:middle" onclick="addOne(this)"/>{$val.characters}</label>
+                {if $smarty.foreach.i.iteration%10 eq 0}<br/>{/if}
+                {/foreach}
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- 社会关系 -->
+        <div id="relation" class="hide">
+          <tr>
+            <td><th>我是社会关系</th></td>
+            <td><th>我是社会关系</th></td>
+            <td><th>我是社会关系</th></td>
+            <td><th>我是社会关系</th></td>
+          </tr>
+
+          <tr>
+            <td><th>我是社会关系</th></td>
+            <td><th>我是社会关系</th></td>
+            <td><th>我是社会关系</th></td>
+          </tr>
+        </div>
+
+        <!-- 购买记录 -->
+        <div id="purchase" class="hide">
+          <table class="purchase" cellpadding="3" cellspacing="1" style="border:1px #ccc solid !important">
+            <thead>
+              <tr>
+                <th width="15%">订单编号</th>
+                <th width="5%">收货人</th>
+                <th width="10%">购买日期</th>
+                <th width="10%">收货时间</th>
+                <th width="5%">总金额</th>
+                <th width="5%">支付</th>
+                <th width="10%">配送</th>
+                <th width="10px">运单号</th>
+                <th width="20%">商品</th>
+                <th width="5%">客服</th>
+              </tr>
+            </thead>
+            <tbody>
+              {foreach from=$order_list item=order}
+              <tr>
+                <td>{$order.order_sn}</td>
+                <td>{$order.consignee}</td>
+                <td>{$order.add_time}</td>
+                <td>{$order.receive_time}</td>
+                <td align="center">{$order.final_amount}</td>
+                <td>{$order.pay_name}</td>
+                <td>{$order.shipping_name}</td>
+                <td>{$order.express_number}</td>
+                <td>{$order.goods_list}</td>
+                <td align="center">{$order.operator}</td>
+              </tr>
+              {/foreach}
+              <tr><td>regergerge</td></tr>
+              {foreach from=$order_list item=order}
+              <tr>
+                <td>{$order.order_sn}</td>
+                <td>{$order.consignee}</td>
+                <td>{$order.add_time}</td>
+                <td>{$order.receive_time}</td>
+                <td align="center">{$order.final_amount}</td>
+                <td>{$order.pay_name}</td>
+                <td>{$order.shipping_name}</td>
+                <td>{$order.express_number}</td>
+                <td>{$order.goods_list}</td>
+                <td align="center">{$order.operator}</td>
+              </tr>
+              {/foreach}
+            </tbody>
+          </table>
+          更详细的信息请前往历史订单列表查询
+        </div>
+
+        <!-- 服务记录 -->
+        <div id="service" class="hide">
+          <form name="for_serverSeach" method="POST">
+            起始:&nbsp;<input id="startTime" type="text" onClick="WdatePicker()"/> 
+            终止:&nbsp;<input id="endTime" type="text" onClick="WdatePicker()"/> 
+            <input type="button" onclick="searchService()" class="b_submit" value="搜索">
+          </form>
+          <div class="blank"></div>
+          <table cellpadding="3" cellspacing="1" style="border:1px #ccc solid !important" width="100%">
+            <tr height="24px" bgcolor="#EAEEF4">
+              <td align="center" height="24px">服务时间</td>
+              <td align="center">客服</td>
+              <td align="center">服务类别</td>
+              <td align="center">服务方式</td>
+              <td align="center">服务过程</td>
+            </tr>
+            {foreach from=$service item=val}
+            <tr bgcolor="#FFFFFF" id="tr_2_{$val.ID}">
+              <td align="center" height="24px">{$val.service_time}</td>
+              <td align="center">{$val.admin_name}</td>
+              <td align="center">{$val.class}</td>
+              <td align="center">{$val.manner}</td>
+              <td align="center">{$val.logbook}</td>
+            </tr>
+            {/foreach}
+          </table>
+        </div>
+
+        <!-- 退货记录 -->
+        <div id="cancel" class="hide">
+          {foreach from=$return item=val}
+          {$val.return_reason}
+          {/foreach}
+          <tr>
+            <td><span>这是退货信息</span></td>
+            <td><span>这是退货信息</span></td>
+            <td><span>这是退货信息</span></td>
+            <td><span>这是退货信息</span></td>
+          </tr>
+          <tr>
+            <td><span>这是退货信息</span></td>
+            <td><span>这是退货信息</span></td>
+            <td><span>这是退货信息</span></td>
+            <td><span>这是退货信息</span></td>
+          </tr>
+        </div>
+
+        <!-- 添加新订单 -->
+        <!-- 添加新订单 -->
+        <div id="new_order" class="order_details hide">
+          <form action="javascript:void(0)" name="order_info">
+            <table cellpadding="3" cellspacing="1" border="0" class="mt10">
+              <tr>
+                <td width="280"><span>收货人姓名：</span><input type="text" name="consignee" value="{$user.user_name}"/></td>
+                <td width="250"><span>收货人电话：</span><input type="text" name="tel" value="{$user.home_phone}"/></td>
+                <td width="250"><span>收货人手机：</span><input type="text" name="mobile" value="{$user.mobile_phone}"/></td>
+              </tr>
+              <tr>
+                <td width="280"><span>订单编号：<input type="text" name="order_sn" value="" style="width:180px"/></span></td>
+                <td width="250"><span>配送方式：</span><select name="shipping_id">
+                    <option value="0">配送方式</option>
+                    {foreach from=$shipping item=val}
+                    <option value="{$val.shipping_id}">{$val.shipping_name}</option>
+                    {/foreach}
+                </select></td>
+                <td><span>支付方式：</span><select name="pay_id">
+                    <option value="0">支付方式</option>
+                    {foreach from=$payment item=val}
+                    <option value="{$val.pay_id}">{$val.pay_name}</option>
+                    {/foreach}
+                </select></td>
+              </tr>
+              <tr>
+                <td colspan="4"><span>收货地址：</span>
+                  {insert_scripts files="validator.js,region.js"}
+                  <select name="province" id="selProvinces" onchange="region.changed(this,2,'selCities')">
+                    <option value="0">{$lang.select_please}</option>
+                    {foreach from=$province_list item=province}
+                    <option value="{$province.region_id}" {if $province.region_id eq $user.province_id}selected{/if}>{$province.region_name}</option>
+                    {/foreach}
+                  </select>
+
+                  <select name="city" id="selCities" onchange="region.changed(this,3,'selDistricts')">
+                    <option value="0">{$lang.select_please}</option>
+                    {foreach from=$city_list item=city}
+                    <option value="{$city.region_id}" {if $city.region_id eq $user.city_id}selected{/if}>{$city.region_name}</option>
+                    {/foreach}
+                  </select>
+
+                  <select name="district" id="selDistricts">
+                    <option value="0">{$lang.select_please}</option>
+                    {foreach from=$district_list item=district}
+                    <option value="{$district.region_id}" {if $district.region_id eq $user.district_id}selected{/if}>{$district.region_name}</option>
+                    {/foreach}
+                  </select>
+                  &nbsp;&nbsp;<span>详细地址：</span><input type="text" name="address" value="{$user.address}" size=45 />
+                </td>
+              </tr>
+
+              <tr>
+                <td class="w200">
+                  <span>销售平台：</span>
+                  <select name="platform">
+                    <option value="0">销售平台</option>
+                    {foreach from=$platform_list item=val}
+                    <option value="{$val.role_id}">{$val.role_name}</option>
+                    {/foreach}
+                  </select>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="w200">
+                  <span>订单归属：</span>
+                  <select name="admin_id">
+                    <option value="0">订单归属</option>
+                    {foreach from=$admin_list item=val}
+                    <option value="{$val.user_id}">{$val.user_name}</option>
+                    {/foreach}
+                  </select>
+                </td>
+              </tr>
+            </table>
+            <div class="l_txt">订单备注：</div>
+            <div class="r_form">
+              <textarea name="remarks" rows="5" cols="60"></textarea>
+              </div >
+            </form>
+            <div class="blank"></div>
+            <div class="o_goods_search">
+              <form action="javascript:void(0)" name="theForm" onsubmit="return addNewGoods();">
+                <input type="text" name="search" value="" oninput="searchGoods(this)" onblur="searchGoods(this)"/>
+                <select name="goods_id" id="goods_id">
+                  <option value="0">请先输入要搜索的商品</option>
+                </select>
+                &nbsp;数量：<input type="text" name="number" value="" required pattern="\d+" title="必须是整数" style="width:40px; height:17px"/>
+                &nbsp;单价：<input type="text" name="price" value="" required pattern="[0-9.]+" title="必须是有效的金额" style="width:40px;height:17px"/>
+                <span>&nbsp;<labe><input type="checkbox" name="is_gift" value="1" style="width:20px;vertical-align:middle"/>赠品</label></span>
+              <input type="submit" name="submit" value="添加" class="b_submit"/>
+            </form>
+
+            <form action="javascript:void(0)" name="goodsList" accept-charset="utf-8" style="border:0">
+              <table id="goods_list" width="100%" class="table_form">
+                <tr>
+                  <td>运费</td>
+                  <td>
+                    <input type="text" name="shipping_fee" id="shipping_fee" value="0" onblur="calcOrderAmount()"/>
+                  </td>
+                  <td>商品总额</td><td id="goods_amount"></td>
+                  <td>订单总价</td><td id="order_amount"></td>
+                </tr>
+                <tr></tr>
+                <tr>
+                  <td width="10%">操作</td>
+                  <td>商品名称</td>
+                  <td width="10%">总格</td>
+                  <td width="10%">购买量</td>
+                  <td width="10%">赠品</td>
+                  <td width="15%">总价</td>
+                </tr>
+              </table>
+            </form>
+            <div class="f_r"><input type="submit" name="submit" value="提交订单" class="input_submit" onclick="addNewOrder()"/></div>
+          </div>
+
+        </div>
+
+        <!-- 添加新服务 -->
+        <div id="new_service" class="hide">
+          <form action="service.php?act=add_service" name="for_service" method="POST">
+            <table width="750" height=100% style="border:1px,border-collapse:collapse" cellpadding="0" cellspacing="0">
+              <tr height="32px">
+                <td align="center" width="150">服务类型：</td>
+                <td width="170">
+                  &nbsp;<select name="service_class" id="service_class" style="padding:2px">
+                    {foreach from=$service_class item=val}
+                    <option value="{$val.class_id}">{$val.class}</option>
+                    {/foreach}
+                  </select>
+                </td>
+                <td align="center" width="150">服务方式：</td>
+                <td width="170">
+                  &nbsp;<select name="service_manner" id="service_manner" style="padding:2px">
+                    {foreach from=$service_manner item=val}
+                    <option value="{$val.manner_id}">{$val.manner}</option>
+                    {/foreach}
+                  </select>
+                </td>
+                <td align="center" width="150">服务时间：</td>
+                <td width="170">
+                  &nbsp;<input id="service_time" name="service_time" type="text" onClick="WdatePicker()"/>
+                </td>
+              </tr>
+              <tr height="32px">
+                <td align="center" width="150">后续处理：</td>
+                <td colspan="3" width="200">
+                  &nbsp;
+                  <label><input type="radio" name="service_status" value="2" checked="checked"/> 未处理</label>
+                  <label><input type="radio" name="service_status" value="1"/> 已完成</label>
+                  <label><input type="radio" name="service_status" value="3"/> 提交售后</label>
+                  <label><input type="radio" name="service_status" value="4"/> 提交主管</label>
+                </td>
+                <td align="center">预约时间：</td>
+                <td> 
+                  &nbsp;<input id="handler" name="handler" type="text" onClick="WdatePicker()"/>
+                </td>
+              </tr>
+              <tr>
+                <td height="32px" align="center">公司满意度</td>
+                <td height="32px" id="grade1" colspan="5">&nbsp;
+                  <label><input type="radio" name="grade_company" value="5"> 很满意</label>
+                  <label><input type="radio" name="grade_company" value="4" checked="checked"> 满意</label>
+                  <label><input type="radio" name="grade_company" value="3"> 一般</label>
+                  <label><input type="radio" name="grade_company" value="2"> 不满意</label>
+                  <label><input type="radio" name="grade_company" value="1"> 非常不满意</label>
+                </td>
+              </tr>
+              <tr>
+                <td height="32px" align="center">订单满意度</td>
+                <td height="32px" colspan="5">&nbsp;
+                  <label><input type="radio" name="grade_order" value="5" >很满意</label>
+                  <label><input type="radio" name="grade_order" value="4" checked="checked"> 满意</label>
+                  <label><input type="radio" name="grade_order" value="3"> 一般</label>
+                  <label><input type="radio" name="grade_order" value="2"> 不满意</label>
+                  <label><input type="radio" name="grade_order" value="1"> 非常不满意</label>
+                </td>
+              </td>
+            </tr>
+            <tr>
+              <td height="32px" align="center">产品满意度</td>
+              <td height="32px" colspan="5">&nbsp;
+                <label><input type="radio" name="grade_product" value="5"> 很满意</label>
+                <label><input type="radio" name="grade_product" value="4" checked="checked"> 满意</label>
+                <label><input type="radio" name="grade_product" value="3"> 一般</label>
+                <label><input type="radio" name="grade_product" value="2"> 不满意</label>
+                <label><input type="radio" name="grade_product" value="1"> 非常不满意</label>
+              </td>
+            </tr>
+
+            <tr height="32px">
+              <td align="center">服务过程：</td>
+              <td valign="top" colspan="5">
+                &nbsp;<textarea name="logbook" type="textarea" onblur="cheLogbook(this.value)" rows="5" cols="60" style="resize:none;padding:5px;margin:3px"></textarea>
+                <span id="logbook" style="color:red;valign:top"></span>
+            </td></tr>
+            <tr> 
+                <td align="center">专项反馈：</td>
+                <td colspan="5"> 
+                  &nbsp;<textarea name="special_feedback" style="resize:none;padding:5px;margin:3px" rows="2" cols="60"></textarea>
+              </td></tr>
+              <tr>
+                
+              </tr>
+            </table>
+            <div>
+              <span class="f_r">&nbsp;&nbsp;<input type="reset" class="input_submit" value="重置" onmouseover="change_gb(this"></span>
+              <span class="f_r"><input name="sub" class="input_submit" type="button" onclick="submitService(this)" onmouseover="change_gb(this)" onfocus="inputFocus(this)" value="提交"/></span>
+            </div>
+          </form>
+        </div>
+      </div>
+      <input type="hidden" value="users.php" id="URI"/>
+      <input type="hidden" value="user_id" id="field"/>
+      <input type="hidden" value="{$user.user_id}" id="ID"/>
+    </div>

@@ -1,0 +1,159 @@
+<div width="100%">
+    <div class="finder-title mt10">
+        {$curr_title}<font>{$num}</font>
+        <span style="float:right;margin-right:12px;">
+            <input type="button" class="btn_top_right" name="sold_out" value="下架0库存商品" onclick="soldOutZero({$brand_id})"/>
+        </span>
+    </div>
+    <div class="finder-packet" id="">
+        <div class="packet-items" id="">
+            <ul id="sub_tag" class="clearfix">
+                <!-- 针对订单状态进行的分类 -->
+                <li id="tag_0" class="{if 0 eq $brand_id}current-tab{else}last{/if}">
+                    <a href="storage.php?act=goods_list&brand_id=0&tag=0">全部商品</a>
+                </li>
+                {foreach from=$brand item=val name=i}
+                {if $smarty.foreach.i.index lt 5}
+                <li id="tag_{$val.brand_id}" class="{if $val.brand_id eq $brand_id}current-tab{else}last{/if}">
+                    <a href="storage.php?act=goods_list&brand_id={$val.brand_id}&tag={$val.brand_id}">{$val.brand_name}</a>
+                </li>
+                {/if}
+                {/foreach}
+            </ul>
+            <input type="hidden" id="cache_data" value="{$cache_data}"/>
+        </div>
+    </div>
+    <div class="gridlist-action" style="width:100%">
+        <div class="nav-search">
+        <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+        <select id="brand_id">
+            <option value="0">商品品牌</option>
+            {foreach from=$brand item=val name=i}
+            {if $smarty.foreach.i.index gt 5}
+            <option value="{$val.brand_id}"{if $brand_id eq $val.brand_id} selected{/if}>{$val.brand_name}</option>
+            {/if}
+            {/foreach}
+        </select>
+        <input type="text" name="keyword" value="{if $keyword}{$keyword}{else}商品名称/编号{/if}" onfocus="this.value=''" onblur="if (this.value=='') this.value='商品名称/编号'" id="keyword"/>
+        <button value="storage.php?act=goods_list&brand_id={$brand_id}" id="target" class="b_submit" onclick="searchGoodsByBrand(this)">搜索</button>
+        <label{if $filter eq 'low_qty'} class="input_checked"{/if}>
+        <input type="radio" name="filter" value="low_qty"{if $filter eq 'low_qty'} checked{/if} onclick="filterGoods(this)"/>低库存
+    </label>
+    <label{if $filter eq '0_qty'} class="input_checked"{/if}>
+    <input type="radio" name="filter" value="0_qty"{if $filter eq '0_qty'} checked{/if} onclick="filterGoods(this)"/>0库存
+</label>
+<label{if $filter eq 'deadline'} class="input_checked"{/if}>
+<input type="radio" name="filter" value="deadline"{if $filter eq 'deadline'} checked{/if} onclick="filterGoods(this)"/>将过期
+</label>
+<label{if $filter eq 'sold_out'} class="input_checked"{/if}>
+<input type="radio" name="filter" value="sold_out"{if $filter eq 'sold_out'} checked{/if} onclick="filterGoods(this)"/>已下架
+</label>
+{if $power_turn_on eq 'able'}
+<span style="margin-left:3px">
+    库存修改开关：
+    <select id="stock_brand_id" onchange="stockSwitch(this.value)">
+        <option value="000">所有产品</option>
+        {foreach from=$brand item=val name=i}
+        <option value="{$val.brand_id}">{$val.brand_name}</option>
+        {/foreach}
+    </select>
+</span>
+<span style="margin-left:3px">
+    <input type="button" value="修&nbsp;&nbsp;改" class="b_submit" onclick="modSwitch()" id="btnSwitch" />
+    <input type="hidden" id="switch_info" name="0" value="{main_switch}"/>
+</span>
+<span id="current_stauts_desc">
+    <font color="red">状态：{if $main_switch gt 0}未开启{else}已开启{/if}</font>
+</span>
+{/if}
+</div>
+</div>
+
+<div width="100%" id="listDiv">
+    <table border="0" cellpadding="0" cellspacing="0" class="wu_table_list rb_border wu_rb_border tr_hover" width="100%" style="border-top:0" id="goods_table">
+        <tr class="goods_fixed">
+            <th align="center" width="5%">货号</th>
+            <th width="16%">产品名称</th>
+            <th width="3%">价格</th>
+            {if $show_cost_price}
+            <th width="4%">最低价格</th>
+            {/if}
+            <th width="4%">建议售价</th>
+            <th width="6%">
+                <label style="cursor:pointer" onclick="goodsSort('goods_number')" name="stock">
+                    库存{if $sort_info.sort_by eq 'goods_number'}{if $sort_info.sort_order eq 'DESC'}▼{else}▲{/if}{/if}
+                </label>
+            </th>
+            {if $show_safe_storage_number}
+            <th width="4%">安全库存</th>
+            {/if}
+            <th width="4%">库存明细</th>
+            <th width="3%">重量</th>
+            <th width="5%">保质期至<label title="较早一批没有卖完的产品的保质期">？</label></th>
+            <th width="5%">商品分类</th>
+            <th width="3%">类型</th>
+            {if $power_turn_on eq 'able'}
+            <th width="3%">操作</th>
+            <th width="6%">状态</th>
+            {/if}
+            <th width="5%">备注</th>
+        </tr>
+        {if $goods_list}
+        {foreach from=$goods_list item=v}
+            <tr id="tr_2_{$v.goods_id}" class="tr_list">
+                <td>{$v.goods_sn}</td>
+                <td style="text-align:left;padding-left:6px;">{$v.goods_name}</td>
+                <td>{$v.shop_price}</td>
+                {if $show_cost_price}
+                <td{if $edit_cost_price} ondblclick="replaceToInputHTML(this,'storage.php?act=edit_cost_price&goods_sn={$v.goods_sn}','text',postUpdateData)"{/if}>{$v.cost_price}</td>
+                {/if}
+                <td{if $update_min_price} ondblclick="replaceToInputHTML(this,'storage.php?act=update_min_price&goods_sn={$v.goods_sn}','text',postUpdateData)"{/if}>{$v.min_price}</td>
+                <td>{$v.goods_number}</td>
+                {if $show_safe_storage_number}
+                <td title="双击修改安全库存" id="td_{$v.goods_id}">
+                    <label ondblclick="editInpValue(this,{$v.warn_number},{$v.goods_id})">{$v.warn_number}</label>
+                </td>
+                {/if}
+                <td>
+                    <a href="storage.php?act=check_stock_batch&goods_id={$v.goods_id}" title="库存批次">{$v.stock_times}批次</a>
+                </td>
+                <td>{$v.goods_weight}</td>
+                <!--<td>{$v.shelflife}</td>-->
+                <td>
+                  {if $v.exipre_status}
+                  <font color="red">{$v.expire_time}</font>
+                  {else}
+                  {$v.expire_time}
+                  {/if}
+                </td>
+                <td>{$v.goods_effect}{if $power_turn_on eq 'able'}<button class="2B" value="storage.php?act=goods_effect&info=goods_effect&id={$v.goods_id}&type=select" onclick="sendEditInfo(this)"><img src="images/edit.gif"/></button>{/if}</td>
+                <td>{$v.goods_type}</td>
+                {if $power_turn_on eq 'able'}
+                <td>
+                    <!--<a href="storage.php?act=edit_goods&goods_id={$v.goods_id}"><img src="images/edit.gif"></a>-->
+                    {if $filter neq 'sold_out' && $v.is_on_sale eq 1}
+                    <button class="btn_new" onclick="isOnsale(0,{$v.goods_id},this)">下架</button>
+                    {else}
+                    <button class="btn_new" onclick="isOnsale(1,{$v.goods_id},this)">上架</button>
+                    {/if}
+                </td>
+                {/if}
+                <td>
+                    {if $v.status eq 0}
+                    <img src="images/nottrack.gif" {if $mod_stock_role eq 'able'}onclick="modGoodsStatus(this)"{/if} value="{$v.goods_sn}" sta="1" class="png_btn" title="点击恢复进货该商品">
+                    {else}
+                    <img src="images/track.png" {if $mod_stock_role eq 'able'} onclick="modGoodsStatus(this)"{/if} value="{$v.goods_sn}" sta="0" class="png_btn" title="点击不再进货该商品">
+                    {/if}
+                </td>
+                <td></td>
+            </tr>
+            {/foreach}
+            {else}
+            <tr>
+                <td colspan=11>没有符合记录</td></tr>
+            {/if}
+        </table>
+    </div>
+    <input type="hidden" id="sort_order" value="{if $sort_info.sort_order eq 'DESC'}ASC{else}DESC{/if}" />
+</div>
+<input type="hidden" name="name" id="URI" value="storage.php">

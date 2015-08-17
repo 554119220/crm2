@@ -1,0 +1,62 @@
+<style type="text/css">
+#scrollParent {background:#CCC; height:16px; width:200px; border:1px solid #000;left:640px;top:125px;padding:1px 1px; position:absolute}
+#scrollBlock {background:green; width:24px; height:16px; line-height:16px; text-align:center; color:#FFF; font-weight:bolder; font-size:19px; position:absolute; cursor:pointer; -webkit-linear-gradient(red, blue)}
+#person_style {position:absolute}
+</style>
+<div class="content-head">
+    <div class="finder-title mt10">{$curr_title}<font>{$num}</font></div>
+    <div class="gridlist-action" style="width:1170px; height:35px">
+        <div class="nav-search">
+            月份：<input class="Wdate" type="text" value="{$month}" size="10px" onClick="WdatePicker({dateFmt:'yyyy-MM',{$min_date}})" onchange="showThisMonth(this.value)">
+            <label><input type="checkbox" id="col_1" value="销量" checked onclick="showOrHide(this)">销量</label>
+            <label><input type="checkbox" id="col_11" value="金额" checked onclick="showOrHide(this)">金额</label>
+        </div>
+    </div>
+
+    {if $product_sales}
+    <!-- 个人销量统计 -->
+    <div class="mt10">
+        <div id="scrollParent"><div id="scrollBlock" onmousedown="scrollStart('scrollBlock', 'person_style')"><></div></div>
+        <table border="0" id="person_style" cellpadding="0" cellspacing="0" class="all_table_list border c_b" width="2500px">
+            <thead>
+                <tr>
+                    <th width="30px"> </th>
+                    <th width="300px"> </th>
+                    {foreach from=$row_list key=date_list item=no_use}
+                    <th colspan="2" onclick="showThisMonth({$year_mark})">{$date_list}号</th>
+                    {/foreach}
+                    <!--th colspan="2">全月</th-->
+                </tr>
+                <tr id="sortByThis">
+                    <th id="rank">排序</th>
+                    <th>产 品</th>
+                    {foreach from=$row_list key=date_list item=no_use}
+                    <th>销量</th><th>金额</th>
+                    {/foreach}
+                    <!--th>销量</th><th>金额</th-->
+                </tr>
+            </thead>
+            <tbody>
+            {foreach from=$product_sales item=val key=key name=i}
+            <tr>
+                <th>{$smarty.foreach.i.iteration}</th>
+                <th title="{$goods_list[$key]}">{$goods_list[$key]}</th>
+                {foreach from=$row_list item=row}
+                {foreach from=$val key=k item=v}
+                {if $k eq $row}
+                <th>{$v.goods_number}</th>
+                <th>{$v.goods_amount}</th>
+                {/if}
+                {/foreach}
+                {if !isset($val[$row])}
+                <th>-</th>
+                <th>-</th>
+                {/if}
+                {/foreach}
+            </tr>
+            {/foreach}
+            </tbody>
+        </table>
+    </div>
+    {/if}
+</div>

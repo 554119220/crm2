@@ -1,0 +1,158 @@
+<!-- start goods form -->
+<div class="blank"></div>
+<ul class="clearfix mt10">
+        <!-- 针对订单状态进行的分类 -->
+        <li class="current-tab">
+        <a>商品列表</a>
+        </li>
+      </ul>
+
+<div class="tab-div">
+  <div id="tabbody-div">
+    <!-- 通用信息 -->
+    <table width="100%" id="general-table" align="center" class="table_form">
+      <tr>
+        <td width="200">
+          <strong>商品名称</strong>：<span id="goods_name" class="user_list_info">{$goods.goods_name}
+            <button value="goods.php?act=ajax_edit&info=goods_name&gid={$goods.goods_id}&type=input" title="修改商品名称" onclick="sendEditInfo(this)"></button></span>
+        </td>
+        <td width="200"><strong>商品编号：</strong>
+          <span id="goods_sn">{$goods.goods_sn}
+            <button value="goods.php?act=ajax_edit&info=goods_sn&gid={$goods.goods_id}&type=input" title="修改商品名称" onclick="sendEditInfo(this)"></button></span>
+        </td>
+        <td width="400">
+          <strong>简要说明：</strong>
+          <span id="goods_brief" class="user_list_info">{$goods.goods_brief}
+            <button value="goods.php?act=ajax_edit&info=goods_brief&gid={$goods.goods_id}&type=textarea" title="修改商品名称" onclick="sendEditInfo(this)"></span>
+          </td>
+      </tr>
+      <tr>
+         <td colspan="2">
+            <strong>商品分类：</strong>
+            <select name="cat_id" onchange="hideCatDiv()" >
+              <option value="0">请选择</option>
+              {$cat_list}
+            </select>
+
+            <input type="button" class="b_submit" value="添加分类"
+            onclick="rapidCatAdd()" class="add_button" />
+            <span id="category_add" style="display:none;">
+              <input class="text" size="10"
+              name="addedCategoryName" />
+              <input type="button" value="确定"
+              onclick="addCategory()" class="add_button" />
+              <input type="button" value="分类管理"
+              onclick="return goCatPage()"  class="add_button"/ >
+              <input type="button" value="<<<"
+              onclick="hideCatDiv()" />
+            </span>
+
+          </td>
+         
+          <td> 
+            <strong>商品品牌：</strong>
+            <select name="brand_id" onchange="hideBrandDiv()" ><option value="0">{$lang.select_please}{html_options options=$brand_list selected=$goods.brand_id}</select>
+
+            <input type="button" value="添加品牌" class="b_submit" 
+            onclick="rapidBrandAdd()" class="add_button" />
+            <span id="brand_add" style="display:none;">
+              <input class="text" size="15" name="addedBrandName" />
+              <input type="button" value="确定"
+              onclick="addBrand()" class="add_button" >
+              <input type="button" value="品牌管理"
+              onclick="return goBrandPage()" class="special" />
+              <input type="button" value="<<<"
+              onclick="hideBrandDiv()" />
+            </span>
+
+          </td>
+        </tr>
+        {if $suppliers_exists eq 1}
+        <tr>
+          <td>{$lang.label_suppliers}</td>
+          <td>
+            <select name="suppliers_id" id="suppliers_id">
+              <option value="0">{$lang.suppliers_no}</option>
+              {html_options options=$suppliers_list_name selected=$goods.suppliers_id}
+          </select></td>
+        </tr>
+        {/if}
+        <tr>
+          <td><strong>本店售价:</strong>
+            <span id="shop_price" class="user_list_info">{$goods.shop_price}
+              <button value="goods.php?act=ajax_edit&info=shop_price&gid={$goods.goods_id}&type=input" title="修改商品名称" onclick="sendEditInfo(this)"></button></span>
+          </td>
+        <!-- 属性与规格 -->
+        {if $goods_type_list}
+        <!--tr>自定义字段
+        <td><a href="javascript:showNotice('noticeGoodsType');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a>{$lang.lab_goods_type}</td>
+        <td>
+          <select name="goods_type" onchange="getAttrList({$goods.goods_id})">
+            <option value="0">{$lang.sel_goods_type}</option>
+            {$goods_type_list}
+          </select><br />
+          <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeGoodsType">{$lang.notice_goods_type}</span></td>
+      </tr>
+      <tr>
+        <td id="tbody-goodsAttr" colspan="2" style="padding:0">{$goods_attr_html}</td>
+        </tr-->
+        {/if}
+          <td><strong>库存数量：</strong>
+            <span id="goods_number" class="user_list_info">
+              {$goods.goods_number}&nbsp;{$goods.goods_number_units}
+              <button value="goods.php?act=ajax_edit&info1=goods_number&info2=goods_number_units&gid={$goods.goods_id}&name=goods_number&type=num_sel&num=1" title="修改商品名称" onclick="sendGoodsEditInfo(this)"></button></span>
+          </td>
+          <td><strong>库存警告数量:</strong>
+            <span id="warn_number" class="user_list_info">{$goods.warn_number}
+              <button value="goods.php?act=ajax_edit&info=warn_number&gid={$goods.goods_id}&type=input" title="修改库存警告数量" onclick="sendEditInfo(this)"></button></span>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>包装方式：</strong>
+            <span id="packing" class="user_list_info">{$goods.packing}
+              <button value="goods.php?act=ajax_edit&info=packing&gid={$goods.goods_id}&type=select" title="修改包装方式" onclick="sendEditInfo(this)"></button></span>
+          </td>
+          <td>
+            <strong>保质期：</strong><span id="shelflife" class="user_list_info">{$goods.shelflife}
+              <button value="goods.php?act=ajax_edit&info=shelflife&gid={$goods.goods_id}&type=input" title="修改保质期" onclick="sendEditInfo(this)"></button></span>个月
+          </td>
+          <td>
+            <strong>净含量：</strong><span id="per_unit_number" class="user_list_info">
+              {$goods.per_unit_number}&nbsp;{$goods.per_number_units}
+              <button value="goods.php?act=ajax_edit&info1=per_unit_number&info2=per_number_units&gid={$goods.goods_id}&name=per_unit_number&type=num_sel&num=2" title="修改商品名称" onclick="sendGoodsEditInfo(this)"></button></span>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>总重量：</strong>
+            <span id="goods_weight" class="user_list_info">{$goods.goods_weight}
+              <button value="goods.php?act=ajax_edit&info=goods_weight&gid={$goods.goods_id}&type=input" title="修改总重量" onclick="sendEditInfo(this)"></button></span>千克
+          </td>
+          <td><strong>每次服用量：</strong>
+            <span id="every_num" class="user_list_info">
+              {$goods.every_num}&nbsp;{$goods.every_num_units}
+              <button value="goods.php?act=ajax_edit&info1=every_num&info2=every_num_units&gid={$goods.goods_id}&name=every_num&type=num_sel&num=3"  onclick="sendGoodsEditInfo(this)"></button></span>
+          </td>
+          <td><strong>每天服用次数：</strong>
+            <span id="everyday_use" class="user_list_info">{$goods.everyday_use}
+              <button value="goods.php?act=ajax_edit&info=everyday_use&gid={$goods.goods_id}&type=input" title="修改总重量" onclick="sendEditInfo(this)"></button></span>次
+          </td>
+        </tr>
+        <!--tr>
+        <td>{$lang.lab_goods_brief}</td>
+        <td><textarea name="goods_brief" cols="40" rows="3">{$goods.goods_brief|escape}</textarea></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="javascript:showNotice('noticeSellerNote');" title="{$lang.form_notice}"><img src="images/notice.gif" width="16" height="16" border="0" alt="{$lang.form_notice}"></a> {$lang.lab_seller_note} </td>
+        <td><textarea name="seller_note" cols="40" rows="3">{$goods.seller_note}</textarea><br />
+          <span class="notice-span" {if $help_open}style="display:block" {else} style="display:none" {/if} id="noticeSellerNote">{$lang.notice_seller_note}</span></td>
+        </tr-->
+      </table>
+
+      <!-- 隐藏表单域：产品的ID -->
+      <input type="hidden" id="goods_id" value="{$goods.goods_id}"/> 
+    </div>
+  </div>
+
+
+

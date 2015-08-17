@@ -1,0 +1,59 @@
+<div class="content-head">
+  <br/>
+  <div class="finder-title">{$curr_title}</div>
+  <div class="box_center">
+    <form action="" method="post" name="form">
+      <table class="table_form table_tr list_table_form" cellpadding="0" cellspacing="0" border="0" width="50%">
+        <tr>
+          <th>用户名<font color="red">*</font>：</th>
+          <td><input type="text" name="username" onBlur="user()" />
+            <span id="users" style="margin-left:5px;color:red"></span>
+          </td>
+        </tr>
+        <tr>
+          <th>初始密码<font color="red">*</font>：</th>
+          <td><input type="password" name="password" /><span id="password" style="margin-left:5px;color:red">长度不能少于6</span></td>
+        </tr>
+        <tr>
+          <th>确认密码<font color="red">*</font>：</th>
+          <td><input type="password" name="pass" /><span id="pass" style="margin-left:5px; color:red"></span></td>
+        </tr>
+        <tr>
+          <th>手机<font color="red">*</font>：</th>
+          <td><input type="text" name="mobile" />
+            <span id="mobile" style="margin-left:5px;color:red"></span>
+          </td>
+        </tr>
+        <tr>
+          <th>姓名<font color="red">*</font>：</th>
+          <td><input type="text" name="name" /></td>
+        </tr>
+        <tr>
+          <th>分机号：</th>
+          <td><input type="number" name="ext" value=""/></td>
+        </tr>
+        <tr>
+          <th>部门<font color="red">*</font>：</th>
+          <td>
+            <select name="roles" id="role_id" onchange="getGroupList(this)">
+              <option>请选择</option>
+              {foreach  from=$select item=role}
+              <option value="{$role.role_id}">{$role.role_name}</option>
+              {/foreach}
+            </select>
+          </td>
+        </tr>
+        <tr class="hide" id="group_row">
+          <th>小组<font color="red">*</font>：</th>
+          <td>
+            <select name="group_id" id="group_id"></select>
+          </td>
+        </tr>
+        <tr>
+          <th> </th>
+          <td><input type="button" value="确  定" class="input_submit" onclick="sumit(this)"/></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>

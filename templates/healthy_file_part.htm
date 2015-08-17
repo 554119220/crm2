@@ -1,0 +1,74 @@
+<div class="caption_div">基本情况&nbsp;&nbsp;{$healthy_file.date}</div>
+<div width="100%" class="healthy">
+  <table class="table_form table_tr" cellspacing="0" border="0" width="100%">
+    <tr>
+      <th>婚姻情况：</th><td>{$healthy_file.baseInfo.is_marry}</td>
+      <th>血型：</th><td>{$healthy_file.work_condition.blood_type}</td>
+      <th>是否定期体检：</th><td>{$healthy_file.baseInfo.regular_check}</td>
+      </tr><tr>
+      <th>多长时间体检一次：</th><td>{$healthy_file.baseInfo.cyle_check}</td>
+      <th>工作类型：</th><td>{$healthy_file.work_condition.work_type}</td>
+      <th>每天工作时间：</th><td>{$healthy_file.work_condition.work_time}</td>
+      </tr><tr>
+      <th>出行情况：</th><td>{$healthy_file.work_condition.travel_situation}</td>
+      <th>生活工作环境：</th><td>{$healthy_file.work_condition.enviroment}</td>
+      <th>生活中有无危害健康元素：</th><td>{$healthy_file.work_condition.healthy_element}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="caption_div">生活习惯</div>
+{if $healthy_file.lifestyle.total neq 0}
+<div width="100%" class="healthy">
+  <table class="table_form table_tr" cellspacing="0" border="0" width="100%">
+    <tr>
+      <th>睡眠习惯：</th></td>{$healthy_file.lifestyle.sleep_habit}<td>
+      <th>入睡时间：</th></td>{$healthy_file.lifestyle.bedtime}<td>
+      <th>睡眠质量：</th></td>{$healthy_file.lifestyle.sleep_quality}<td>
+    </tr>
+    <tr>
+      <th>吸烟：</th></td>{$healthy_file.lifestyle.smoke}<td>
+      <th>每日吸烟支数：</th></td>{$healthy_file.lifestyle.smoke_number}<td>
+      <th>烟龄：</th></td>{$healthy_file.lifestyle.smoke_age}<td>
+    </tr>
+    <tr>
+      <th>喝酒：</th></td>{$healthy_file.lifestyle.drink}<td>
+      <th>主要饮酒种类：</th></td>{$healthy_file.lifestyle.drink_type}<td>
+    </tr>
+  </table>
+</div>
+{else}
+<div style="text-align:center;color:red">
+  没有记录生活习惯
+</div>
+{/if}
+
+<div style="margin-top:6px">
+  <table class="gridtable tr_hover" cellpadding="0" cellspacing="0" width="100%" id="weight_his">
+    <tr>
+      <th width="8%">添加人</th>
+      <th width="10%">测试时间</th>
+      {foreach from=$healthy_file.recently_test.examination_name item=val}
+      <th width="7%">{$val}</th>
+      {/foreach}
+    </tr>
+    <tr>
+      <td>{$healthy_file.recently_test.admin_name}</td>
+      <td>{$healthy_file.recently_test.input_time}</td>
+      {foreach from=$healthy_file.recently_test.examination_test item=val}
+      <td>{$val}</td>
+      {/foreach}
+    </tr>
+  </table>
+</div>
+
+<div style="margin-top:6px">
+  <select id="history_examination" style="margin:0px">
+    <option value="0">请选择体检项目</option>
+    {foreach from=$examination item=val}
+    <option value="{$val.examination_id}">{$val.examination_name}</option>
+    {/foreach}
+  </select>
+  <input type="button" onclick="getHistoryHealthy()" value="查看以往体检结果" class="b_submit"/>
+  <input type="button" onclick="addNewTest({$user.user_id})" class="input_submit" style="float:right" value="新休检">
+</div>

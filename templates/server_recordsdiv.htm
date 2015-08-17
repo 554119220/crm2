@@ -1,0 +1,59 @@
+<div>
+  <table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="80%">
+        <div id='scroll1' style="max-width:100%;overflow:hidden">
+          <hr class="wuhr">
+          <table style="width:1080px" height="100%" border="0" cellpadding="0" cellspacing="1">
+            <tr height="24px" bgcolor="#D2E9FF">
+              <td align="center">顾客姓名</td>
+              <td height="20px" align="center">服务类别</td>
+              <td align="center">服务方式</td>
+              <td align="center">所属客服</td>
+              <td align="center" width="400px">过程记录</td>
+              <td align="center" width="120">服务时间</td>
+              {if $role_id eq 5}
+              <td align="center">操作</td>
+              {/if}
+            </tr>
+            {foreach from=$records item=val}
+            <tr bgcolor="#FFFFFF" id="">
+              <td height="20" align="center">{$val.user_name}</td>
+              <td align="center">{$val.class}</td>
+              <td align="center">{$val.manner}</td>
+              <td align="center">{$val.admin_name}</td>
+              <td align="center">{$val.logbook}</td>
+              <td align="center">{$val.service_time}</td>
+              {if $role_id eq 5}
+              <td align="center"><a onclick="javascript:del_service({$val.service_id})" href="#" >删除</a>
+                <a onclick="javascript:update_service({$val.service_id})" href="#" >修改</a>
+              </td>
+              {/if}
+            </tr>
+            {/foreach}
+            <tr height="24px">
+              <div id="fenpage"></div>
+            </tr>
+          </table>
+        </div> 
+      </td>
+    </tr>
+  </table>
+  <!-- 分页 -->
+  <div class="bottom_tip">
+    <div class="tip_left">
+      共{$filter.total}条记录,当前页:1-10条，每页显示<input type="text" name="" size="4" onblur="#"> &nbsp;条记录&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </div>
+    <div class="tip_center">
+      <span><a href="service.php?act=service_fuse{$condition}&page={$filter.filter.page_pre}"><<</a></span>
+      {foreach from=$filter.page_set item=val}
+      <span{if $val eq $filter.page} class="cur"{/if}>{if $val eq $filter.page}{$val}{else}<a href="service.php?act=service_fuse{$condition}&page={$val}">{$val}</a>{/if}</span>
+      {/foreach}
+      <span><a href="service.php?act=service_fuse{$condition}&page={$filter.filter.page_next}">>></a></span>
+    </div>
+    <div class="tip_right">
+      跳转到第
+      <input type="text" name="page" size="4">&nbsp;页
+    </div>
+  </div>
+</div>

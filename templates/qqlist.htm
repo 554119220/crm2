@@ -1,0 +1,5 @@
+<select  id="qqlist" onchange="getQq(this)" >
+ {foreach from=$account_qq item=val}
+ <option value="{$val.user_name}">{$val.user_name}</option>
+ {/foreach}
+</select>

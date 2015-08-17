@@ -1,0 +1,96 @@
+{if $show_all}
+<!-- $Id: users_list.htm 17053 2010-03-15 06:50:26Z sxc_shop $ -->
+<style type="text/css" media="screen">
+    .stats-18 {float:left; margin:auto 0; padding:auto 0}
+    .stats-18 table {margin-top:10px; margin:auto 0; padding:auto 0}
+    .stats-18 table tr {border:1px #ccc solid !important}
+    .trhover {background:rgba(0,128,0,0.5) !important; color:#fff !important; font-weight:bolder !important}
+    .stats-sum {color:red; font-weight:bold}
+    .stats-intro { padding:2px 10px; font-size:1.1rem}
+    .stats-intro li {height:25px}
+</style>
+<div class="content-head mt10">
+    <div class="finder-title">顾客回购率<font></font></div>
+    <details>
+        <summary class="stats-sum">顾客统计说明</summary>
+        <ul class="stats-intro">
+            <li>回购率中，顾客统计的数据来源于订单表中，归属部门为订单下单时顾客所在的部门；</li>
+            <li>顾客转入其它部门后，订单的部门归属不会发生变化。</li>
+            <li>只有 订单为有效订单，才会计入顾客统计中，而无论顾客是“已购顾客”还是“意向顾客”</li>
+        </ul>
+    </details>
+
+    <div>
+        <div class="gridlist-action">
+            <div class="nav-search">
+                {if $back_stats_query}
+                下单日期：<input class="Wdate" id="start_time" type="text" value="" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',{$min_date}})">
+                至<input class="Wdate" id="end_time" type="text" value="" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',{$max_date}})">
+                {/if}
+                <!-- select id="platform" onchange="changePlatform(this)"><option value="0">选择平台</option>{html_options options=$platform}</select>
+            <select id="admin_id"><option value="0">选择客服</option>{html_options options=$admin_list}</select-->
+                <button value="report_forms.php?act=buy_back_stats" onclick="statsRate(this)" class="b_submit">搜索</button>
+            </div>
+        </div>
+
+        <table border="0" class="all_table_list border c_b" width="100%" cellpadding="0" cellspacing="0" >
+            <thead>
+                <tr>
+                    <th></th>
+                    <th colspan="2">当期购买</th>
+                    <th colspan="2">当期购买的老顾客</th>
+                    <th colspan="2">当期购买</th>
+                    <th colspan="10">新老顾客及订单总量百分比</th>
+                </tr>
+                <tr id="sortByThis">
+                    <th onclick="sortByThisCol(this)">销售平台</th>
+                    <th onclick="sortByThisCol(this)">顾客数量</th>
+                    <th onclick="sortByThisCol(this)">订单数量</th>
+                    <!--th onclick="sortByThisCol(this)">订单金额</th-->
+                    <th onclick="sortByThisCol(this)">顾客数量</th>
+                    <th onclick="sortByThisCol(this)">订单数量</th>
+                    <!--th onclick="sortByThisCol(this)">订单金额</th-->
+                    <!--th>顾客数量</th-->
+                    <th onclick="sortByThisCol(this)">老顾客占顾客总量</th>
+                    <th onclick="sortByThisCol(this)">订单金额比</th>
+                    <th onclick="sortByThisCol(this)">老顾客数量</th>
+                    <th onclick="sortByThisCol(this)">顾客总量</th>
+                    <th onclick="sortByThisCol(this)">老顾客订单量</th>
+                    <th onclick="sortByThisCol(this)">顾客订单总量</th>
+                    <!--th onclick="sortByThisCol(this)">老顾客订单总额</th-->
+                    <!--th onclick="sortByThisCol(this)">顾客订单总额</th-->
+                    <th onclick="sortByThisCol(this)">顾客数量比</th>
+                    <th onclick="sortByThisCol(this)">订单数量比</th>
+                    <th onclick="sortByThisCol(this)">订单金额比</th>
+                </tr>
+            </thead>
+            <tbody id="rate_stats">
+                {/if}
+                {foreach from=$buy_back key=key item=val}
+                <tr>
+                    <td>{$platform[$val.team]}{$platform[$key]}</td>
+                    <td>{$val.users_num}</td>
+                    <td>{$val.order_num}</td>
+                    <!--td>{$val.final_amount}</td-->
+                    <td>{$val.old_users_num}</td>
+                    <td>{$val.old_order_num}</td>
+                    <!--td>{$val.old_final_amount}</td-->
+                    <td>{$val.total_rate}</td>
+                    <td>{$val.old_rate}</td>
+                    <td>{$val.platform_old_users}</td>
+                    <td>{$val.platform_users}</td>
+                    <td>{$val.platform_old_order}</td>
+                    <td>{$val.platform_order}</td>
+                    <!--td>{$val.platform_old_amount}</td-->
+                    <!--td>{$val.platform_amount}</td-->
+                    <td>{$val.platform_users_rate}</td>
+                    <td>{$val.platform_order_rate}</td>
+                    <td>{$val.platform_amount_rate}</td>
+                </tr>
+                {/foreach}
+                {if $show_all}
+            </tbody>
+        </table>
+    </div>
+</div>
+{/if}

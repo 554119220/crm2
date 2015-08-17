@@ -1,0 +1,55 @@
+<table id="dataList" border="0" cellpadding="0" cellspacing="0" class="wu_table_list rb_border wu_rb_border" width="100%">
+  <thead>
+    <th width="7%">顾客姓名</th>
+    <th width="8%">客服</th>
+    <th width="40%">过程记录</th>
+    <th width="10%">通话录音</th>
+    <th width="15%">服务时间</th>
+    {if $role_id eq 5}
+    <th>操作</th>
+    {/if}
+  </thead>
+  {if $records}
+  <tbody>
+    {foreach from=$records item=val}
+    <tr id="tr_{$val.user_id}" style="color:{if $val.show_sev eq 0}#777 !important{/if}"/>
+      <td >
+        {$val.user_name}
+        <a href="users.php?act=user_detail&id={$val.user_id}" name="tBodies-detail" target="_blank" class="-detail">
+          <img src="images/add.gif" style="margin-top:7px"/>
+        </a>
+      </td>
+      <td>{$val.admin_name}</td>
+      <td style="text-align:left;padding-left:8px;">{$val.logbook}</td>
+      <td onclick="tpshowRecPlayer({$val.service_id})" class="btn_new" >Download</td>
+      <td>{$val.service_time}</td>
+      {if $role_id eq 5}
+      <td align="center">
+        <a href="service.php?act=service_delete&service_id={$val.service_id}" ><img src="images/no.gif" alt="删除" title="删除"></a>
+        <a onclick="javascript:update_service({$val.service_id})" href="#" ><img src="images/edit.gif" alt="修改" title="修改"></a>
+      </td>
+      {/if}
+    </tr>
+    {/foreach}
+    {else}
+    <tr>
+      <td colspan="{if $role_id eq 5}6{else}5{/if}">没有服务记录</td>
+    </tr>
+    {/if}
+  </tbody>
+</table>
+<div class="bottom_tip">
+  <div class="tip_left">
+    <p>共{$filter.record_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+  </div>
+  <div class="tip_center">
+    <span><a href="service.php?act={$filter.act}&page=1&page_size={$filter.page_size}{$condition}" id="page_link">&lt;&lt;</a></span>
+    {foreach from=$filter.page_set item=v}
+    <span {if $v eq $filter.page} class="cur"{/if}>{if $v eq $filter.page}{$v}{else}<a href="service.php?act={$filter.act}&page={$v}&page_size={$filter.page_size}{$condition}">{$v}</a>{/if}</span>
+    {/foreach}
+    <span><a href="service.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}{$condition}">&gt;&gt;</a></span>
+  </div>
+  <div class="tip_right">跳转到第
+    <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+  </div>
+</div>

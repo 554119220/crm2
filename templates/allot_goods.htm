@@ -1,0 +1,50 @@
+<div id="goods_list_div" > 
+  <table width="{if !$unedit }90%{else}100%{/if}" cellpadding="0" cellspacing="0" width="0" border="0" class="wu_table_list rb_border wu_rb_border tr_hover" id="goods_list_table">
+    <tr>
+      <th width="5%">序号</th>
+      <th width="10%">产品编号</th>
+      <th width="25%">产品名</th>
+      <th width="20%">批次</th>
+      <th width="10%">数量</th>
+      {if !$unedit}
+      <th width="10%">操作</th>
+      {/if}
+    </tr>
+    {if $allot_goods}
+    {foreach from=$allot_goods item=val name=i}
+    <tr>
+      <td>{$smarty.foreach.i.iteration}</td>
+      <td>{$val.goods_sn}</td>
+      <td>{$val.goods_name}</td>
+      <td>{$val.production_day}</td>
+      <td>
+        {if $val.number}
+        <label class="green" max="{$val.quantity}" value="{$val.number}" id="num_{$val.rec_id}" recid="{$val.rec_id}">{$val.number}</label><img class="png_btn hide" style="margin-right: 6px; display: none;" onclick="editValue(this)" src="images/edit.gif" id="edit_{$val.rec_id}" recid="{$val.rec_id}">
+        {/if}
+      </td>
+      {if !$unedit}
+      <td>
+        <input class="hide" type="checkbox" name="list_id[]" value="{$val.rec_id}" id="rec_id_{$val.rec_id}">
+        <button class="btn_new" onclick="justRemoveGoods(this)" value="{$val.rec_id}">删 除</button>
+      </td>
+      {/if}
+    </tr>
+    {/foreach}
+    {else}
+    <tr id="non_result">
+      <td colspan="6" >没有添加调拨的商品</td>
+    </tr>
+    {/if}
+    {if !$unedit}
+    <tr>
+      <td colspan="6" style="padding-right:6px;text-align:right">
+        总计：【 <span id="goods_total" value="{if $goods_total}{$goods_total}{else}0{/if}">{if $goods_total}{$goods_total}{else}0{/if}</span> 】 件
+        <button class="b_submit" onclick="addAllotLog()">保 存</button>
+      </td> 
+    </tr>
+    {/if}
+  </table>
+</div>
+
+<input type="hidden" value="{$allot_id}" id="modify">
+<br />

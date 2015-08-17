@@ -1,0 +1,60 @@
+<div style="margin:1px 3px;background:#2673C4;color:#FFF;text-align:center;padding:5px;border-radius:3px">
+  添加新的体检&nbsp;&nbsp;&nbsp;
+  <span style="background:#68af02;color:#FFFFFF;display:none;width:60px;padding-left:14px;padding-right:14px;" id="alarm_span"></span>
+  <label style="float:right;margin-right:6px;cursor:pointer" onclick="close_pop()" ><b>X</b></label>
+</div>
+<br/>
+<div style="float:left;">
+  <form name="form_add_test">
+  <table width="360px" cellspacing="0" cellpadding="0" id="table_new_test">
+    <tr>
+      <th width="130px">血压 ：</th>
+      <td>
+        <input type="text" name="blood_pressure" id="txt_blood_pressure" value="" class="bottom_input" maxlength="7"/>&nbsp;千帕(kPa)
+      </td>
+    </tr>
+    <tr>
+      <th width="130px">血脂 ：</th>
+      <td>
+        <input type="text" name="blood_fat" id="txt_blood_fat" value="" class="bottom_input" maxlength="3" />&nbsp;mg/dL
+      </td>
+    </tr>
+    <tr>
+      <th width="130px">血糖 ：</th>
+      <td>
+        <input type="text" name="blood_sugar" id="txt_blood_sugar" value="" class="bottom_input" maxlength="3"/>&nbsp;mg/dL
+      </td>
+    </tr>
+</table>
+  </form>
+<div style="display:block;">
+  <select id="examination" onchange="AddNewExamination(this)" style="width:139px;margin-bottom:6px">
+    <option value="0">新的测试项目</option>
+    {foreach from=$examination item=val}
+    <option value="{$val.examination_id}" id="{$val.descript}" title="{if $val.units neq ''}{$val.units}{else} {/if}">{$val.examination_name}</option>
+    {/foreach}
+  </select>
+  <input type="button" class="input_submit" value="保存测试结果" onclick="modifyWeight()" style="margin-right:3px;float:right" />
+</div>
+</div>
+<div style="margin-top:5px;float:left;width:260px;border-left:1px solid #666">
+  <table width="100%" cellpadding="3px">
+    <tr>
+      <th width="60%">医师备注：</th>
+      <td><textarea rows="6" id="admin_remark" style="padding:3px;resize:none;width:133px"></textarea></td>
+    </tr>
+    <tr>
+      <th width="60%">没有的测试项目：</th><td><input type="text" id="examination_name" style="margin-bottom:6px"/></td>
+    </tr>
+    <tr>
+      <th width="60%">英文描述：</th><td><input type="text" id="descript" style="margin-bottom:6px"/></td>
+    </tr>
+    <tr>
+      <th width="60%">单位：</th><td><input type="text" id="units" style="margin-bottom:6px" /></td>
+    </tr>
+  </table>
+  <div align="right">
+    <input type="button" class="b_submit" value="添加" onclick="addExamination()"/>
+  </div>
+</div>
+

@@ -1,0 +1,54 @@
+<div class="content-head">
+    <br>
+    <div class="finder-title">{$curr_title}</div>
+    <div>
+        <form action="service.php?act={if $promotion_info}update{else}insert{/if}" method="post" name="promotionInfo" accept-charset="utf-8" onsubmit="return submitForm(this.name)">
+            <table border="0">
+                <tr>
+                    <th>促销名称：</th>
+                    <td>
+                        <input type="text" value="{$promotion_info.promote_name}" name="promote_name" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>促销平台：</th>
+                    <td>
+                        <select name="platform" id="platform">
+                            <option value="0">请选择</option>
+                            {foreach from=$platform item=val}
+                            <option value="{$val.role_id}"{if $val.role_id eq $promotion_info.platform} selected{/if}>{$val.role_name}</option>
+                            {/foreach}
+                        </select>
+                        <strong style="color:red">不选平台则视为所有平台</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <th>促销商品：</th>
+                    <td>
+                        <input type="text" value="{$promotion_info.goods_name}" id="selectedGoods" list="goodsList" AJAXhref="service.php?act=get_goods_list" onchange="selectGoods()" onkeyup="listGoods(this)" required/>
+                        <datalist id="goodsList">
+                        </datalist>
+                        <input type="hidden" value="{$promotion_info.goods_sn}" id="goodsSn" name="goods_sn" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>促销价格：</th>
+                    <td>
+                        <input type="text" value="{$promotion_info.promote_price}" name="promote_price" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>促销时间：</th>
+                    <td>
+                        <input class="Wdate" id="start_time" name="start_time" type="text" value="{$promotion_info.start_time}" placeholder="开始时间" onClick="WdatePicker()">
+                        <input class="Wdate" id="end_time" name="end_time" type="text" value="{$promotion_info.end_time}" placeholder="结束时间" onClick="WdatePicker()">
+                    </td>
+                </tr>
+            </table>
+            <p><input type="submit" value="提 交" class="b_submit"></p>
+            {if $promotion_info}
+            <input type="hidden" name="promote_id" value="{$promotion_info.promote_id}">
+            {/if}
+        </form>
+    </div>
+</div>

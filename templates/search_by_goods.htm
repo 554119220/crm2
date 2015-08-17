@@ -1,0 +1,102 @@
+{if $full_page}
+<div class="mt10">
+  <div class="content-head">
+    <div class="finder-title">商品顾客列表</div>
+    <div class="gridlist-action" style="height:30px">
+      <div class="nav-search">
+        <form action="javascript:void(0)" onsubmit="showGoodsUsers()" name="search_form">
+          <input type="hidden" value="users.php?act=list_goods_by_brand" id="searchUrl"/>
+          品牌：<select id="brand" onchange="linkSelectMenu()">
+            <option value="0">请选择品牌</option>
+            {foreach from=$brand_list key=key item=val}
+            <option value="{$key}">{$val}</option>
+            {/foreach}
+          </select>
+          商品：<select id="goods" name="goods_id">
+            <option value="0">请选择商品</option>
+            {foreach from=$goods_list item=goods}
+            <option value="{$goods.goods_sn}">{$goods.goods_name}</option>
+            {/foreach}
+          </select>
+          下单时间：
+          <input class="Wdate" name="start_time" type="text" value='{$start_time}' onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})">
+          至<input class="Wdate"  name="end_time" type="text" {literal}value="{$end_time}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"{/literal}onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})">
+          {if $all}
+          <select name="role_id" onchange="roleAdminList(this)">
+            <option value="0">部门</option>
+            {foreach from=$role_list item=v}
+            <option value="{$v.role_id}">{$v.role_name}</option>
+            {/foreach}
+          </select>
+          客服
+          <select name="admin_id" id="admin_id">
+            <option value=0>不限</option>
+            {foreach from=$admin_list item=val}
+            <option value="{$val.user_id}">{$val.user_name}</option>
+            {/foreach}
+          </select>
+          {/if}
+          <input type="submit" value="搜索" class="b_submit"/>
+        </form>
+      </div>
+    </div>
+    <!--新加入订单结构-->
+    <!-- 查询订单 -->
+    <div class="finder-header-wrapper">
+      <table border="0" cellpadding="0" cellspacing="0" class="w830">
+        <tr class="f_l">
+          <td class="left_scroll f_l">
+            <!--  左上-BEGIN  -->
+            <table height="100%" cellpadding="0" cellspacing="1" width="795px">
+              <tr>
+                <td align="center" width="30px"> </td>
+                <td align="center" width="60px">顾客</td>
+                <td align="center" width="60px">会员卡号</td>
+                <td align="center" width="60px">添加时间</td>
+                <td align="center" width="60px">上次服务</td>
+                <td align="center" width="60px">所属客服</td>
+                <td align="center" width="60px">转移时间</td>
+                <td align="center" width="60px">备注</td>
+              </tr>
+            </table>
+            <!--  左上-END  -->
+          </td>
+        </tr>
+
+        <tr class="f_l">
+          <td align="left" valign="top">
+            <div class="list-div" id="listDiv">
+              {/if}
+              <!--  左下-BEGIN  -->
+              <table border="0">
+                {foreach from=$user_list item=user}
+                <tr id="tr_{$user.user_id}" height="30px">
+                  <td align="center" width="60px">
+                    <input type="checkbox" name="checkboxes[]" value="{$user.user_id}" onclick="addToRecycle(this)" notice="{if $user.user_money neq 0}1{else}0{/if}"/>
+                  </td>
+                  <td class="first-cell pos" width="95px">
+                    {$user.user_name}
+                    <a href="users.php?act=user_detail&id={$user.user_id}"><img src="images/add.gif" style="margin-top:7px"/></a>
+                  </td>
+                  <td align="center" width="103px"> {$user.member_cid}</td>
+                  <td align="center" width="105px">{$user.add_time}</td>
+                  <td align="center" width="103px">{$user.service_time}</td>
+                  <td align="center" width="105px">{$user.admin_name}</td>
+                  <td align="center" width="105px">{$user.assign_time}</td>
+                  <td title="{$user.remarks}">{$user.remarks|truncate:5}</td>
+                </tr>
+                {/foreach}
+              </table>
+              <!--  左下-END  -->
+              {if $full_page}
+            </div>
+          </td>
+        </tr>
+      </tr>
+    </table>
+  </div>
+</div>
+<div id="pageDiv" class="bottom_tip">
+</div>
+       </div>
+       {/if}

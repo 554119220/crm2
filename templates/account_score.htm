@@ -1,0 +1,60 @@
+<br>
+<div><h2>当前部门:&nbsp;{$admin_name}</h2></div>
+<div class="wu">
+  <div id="tabs1">
+  <ul>
+    {foreach from=$employees item=val }
+    <li>
+    <a href="performance.php?act=get_score&user_id={$val.user}">
+         <span>{$val.user_name}</span>
+    </a>
+    </li> 
+    {/foreach}
+  </ul>
+</div>
+</div>
+<div class="content-head">
+    <div class="finder-header-wrapper" style="" id="" >
+      <table border="0" cellpadding="0" cellspacing="0">
+           <tr>
+               <td width="100%">
+                   <div id='scroll1' style="max-width:100%;overflow:hidden"> 
+                   <hr class="wuhr">
+                   <table style="width:1024px" height="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#666">               
+                       <tr bgcolor="#ddedfb">
+                           <td align="center">账号</td>
+                           <td height="20px" align="center">类型</td>
+                           <td align="center">主题</td>
+                           <td align="center">访问地址</td>
+                           <td align="center">最近更新时间</td>
+                           <td align="center">上一次得分</td>
+                           <td align="center">总得分</td>
+                           <td align="center">检查评分</td>
+                           <td align="center">查看</td>
+                       </tr>
+                       {foreach from=$accounts item=val}
+                       <tr bgcolor="#FFFFFF" id="tr_2_{$val.account_id}">
+                           <td height="20" align="center">{$val.user_name}</td>
+                           <td align="center">{$val.type_name}</td>
+                           <td align="center">{$val.subject}</td>
+                           <td align="center">{$val.url}</td>
+                           <td align="center">{$val.account_updatetime}</td>
+                           <td align="center">{$val.prescore}</td>
+                           <td align="center">{$val.score}</td>
+                           <td align="center">
+                           <a href="performance.php?act=give_score&account_id={$val.account_id}&user={$val.user}&score=1">很差</a>
+                           <a href="performance.php?act=give_score&account_id={$val.account_id}&user={$val.user}&score=2">差</a>
+                           <a href="performance.php?act=give_score&account_id={$val.account_id}&user={$val.user}&score=3">合格</a>
+                           <a href="performance.php?act=give_score&account_id={$val.account_id}&user={$val.user}&score=4">好</a>
+                           <a href="performance.php?act=give_score&account_id={$val.account_id}&user={$val.user}&score=5">优秀</a>
+                           </td>
+                           <td align="center"><span style="color:blue"><a href="performance.php?act=score_info&account_id={$val.account_id}">查看历史得分明细</a><span></td>
+                       </tr>
+                       {/foreach}
+                   </table>
+               </div> 
+          </td>
+      </tr>
+</table>
+     </div>
+</div>

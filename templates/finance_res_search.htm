@@ -1,0 +1,72 @@
+<table border="0" cellpadding="0" cellspacing="0" class="wu_table_list wu_rb_border tr_hover" width="100%">
+  <tr>
+    <th width="8%">顾客ID</th>
+    <th width="8%">顾客姓名</th>
+    <th width="7%">服务客服</th>
+    <th width="15%">电话</th>
+    <th width="10%">会员卡号</th>
+    <th width="5%">积分</th>
+    <th width="40%">购买记录</th>
+    <th width="7%">添加人</th>
+  </tr>
+  <!--老顾客-->
+  {foreach from=$old_user_info item=val}
+  <tr> 
+    <td>{$val.user_id}</td>
+    <td>{$val.user_name}</td>
+    <td>{$val.admin_name} </td>
+    <td>{$val.tel}</td>
+    <td>
+      {if $val.card_number neq ''}{$val.card_number}{else}-{/if}
+    </td>
+    <td>{$val.rank_points}</td>
+    <td style="text-align:left">
+      {if $val.order_time}
+      【{$val.role_name}】<a href="javascript:void(0)" title="查询商品列表" onclick="getGoodsList({$val.order_id},'old')" >
+        {$val.order_time}消费{$val.final_amount}</a>
+      【订单编号{if $val.platform_order_sn neq null || $val.platform_order_sn neq 0}
+      {$val.platform_order_sn}
+      {else}
+      {$val.order_sn}
+      {/if}
+      】
+      【订单{$val.order_status}】
+      【
+      {if $val.link neq ''}
+      {$val.shipping_name}&nbsp;{$val.link}
+      {else}上门自提
+      {/if}
+      】
+      {/if}
+    </td>
+    <td>-</td>
+  </tr>
+  {/foreach}
+  <!--新顾客-->
+  {foreach from=$new_user_info item=val}
+  <tr> 
+    <td>{$val.user_id}</td>
+    <td>{$val.user_name}</td>
+    <td>{$val.admin_name}</td>
+    <td>-</td>
+    <td>-</td>
+    <td>
+      <a href="javascript:void(0)" onclick="showCalculate({$val.user_id},{$val.rank_points})">{$val.rank_points}</a> 
+    </td>
+    <td align="left">
+      {if $val.order_time}
+      【{$val.role_name}】<a href="javascript:void(0)" title="查询商品列表" onclick="getGoodsList({$val.order_id},'new')" >
+        {$val.order_time}消费{$val.final_amount}</a>
+      【订单{$val.order_status}】
+      【
+      {if $val.link neq ''}
+      {$val.shipping_name}&nbsp;{$val.link}
+      {else}上门自提
+      {/if}
+      】
+      {/if}
+    </td>
+    <td>-</td>
+  </tr>
+  {/foreach}
+</table>

@@ -1,0 +1,46 @@
+{if $show}
+<style type="text/css">
+     table#dataArea{display:inline-table}
+     #charts{width:100%; height:400px;border:1px solid #ccc; display:inline-block}
+</style>
+<!-- $Id: users_list.htm 17053 2010-03-15 06:50:26Z sxc_shop $ -->
+<div class="content-head mt10">
+     <div class="finder-title">订单数据</div>
+     <div class="list-div w830">
+          <div class="gridlist-action">
+               <div class="nav-search">
+                    <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+                    月份：<input class="Wdate" id="query_time" type="text" value="" onclick="WdatePicker({dateFmt:'yyyy-MM',{$min_date}})">
+                    <select id="platform" onchange="changePlatform(this)"><option value="0">选择平台</option>{html_options options=$platform}</select>
+                    <select id="admin_id"><option value="0">选择客服</option>{html_options options=$admin_list}</select>
+                    <button value="report_forms.php?act=buy_back_stats" onclick="queryOrderData()" class="b_submit">查询</button>
+               </div>
+          </div>
+
+          <table border="1" id="dataArea">
+               {/if}
+               <tr>
+                    <th>支付方式</th>
+                    {foreach from=$order_data_amount item=val}
+                    <td>{$payment[$val.pay_id]}</td>
+                    {/foreach}
+               </tr>
+               <tr>
+                    <th>订单总额</th>
+                    {foreach from=$order_data_amount item=val}
+                    <td>{$val.final_amount}</td>
+                    {/foreach}
+               </tr>
+               <tr>
+                    <th>运费</th>
+                    {foreach from=$order_data_amount item=val}
+                    <td>{$val.shipping_fee}</td>
+                    {/foreach}
+               </tr>
+               <!--tr><td>总额</td><td>{$total.amount}</td><td>{$total.shipping}</td></tr-->
+               {if $show}
+          </table>
+          <div id="charts"></div>
+     </div>
+</div>
+{/if}

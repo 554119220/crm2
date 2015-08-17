@@ -1,0 +1,91 @@
+<br/>
+<div class="finder-title">会员列表
+  <font id=record_count>(共{$filter.record_count}条)</font>
+</div>
+<div width="96%">
+  <div>
+    <div class="box_nav">
+      <div class="detail_tab" style="margin:0">
+        <ul>
+          {foreach from=$user_rank item=val name=i}
+          <li type="rank_{$val.rank_id}" {if $smarty.foreach.i.iteration eq 1}class="o_select"{/if} onclick="showNumbers(this,{$val.rank_id})"><span>{$val.rank_name}</span></li>
+          {/foreach}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="list_panel" style="margin-bottom:0px;">
+    <form name="sch_rank_vips">
+    <select name="select_item">
+      <option value="1">会员卡号</option>
+      <option value="2">会员名称</option>
+    </select>
+    <input type="text" ="" id="key_word" name="key_word" />
+    <select name="role_list" id="role_list"  onchange="getGroupList(this)">
+      <option value="0">请选择平台</option>
+      {foreach from=$platform item=val}
+      <option value="{$val.role_id}">{$val.role_name}</option>
+      {/foreach}
+    </select>
+    <select name="group_id" id="group_id" style="width:98px;">
+      <option value="0">请选择团队</option> 
+    </select>
+    &nbsp;积分区间<input type="number" name="min_points" min=0 step=50 style="width:68px"/>&nbsp;-
+    <input type="number" name="max_points" style="width:68px" min=0 step=50 />
+    <input type="button" value="搜 索" class="b_submit" onclick="schRankVips(this.form)"/>
+  </form>
+  </div>
+  <div class="user_list_info" id="resource">
+    <table width="100%" cellspacing="0" cellpadding="0" class="wu_table_list rb_border wu_rb_border tr_hover" id="vip_list">
+      <tr>
+        <th width="5%">查看</th>
+        <th width="10%" class="a_sort"><a href="users.php?act=vip_list&sort=user_id&sort_type={$sort_type}&rank_id={$rank_id}">会员卡ID</a></th>
+        <th width="8%">姓名</th>
+        <th width="8%" class="a_sort"><a href="users.php?act=vip_list&source=users&sort=rank_points&sort_type={$sort_type}&rank_id={$rank_id}">积分</a></th>
+        {if $section eq 'by_rank'}
+        <th width="10%" class="a_sort"><a href="users.php?act=vip_list&by_upgrade=by_upgrade&sort_type={$sort_type}&rank_id={$rank_id}">升级需积分</a></th>
+        <th width="10%">下一级</th>
+        {/if}
+        <th width="15%" class="a_sort"><a href="users.php?act=vip_list&sort=recently_pur&sort_type={$sort_type}&rank_id={$rank_id}">最近购买</a></th>
+        <th width="15%" class="a_sort"><a href="users.php?act=vip_list&sort=earliest_pur&sort_type={$sort_type}&rank_id={$rank_id}">最初购买</a></th>
+        <th width="10%" class="a_sort"><a href="users.php?act=vip_list&sort=total&sort_type={$sort_type}&rank_id={$rank_id}">成功订单数</a></th>
+        <th width="10%" class="a_sort"><a href="users.php?act=vip_list&sort=final_amount&sort_type={$sort_type}&rank_id={$rank_id}">消费总额</a></th>
+      </tr>
+      {foreach from=$rank_list item=val name=i}
+      <tr>
+        <td><label style="cursor:pointer"><img align="absmiddle" src="./images/finder_drop_arrow.gif" alt="展开" title="展开" onclick="getInfo({$val.user_id})"></label></td>
+        <td>{if $val.memship_number}{$val.memship_number}{else}-{/if}</td>
+        <td>{$val.user_name}</td>
+        <td>{$val.rank_points}</td>
+        {if $section eq 'by_rank'}
+        <!--<td><button class="btn_new" onclick="getUpRankMethod({$val.vip_id},{$val.upgrade_gap},this)">{$val.upgrade_gap}</button></td>
+        <td><button class="btn_new" onclick="getUpRank({$val.up_rank_id})">{$val.up_rank}</button></td>-->
+        <td>{$val.upgrade_gap}</td>
+        <td>{$val.up_rank_id}</td>
+        {/if}
+        <td>{$val.earliest_pur}</td>
+        <td>{$val.recently_pur}</td>
+        <td>{if $val.total eq ''|| $val.total lt 0}0{else}{$val.total}{/if}</td>
+        <td>{if $val.final_amount eq ''|| $val.final_amount lt 0}0{else}{$val.final_amount}{/if}</td>
+      </tr>
+      {/foreach}
+    </table>
+    <!-- 分页 -->
+    <div class="bottom_tip">
+      <div class="tip_left">
+        <p>共{$filter.record_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+      </div>
+      <div class="tip_center">
+        <span><a href="users.php?act={$filter.act}&page=1&page_size={$filter.page_size}{$filter.condition}" id="page_link">&lt;&lt;</a></span>
+        {foreach from=$filter.page_set item=v}
+        <span {if $v eq $filter.page} class="cur"{/if}>{if $v eq $filter.page}{$v}{else}<a href="users.php?act={$filter.act}&page={$v}&page_size={$filter.page_size}{$filter.condition}">{$v}</a>{/if}</span>
+        {/foreach}
+        <span><a href="users.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}{$filter.condition}">&gt;&gt;</a></span>
+      </div>
+      <div class="tip_right">跳转到第
+        <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+      </div>
+    </div>
+  </div>
+  <input type="hidden" name="select_rank_id" value="{$rank_id}" />
+</div>

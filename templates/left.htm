@@ -1,0 +1,30 @@
+﻿{foreach from=$nav_2nd name=i item=a}
+<details class='left-menu'{if $smarty.foreach.i.first} open{/if}><!--循环时　加if $smarty.foreach.xx.first 就输出 border-top:0-->
+    <summary onclick="showSubMenu(this)">{$a.label}</summary>
+    {foreach from=$nav_3rd key=e item=l}
+    {if $a.action eq $e}
+    {foreach from=$l item=t name=index}
+    {if $t.action eq 'add_flusher'}
+    <li><a href="/thinkphp/index.php/Home/usersassign/addflusher">{$t.label}</a></li>
+    {elseif $t.action eq 'flusher_list'}
+    <li><a href="/thinkphp/index.php/Home/Usersmanage/flusherlist">{$t.label}</a></li>
+    {elseif $t.action eq 'verify_users_list'}
+    <li><a href="/thinkphp/index.php/Home/Usersmanage/verifyUsersList">{$t.label}</a></li>
+    {elseif $t.action eq 'pay_on_delivery'}
+    <li><a href="/thinkphp/index.php/Home/Reconciliation/payondelivery">{$t.label}</a></li>
+    {elseif $t.action eq 'batch_verify_order'}
+    <li><a href="/thinkphp/index.php/Home/Reconciliation/batchVerifyOrder">{$t.label}</a></li>
+    {elseif $t.action eq 'assign_users'}
+    <li><a href="/thinkphp/index.php/Home/usersassign/assignusers">{$t.label}</a></li>
+    {elseif $t.action eq 'phone_authorize_user'}
+    <li><a href="/thinkphp/index.php/Home/usersmanage/phoneAuthorizeUser">{$t.label}</a></li>
+    {else}
+    <li><a href="{$file_name}.php?act={$t.action}">{$t.label}</a></li>
+    {/if}
+    {if $smarty.foreach.index.iteration%3 eq 0}
+    {/if}
+    {/foreach}
+    {/if}
+    {/foreach}
+</details>
+{/foreach}

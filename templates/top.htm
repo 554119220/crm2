@@ -1,0 +1,54 @@
+﻿<div class="flt f30 bold sys sys-title">康健人生会员管理系统{$sys-name}</div>
+<div id="info" class='hide'></div>
+<div class="rgt sys sys-nav">
+  <a target="_blank" href="search.php?act=search_view">公共查询</a>|
+  {$hello}
+  {if $wav}
+  <span id="wav_info" title="半个小时会更新一次">
+    <strong>&nbsp;『拨号<span style="color:red">{$wav.number_info}</span>次，时长<span style="color:red">{$wav.time_info}</span>分钟』&nbsp;</strong>
+  </span>
+  {/if}|
+  <label onclick="showMissCall()"><font>你有【<b id="miss_call">0</b>】个未接来电</font></label>
+  <div id="miss_call_list" style="display:none"></div>
+  |
+  <a target="_blank" href="feedback.php?act=feedback_form">BUG反馈</a>|
+  <a href="privilege.php?act=logout" target="_top">退出</a>
+</div>
+<div id="cont-nav">
+  {foreach from=$nav_1st item=v}
+  <a href="{$v.action}.php?act=menu" class="nav">{$v.label}</a>
+  <span class="hide">
+    {foreach from=$nav_2nd key=k item=a}
+    {if $k eq $v.action}
+    {foreach from=$a item=i}
+    <strong>{$i.label}</strong>
+    {foreach from=$nav_3rd key=e item=l}
+    {if $i.action eq $e}
+    <p>
+    {foreach from=$l item=t name=index}
+    <a href="{$v.action}.php?act={$t.action}&ext=top">{$t.label}</a>
+    {if $smarty.foreach.index.iteration%4 eq 0 and !$smarty.foreach.index.last}
+    </p><p>
+    {/if}
+    {/foreach}
+    </p>
+    {/if}
+    {/foreach}
+    {/foreach}
+    {/if}
+    {/foreach}
+  </span>
+  {/foreach}
+  {if $admin_id eq 1}
+  <a href="/thinkphp/?action_code=system&func=menu" class="nav">功能设置</a>
+  <span class="hide"> </span>
+  {/if}
+  {if in_array($admin_id, array(1,2,137,359,304,131,258,164,265))}
+  <a href="/thinkphp/?action_code=users&func=menu" class="nav">顾客</a>
+  <span class="hide"> </span>
+  {/if}
+  {if $erp}
+  <a href="/thinkphp/index.php/Home/Erp/erp" class="nav">HRM</a>
+  <span class="hide"><span>
+      {/if}
+    </div>

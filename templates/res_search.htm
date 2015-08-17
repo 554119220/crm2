@@ -1,0 +1,58 @@
+<div id="res_search">
+  <table border="0" cellpadding="0" cellspacing="0" class="wu_table_list wu_rb_border tr_hover font-size14" width="100%">
+    <tr>
+      <th width="10%">顾客ID</th>
+      <th width="13%">顾客姓名</th>
+      <th width="13%">服务客服</th>
+      <th width="13%">添加人</th>
+      <th width="30%">电话</th>
+      <th width="10%">类别</th>
+      <th widt="10%">其它信息</th>
+    </tr>
+    <!--老顾客-->
+    {foreach from=$old_user_info item=val}
+    <tr> 
+      <td style="background:{if $val.is_black eq 1}red{elseif $val.is_black eq 4}yellow{/if}">{$val.user_id}</td>
+      <td>{$val.user_name}</td>
+      <td>
+        {$val.admin_name}
+        {if $val.qq neq ''}
+        <a href="tencent://message/?uin={$val.qq}" title="{$val.qq}" name="msg">
+          <img alt="{$val.qq}" src="http://wpa.qq.com/pa?p=1:{$val.qq}:17" />
+        </a>
+        {/if}
+      </td>
+      <td>-</td>
+      <td>{$val.tel}</td>
+      <td>{$val.customer_type}</td>
+      <td>
+        <button class="btn_new" onclick="getMoreInfo({$val.user_id},'vip_card',1)">会员卡</button>&nbsp;&nbsp;
+        <button class="btn_new" onclick="getMoreInfo({$val.user_id},'order',1)">购买记录</button>
+      </td>
+    </tr>
+    {/foreach}
+
+    <!--新顾客-->
+    {if $new_user_info neq null}
+    <tr>
+      <td colspan="7" style="background-color:#63753C;color:#CFCFCF;Letter-spacing:3px;" align="center">
+        以下内容来自临时订单表（新顾客订单/老顾客订单）
+      </td>
+    </tr>
+    {/if}
+    {foreach from=$new_user_info item=val}
+    <tr> 
+      <td style="background:{if $val.is_black eq 1}red{elseif $val.is_black eq 4}yellow{/if}">{$val.user_id}</td>
+      <td>{$val.user_name}</td>
+      <td>-</td>
+      <td>{$val.admin_name}</td>
+      <td>-</td>
+      <td>{$val.customer_type}</td>
+      <td>
+        <button class="btn_new" onclick="getMoreInfo({$val.user_id},'vip_card',0)">会员卡</button>&nbsp;&nbsp;
+        <button class="btn_new" onclick="getMoreInfo({$val.user_id},'order',0)">购买记录</button>
+      </td>
+    </tr>
+    {/foreach}
+  </table>
+</div>

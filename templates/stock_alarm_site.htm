@@ -1,0 +1,39 @@
+<!--安全库存警告设置-->
+<br />
+<h3>安全库存警告设置</h3><br />
+<form name="admin_form"> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="stock_alarm_site">
+    <tr>
+      <th width="10%"> 部门：</th>
+      <td style="text-align:left;">
+        <select name="role_id" onchange="listAdmin(this)">
+          <option value="0">请选择部门</option>
+          {foreach from=$role_list item=val}
+          <option value="{$val.role_id}">{$val.role_name}</option>
+          {/foreach}
+        </select>     
+        &nbsp;<b>确认给以下员工显示库存警报</b>
+        &nbsp;<label><input type="checkbox" name="select_all" value="0" onclick="checkedAll(this)" />全选</label>
+        &nbsp;<input type="button" name="" value="确 认" onclick="setAlarmAdmin(this)" class="b_submit"/>
+      </td>
+    </tr>
+    <tr>
+      <th width="10%">员工：</th>
+      <td>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" id="admin_list_tbl">
+          {foreach from=$admin_list item=val}
+          <tr>
+            <th wdith="15%">{$val.role_name}</th>
+            <td>
+              {foreach from=$val.admin_list item=admin name=i}
+              <label><input type="checkbox" value="{$admin.user_id}" name="checkbox" />{$admin.user_name}</label>
+              {if $smarty.foreach.i.iteration%5 eq 0} <br /> {/if}
+              {/foreach}
+            </td>
+        </tr>
+        {/foreach}
+      </table>
+    </td>
+  </tr>
+</table>
+</form>

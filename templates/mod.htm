@@ -1,0 +1,171 @@
+<div class="inte_box" style="display:{if $plan eq 1}block{else}none{/if}">
+  <form id="for_mod_rank" align="left" style="background:#D3DCE3">
+    <span>
+      <label>等级名称</label>
+      <label>
+        <input type="text" name="rank_name" value="{$rank.rank_name}"/>
+      </label>
+      <label>积分区间</label>
+      <label>
+        <input style="color:#8F8D8D" type="text" name="min_point" value="{$rank.min_points}" />-
+        <input name="max_point" value="{$rank.max_points}" style="color:#8F8D8D" />
+      </label>
+    </span>
+    <span>
+      <label>兑换比例</label>
+      <label><input type="text" name="convert_scale" value="{$rank.convert_scale}"/></label>
+    </label>
+    <label>
+      （注：消费XX人民币自动兑换成1个积分，默认：10RMB=1积分）
+    </label>
+  </span>
+  <span>
+    <label>折扣比例</label>
+    <label><input type="text" name="discount" value="{$rank.discount}" /></label>
+    <label>（注：达到此等级时，所能享受的折扣率，如：80表示八折，100表示不打折）</label>
+  </span>
+  <span>
+    <label>额外比例</label>
+    <label><input type="text" name="integral_discount" value="{$rank.integral_discount}"/></label>
+    <label>（注：在所在等级兑换积分的基础上增加的额外积分比例）</label>
+  </span>
+  <span>
+    <label>适用平台</label>
+    <select name="platform">
+    <option value="0" {if $rank.role_id eq 0}selected{/if}>全平台</option>
+    {foreach from=$platform item=val}
+    <option value="{$val.role_id}" {if $val.role_id eq $rank.role_id}selected{/if}/>{$val.role_name}</option>
+    {/foreach}
+  </select>
+</span>
+  <span>
+    <label>有效期限</label>
+    <label><input name="validity" style="text-align:center" type="text" size="12px" value="{$rank.validity}" /></label>
+    <label><label><input type='radio' value="1" name="unit_data" /> 年</label></label>
+    <label><input type='radio' value="2" name="unit_data" checked="checked" /> 月</label>
+    <label><input type='radio' value="3" name="unit_data" /> 日</label>
+  </span>
+  <span>
+    <input style="margin-left:30px" type="button" class="input_submit" value="修改等级" onclick="addModRank('for_mod_rank',1)"/>
+    <input type="hidden" id="rank_id" value="{$rank.rank_id}" />
+  </span>
+</form>
+</span>
+</div>
+
+<!--修改积分规则-->
+<div class="inte_box" style="display:{if $plan eq 2}block{else}none{/if}">
+  <form id="for_mod_inte" align="left" style="background:#D3DCE3">
+    <span>
+      <label>规则名称</label>
+      <label><input type="text" name="integral_title" value="{$integral.integral_title}"/></label>
+      <label>赠送条件</label>
+      <label>
+        <select name="integral_way" >
+          <option value="1" {if $integral.integral_way eq 1}selected{/if}>消费送积分</option>
+          <option value="2" {if $integral.integral_way eq 2}selected{/if}>推荐送积分</option>
+          <option value="3" {if $integral.integral_way eq 3}selected{/if}>充值送积分</option>
+          <option value="4" {if $integral.integral_way eq 4}selected{/if}>生日送积分</option>
+          <option value="5" {if $integral.integral_way eq 5}selected{/if}>其它</option>
+        </select>
+      </label>
+    </span>
+    <span>
+      <label>赠送比例</label>
+      <label><input type="text" name="scale" value="{$integral.scale}"/></label>
+      <label>（如：0.08所获得的积分=0.08*1*[消费金额/推荐顾客数]）</label>
+    </span>
+    <span>
+      <label>适用平台</label>
+      <select name="platform">
+        <option value="0">全平台</option>
+      {foreach from=$platform item=val}
+      <option value="{$val.role_id}" {if $val.role_id eq $integral.platform}selected{/if}>{$val.role_name}</option>
+      {/foreach}
+      </select>
+    </span>
+    <span>
+      <label>适用品牌</label>
+      <select name="suit_brand">
+        <option value="0">全部品牌</option>
+        {foreach from=$brand item=val} 
+        <option value="{$val.brand_id}" {if $val.brand_id eq $integral.suit_brand}selected{/if}>
+        {$val.brand_name}
+        </option>
+        {/foreach}
+      </select>
+    </span>
+    <span>
+      <label>启动时间</label>
+      <label>
+        <input name="present_start" type="text" onClick="WdatePicker()" value="{$integral.present_start}"/>-
+      </label>
+      <label>
+        <input name="present_end" type="text" onClick="WdatePicker()" value="{$integral.present_end}"/>终止时间
+      </label>
+      <label><input name="available" type="checkbox" checked="checked" value="1" /><font color="red">是否启用</font></label>
+    </span>
+    <span>
+      <label>消费下限</label> 
+      <label>
+        <input type="text" name="min_consume" value="{$integral.min_consume}" />-
+      </label>
+      <label>
+        <input type="text" name="max_consume" value="{$integral.max_consume}" />消费上限（注：单位元）
+      </label>
+    </span>
+    <label>
+      <input type="button" class="input_submit" value="修 改" onclick="addModInte('for_mod_inte',1)" />
+      <input type="hidden" id="integral_id" value="{$integral.integral_id}" />
+    </label>
+  </form>
+</div>
+
+<div class="inte_box" style="display:{if $plan eq 3}block{else}none{/if}">
+<table style="margin-left:15px;margin-bottom:15px;clear:right" width="96%" cellspacing="0" cellpadding="0" class="all_table_list rb_border" id="cur_integral">
+      <tr id="caption">
+        <td width="80px">规则</td>
+        <td width="80px">赠送方式</td>
+        <td width="60px">赠送比例</td>
+        <td width="100px">启动时间</td>
+        <td width="100px"><label class="lb_btn" onclick="sortBy('present_end','integral_en')">结束时间</label></td>
+        <td width="100px"><label class="lb_btn" onclick="sortBy('platform','integral_en')">适用平台</label></td>
+        <td width="100px">适用品牌</td>
+        <td width="100px">消费下/上限</td>
+        <td width="75px">添加人</td>
+        <td width="100px"><label class="lb_btn" onclick="sortBy('add_time','integral_en')">修改时间</label></td>
+        <td width="75px">当前状态</td>
+      </tr>
+      <tr>
+        <td>{$inteview.integral_title}</td>
+        <td>{$inteview.integral_way}</td>
+        <td>{$inteview.scale}</td>
+        <td>{$inteview.present_start}</td>
+        <td>{$inteview.present_end}</td>
+        <td>{$inteview.role_name}</td>
+        <td>{$inteview.brand_name}</td>
+        <td>{$inteview.min_consume}/{$inteview.max_consume}</td>
+        <td>{$inteview.user_name}</td>
+        <td>{$inteview.add_time}</td>
+        <td>已启用</td>
+      </tr>
+    </table>
+</div>
+
+
+<style type="text/css" >
+  .rank_box,.inte_box {
+    padding:2px;
+  }
+
+  .rank_box,.inte_box span{
+    display:block;
+    margin: 3px 5px;
+    width:96%;
+    padding-left:2px;
+  }
+  .rank_box,.inte_box label{
+    width:162px;
+    text-align:right;
+  }
+</style>

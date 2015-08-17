@@ -1,0 +1,64 @@
+<style type="text/css" media="screen">
+  #ad_table td:nth-child(odd) {padding-left:20px}
+  #ad_table td:last-child {padding-left:0}
+  #ad_table td:first-child {padding-left:0}
+  .ad_table {padding-left:20px}
+  .text {line-height:77px; float:left}
+</style>
+<h1> 推广登记表 </h1>
+<form method="post" name="spread">
+  <table border="0" class="spread">
+    <input type="hidden" name="spread_id" value="{$spread_list.spread_id}"/>
+    <tr>
+      <th>PV：<input type="text" name="spread_pv" value="{$spread_list.spread_pv}" size="10"/></th>
+      <th>UV：<input type="text" name="spread_uv" value="{$spread_list.spread_uv}" size="10"/></th>
+      <th>订单数：<input type="text" name="orders" value="{$spread_list.orders}" size="10"/></th>
+      <th>销售额：<input type="text" name="sale" value="{$spread_list.sale}" size="10"/>元</th>
+      <th>刷单数量：<input type="text" name="scalping_num" value="{$spread_list.scalping_num}" size="10"/>元</th>
+      <th>刷单金额：<input type="text" name="scalping_amount" value="{$spread_list.scalping_amount}" size="10"/>元</th>
+    </tr>
+  </table>
+ 
+  <table border="0" id="ad_table">
+     {foreach from=$row key=key item=val}
+          <tr>
+            <td>广告：</td>
+            <td>
+              <select name="adname_id[]" id="ad_name1">
+                {foreach from=$ad_list item=v}
+                <option value="{$v.id}" {if $v.id eq $val.id } selected {/if} >
+                {$v.activity_name}</option>
+                {/foreach}   
+              </select>
+            </td>
+            <td>广告费用：</td>
+            <td><input type="text" name="ad_costs[]" id="ad_costs1" size="6" 
+              value="{$val.ad_costs}"/>元</td>
+            <td>收益：</td>
+            <td><input type="text" name="ad_revenue[]" id="ad_revenue1" size="6" 
+              value="{$val.ad_revenue}"/>元</td>
+            <td>收藏数：</td>
+            <td><input type="text" name="favorite_num[]" id="favorite_num1" size="6"
+              value="{$val.favorite_num}"/></td>
+            <td>转化订单数：</td>
+            <td><input type="text" name="change_order[]" id="change_order1" size="6"
+              value="{$val.change_order}"/></td>
+            {if $key eq 0}
+            <td><span style="cursor:pointer;" onclick="insertRowElement(this)">[&nbsp; + &nbsp;]</span></td>
+            {else}
+            <td><span style="cursor:pointer;" onclick="removeRowElement(this)">[&nbsp; - &nbsp;]</span></td>
+            {/if}
+          </tr>   
+        {/foreach}
+        </table>
+    <table>
+    <tr>
+      <th align="left" colspan="4"><span class="text">工作内容：</span><textarea name="job_content" rows="5" cols="50">{$spread_list.job_content}</textarea></th>
+    </tr>
+    <tr>
+      <th align="left" colspan="4"><span class="text">总结分析：</span><textarea name="summary" rows="5" cols="50">{$spread_list.summary}</textarea></th>
+    </tr>
+  </table>
+
+  <p><input type="button" value="提交" onclick="editSpread(this)"/></p>
+</form>

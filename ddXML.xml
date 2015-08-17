@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="GBK"?>
+<request>
+    <functionID>dangdang.order.goods.send</functionID>
+    <time>2015-07-02 20:12:48</time>
+    <OrdersList>
+        <OrderInfo> 
+            <orderID>12721492700</orderID>
+            <logisticsName>申通快递</logisticsName> 
+            <logisticsTel>1234567</logisticsTel> 
+            <logisticsOrderID>568795217333</logisticsOrderID>
+            <SendGoodsList>
+                                <ItemInfo>
+                    <itemID>1163802706</itemID>
+                    <sendGoodsCount>1</sendGoodsCount>
+                </ItemInfo>
+                            </SendGoodsList>
+        </OrderInfo> 
+    </OrdersList>
+</request>

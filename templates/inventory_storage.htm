@@ -1,0 +1,106 @@
+<!--盘点记录-->
+<br/>
+<h3>
+  盘点记录
+  <span style="float:right;margin-right:16px;margin-bottom:6px;">
+    <span id="time_title">{if $start_time neq null}<font size="3px">开始盘点时间：</font>
+      <font color="red">{$start_time}</font>{/if}</span>&nbsp;&nbsp;
+    <input type="{if $start_time neq null}button{else}hidden{/if}" id="can_inv_btn" value="取消盘点" class="btn_top_right" onclick="startInventory(this)">
+    <input type="button" id="sta_inv_btn" value="{if $start_time neq null}结束盘点{else}开始盘点{/if}" class="btn_top_right" onclick="startInventory(this)">
+  </span>
+</h3>
+<br/>
+
+<div class="gridlist-action" style="width:100%">
+  <form name="inventory_sch_form">
+    <select name="start_time" id="start_time" onchange="getInventoryTime(this)">
+      {if $time_list.start_time neq null}
+      <option value="0">盘点开始时间</option>
+      {foreach from=$time_list.start_time item=val}
+      <option value="{$val.unix_time}" {if $recently.start_time eq $val.unix_time}selected{/if}>
+      {$val.start_time}
+      </option>
+      {/foreach}
+      {else}
+      <option value="0">没有盘点记录</option>
+      {/if}
+    </select>&nbsp;&nbsp;
+    <select name="end_time" id="end_time" onchange="getInventoryTime(this)">
+      {if $time_list.end_time neq null}
+      <option value="0">盘点结束时间</option>
+      {foreach from=$time_list.end_time item=val}
+      <option value="{$val.unix_time}" {if $recently.end_time eq $val.unix_time}selected{/if}>
+      {$val.end_time}
+      </option>
+      {/foreach}
+      {else}
+      <option value="0">没有盘点记录</option>
+      {/if}
+    </select>&nbsp;&nbsp;
+    <select id="brand_id" name="brand_id" onchange="getGoodsBybrand(this.value)">
+      <option value="0">请选择品牌</option>
+      {foreach from=$brand_list item=val}
+      <option value="{$val.brand_id}">{$val.brand_name}</option>
+      {/foreach}
+    </select>
+    <select id="goods_id" name="goods_id" style="width:264px">
+      <option value="0">请选择商品</option>
+    </select>
+    <input type="text" id="keyword" name="keyword" placeholder="商品名称/商品编号"/>&nbsp;&nbsp;
+    <input type='button' class="b_submit" onclick="schInventorySto(this.form)" value="搜 索"/>
+    <span id="printer">
+    <a target="_blank" id="a_printer" href="{$p_url}" style="border:0px">
+    <img src="images/printer.png" title="打印本次盘点记录" alt="打印本次盘点记录" class="png_btn" style="width:29px"/>
+    </a>
+    </span>
+  </form>
+</div>
+<div id="resource">
+  <table width=100% cellpadding=0 cellspacing=0 border=0 class="wu_table_list rb_border wu_rb_border tr_hover">
+    <tr>
+      <th width="5%">编号</th>
+      <th width="19%">商品名称</th>
+      <th width="10%">盘点前库存</th>
+      <th width="10%">下单未发货</th>
+      <th width="10%">下单且发货</th>
+      <th width="8%">逻辑库存</th>
+      <th width="8%">实际库存</th>
+      <th width="20%">盘点前已下单(盘点时发货)</th>
+    </tr>
+    {if $inventory_storage neq null}
+    {foreach from=$inventory_storage item=val}
+    <tr>
+      <td>{$val.goods_sn}</td>
+      <td style="text-align:left;padding-left:3px">{$val.goods_name}</td>
+      <td>{$val.quantity}</td>
+      <td>{$val.place_goods_num}</td>
+      <td>{$val.delive_goods_num}</td>
+      <td>{$val.logic_quantity}</td>
+      <td id="td_{$val.storage_id}">
+        <label ondblclick="modActualQuantity(this,{$val.actual_quantity},{$val.storage_id})">{$val.actual_quantity}</label>
+      </td>
+      <td>{$val.before_inventory_num}</td>
+    </tr>
+    {/foreach}
+    {else}
+    <tr><td colspan="8">没有盘点记录</td></tr>
+    {/if}
+  </table>
+
+  <div class="bottom_tip" id="page">
+    <div class="tip_left">
+      <p>共{$filter.record_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </div>
+    <div class="tip_center">
+      <span><a href="storage.php?act={$filter.act}&page=1&page_size={$filter.page_size}{$filter.condition}" id="page_link">&lt;&lt;</a></span>
+      {foreach from=$filter.page_set item=v}
+      <span{if $v eq $filter.page} class="cur"{/if}>{if $v eq $filter.page}{$v}{else}<a href="storage.php?act={$filter.act}&page={$v}&page_size={$filter.page_size}{$filter.condition}">{$v}</a>{/if}</span>
+      {/foreach}
+      <span><a href="storage.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}{$filter.condition}">&gt;&gt;</a></span>
+    </div>
+    <div class="tip_right">
+      跳转到第
+      <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+    </div>
+  </div>
+</div>

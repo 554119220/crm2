@@ -1,0 +1,94 @@
+div .wu{
+	margin:0;
+	padding:0;
+	font: bold 11px/1.5em Verdana;
+}
+.wuhr{
+  margin-top:5px;
+  margin-bottom: 10px;
+}
+
+.wuinupt {
+  margin: 3px 6px 5px 6px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  height: 16px;
+  width: 100px;
+}
+
+.wuselect{
+  padding-top :2px;
+  padding-bottom :2px;
+  height :24px;
+  margin : 3px 6px 5px 6px;
+}
+
+wuspan {
+  color : #FF0000 ;
+  margin :3px 5px 3px 5px:
+}
+
+#tabs1 {
+    float:left;
+    width:100%;
+        background:#F4F7FB;
+    font-size:93%;
+    line-height:normal;
+        border-bottom:1px solid #BCD2E6;
+    }
+#tabs1 ul {
+      margin:0;
+      padding:10px 10px 0 50px;
+      list-style:none;
+  }
+#tabs1 li {
+  display:inline;
+  margin:0;
+  padding:0;
+  }
+#tabs1 a {
+  float:left;
+  background:url("../images/tableft.gif") no-repeat left top;
+  margin:0;
+  padding:0 0 0 4px;
+  text-decoration:none;
+  }
+#tabs1 a span {
+  float:left;
+  display:block;
+  background:url("../images/tabright.gif") no-repeat right top;
+  padding:5px 15px 4px 6px;
+  color:#627EB7;
+  }
+
+#tabs1 a span {float:none;}
+
+#tabs a:hover span {
+  color:#627EB7;
+  }
+#tabs1 a:hover {
+  background-position:0% -42px;
+  }
+#tabs1 a:hover span {
+      background-position:100% -42px;
+}
+
+.wuform {
+  font:12px/1.5 tahoma,arial,宋体 b8b\4f53;
+  padding : 0 0 36 px 0;
+  width :960px;
+}
+
+
+.b1,.b2,.b3,.b4,.b5,.b6,.b7,.b8{height:1px; font-size:1px; overflow:hidden; display:block;}
+.b1,.b8{margin:0 5px;}
+.b2,.b7{margin:0 3px;border-right:2px solid #96C2F1; border-left:2px solid #96C2F1;}
+.b3,.b6{margin:0 2px;border-right:1px solid #96C2F1; border-left:1px solid #96C2F1;}
+.b4,.b5{margin:0 1px;border-right:1px solid #96C2F1; border-left:1px solid #96C2F1; height:2px ;}
+
+.content {border-right:1px solid #96C2F1;border-left:1px solid #96C2F1;overflow:hidden; background-color: #EFF7FF;}
+
+.color1 .b1,.color1 .b8{background:#96C2F1;}
+
+.color1 .b2,.color1 .b3,.color1 .b4,.color1 .b5,
+.color1 .b6,.color1 .b7,.color1 .content{background:#EFF7FF;}

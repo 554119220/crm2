@@ -1,0 +1,21 @@
+<table cellpadding="0" cellspacing="0" class="all_table_list mt10 border f_l" width=450px>
+  <caption>{$goods_name}</caption> 
+  <tr><th>数量</th><th>生产日期</th><th>入库时间</th><th>入库人</th>
+    <th>有效期至</th>
+  </tr>
+  {foreach from=$check_list item=val}
+  <tr>
+    <td class="b_r" id="td_{$val.rec_id}">
+      {if $mod_stock_role eq 'able' and $val.editable eq 1}
+      <label ondblclick="modStockQuantity({$val.rec_id},{$val.quantity},'get_input',this)",this>{$val.quantity}</label>
+      {else}
+      {$val.quantity}
+      {/if}
+    </td>
+    <td class="b_r">{$val.production_day}</td>
+    <td class="b_r">{$val.arrival_day}</td>
+    <td class="b_r">{$val.confirmer}</td>
+    <td class="b_r">{$val.expire_time}</td>
+  </tr>
+  {/foreach}
+</table>

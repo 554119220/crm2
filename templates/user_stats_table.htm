@@ -1,0 +1,10 @@
+<table border="1" style="float:left">
+{foreach from=$stats_table item=val name=i}
+     <tr>
+          <th>{$val.admin_name}</th><td>{$val.user_number}</td>
+     </tr>
+     {if $smarty.foreach.i.iteration%10 eq 0}
+</table><table border="1" style="float:left">
+     {/if}
+{/foreach}
+</table>

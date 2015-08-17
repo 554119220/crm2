@@ -1,0 +1,613 @@
+<!-- 顾客健康档案 -->
+<br>
+<div class="layout">
+  <h3>健康档案</h3>
+  <span><input type="button" id="return_userinfo" style="float:right;margin-top:3px;display:none" class="b_submit" value="返回" onclick="returnUserinfo()"></span>
+  <!--导航样式-->
+  <div class="box_nav">
+    <div class="detail_tab" style="margin:0">
+      <ul>
+        <li type="general" class="o_select" onclick="switchSubTab(this)"><span>基本信息</span></li>
+        <li type="lifestyle" onclick="switchSubTab(this)"><span>生活习惯</span></li>
+        <li type="allergy_history" onclick="switchSubTab(this)"><span>过敏史</span></li>
+        <li type="family_case" onclick="switchSubTab(this)"><span>家庭病历</span></li>
+        <li type="before_case" onclick="switchSubTab(this)"><span>既往病历</span></li>
+        <li type="psychology" onclick="switchSubTab(this)"><span>心理</span></li>
+        <li type="other" onclick="switchSubTab(this)"><span>其它</span></li>
+      </ul>
+    </div>
+  </div>
+  <!--导航样式 end-->
+
+  <div class="box_center user_list_info wu_table" style="padding:0;width:100% !important">
+    <!-- 顾客基本信息 -->
+    <div id="general" class="show">
+      <form name="for_healthy" method="POST" action="">
+        <table class="table_form table_tr" cellspacing="0" border="0" id="table_info">
+          {if $users.user_id neq ''} 
+          <tr>
+            <th>顾客姓名 ：</th>
+            <td>
+              <input type="text" disabled="true" id="txt_user_name" name="user_name" value="{$users.user_name}" />
+            </td>
+          </tr>
+          {else}
+          <tr>
+            <th>顾客姓名 ：</th>
+            <td>
+              <input type="text" id="txt_user_name" name="user_name" onblur="getUsers(0)">
+              <span id="user_list" style="display:none;float:right">
+                <select id="l_user_name" onChange="getUsers(1)">
+                </select>
+              </span> 
+            </td>
+          </tr>
+          {/if}
+          <tr> 
+            <th><font color="red">*</font> 籍贯 ：</th>
+            <td>
+              <input type="text" id="txt_born_address" name="born_address"/>&nbsp;省（市、自治区）
+            </td>
+          </tr>
+          <tr>
+            <th>当前的婚姻状况 ：</th>
+            <td>
+              <label><input type="radio" id="txt_marry" name="marry" value="0">未婚</label>
+              <label><input type="radio" id="txt_marry" name="marry" value="1">已婚</label>
+              <label><input type="radio" id="txt_marry" name="marry" value="2" checked="check">单身</label>
+            </td>
+          </tr>
+          <tr>
+            <th>是否有定期体检 ：</th>
+            <td>
+              <label><input type="radio" id="txt_recheck" name="recheck" value="0">否</label>
+              <label><input type="radio" id="txt_recheck" name="recheck" value="1">是</label>
+            </td>
+          </tr>
+          <tr>
+            <th>多长时间体检一次 ：</th>
+            <td>
+              <label><input type="radio" id="txt_cycle_check" name="cycle_check"  value="0">半年</label>
+              <label><input type="radio" id="txt_cycle_check" name="cycle_check"  value="1">一年</label>
+              <label><input type="radio" id="txt_cycle_check" name="cycle_check"  value="2">两年</label>
+              <label><input type="radio" id="txt_cycle_check" name="cycle_check"  value="3">两年以上</label>
+            </td>
+          </tr>
+        </table>
+        <table class="table_form table_tr" cellspacing="0" border="0">
+          <caption style="font-size:14px;background:#F1F1F1;text-align:left;font-weight:bold;line-height:36px;padding-left:10px">工作情况</caption>
+          <tr>
+            <th>工作类型 ：</th>
+            <td>
+              <label><input type="radio" id="txt_job_type" name="job_type" value="0" />体力劳动</label>
+              <label><input type="radio" id="txt_job_type" name="job_type" value="1" />脑力劳动</label>
+            </td>
+          </tr>
+          <tr>
+            <th>每天工作时间 ：</th>
+            <td>
+              <label><input type="radio" id="txt_worktime" name="worktime" value="0">6小时&nbsp;&nbsp;</label>
+              <label><input type="radio" id="txt_worktime" name="worktime" value="1">6&minus;8小时&nbsp;&nbsp;</label>
+              <label><input type="radio" id="txt_worktime" name="worktime" value="2">8&minus;10小时&nbsp;&nbsp;</label>
+              <label><input type="radio" id="txt_worktime" name="worktime" value="3">10小时</label>
+            </td>
+          </tr>
+          <tr>
+            <th>出行情况 ：</th>
+            <td>
+              <label><input type="checkbox" id="txt_travel" name="travel" value="地铁">地铁&nbsp;</label>
+              <label><input type="checkbox" id="txt_travel" name="travel" value="公交">公交&nbsp;</label>
+              <label><input type="checkbox" id="txt_travel" name="travel" value="步行">步行&nbsp;</label>
+              <label><input type="checkbox" id="txt_travel" name="travel" value="私家车">私家车&nbsp;</label>
+            </td>
+          </tr>
+          <tr>
+            <th>生活工作环境 ：</th>
+            <td>
+              <label><input type="checkbox" id="txt_enviroment" name="enviroment" value="高空">高空&nbsp;</label>
+              <label><input type="checkbox" id="txt_enviroment" name="enviroment" value="高热">高热&nbsp;</label>
+              <label><input type="checkbox" id="txt_enviroment" name="enviroment" value="低温">低温&nbsp;</label>
+              <label><input type="checkbox" id="txt_enviroment" name="enviroment" value="高辐射">高辐射&nbsp;</label>
+              <label><input type="checkbox" id="txt_enviroment" name="enviroment" value="高噪音">高噪音&nbsp;</label>
+            </td> 
+          </tr>
+          <tr>
+            <th>工作中有无危害健康因素 ：</th>
+            <td>
+              <label>
+                <input type="radio" id="txt_healthy_element" name="healthy_element" value="0" check="checked">无
+              </label>
+              <label><input type="radio" id="txt_healthy_element" name="healthy_element" value="1">有</label>
+            </td>
+          </tr>
+          <tr>
+            <th>血型 ：</th>
+            <td>
+              <label><input type="radio" id="txt_blood" name="blood" value="0">A型&nbsp;</label>
+              <label><input type="radio" id="txt_blood" name="blood" value="1">B型&nbsp;</label>
+              <label><input type="radio" id="txt_blood" name="blood" value="2">AB型&nbsp;</label>
+              <label><input type="radio" id="txt_blood" name="blood" value="3">O型&nbsp;</label>
+              <label><input type="radio" id="txt_blood" name="blood" value="4">其它&nbsp;</label>
+              <input type="text" name="blood" id="txt_blood"/> 
+            </td>
+          </tr>
+        </table>
+
+        <table class="table_form table_tr" border="0px" cellspacing="0">
+          <caption style="font-size:14px;background:#F1F1F1;text-align:left;line-height:32px;padding-left:10px;font-weight:bold">血脂、血压、血糖情况</caption>
+          <tr>
+            <th>一般指标 ：</th>
+            <td>
+              <input type="text" name="blood_pressure" value="" placeholder="血压"/>
+              <input type="text" name="blood_fat" value="" placeholder="血脂"/>&nbsp;mg/dL
+              <input type="text" name="blood_sugar" value="" placeholder="血糖"/>&nbsp;mmol/L
+            </td>
+          </tr>
+        </table>
+
+        <table class="table_form table_tr" border="0px" cellspacing="0">
+          <caption style="font-size:14px;background:#F1F1F1;text-align:left;line-height:32px;padding-left:10px;font-weight:bold">体重情况</caption>
+          <tr>
+            <th width="130px">身高 ：</th>
+            <td>
+              <input type="text" id="txt_height" name="height" onkeypress="isNum(event)" />&nbsp;厘米
+            </td>  
+            <th>体重 ：</th>
+            <td>
+              <input type="text" id="txt_weight" name="weight" onkeypress="isNum(event)" onblur="calculater('BMI','{$users.sex}')" />&nbsp;千克
+            </td>
+          </tr>
+          <tr>
+            <th>体重指数（BMI）：</th>
+            <td>
+              <input type="text" name="BMI" id="txt_BMI" value="" disabled="true">  
+            </td>
+          </tr>
+          <tr>
+            <th>腰围 ：</th>
+            <td>
+              <input type="text" id="txt_waistline" name="waistline" onkeypress="isNum(event)">&nbsp;厘米
+            </td>
+            <th>臀围 ：</th>
+            <td>
+              <input type="text" id="txt_hipline" name="hipline" onblur="calculater('WHR','{$users.sex}')" onkeypress="isNum(event)" >&nbsp;厘米
+            </td>
+          </tr>
+          <tr>
+            <th>腰臀比（WHR） ：</th>
+            <td>
+              <input type="text" id="txt_WHR" name="WHR" disabled="true" />
+            </td>
+          </tr>
+          <tr>
+            <td align="center" colspan="4">
+              <input class="input_submit" type="button" onclick="subHealthy()" value="保存"/>
+            </td>
+          </tr> 
+        </table>
+      </form>
+    </div>
+
+    <!--生活习惯-->
+    <div id="lifestyle" class="hide" style="width:100% !important">
+      <form name="for_lifestyle" method="POST" action="">
+        <table class="table_form table_tr" border="0" cellspacing="0">
+          <tr>
+            <th>饮食习惯和品味 ：</th>
+            <td>
+              <label><input type="checkbox" name="food_taste" id="txt_food_taste" value="喜甘甜"/>&nbsp;喜甘甜&nbsp;</label>
+              <label>
+                <input type="checkbox" name="food_taste" id="txt_food_taste" value="喜辛辣、刺激"/>&nbsp;喜辛辣、刺激&nbsp;
+              </label>
+              <label><input type="checkbox" name="food_taste" id="txt_food_taste" value="喜咸"/>&nbsp;喜咸&nbsp;</label>
+              <label><input type="checkbox" name="food_taste" id="txt_food_taste" value="喜油腻"/>&nbsp;喜油腻&nbsp;</label>
+              <label><input type="checkbox" name="food_taste" id="txt_food_taste" value="喜炙烤"/>&nbsp;喜炙烤&nbsp;</label>
+              <label><input type="checkbox" name="food_taste" id="txt_food_taste" value="喜清淡"/>&nbsp;喜清淡&nbsp;</label>
+            </td>
+          </tr>
+          <tr>
+            <th>一日三餐时间是否固定 ：</th>
+            <td>
+              <label><input type="radio" id="txt_fixed_dinner" name="fixed_dinner" value="0">&nbsp;否&nbsp;</label>
+              <label><input type="radio" id="txt_fixed_dinner" name="fixed_dinner" value="1">&nbsp;是</label>
+            </td>
+          </tr>
+          <tr>
+            <th>用餐时间一般为 ：</th>
+            <td>
+              <label><input type="radio" id="txt_mealtime" name="mealtime" value="0">&nbsp;15分钟以内&nbsp;</label>
+              <label><input type="radio" id="txt_mealtime" name="mealtime" value="1">&nbsp;15~30分钟以内&nbsp;</label>
+              <label><input type="radio" id="txt_mealtime" name="mealtime" value="2">&nbsp;30~60分钟以内&nbsp;</label>
+              <label><input type="radio" id="txt_mealtime" name="mealtime" value="3">&nbsp;60分钟以上&nbsp;</label>
+            </td>
+          </tr>
+          <tr>
+            <th>睡眠习惯 ：</th>
+            <td>
+              <label><input type="radio" id="txt_sleep_habit" name="sleep_habit" value="0">&nbsp;早睡早起&nbsp;</label>
+              <label><input type="radio" id="txt_sleep_habit" name="sleep_habit" value="1">&nbsp;早睡晚起&nbsp;</label>
+              <label><input type="radio" id="txt_sleep_habit" name="sleep_habit" value="2">&nbsp;晚睡晚起&nbsp;</label>
+              <label><input type="radio" id="txt_sleep_habit" name="sleep_habit" value="3">&nbsp;晚睡早起&nbsp;</label>
+              <label><input type="radio" id="txt_sleep_habit" name="sleep_habit" value="3">&nbsp;不规律</label>
+            </td>
+          </tr>
+          <tr>
+            <th>入睡时间 ：</th>
+            <td>
+              <label>
+                <input  type="radio" id="txt_bedtime_start" name="bedtime_start" value="0">&nbsp;早于22点&nbsp;
+              </label>
+              <label>
+                <input  type="radio" id="txt_bedtime_start" name="bedtime_start" value="1">&nbsp;22点到23点 &nbsp;
+              </label>
+              <label>
+                <input  type="radio" id="txt_bedtime_start" name="bedtime_start" value="2">&nbsp;23点到0点&nbsp;
+              </label>
+              <label>
+                <input  type="radio" id="txt_bedtime_start" name="bedtime_start" value="3">&nbsp;0点后
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <th>睡眠质量 ：</th>
+            <td>
+              <label><input type="radio" id="txt_sleep_quality" name="sleep_quality" value="0">&nbsp;良好&nbsp;</label>
+              <label><input type="radio" id="txt_sleep_quality" name="sleep_quality" value="1">&nbsp;一般&nbsp;</label>
+              <label>
+                <input type="radio" id="txt_sleep_quality" name="sleep_quality" value="2">&nbsp;入睡困难&nbsp;
+              </label>
+              <label><input type="radio" id="txt_sleep_quality" name="sleep_quality" value="3">&nbsp;早醒&nbsp;</label>
+              <label><input type="radio" id="txt_sleep_quality" name="sleep_quality" value="4">&nbsp;易梦&nbsp;</label>
+              <label><input type="radio" id="txt_sleep_quality" name="sleep_quality" value="5">&nbsp;多梦</label>
+            </td>
+          </tr>
+          <tr>
+            <th>睡眠时间 ：</th>
+            <td>
+              <label><input type="radio" id="txt_bedtime" name="bedtime" value="0">&nbsp;&lt;6小时</label>
+              <label><input type="radio" id="txt_bedtime" name="bedtime" value="1">&nbsp;6-8小时</label>
+              <label><input type="radio" id="txt_bedtime" name="bedtime" value="2">&nbsp;8-10小时</label>
+              <label><input type="radio" id="txt_bedtime" name="bedtime" value="3">&nbsp;&gt;10小时</label>
+            </td>
+          </tr>
+        </table>
+
+        <table class="table_form table_tr" border="0" cellspacing="0">
+          <caption style="font-size:14px;background:#F1F1F1;text-align:left;line-height:32px;padding-left:10px;font-weight:bold">运动习惯</caption>
+          <tr>
+            <th>每周运动次数 ：</th>
+            <td>
+              <label><input type="radio" id="txt_sport_times" name="sport_times" value="0">&nbsp;&le;2次&nbsp;</label>
+              <label><input type="radio" id="txt_sport_times" name="sport_times" value="1">&nbsp;&le;3-4次&nbsp;</label>
+              <label><input type="radio" id="txt_sport_times" name="sport_times" value="2">&nbsp;&le;5次</label>
+            </td>
+          </tr>
+          <tr>
+            <th>平均每次锻炼时间 ：</th>
+            <td>
+              <label><input type="radio"  id="txt_sport_time" name="sport_time" value="0">&nbsp;&lt;20&nbsp;</label>
+              <label><input type="radio"  id="txt_sport_time" name="sport_time" value="1">&nbsp;20-40&nbsp;</label>
+              <label><input type="radio"  id="txt_sport_time" name="sport_time" value="2">&nbsp;40-60&nbsp;</label>
+              <label><input type="radio"  id="txt_sport_time" name="sport_time" value="3">&nbsp;&gt;60&nbsp;</label>
+            </td>
+          </tr>
+          <tr>
+            <th>锻炼的时间主要在 ：</th>
+            <td>
+              <label><input type="radio" id="txt_sport_period" name="sport_period" value="0">&nbsp;早上&nbsp;</label>
+              <label><input type="radio" id="txt_sport_period" name="sport_period" value="1">&nbsp;中午&nbsp;</label>
+              <label><input type="radio" id="txt_sport_period" name="sport_period" value="2">&nbsp;下午&nbsp;</label>
+              <label><input type="radio" id="txt_sport_period" name="sport_period" value="3">&nbsp;晚上&nbsp;</label>
+            </td>
+          </tr>
+          <tr>
+            <th>锻炼方式 ：</th>
+            <td>
+              <label><input type="checkbox" id="txt_sport_type" name="sport_type" value="0">&nbsp;跑步&nbsp;</label>
+              <label><input type="checkbox" id="txt_sport_type" name="sport_type" value="1">&nbsp;游泳&nbsp;</label>
+              <label><input type="checkbox" id="txt_sport_type" name="sport_type" value="2">&nbsp;健身器材&nbsp;</label>
+              <label><input type="checkbox" id="txt_sport_type" name="sport_type" value="3">&nbsp;球类&nbsp;</label>
+              <label><input type="checkbox" id="txt_sport_type" name="sport_type" value="4">&nbsp;瑜伽&nbsp;</label>
+              <label><input type="checkbox" id="txt_sport_type" name="sport_type" value="5">&nbsp;气功&nbsp;</label>
+              <label><input type="checkbox" id="txt_sport_type" name="sport_type" value="4">&nbsp;其他&nbsp;</label>
+            </td>
+          </tr>
+        </table>
+
+        <table class="table_form table_tr" border="0" cellspacing="0">
+          <caption style="font-size:14px;background:#F1F1F1;line-height:32px;text-align:left;padding-left:10px;font-weight:bold">吸烟情况</caption>
+          <tr>
+            <th>是否吸烟  ：</th>
+            <td>
+              <label><input type="radio" id="txt_smoke"  name="smoke" value="0">&nbsp;否&nbsp;</label>
+              <label><input type="radio" id="txt_smoke"  name="smoke" value="1">&nbsp;是&nbsp;</label>
+              <label><input type="radio" id="txt_smoke"  name="smoke" value="2">&nbsp;偶尔&nbsp;</label>
+              <label><input type="radio" id="txt_smoke"  name="smoke" value="3">&nbsp;已戒&nbsp;</label>
+            </td>
+          </tr>
+          <tr>
+            <th>每日吸烟支数 ：</th>
+            <td>
+              <label>
+                <input type="radio" id="txt_smoke_number" name="smoke_numbers" value="0"/>&nbsp;1-5支
+              </label>
+              <label>
+                <input type="radio" id="txt_smoke_number" name="smoke_numbers" value="1"/>&nbsp;6-10支
+              </label>
+              <label>
+                <input type="radio" id="txt_smoke_number" name="smoke_numbers" value="2"/>&nbsp;11-20支
+              </label>
+              <label>
+                <input type="radio" id="txt_smoke_number" name="smoke_numbers" value="3"/>&nbsp;20支以上
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <th>烟龄</th>
+            <td>
+              <label><input type="radio" id="smoke_age" name="smoke_age" value="0"/>&nbsp;1-2年&nbsp;</label>
+              <label><input type="radio" id="smoke_age" name="smoke_age" value="1"/>&nbsp;3-5年&nbsp;</label>
+              <label><input type="radio" id="smoke_age" name="smoke_age" value="2"/>&nbsp;5-10年&nbsp;</label>
+              <label><input type="radio" id="smoke_age" name="smoke_age" value="3"/>&nbsp;10年以上&nbsp;</label>
+            </td>
+          </tr>
+          <tr>
+            <th>有无被动吸烟 ：</th>
+            <td>
+              <label>
+                <input type="radio" id="txt_passive_smoke" name="passive_smoke" value="0"/>&nbsp;经常&nbsp;
+              </label>
+              <label>
+                <input type="radio" id="txt_passive_smoke" name="passive_smoke" value="1"/>&nbsp;偶尔&nbsp;
+              </label>
+              <label>
+                <input type="radio" id="txt_passive_smoke" name="passive_smoke" value="2"/>&nbsp;很少&nbsp;
+              </label>
+              <label>
+                <input type="radio" id="txt_passive_smoke" name="passive_smoke" value="3"/>&nbsp;从无
+              </label>
+            </td>
+          </tr>
+        </table>
+
+        <table class="table_form table_tr" border="0"  cellspacing="0">
+          <caption style="font-size:14px;background:#F1F1F1;text-align:left;padding-left:10px;line-height:32px;font-weight:bold">饮酒情况</caption>
+          <tr>
+            <th>是否有饮酒情况 ：</th>
+            <td>
+              <label><input type="radio" name="drink" id="txt_drink" value="0"/>&nbsp;无&nbsp;</label>
+              <label><input type="radio" name="drink" id="txt_drink" value="1"/>&nbsp;有&nbsp;</label>
+              <label><input type="radio" name="drink" id="txt_drink" value="2"/>&nbsp;偶尔&nbsp;</label>
+              <label><input type="radio" name="drink" id="txt_drink" value="3"/>&nbsp;已戒</label>
+            </td>
+          </tr>
+          <tr>
+            <th>主要饮酒种类 ：</th>
+            <td>
+              <label>
+                <input type="checkbox" name="drink_type" id="txt_drink_type" value="白酒" />&nbsp;白酒&nbsp;
+              </label>
+              <label>
+                <input type="checkbox" name="drink_type" id="txt_drink_type" value="啤酒" />&nbsp;啤酒&nbsp;
+              </label>
+              <label>
+                <input type="checkbox" name="drink_type" id="txt_drink_type" value="果酒（如葡萄酒）" />&nbsp;果酒（如葡萄酒）&nbsp;
+              </label>
+              <label>
+                <input type="checkbox" name="drink_type" id="txt_drink_type" value="其它" />&nbsp;其它&nbsp;
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <th>如经常饮酒，每日下平均饮酒量 ：</th>
+            <td>
+              <input type="text" id="txt_drink_capacity" name="drink_capacity" value="95">&nbsp;毫升/日
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4" align="center">
+              <input type="button" class="input_submit"  value="保存" onclick="subLifestyle()">
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+    <!-- 过敏史-->
+    <div id="allergy_history" class="hide" style="width:100% !important">
+      <form name="for_allergy" method="POST" actio="">
+        <table class="table_form">
+          <tr>
+            <th>是否有药物食物等过敏史：</th>
+            <td>
+              <label><input type="radio" name="allergy" id="txt_allergy" value="0"/>&nbsp;无</label>
+              <label><input type="radio" name="allergy" id="txt_allergy" value="1"/>&nbsp;有</label>
+            </td>
+          </tr>
+          <tr>
+            <th>过敏源 ：</th>
+            <td>
+              <input type="text" size="80px" name="reason" id="txt_reason" >
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2px" align="center">
+              <input type="button" class="input_submit" onclick="subAllergy()" value="保存" />
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+
+    <!-- 家庭病历-->
+    <div id="family_case" class="hide" style="width:100% !important">
+      <form name="for_family_case" method="POST" action="">
+        <table class="table_form" cellspacing="0" border="0">
+          <tr>
+            <th>如果有恶性肿瘤，请详细填写肿瘤类型 ：</th>
+            <td>
+              <input type="text" size="80px" name="tumour" id="txt_tumour" />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="right">
+              <input type="button" class="input_submit" value="保存" onclick="subFamilyDisease()">
+            </td>
+          </tr>
+        </table> 
+      </form>
+    </div>
+
+    <!-- 既往病例-->
+    <div id="before_case" class="hide" style="width:100% !important">
+      <form  name="for_before_acse" method="POST" action="">  
+        <table class="table_form table_tr" border="0" cellspacing="0">
+          <caption style="font-size:14px;background:#F1F1F1;padding-left:10px;font-weight:bold;line-height:32px;text-align:left">既往是否有以下疾病</caption>
+          {foreach from=$case_list item=val_class}
+          <tr>
+            <th>{$val_class.class}&nbsp;：</th>
+            <td>
+              {foreach from=$before_case item=val_disease}
+              {if $val_class.class_id eq $val_disease.class_id} 
+              <label>
+                <input type="checkbox" value="{$val_disease.sickness_id}" name="before_disease" id="txt_before_disease">&nbsp;{$val_disease.disease}&nbsp;
+              </label>
+              {/if}
+              {/foreach} 
+            </td>
+          </tr>
+          {/foreach}
+          <tr>
+            <td colspan="2" align="center">
+              <input class="input_submit" type="button" onclick="subBeforeCase()" value="保存" />
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- 心理-->
+      <div id="psychology" class="hide" style="width:100% !important">
+        <form name="for_psychology"  action="" method="POST">
+          <table class="table_form table_tr" border="0" cellspacing="0">
+            <tr>
+              <th>是否经常感觉压抑 ：</th>
+              <td>
+                <label>
+                  <input type="radio" id="txt_psy_situation1" name="psy_situation1" value="0" onclick="up_answer(0,'从来不会感觉压抑')">&nbsp;从来不会&nbsp;
+                </label>
+                <label>
+                  <input type="radio" id="txt_psy_situation1" name="psy_situation1" value="1" onclick="up_answer(0,'有时会感觉压抑')">&nbsp;有时会&nbsp;
+                </label>
+                <label>
+                  <input type="radio" id="txt_psy_situation1" name="psy_situation1" value="2" onclick="up_answer(0,'经常会感觉压抑')">&nbsp;经常会&nbsp;
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <th>与人之间的沟通交往上是否有障碍 ：</th>
+              <td>
+                <label>
+                  <input type="radio" id="txt_psy_situation2" name="psy_situation3" value="6" onclick="up_answer(1,'与人之间的沟通交往上有障碍')">&nbsp;有&nbsp;
+                </label>
+                <label>
+                  <input type="radio" id="txt_psy_situation2" name="psy_situation3" value="7" onclick="up_answer(1,'与人之间的沟通交往上有时有障碍')">&nbsp;有时有&nbsp;
+                </label>
+                <label>
+                  <input type="radio" id="txt_psy_situation2" name="psy_situation3" value="8" onclick="up_answer(1,'与人之间的沟通交往上没有障碍')">&nbsp;没有&nbsp;
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <th>是否感觉工作使身心疲惫 ：</th>
+              <td>
+                <label>
+                  <input type="radio" id="txt_psy_situation3" name="psy_situation4" value="9" onclick="up_answer(1,'与人之间的沟通交往上没有障碍')">&nbsp;从来不会&nbsp;
+                </label>
+                <label>
+                  <input type="radio" id="txt_psy_situation3" name="psy_situation4" value="10" onclick="up_answer(1,'与人之间的沟通交往上没有障碍')">&nbsp;有时会&nbsp;
+                </label>
+                <label>
+                  <input type="radio" id="txt_psy_situation3" name="psy_situation4" value="11" onclick="up_answer(1,'与人之间的沟通交往上没有障碍')">&nbsp;经常会&nbsp;
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <th>是否对自己充满信心 ：</th>
+              <td>
+                <label>
+                  <input type="radio" id="txt_psy_situation4" name="psy_situation5" value="12">&nbsp;从来不是&nbsp;
+                </label>
+                <label>
+                  <input type="radio" id="txt_psy_situation4" name="psy_situation5" value="13">&nbsp;有时是&nbsp;
+                </label>
+                <label>
+                  <input type="radio" id="txt_psy_situation4" name="psy_situation5" value="14">&nbsp;经常是&nbsp;
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <th>对生活是不感到满意 ：</th>
+              <td>
+                <label>
+                  <input type="radio" id="txt_psy_situation5" name="psy_situation6" value="15">&nbsp;很满意&nbsp;
+                </label>
+                <label>
+                  <input type="radio" id="txt_psy_situation5" name="psy_situation6" value="16">&nbsp;较满意&nbsp;
+                </label>
+                <label>
+                  <input type="radio" id="txt_psy_situation5" name="psy_situation6" value="17">&nbsp;不满意&nbsp;
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <th>是否关注心理健康 ：</th>
+              <td>
+                <label>
+                  <input type="radio" id="txt_psy_situation6" name="psy_situation7" value="18">&nbsp;很关注&nbsp;
+                </label>
+                <label>
+                  <input type="radio" id="txt_psy_situation6" name="psy_situation7" value="19">&nbsp;较关注&nbsp;
+                </label>
+                <label>
+                  <input type="radio" id="txt_psy_situation6" name="psy_situation7" value="20">&nbsp;不关注&nbsp;
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" align="center">
+                <input type="button" class="input_submit" onclick="subPsychology()" value="保存" />
+              </td>
+            </tr> 
+          </table>
+        </form>
+      </div>
+
+      <!-- 其它-->
+      <div id="other" class="hide" style="width:100% !important">
+        <form name="for_other" method="POST" action=""> 
+          <table class="table_form" border="0" cellspacing="0">
+            <caption style="font-size:14px;background:#F1F1F1;padding-left:10px;font-weight:bold;line-height:32px;text-align:left">目前身体存在哪些不适症状？（若无可不填写）</caption>
+            <tr>
+              <td>
+                <textarea cols="80" rows="5" id="txt_other" name="other" ></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td align="center">
+                <input type="button" onclick="subOther()" class="input_submit" value="保存" />
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+    <input type="hidden" value="{$users.user_id}" id="ID"/>
+    <input type="hidden" value="2" id="added" />
+  </div>
+</div>
+
+<style type="text/css" >
+  label{
+    float:left !important;
+  }
+</style>

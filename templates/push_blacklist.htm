@@ -1,0 +1,23 @@
+<div style="width:489px;backgroun:#444">
+  <div class="push_blacklist_title">
+    黑名单警报解除
+    <label style="float:right;padding-right:9px;cursor:pointer" onclick="this.parentNode.parentNode.style.display='none';document.getElementById('div_pop_ups').style.display='none'">X</label>
+  </div>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" class="wu_table_list">
+    <caption style="margin-bottom:3px;"> {$users_blacklist.user_name}【{$users_blacklist.mobile}】疑是恶意顾客，请排查！ <input type="button" id="ignore_blacklist" note="{$users_blacklist.from_table}" value="排除警报" onclick="checkedBlacklist({$users_blacklist.user_id},this)" class="b_submit">
+    </caption>
+    <tr>
+      <td colspan="2">以下是参照信息（用于排查参考）</td>
+    </tr>
+    <tr>
+      <th>姓名</th>
+      <th>联系方式</th>
+    </tr>
+    {foreach from=$refer_to item=val}
+    <tr>
+      <td>{$val.user_name}</td>
+      <td>{if $val.mobile}{$val.mobile}{else}-{/if}</td>
+    </tr>
+    {/foreach}
+  </table>
+</div>

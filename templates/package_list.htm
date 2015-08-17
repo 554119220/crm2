@@ -1,0 +1,75 @@
+<div class="content-head">
+  <div class="finder-title mt10">{$curr_title}<font>{$num}</font></div>
+  <div class="finder-packet c_b" id="">
+    <div class="packet-items" id="">
+      <input type="hidden" id="cache_data" value="{$cache_data}"/>
+    </div>
+  </div>
+
+<div class="gridlist-action">
+         <div class="nav-search">
+              <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+              添加时间：<input class="Wdate" id="start_time" type="text" value="" onclick="WdatePicker()">
+              至<input class="Wdate" id="end_time" type="text" value="" onclick="WdatePicker()">
+              <select id="keyfields" onchange="changeKeywordsArae(this)">
+                   <option value="user_name">姓名</option>
+                   <option value="qq">QQ</option>
+                   <option value="aliww">旺旺</option>
+                   <option value="mobile_phone">手机号码</option>
+                   <option value="home_phone">固话</option>
+                   <option value="region">所在地区</option>
+                   <option value="address">详细地址</option>
+                   <option value="admin_name">健康顾问</option>
+                   <option value="eff_id">功效</option>
+                   <option value="type_id">分类</option>
+              </select>
+              <span id="keywordsArea">
+                   <input type="text" value="" id="keywords">
+              </span>
+              <button value="users.php?act=users_list" onclick="searchOrder(this)" class="b_submit">搜索</button>
+         </div>
+    </div>
+
+  <div class="w830" id="listDiv">
+    <table border="0" cellpadding="0" cellspacing="0" class="all_table_list c_b" width="100%">
+         <tr class="goods_fixed">
+              <th align="center" width="10%">编号</th>
+              <th align="center" width="5%">操作</th>
+              <th align="center" width="20%">套餐名称</th>
+              <th align="center" width="10%">价格</th>
+              <th align="center" width="15%">添加时间</th>
+              <th align="center" width="10%">积分额度</th>
+              <th align="center" width="30%">备注</th>
+         </tr>
+         {foreach from=$package_list item=v}
+         <tr id="tr_2_{$v.packing_id}" class="tr_list" onclick="getPackageStruct('{$v.packing_desc}',0)">
+              <td align="center">{$v.packing_desc}</td>
+              <td align="center">
+                   <a href="storage.php?act=edit_packing&packing_id={$v.packing_id}"><img src="images/edit.gif"></a>
+              </td>
+              <td height="20" align="center">{$v.packing_name}</td>
+              <td align="center">{$v.packing_price}</td>
+              <td align="center">{$v.add_time}</td>
+              <td align="center">{$v.integral}</td>
+              <td align="center"> </td>
+         </tr>
+         {/foreach}
+ </table>
+  </div>
+  <div class="bottom_tip" id="page">
+       <div class="tip_left">
+            <p>共{$record_count}条记录,当前页:{$page_start}-{$page_end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+       </div>
+       <div class="tip_center">
+            <span><a href="storage.php?act={$act}{$page_link}&page=1&page_size={$page_size}" id="page_link"><<</a></span>
+            {foreach from=$page_set item=v}
+            <span{if $v eq $page} class="cur"{/if}>{if $v eq $page}{$v}{else}<a href="storage.php?act={$act}{$page_link}&page={$v}&page_size={$page_size}">{$v}</a>{/if}</span>
+            {/foreach}
+            <span><a href="storage.php?act={$act}{$page_link}&page={$page_count}&page_size={$page_size}">>></a></span>
+       </div>
+       <div class="tip_right">
+            跳转到第
+            <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+       </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="blank">添加新商品</div>
+<form method="post" name="newProduct" action="javascript:void(0)" onsubmit="addNewProduct()" class="table_bg_img c_b w830">
+    <table width="580px" height="100%" id="general-table" class="table-form" cellpadding="1" cellspacing="1">
+        <caption><h1>添加新商品</h1></caption>
+        <tr><th>商品名称：</th><td><input type="text" name="goods_name" value=""/></td></tr>
+        <tr>
+            <th>商品分类：</th>
+            <td>
+                <select name="cat_id" onchange="hideCatDiv()" >
+                    <option value="0">请选择</option>
+                    {foreach from=$cat_list item=val}
+                    <option value="{$val.eff_id}">{$val.eff_name}</option>
+                    {/foreach}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>商品品牌：</th>
+            <td>
+                <select name="brand_id">
+                    <option value="0">{$lang.select_please}</option>
+{foreach from=$brand_list item=val}
+                    <option value="{$val.brand_id}">{$val.brand_name}</option>
+{/foreach}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>经营类型：</th>
+            <td>
+                <label><input type="radio" name="run" value="1" checked/>自营</label>
+                <!--label><input type="radio" name="run" value="2"/>其它</label-->
+            </td>
+        </tr>
+        <tr>
+            <th>产品类型：</th>
+            <td>
+                <label><input type="radio" name="goods_type" value="0"/>赠品</label>
+                <label><input type="radio" name="goods_type" value="1"/>蓝帽</label>
+                <label><input type="radio" name="goods_type" value="2"/>普通食品</label>
+                <label><input type="radio" name="goods_type" value="3"/>进口食品</label>
+            </td>
+        </tr>
+        <tr><th>商品售价：</th><td><input type="text" name="shop_price" value=""/></td></tr>
+        <tr>
+            <th>库存警告数量：</th>
+            <td><input type="number" min="0" name="warn_number" value="{$goods.warn_number}" size="20"/></td>
+        </tr>
+        <tr>
+            <th>保质期：</th>
+            <td><input type="number" name="shelflife" value="" min="0" max="100" />个月</td>
+        </tr>
+        <tr>
+            <th>净含量：</th>
+            <td>
+                <input type="number" name="per_unit_number" min="1" value=""/>
+                <select name="per_number_units" onchange="document.getElementById('every_num_units').innerHTML='&nbsp;&nbsp;'+this.value;" id="per_number_units">
+                    <option>粒</option>
+                    <option>克</option>
+                    <option>片</option>
+                    <option>粉</option>
+                    <option>件</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>总重量：</th>
+            <td><input type="number" min="0" name="goods_weight" value="" size="20" />千克</td>
+        </tr>
+        <tr>
+            <th>每次服用量：</th><td><input type="number" name="every_num" value=""/></td>
+        </tr>
+        <tr>
+            <th>每天服用次数：</th>
+            <td>
+                <label><input type="radio" name="everyday_use" value="1"/>1次</label>
+                <label><input type="radio" name="everyday_use" value="2"/>2次</label>
+                <label><input type="radio" name="everyday_use" value="3"/>3次</label>
+                <label><input type="radio" name="everyday_use" value="4"/>4次</label>
+            </td>
+        </tr>
+        <tr><th>可服用天数：</th><td><input type="number" name="take_days" value="" /></td></tr>
+        <tr><th> </th><td><input type="submit" value="确定" class="input_submit" /></td></tr>
+    </table>
+</form>

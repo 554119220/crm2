@@ -1,0 +1,38 @@
+<table class="tableList" cellspacing="0" cellpadding="0">
+    <thead>
+        <th>支付方式</th>
+        <th>支付金额</th>
+        <th>支付方式</th>
+        <th>支付金额</th>
+    </thead>
+    <tr>
+        {foreach from=$pay_list name=i key=key item=val}
+        <td>{$val}</td>
+        <td>{$pay_final[$key]}</td>
+        {if $smarty.foreach.i.iteration%2 eq 0 and !$smarty.foreach.i.last}
+    </tr>
+    <tr>
+        {/if}
+        {/foreach}
+    </tr>
+</table>
+<table class="tableList" cellspacing="0" cellpadding="0">
+    <thead>
+        <th>配送方式</th>
+        <th>支付金额</th>
+        <th>配送方式</th>
+        <th>支付金额</th>
+    </thead>
+    <tbody>
+        <tr>
+            {foreach from=$shipping_list name=i key=key item=val}
+            <td>{$val}</td>
+            <td>{$shipping_final[$key]}</td>
+            {if $smarty.foreach.i.iteration%2 eq 0 and !$smarty.foreach.i.last}
+        </tr>
+        <tr>
+            {/if}
+            {/foreach}
+        </tr>
+    </tbody>
+</table>

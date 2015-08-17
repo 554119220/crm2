@@ -1,0 +1,32 @@
+<table width="101%" cellpadding="0" cellspacing="0" class="index_small tr_hover">
+  <tr>
+    <td class="home-stuff-heading" colspan="5">&nbsp;近一个月顾客纪念日<img src="images/update.png"/></td>
+  </tr>
+  <tr>
+    <th width="10%">主题</th>
+    <th width="25%">顾客</th>
+    <th width="35%">纪念日</th>
+    <th width="10%">积分</th>
+    <th width="20%">总消费</th>
+  </tr>
+  {foreach from=$commemoration_list.commemoration_list item=val}
+  <tr>
+    <td>{$val.subject}</td>
+    <td>{$val.user_name}
+      <label style="cursor:pointer;float:right"><img align="absmiddle" src="./images/finder_drop_arrow.gif" alt="展开" title="展开" onclick="getInfo({$val.user_id})"></label>
+    </td>
+    <td>{$val.birthday}</td>
+    <td>{$val.rank_points}</td>
+    <td>{$val.sale_amount}</td>
+  </tr>
+  {/foreach}
+</table>
+<div class="index_filter_page">
+  <button onclick="getCommemoration(1,{$commemoration_list.filter.recorder_size})">&lt;&lt;</button>
+  <button onclick="getCommemoration({$commemoration_list.filter.page}-1,{$commemoration_list.filter.recorder_size})">上一页</button>
+  {foreach from=$commemoration_list.filter.list_page item=val}
+  <button class="{if $commemoration_list.filter.page eq $val}visted{/if}" onclick="getCommemoration({$val},{$commemoration_list.filter.recorder_size})">{$val}</button>
+  {/foreach}
+  <button onclick="getCommemoration({$commemoration_list.filter.page}+1,{$commemoration_list.filter.recorder_size})">下一页</button>
+  <button onclick="getCommemoration({$commemoration_list.filter.end},{$commemoration_list.filter.recorder_size})">&gt;&gt;</button>
+</div>

@@ -1,0 +1,75 @@
+<table cellpadding="0" cellspacing="0" class=" wu_table_list rb_border wu_rb_border tr_hover" width="100%">               
+    <tr>
+      <th width="14%">账号</th>
+      <th width="13%">密码</th>
+      <th width="10%">部门</th>
+      <th width="10%">授权</th>
+      <th width="10%">使用人</th>
+      <th width="18%">更新时间</th>
+      <th width="8%">状态</th>
+      <th width="15%">操作</th>
+    </tr>
+    {if $accounts neq null}
+    {foreach from=$accounts item=val}
+    <tr>
+      <td style="text-align:left;padding:5px">
+        <a href="{$val.url}" target="_blank"><img src="images/icon_transfer.gif" title="{$val.url}"/></a>
+        {if $val.is_vip eq 1}
+        <font color="red">
+          {$val.account_name}
+        </font>
+        {else}
+          {$val.account_name}
+        {/if}
+      </td>
+      <td>{$val.password}</td>
+      <td>{$val.role_name}</td>
+      <td style="align:left">
+        {$val.belong}
+      </td>
+      <td>{$val.admin_name}</td>
+      <td>{$val.account_updatetime}</td>
+      <td>
+        {if $val.usable eq 0}
+        有效
+        {elseif $val.usable eq 1}
+        <font color="red">被禁</font>
+        {elseif $val.usable eq 2}
+        <font color="red">密码错误</font>
+        {elseif $val.usabel eq 4}
+        <font color="red">被盗</font>
+        {/if} 
+      </td>
+      <td>
+        {if $department_id eq NULL OR $department_id eq 5}
+        <button class="btn_new" onclick="delAccount(this,{$val.account_id})">删除</button>
+        <button class="btn_new" onclick="modifyAccount({$val.account_id})">修改</button>
+        {elseif $val.is_check eq 0}
+        <button class="btn_new" onclick="checkedAccount({$val.account_id})">检验</button>
+        {else}
+        无权限
+        {/if}
+      </td>
+    </tr>
+    {/foreach}
+    {else}
+    <tr><td colspan="8">没有找到相关账号</td></tr>
+    {/if}
+  </table>
+
+  <!-- 分页 -->
+  <div class="bottom_tip">
+    <div class="tip_left">
+      <p>共{$filter.record_count}条记录,当前页:{$filter.start}-{$filter.end}条，每页<input type="text" name="page_size" value="" size="4" onkeyup="sendPageValue(this)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </div>
+    <div class="tip_center">
+      <span><a href="account_manager.php?act={$filter.act}&page=1&page_size={$filter.page_size}{$condition}" id="page_link">&lt;&lt;</a></span>
+      {foreach from=$filter.page_set item=v}
+      <span {if $v eq $filter.page} class="cur"{/if}>{if $v eq $filter.page}{$v}{else}<a href="account_manager.php?act={$filter.act}&page={$v}&page_size={$filter.page_size}{$condition}">{$v}</a>{/if}</span>
+      {/foreach}
+      <span><a href="account_manager.php?act={$filter.act}&page={$filter.page_count}&page_size={$filter.page_size}{$condition}">&gt;&gt;</a></span>
+    </div>
+    <div class="tip_right">跳转到第
+      <input type="text" name="page" size="4" onkeyup="sendPageValue(this)">&nbsp;页
+    </div>
+  </div>

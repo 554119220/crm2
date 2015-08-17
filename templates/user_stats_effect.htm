@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="styles/stats.css" type="text/css" />
+<div id="loadDiv">
+<!-- 页标题 -->
+<div class="page_title">顾客功效统计</div>
+<br/>
+<div>
+  部门: <select name="role_id" onchange="statsEffects(this)">
+          <option value="0">请选择</option>
+          {foreach  from=$role_list item=role}
+          <option value="{$role.role_id}" {if $role.role_id eq $role_id}selected{/if}>{$role.role_name}</option>
+          {/foreach}
+        </select>
+</div>
+<!-- 数据显示区 -->
+<div style="width:100%; height:auto">
+    <table id="user_stream_analysis" border='1'>
+        <!--caption><h2>{$keys}</h2></caption-->
+        <tr>
+            <th>姓名</th>
+            <th>总量</th>
+            {foreach from=$effect item=va}
+            <th>{$va.eff_name}</th>
+            {/foreach}
+        </tr>
+        {foreach from=$effects key=key item=val}
+        <tr>
+            <td>{$key}</td>
+            <td>{$total[$key]}</td>
+            {foreach from=$effect item=ef}
+            <td>{$val[$ef.eff_id]}</td>
+            {/foreach}
+        </tr>
+        {/foreach}
+    </table>
+</div>
+</div>

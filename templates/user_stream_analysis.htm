@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="styles/stats.css" type="text/css" />
+<div id="loadDiv">
+<!-- 页标题 -->
+<div class="page_title">顾客分布统计</div>
+
+<!-- 数据显示区 -->
+<div style="width:100%; height:auto">
+    {foreach from=$user_num key=keys item=values}
+    <table id="user_stream_analysis" border='1'>
+        <caption><h2>{$keys}</h2></caption>
+        <tr><th>姓名</th><th>全部</th><th>北京</th><th>上海</th><th>广州</th><th>深圳</th><th>广东省</th></tr>
+        {foreach from=$values key=key item=val}
+        <tr>
+            <td>{$key}</td>
+            <td>{$val[total].user_number}</td>
+            <td>{$val[北京市].user_number}</td>
+            <td>{$val[上海市].user_number}</td>
+            <td>{$val[广州市].user_number}</td>
+            <td>{$val[深圳市].user_number}</td>
+            <td>{$val[广东省].user_number}</td>
+        </tr>
+        {/foreach}
+    </table>
+    {/foreach}
+</div>
+</div>

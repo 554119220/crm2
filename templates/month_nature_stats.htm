@@ -1,0 +1,196 @@
+{if $full}
+<style type="text/css" media="screen">
+    .stats-sum {color:red; font-weight:bold}
+    .stats-intro { padding:2px 10px; font-size:1.1rem}
+    .stats-intro li {height:25px}
+    .stats-intro sup { background:yellow}
+</style>
+<div class="content-head">
+    <div class="finder-title mt10">{$curr_title}<font>{$num}</font></div>
+    <details>
+        <summary class="stats-sum">销量统计算法解释</summary>
+        <ul class="stats-intro">
+            <li>全月销量：统计当月1号0点0分0秒起，到当月最后一天<sup>[1]</sup>23点59分59秒止的各个销售部门的订单总和，包含退货订单</li>
+            <li>全月退货：统计<strong style="color:red">订单下单时间</strong>在当月1号0点0分0秒 至 当月最后一天<sup>[2]</sup>23点59分59秒的各个销售部门的退货订单总和</li>
+            <li>每天（年-月-日）：统计显示日期的0点0分0秒起，到显示日期的23点59分59秒止的各个销售部门的订单，包含退货订单</li>
+            <li>共计（页面最右侧的一列）：所在行的每一列的数据总和；<br/>例如：全月销量一行的最后一列（或最后一个表格）中的数据=中老年+会员部+官方商城+……<sup>[3]</sup>+微信微店+公司员工</li>
+            <li> </li>
+            <li>注：<mark>[1]、[2]</mark>最后一天：28号、29号、30号、31号（如果有）</li>
+            <li>注：<mark>[3]</mark>此处省略了表格第一行中的其它销售部门</li>
+        </ul>
+    </details>
+    <div class="finder-packet">
+        <div class="packet-items">
+            <ul id="sub_tag" class="clearfix">
+                <!-- 针对订单状态进行的分类 -->
+                {foreach from=$platform_list item=val name=i}
+                <li id="tag_{$val.role_id}" class="{if $smarty.foreach.i.index eq 0}current-tab{else}last{/if}">
+                    <a href="{$filename}.php?act={$act}&platform={$val.role_id}">
+                        {if $val.role_id}{$val.role_describe}-{/if}{$val.role_name}
+                    </a>
+                </li>
+                {/foreach}
+            </ul>
+            <input type="hidden" id="cache_data" value="{$cache_data}"/>
+        </div>
+    </div>
+
+    <style type="text/css">
+        #scrollParent {background:#CCC; height:16px; width:200px; border:1px solid #000;left:700px;top:140px;padding:1px 1px; position:absolute}
+        #scrollBlock {background:green; width:24px; height:16px; line-height:16px; text-align:center; color:#FFF; font-weight:bolder; font-size:19px; position:absolute; cursor:pointer; -webkit-linear-gradient(red, blue)}
+        #person_style {position:absolute}
+    </style>
+    <div class="gridlist-action" style="width:1170px; height:35px">
+        <div class="nav-search">
+            添加时间：<input class="Wdate" id="start_time" type="text" value="{$start_time}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',{$min_date}})">
+            至<input class="Wdate" id="end_time" type="text" value="{$end_time}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',{$max_date}})">
+            <button value="report_forms.php?act={$act}" onclick="salesStats(this)" class="b_submit">搜索</button>
+        </div>
+    </div>
+    <div>
+        <div id="scrollParent"><div id="scrollBlock" onmousedown="scrollStart('scrollBlock', 'person_style')"><></div></div>
+        <table border="0" id="person_style" cellpadding="0" cellspacing="0" class="all_table_list" width="2100px">
+            {/if}
+            <tr>
+                <th width="6%"> </th>
+                <th>中老年</th>
+                <th>会员部</th>
+                <th>客服1组</th>
+                <th>客服2组</th>
+                <th>客服3组</th>
+                <th>客服4组</th>
+                <th>售后服务部</th>
+                <th>官方商城</th>
+                <th>天猫商城</th>
+                <th>拍拍</th>
+                <th>京东商城</th>
+                <th>1号商城</th>
+                <th>当当网</th>
+                <th>苏宁易购</th>
+                <th>国美</th>
+                <!--<th>手机拍拍</th>-->
+                <!--<th>百度微购</th>-->
+                <th>第一C店</th>
+                <th>第二C店</th>
+                <th>第三C店</th>
+                <!--<th>亚马逊</th>-->
+                <th>微信微店</th>
+                <th>公司员工</th>
+                <th>共 计</th>
+            </tr>
+            <tr class="nature_th">
+                <th>日 期</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>
+                <!--<th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>-->
+                <!--<th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>-->
+                <!--<th>单数&nbsp;&nbsp;||&nbsp;&nbsp;销量</th>-->
+            </tr>
+            <tr class="na_td_bg">
+                <td style="text-align:center">全月销量</td>
+                <td title="中老年"><font>{$stats[D].order_num}</font><span></span>{$stats[D].order_amount}</td>
+                <td title="会员部"><font>{$stats[E].order_num}</font><span></span>{$stats[E].order_amount}</td>
+                <td title="客服1组"><font>{$stats[K1].order_num}</font><span></span>{$stats[K1].order_amount}</td>
+                <td title="客服2组"><font>{$stats[K2].order_num}</font><span></span>{$stats[K2].order_amount}</td>
+                <td title="客服3组"><font>{$stats[K3].order_num}</font><span></span>{$stats[K3].order_amount}</td>
+                <td title="客服4组"><font>{$stats[K4].order_num}</font><span></span>{$stats[K4].order_amount}</td>
+                <td title="售后服务部"><font>{$stats[V].order_num}</font><span></span>{$stats[V].order_amount}</td>
+                <td title="官方商城"><font>{$stats[A].order_num}</font><span></span>{$stats[A].order_amount}</td>
+                <td title="天猫商城"><font>{$stats[B].order_num}</font><span></span>{$stats[B].order_amount}</td>
+                <td title="QQ商城"><font>{$stats[C].order_num}</font><span></span>{$stats[C].order_amount}</td>
+                <td title="京东商城"><font>{$stats[F].order_num}</font><span></span>{$stats[F].order_amount}</td>
+                <td title="1号商城"><font>{$stats[J].order_num}</font><span></span>{$stats[J].order_amount}</td>
+                <td title="当当网"><font>{$stats[M].order_num}</font><span></span>{$stats[M].order_amount}</td>
+                <td title="苏宁易购"><font>{$stats[N].order_num}</font><span></span>{$stats[N].order_amount}</td>
+                <td title="国美"><font>{$stats[G].order_num}</font><span></span>{$stats[G].order_amount}</td>
+                <!--<td title="手机拍拍"><font>{$stats[K].order_num}</font><span></span>{$stats[K].order_amount}</td>-->
+                <!--<td title="百度微购"><font>{$stats[R].order_num}</font><span></span>{$stats[R].order_amount}</td>-->
+                <td title="第一C店"><font>{$stats[T].order_num}</font><span></span>{$stats[T].order_amount}</td>
+                <td title="第二C店"><font>{$stats[S].order_num}</font><span></span>{$stats[S].order_amount}</td>
+                <td title="第三C店"><font>{$stats[X].order_num}</font><span></span>{$stats[X].order_amount}</td>
+                <!--<td title="亚马逊"><font>{$stats[Z].order_num}</font><span></span>{$stats[Z].order_amount}</td>-->
+                <td title="微信微店"><font>{$stats[W].order_num}</font><span></span>{$stats[W].order_amount}</td>
+                <td title="公司员工"><font>{$stats[i].order_num}</font><span></span>{$stats[i].order_amount}</td>
+                <td title="共计"><font>{$stats[total].order_num}</font><span></span>{$stats[total].order_amount}</td>
+            </tr>
+            <tr class="na_td_bg">
+                <td style="text-align:center">全月退货</td>
+                <td title="中老年"><font>{$stats_return[D].order_num}</font><span></span>{$stats_return[D].order_amount}</td>
+                <td title="会员部"><font>{$stats_return[E].order_num}</font><span></span>{$stats_return[E].order_amount}</td>
+                <td title="客服1组"><font>{$stats_return[K1].order_num}</font><span></span>{$stats_return[K1].order_amount}</td>
+                <td title="客服2组"><font>{$stats_return[K2].order_num}</font><span></span>{$stats_return[K2].order_amount}</td>
+                <td title="客服3组"><font>{$stats_return[K3].order_num}</font><span></span>{$stats_return[K3].order_amount}</td>
+                <td title="客服4组"><font>{$stats_return[K4].order_num}</font><span></span>{$stats_return[K4].order_amount}</td>
+                <td title="售后服务部"><font>{$stats_return[V].order_num}</font><span></span>{$stats_return[V].order_amount}</td>
+                <td title="官方商城"><font>{$stats_return[A].order_num}</font><span></span>{$stats_return[A].order_amount}</td>
+                <td title="天猫商城"><font>{$stats_return[B].order_num}</font><span></span>{$stats_return[B].order_amount}</td>
+                <td title="QQ商城"><font>{$stats_return[C].order_num}</font><span></span>{$stats_return[C].order_amount}</td>
+                <td title="京东商城"><font>{$stats_return[F].order_num}</font><span></span>{$stats_return[F].order_amount}</td>
+                <td title="1号商城"><font>{$stats_return[J].order_num}</font><span></span>{$stats_return[J].order_amount}</td>
+                <td title="当当网"><font>{$stats_return[M].order_num}</font><span></span>{$stats_return[M].order_amount}</td>
+                <td title="苏宁易购"><font>{$stats_return[N].order_num}</font><span></span>{$stats_return[N].order_amount}</td>
+                <td title="国美"><font>{$stats_return[G].order_num}</font><span></span>{$stats_return[G].order_amount}</td>
+                <!--<td title="手机拍拍"><font>{$stats_return[K].order_num}</font><span></span>{$stats_return[K].order_amount}</td>-->
+                <!--<td title="百度微购"><font>{$stats_return[R].order_num}</font><span></span>{$stats_return[R].order_amount}</td>-->
+                <td title="第一C店"><font>{$stats_return[T].order_num}</font><span></span>{$stats_return[T].order_amount}</td>
+                <td title="第二C店"><font>{$stats_return[S].order_num}</font><span></span>{$stats_return[S].order_amount}</td>
+                <td title="第三C店"><font>{$stats_return[X].order_num}</font><span></span>{$stats_return[X].order_amount}</td>
+                <!--<td title="亚马逊"><font>{$stats_return[Z].order_num}</font><span></span>{$stats_return[Z].order_amount}</td>-->
+                <td title="微信微店"><font>{$stats_return[W].order_num}</font><span></span>{$stats_return[W].order_amount}</td>
+                <td title="公司员工"><font>{$stats_return[i].order_num}</font><span></span>{$stats_return[i].order_amount}</td>
+                <td title="共计"><font>{$stats_return[total].order_num}</font><span></span>{$stats_return[total].order_amount}</td>
+            </tr>
+
+            {foreach from=$nature_stats item=val key=key}
+            <tr class="na_td_bg">
+                <td>{$key}</td>
+                <td title="中老年"><font>{$val[D].order_num}</font><span>{$val[D].order_amount}</span></td>
+                <td title="会员部"><font>{$val[E].order_num}</font><span>{$val[E].order_amount}</span></td>
+                <td title="客服1组"><font>{$val[K1].order_num}</font><span>{$val[K1].order_amount}</span></td>
+                <td title="客服2组"><font>{$val[K2].order_num}</font><span>{$val[K2].order_amount}</span></td>
+                <td title="客服3组"><font>{$val[K3].order_num}</font><span>{$val[K3].order_amount}</span></td>
+                <td title="客服4组"><font>{$val[K4].order_num}</font><span>{$val[K4].order_amount}</span></td>
+                <td title="售后服务部"><font>{$val[V].order_num}</font><span>{$val[V].order_amount}</span></td>
+                <td title="官方商城"><font>{$val[A].order_num}</font><span>{$val[A].order_amount}</span></td>
+                <td title="天猫商城"><font>{$val[B].order_num}</font><span>{$val[B].order_amount}</span></td>
+                <td title="QQ商城"><font>{$val[C].order_num}</font><span>{$val[C].order_amount}</span></td>
+                <td title="京东商城"><font>{$val[F].order_num}</font><span>{$val[F].order_amount}</span></td>
+                <td title="1号商城"><font>{$val[J].order_num}</font><span>{$val[J].order_amount}</span></td>
+                <td title="当当网"><font>{$val[M].order_num}</font><span>{$val[M].order_amount}</span></td>
+                <td title="苏宁易购"><font>{$val[N].order_num}</font><span>{$val[N].order_amount}</span></td>
+                <td title="国美"><font>{$val[G].order_num}</font><span>{$val[G].order_amount}</span></td>
+                <!--<td title="手机拍拍"><font>{$val[K].order_num}</font><span>{$val[K].order_amount}</span></td>-->
+                <!--<td title="百度微购"><font>{$val[R].order_num}</font><span>{$val[R].order_amount}</span></td>-->
+                <td title="第一C店"><font>{$val[T].order_num}</font><span>{$val[T].order_amount}</span></td>
+                <td title="第二C店"><font>{$val[S].order_num}</font><span>{$val[S].order_amount}</span></td>
+                <td title="第三C店"><font>{$val[X].order_num}</font><span>{$val[X].order_amount}</span></td>
+                <!--<td title="亚马逊"><font>{$val[Z].order_num}</font><span>{$val[Z].order_amount}</span></td>-->
+                <td title="微信微店"><font>{$val[W].order_num}</font><span>{$val[W].order_amount}</span></td>
+                <td title="公司员工"><font>{$val[i].order_num}</font><span>{$val[i].order_amount}</span></td>
+                <td title="共计"><font>{$val[total].order_num}</font><span>{$val[total].order_amount}</span></td>
+            </tr>
+            {/foreach}
+            {if $full}
+        </table>
+    </div>
+</div>
+{/if}

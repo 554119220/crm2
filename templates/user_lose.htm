@@ -1,0 +1,48 @@
+<!-- 页首标题 -->
+<br />
+<div class="finder-title mt10">顾客流失列表</div>
+<!-- 搜索区 -->
+<div id="pageSearch" class="list_panel">
+    <form action="users.php?act=lose_user" method="post" name="pageSearch" onsubmit="return commonSearch()">
+      {if $platform}
+      <select name="role_id" onchange="changePlatform(this)"><option value="0">选择平台</option>{html_options options=$platform}</select>
+      {/if}
+      <select name="admin_id" id="admin_id"><option value="0">选择客服</option>{html_options options=$admin_list}</select>
+      <script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+      多久没有跟进： <select name="service_time">
+        {html_options options=$options selected=$service_time}
+      </select>
+      <select name="manner">
+        <option value="0" selected="{$manner}">或</option> 
+       <option value="1" selected="{$manner}">和</option> 
+      </select>
+      多久没有购买： <select name="order_time">
+        {html_options options=$options selected=$order_time}
+      </select>
+      <input type="submit" value="搜索" class="b_submit">
+    </form>
+</div>
+<table border="0" id="dataList" class="wu_table_list rb_border wu_rb_border" cellpadding="0" cellspacing="0" width="805px">
+  <thead>
+    <th>姓名</th>
+    <th>最近服务时间</th>
+    <th>最近购买时间</th>
+    <th>客服</th>
+  </thead>
+  <tbody>
+    {foreach from=$user_list item=val name=i}
+    <tr id="tr_{$val.user_id}">
+      <td>
+        {$val.user_name}
+        <a href="users.php?act=user_detail&id={$val.user_id}" name="tBodies-detail" target="_blank" class="-detail">
+          <img src="images/add.gif" style="margin-top:7px"/>
+        </a>
+      </td>
+      <td>{$val.service_time}</td>
+      <td>{$val.order_time}</td>
+      <td>{$val.admin_name}</td>
+    </tr>
+    {/foreach}
+  </tbody>
+</table>
+<!-- 分页 --> <div id="pageList" class="bottom_tip"> {$page} </div>

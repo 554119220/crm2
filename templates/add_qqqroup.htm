@@ -1,0 +1,51 @@
+<div class="blank"></div>
+<ul class="clearfix mt10">
+  <li class="current-tab">
+  <a>添加Q群</a>
+  </li>
+</ul>
+
+<div class="all_table_list c_b w830 pt10">
+<form id="for_account" name="for_account" action="" method="POST" class="pl10">
+  <b>主题分类</b> <select class="input_text" id="DepartmentID">
+            <{foreach from=$department item=val }>
+            <option value="{$val.role_id}">{$val.role_name}</option>
+            <{/foreach}>
+          </select>        
+          <b>&nbsp;&nbsp;QQ：</b><input type="text" class="input_text" name="txtqq" id="qq" onkeypress="isNum(event)" size="12"/>
+         <label id="account_qqlist" style="display:none">
+           <select  id="qqlist" onchange="getQq(this)" >
+             {foreach from=$account_qq item=val}
+             <option value="{$val.user_name}">{$val.user_name}</option>
+             {/foreach}
+           </select>
+         </label>
+         <b>&nbsp;&nbsp;QQ群：</b><input type="text" class="input_text" id="qqgroup" onblur="isExistQg()" onkeypress="isNum(event)" size="12"/>
+         <b>&nbsp;&nbsp;群名：</b><input type="text" id="subject" size="12"/>
+         <b>&nbsp;&nbsp;管理员：</b><input type="text" id="txtAdminId" onkeypress="getAdminqq(event)" size=7">
+          <span id="adminqqList" style="display:none">
+          <select name="seladmin_id" id="admin_id" style="size:16px" onchange="getAdmin(this)">
+            <{foreach from=$admin_list item=val }>
+            <option value="{$val.account_id}">{$val.user_name}</option>
+            <{/foreach}>
+          </select> 
+          </span>
+          &nbsp;&nbsp;<input type="button" id="btnadd" disabled="true" value="提交" onclick="addQqgroup()" class="input_submits"/>
+</form>
+<div class="blank"></div>
+<div class="title_line"><h3>已经添加管理员：</h3></div>
+<div class="all_table_list">
+   <table border="0" cellpadding="0" cellspacing="0" width="100%">               
+          <tr bgcolor="#ddedfb">
+               <th align="center" width="15%">QQ</th>
+               <th width="15%"align="center">群号</th>
+               <th width="20%" align="center">主题</th>
+               <th width="30%" align="center">管理员</th>
+               <th width="20%" align="center">操作</th>
+          </tr>
+    </table>
+    <table id="addedGrouplist" height="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#666">
+    </table>
+
+</div> 
+</div>

@@ -1,0 +1,46 @@
+<!--任务进展-->
+<!--任务进度条-->
+<table width="100%" cellpadding="0" cellspacing="0" class="index_small tr_hover">
+  <tr>
+    <td class="home-stuff-heading" style="text-align:center">
+      &nbsp;今天任务进度 
+      {if $task_progress.is_complate eq false}
+      <b style="color:#BF0C0C">你还没有完成任务哦</b>
+      {else}
+      <b style="color:#BF0C0C">你今天的任务已经全部完成</b>
+      {/if}
+      <img src="images/update.png"/>
+    </td>
+  </tr>
+</table>
+<div id="task_progress_view" >
+  {if $task_progress.admin_tasks_list eq null}
+  <span class="center_button">很遗憾，你没有任务</span>
+  {else}
+  <div class="bar_div">
+    <table id="task_progress_table" cellpadding="0" cellspacing="0" width="100%" class="task_table" style="height:100%">
+      <tr style="background:#93C79A">
+        <th width="5%"></th>
+        <th width="20%">任务</th>
+        <th width="10%">进度/目标</th>
+        <th width="20%" colspan="5">情况</th>
+      </tr>
+    {foreach from=$task_progress.admin_tasks_list item=val name=i}
+    <tr>
+      <td>{$smarty.foreach.i.iteration}</td>
+      <td>{$val.task_name}</td>
+      <td>{$val.task_value}/{$val.purpose_value}</td>
+      <td {$val.sts1}></td>
+      <td {$val.sts2}></td>
+      <td {$val.sts3}></td>
+      <td {$val.sts4}></td>
+      <td {$val.sts5}></td>
+    </tr>
+    {/foreach}
+    </table>
+  </div>
+  {/if}
+</div>
+<!--销量趋势图-->
+<div id="sale_view"></div>
+

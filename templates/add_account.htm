@@ -1,0 +1,171 @@
+<div style="padding:0">
+  <form id="for_account" name="for_account" action="" method="POST">
+    <table class="table_form table_tr wu_table" cellspacing="0" border="0" id="table_info" width="600px">
+      <tr>
+        <th>部门 ：</th>
+        <td>
+          <select name="department">
+            <option value="0">请选择部门</option>
+            {foreach from=$role_list item=val}
+            <option value="{$val.role_id}" {if $val.role_id eq $account_info.department_id}selected{/if}>{$val.role_name}</option>
+            {/foreach}
+          </select>
+        </td>
+        <td>
+          <div style="display:none" id="friend_department" class="friend_alarm">部门一定要选择</div>
+        </td>
+      </tr>
+      
+      <tr>
+        <th>主题 ：</th>
+        <td>
+          <select name="subject" id="subject">
+            <option value="0">请选择主题</option>
+            {foreach from=$subject item=dep }
+            <option value="{$dep.eff_id}" {if $dep.eff_id eq $account_info.subject}selected{/if}>{$dep.eff_name}</option>
+            {/foreach}
+          </select>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>帐号类型 ：</th>
+        <td>
+          <select name="type" class="select_style" id="type_id" onchange="judge(this.value,'')">
+            {foreach from=$type item=typ }
+            <option value="{$typ.type_id}" {if $typ.type_id eq $account_info.type_id}selected{/if}>{$typ.type_name}</option>
+            {/foreach}
+          </select>
+          <input type="button" class="b_submit" onclick="addType()" value="新类型" />
+        </td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <th>QQ ：</th>
+        <td>
+          <input type="text" name="txtqquser_name" id="txtqquser_name" onblur="cheQQ(this.value)" {if $account_info.type_id eq 1 && $account_info.account_name neq ''}value="{$account_info.account_name}"{/if}/>
+          <label style="display:inline"><input type="checkbox" name="is_vip" id="is_vip_id" {if $account_info.is_vip eq 1}checked{/if}/>
+            &nbsp;<font color="red"><b>会员</b></font>
+          </label>
+        </td>
+        <td><span id="alarm_qq" style="color:red"></span></td>
+      </tr>
+      <tr>
+        <th>密码 ：</th>
+        <td>
+          <input type="text" name="password" id="password" onblur="chePassword(this.value)" value="{$account_info.password}"/>
+        </td>
+        <td><span id="alarm_pwd" style="color:red"></span></td>
+      </tr>
+      <tr>
+        <th>密码保护 ：</th>
+        <td>
+          <select name="passwordProtectID" id="pwdPro" >
+            {foreach from=$passwordprotect item=val }
+            <option value="{$val.passwordProtect_id}" {if $val.passwordProtect_id eq $account_info.password_protect_id}selected{/if}>{$val.passwordProtect}</option>
+            {/foreach}
+          </select>
+          <input type="button" class="b_submit" onclick="addPwdProtect()" value="新密保"/>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>email ：</th>
+        <td>
+          <input type="email" name="email" id="txt_email" size="32px" value="{$account_info.email}"/>
+        </td>
+        <td><span id="alarm_email" style="color:red"></span></td>
+      </tr>
+      <tr>
+        <th>手机：</th>
+        <td>
+          <input type="text" maxlength="11" name="phone" id="txt_phone" required pattern="{\d}+" title="必须是整数" value="{$account_info.tel}"/>
+          <span id="alarm_phone" color="red"></span>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>使用者 ：</th>
+        <td>
+          <select id="user" name="user">
+            <option value="0">选择使用者</option>
+            {foreach from=$user item=use }
+            <option value="{$use.user_id}" {if $use.user_id eq $account_info.user_id}selected{/if}>{$use.user_name}</option>
+            {/foreach}
+          </select>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>授权查看 ：</th>
+        <td>
+          <select name="belong" onchange="getBelong(this)">
+            <option value="0">请选择员工<option>
+            {foreach from=$user item=use}
+            <option value="{$use.user_id}">{$use.user_name}</option>
+            {/foreach}
+          </select>
+          <div class="check_box_list" name="belong_field" id="belong_field">
+            {$account_info.belong}
+          </div>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>用途 ：</th> 
+        <td>
+          <select name="account_purpose" id="account_purpose">
+            <option value="0">请选择用途</option>
+            {foreach from=$purpose item=val}
+            <option value="{$val.purpose_id}" {if $account_info.purpose eq $val.purpose_id}selected{/if}>{$val.purpose_name}</option>
+            {/foreach}
+          </select>
+          &nbsp;<input type="button" class="b_submit" value="新用途" onclick="addNewPurpose()"/>
+        </td>
+      </tr>
+      <tr>
+        <th>登录地址 ：</th> 
+        <td>
+          <input type="url" class="input_text" onblur="cheurl(this.value)" size="32px" value="{if $account_info.url neq ''}{$account_info.url}{else}http://user.qzone.qq.com/{/if}" id="urlid" name="url"/>
+        </td>
+        <td>
+          <span id="alarm_url" style="color:red"></span>
+        </td>
+      </tr>
+      <tr>
+        <th>备注 ：</th>
+        <td>
+          <textarea name="remark" class="input_text" style="width:311px !important;padding: 2px 0 2px 5px;resize:none"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <th ></th>
+        <td>
+          {if $modify_do eq 1}
+          <input type="button" class="input_submit" style="margin-right:15px" onclick="modifyAccountControl(this)" name="modify_account" value="修&nbsp;改" />
+          <input type="hidden" value="{$account_info.account_id}" name="account_id" />
+          <input type="hidden" value="{$admin_id}" name="admin_id"/>
+          {else}
+          <input type="button" class="input_submit" style="margin-right:15px" onclick="submitAccount(this)" name="add_account" id="add" value="保&nbsp;存" />
+          {/if}
+          <input type="button" size="32px" class="input_submit" value="取&nbsp;消" onclick="javascript:document.getElementById('div_pop_ups').style.display='none';document.getElementById('fade').style.display='none'"/>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+<style type="text/css">
+  select
+  {
+    width:146px;
+  }
+  .wu_table th{
+    text-align:right;
+    width:20%;
+  }
+  .wu_table td{
+    width:320px;
+  }
+</style>

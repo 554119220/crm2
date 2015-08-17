@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="styles/stats.css" type="text/css" />
+<div id="loadDiv">
+<!-- 页标题 -->
+<div class="page_title">顾客统计</div>
+<!-- 导航标签 -->
+<div>
+     <!-- 部门标签 -->
+     <nav>
+          <a href="report_forms.php?act=user_stats&role_id=0">全部</a>
+          <a href="report_forms.php?act=user_stats&role_id=9">会员部</a>
+          <a href="report_forms.php?act=user_stats&role_id=1">中老年</a>
+          <a href="report_forms.php?act=user_stats&role_id=13">云客服</a>
+     </nav>
+
+     <!-- 个人标签 -->
+     <!-- 说明：个人标签中可选的姓名随部门标签的切换而变动 -->
+     <ul id="adminList">
+          <li class="checked"><label><input type="radio" name="role_id" value="0" checked onclick="sendStatsCondition(this)">全部</label></li>
+          {foreach from=$admin_list item=val}
+          <li><label>
+               <input type="checkbox" name="admin_list" value="{$val.user_id}" onclick="sendStatsCondition(this)">{$val.user_name}
+          </label></li><wbr>
+          {/foreach}
+     </ul>
+
+     <ul id="displayShape">
+          <li class="checked"><label><input type="radio" name="display_shape" value="table" checked onclick="switchDisplayShape(this)">表格</label></li>
+          <li><label><input type="radio" name="display_shape" value="pieChart" onclick="switchDisplayShape(this)">饼状图</label></li>
+          <li><label><input type="radio" name="display_shape" value="lineChart" onclick="switchDisplayShape(this)">折线图</label></li>
+          <li><label><input type="radio" name="display_shape" value="mapChart" onclick="switchDisplayShape(this)">地域分布图</label></li>
+     </ul>
+</div>
+
+<!-- 数据显示区 -->
+<div id="dataDisplay">
+</div>
+</div>
